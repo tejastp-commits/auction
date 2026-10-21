@@ -17,7 +17,7 @@ const nextConfig = {
 
     if (backendUrl) {
       const sanitized = backendUrl.replace(/\/+$/, '');
-      return [
+      const rules = [
         {
           source: '/api/auction/:path*',
           destination: `${sanitized}/api/auction/:path*`,
@@ -35,6 +35,12 @@ const nextConfig = {
           destination: `${sanitized}/health`,
         },
       ];
+
+      return {
+        beforeFiles: rules,
+        afterFiles: [],
+        fallback: [],
+      };
     }
     return [];
   },

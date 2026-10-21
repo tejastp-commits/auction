@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { AuctionStore } from '@/lib/auction-store';
 import { getReportFromSupabase } from '@/lib/supabase';
+import { forwardToRender } from '@/lib/forward-backend';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,6 +10,9 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   try {
+    const forwarded = await forwardToRender(req, `/api/reports/${params.slug}`);
+    if (forwarded) return forwarded;
+
     const slug = params.slug;
     let report = AuctionStore.getReport(slug);
 
