@@ -38,10 +38,41 @@ const DATA_DIR =
   (fs.existsSync('/var/data') ? '/var/data' : path.join(process.cwd(), 'data'));
 const STATE_FILE = path.join(DATA_DIR, 'auction-state.json');
 
-// In-Memory Authoritative Store with durable state transitions
-const roomsByCode = new Map<string, AuctionRoomState>();
-const reportsBySlug = new Map<string, AuctionReportData>();
-const processedCommandIds = new Set<string>();
+declare global {
+  // eslint-disable-next-line no-var
+  var __auctionRoomsByCode: Map<string, AuctionRoomState> | undefined;
+  // eslint-disable-next-line no-var
+  var __auctionReportsBySlug: Map<string, AuctionReportData> | undefined;
+  // eslint-disable-next-line no-var
+  var __auctionProcessedCommandIds: Set<string> | undefined;
+}
+
+// In-Memory Authoritative Store with global persistence across Next.js re-evaluations
+const roomsByCode =
+  globalThis.__auctionRoomsByCode ?? new Map<string, AuctionRoomState>();
+globalThis.__auctionRoomsByCode = roomsByCode;
+
+const reportsBySlug =
+  globalThis.__auctionReportsBySlug ?? new Map<string, AuctionReportData>();
+globalThis.__auctionReportsBySlug = reportsBySlug;
+
+const processedCommandIds =
+  globalThis.__auctionProcessedCommandIds ?? new Set<string>();
+globalThis.__auctionProcessedCommandIds = processedCommandIds;
+
+/**
+ * Robust room lookup that checks memory first, then falls back to disk reload
+ */
+function findRoom(roomCode: string): AuctionRoomState | null {
+  const code = (roomCode || '').trim().toUpperCase();
+  if (!code) return null;
+  let room = roomsByCode.get(code);
+  if (!room) {
+    loadStateFromDisk();
+    room = roomsByCode.get(code);
+  }
+  return room || null;
+}
 
 /**
  * Saves in-memory state snapshot to disk for persistent single-instance durability
@@ -77,12 +108,17 @@ function loadStateFromDisk(): void {
       const data = JSON.parse(raw);
       if (Array.isArray(data.rooms)) {
         for (const [code, r] of data.rooms) {
-          roomsByCode.set(code, r);
+          const existing = roomsByCode.get(code);
+          if (!existing || (r.events && existing.events && r.events.length >= existing.events.length)) {
+            roomsByCode.set(code, r);
+          }
         }
       }
       if (Array.isArray(data.reports)) {
         for (const [slug, rep] of data.reports) {
-          reportsBySlug.set(slug, rep);
+          if (!reportsBySlug.has(slug)) {
+            reportsBySlug.set(slug, rep);
+          }
         }
       }
       if (Array.isArray(data.processedCommandIds)) {
@@ -230,9 +266,9 @@ export class AuctionStore {
     hostDisplayName: string,
     customConfig?: Partial<RoomConfiguration>
   ): { room: AuctionRoomState; hostToken: string } {
-    // Free Tier Concurrent Active Room Capacity Enforcement (1-2 concurrent active rooms)
+    // Capacity Enforcement (allows up to 50 concurrent active rooms by default)
     if (process.env.NODE_ENV !== 'test') {
-      const maxActiveRooms = parseInt(process.env.MAX_CONCURRENT_ROOMS || '2', 10);
+      const maxActiveRooms = parseInt(process.env.MAX_CONCURRENT_ROOMS || '50', 10);
       const activeRooms = Array.from(roomsByCode.values()).filter(
         (r) => r.status === 'ACTIVE' || r.status === 'LOBBY'
       );
@@ -250,7 +286,7 @@ export class AuctionStore {
 
         if (!purged && activeRooms.length >= maxActiveRooms) {
           throw new Error(
-            `Free tier capacity reached: Maximum ${maxActiveRooms} concurrent auction houses are currently running. Please wait for an active auction to conclude or join an existing room.`
+            `Capacity limit reached: Maximum ${maxActiveRooms} concurrent auction houses are currently running. Please wait for an active auction to conclude or join an existing room.`
           );
         }
       }
@@ -279,8 +315,15 @@ export class AuctionStore {
       };
     }
 
-    // Initial player queue from verified players
-    const queue: AuctionPlayerItem[] = VERIFIED_PLAYERS.map((player, idx) => ({
+    // Initial player queue from verified players (respects custom auction pool size)
+    const requestedPool =
+      config.auctionPoolSize && config.auctionPoolSize > 0
+        ? config.auctionPoolSize
+        : 200;
+    const poolLimit = Math.min(requestedPool, VERIFIED_PLAYERS.length);
+    const selectedPlayers = VERIFIED_PLAYERS.slice(0, poolLimit);
+
+    const queue: AuctionPlayerItem[] = selectedPlayers.map((player, idx) => ({
       id: generateUUID(),
       roomId,
       playerId: player.id,
@@ -344,7 +387,7 @@ export class AuctionStore {
    * Retrieves authoritative room state
    */
   static getRoom(roomCode: string): AuctionRoomState | null {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+    const room = findRoom(roomCode);
     if (!room) return null;
 
     // Check if active auction timer has expired on server
@@ -367,8 +410,8 @@ export class AuctionStore {
     displayName: string,
     existingSessionToken?: string
   ): { room: AuctionRoomState; participant: RoomParticipant; sessionToken: string } {
-    const code = roomCode.toUpperCase();
-    const room = roomsByCode.get(code);
+    const code = (roomCode || '').trim().toUpperCase();
+    const room = findRoom(code);
     if (!room) {
       throw new Error(`Room with code "${code}" does not exist.`);
     }
@@ -424,7 +467,7 @@ export class AuctionStore {
     sessionToken: string,
     franchiseId: string | null
   ): AuctionRoomState {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+    const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
     const participant = room.participants.find((p) => p.sessionToken === sessionToken);
@@ -464,7 +507,7 @@ export class AuctionStore {
    * Starts the auction (Host only)
    */
   static startAuction(roomCode: string, sessionToken: string): AuctionRoomState {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+    const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
     if (room.hostSessionToken !== sessionToken) {
@@ -506,7 +549,7 @@ export class AuctionStore {
     amount: number,
     commandId: string
   ): AuctionRoomState {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+    const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
     // 1. Check idempotency (scoped to room)
@@ -581,11 +624,17 @@ export class AuctionStore {
     room.currentBidFranchiseId = franchiseId;
 
     // Timer Extension Rule:
-    // If less than 10 seconds remain, extend clock by 15 seconds to give competing bidders a fair window
+    // Respects custom bid timer (5s, 10s, 20s, 30s, etc.) proportionally
+    const timerSec = room.config.bidTimerSeconds || 20;
     const now = Date.now();
     const remainingTime = (room.timerDeadlineAt || now) - now;
-    if (remainingTime < 10000) {
-      room.timerDeadlineAt = now + 15000;
+    const thresholdMs = Math.min(10000, Math.floor((timerSec * 1000) / 2));
+    const extensionMs = Math.min(
+      timerSec * 1000,
+      Math.max(5000, Math.floor(timerSec * 1000 * 0.75))
+    );
+    if (remainingTime < thresholdMs) {
+      room.timerDeadlineAt = now + extensionMs;
     }
 
     const bidRecord: BidRecord = {
@@ -624,7 +673,7 @@ export class AuctionStore {
    * Finalizes the current player in auction (sells to highest bidder or marks unsold)
    */
   static finalizePlayer(roomCode: string, sessionToken: string): AuctionRoomState {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+    const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
     const isHost = room.hostSessionToken === sessionToken;
@@ -654,6 +703,7 @@ export class AuctionStore {
       currentPlayer.finalPrice = finalPrice;
       currentPlayer.winningFranchiseId = winningFranchiseId;
       currentPlayer.soldAt = new Date().toISOString();
+      currentPlayer.lastUpdatedAt = new Date().toISOString();
 
       const squad = room.squads[winningFranchiseId];
       if (squad) {
@@ -677,34 +727,64 @@ export class AuctionStore {
     } else {
       // UNSOLD!
       currentPlayer.status = 'UNSOLD';
+      currentPlayer.lastUpdatedAt = new Date().toISOString();
       this.addEvent(room, 'PLAYER_UNSOLD', {
         player: currentPlayer.player.canonicalName,
       });
     }
 
-    // Advance to next player or finish auction
+    // Advance to next eligible player or finish auction
     room.currentBidAmount = 0;
     room.currentBidFranchiseId = null;
 
-    if (room.currentPlayerIndex + 1 < room.queue.length) {
-      room.currentPlayerIndex += 1;
-      const nextPlayer = room.queue[room.currentPlayerIndex];
-      nextPlayer.status = 'IN_AUCTION';
-      room.timerDeadlineAt = Date.now() + room.config.bidTimerSeconds * 1000;
-    } else {
-      // All players in queue processed: AUCTION COMPLETED
-      this.completeAuctionInternal(room);
-    }
+    this.advanceToNextEligiblePlayer(room);
 
     persistStateToDisk();
     persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
   }
 
   /**
-   * Skips the current player as unsold (Host only)
+   * Advances the auction hot seat to the next eligible PENDING player
    */
-  static skipPlayer(roomCode: string, sessionToken: string): AuctionRoomState {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+  private static advanceToNextEligiblePlayer(room: AuctionRoomState): void {
+    let nextIdx = -1;
+    // Search forward from current index + 1
+    for (let i = room.currentPlayerIndex + 1; i < room.queue.length; i++) {
+      if (room.queue[i].status === 'PENDING') {
+        nextIdx = i;
+        break;
+      }
+    }
+
+    // Wrap around to search from start of queue if not found forward
+    if (nextIdx === -1) {
+      for (let i = 0; i < room.queue.length; i++) {
+        if (room.queue[i].status === 'PENDING') {
+          nextIdx = i;
+          break;
+        }
+      }
+    }
+
+    if (nextIdx !== -1) {
+      room.currentPlayerIndex = nextIdx;
+      room.queue[nextIdx].status = 'IN_AUCTION';
+      room.timerDeadlineAt = Date.now() + room.config.bidTimerSeconds * 1000;
+    } else {
+      // No more pending players in queue: AUCTION COMPLETED
+      this.completeAuctionInternal(room);
+    }
+  }
+
+  /**
+   * Skips the current player as skipped (Host only, with optional auto-requeue)
+   */
+  static skipPlayer(
+    roomCode: string,
+    sessionToken: string,
+    autoRequeue: boolean = false
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
     if (room.hostSessionToken !== sessionToken) {
@@ -717,23 +797,40 @@ export class AuctionStore {
 
     const currentPlayer = room.queue[room.currentPlayerIndex];
     if (currentPlayer) {
-      currentPlayer.status = 'UNSOLD';
+      currentPlayer.status = 'SKIPPED';
+      currentPlayer.skippedAt = new Date().toISOString();
+      currentPlayer.skippedBy = sessionToken;
+      currentPlayer.lastUpdatedAt = new Date().toISOString();
+
+      if (autoRequeue) {
+        const requeued: AuctionPlayerItem = {
+          id: generateUUID(),
+          roomId: room.id,
+          playerId: currentPlayer.playerId,
+          player: currentPlayer.player,
+          queuePosition: room.queue.length,
+          status: 'PENDING',
+          basePrice: currentPlayer.basePrice,
+          finalPrice: null,
+          winningFranchiseId: null,
+          soldAt: null,
+          nominationRound: (currentPlayer.nominationRound || 1) + 1,
+          lastUpdatedAt: new Date().toISOString(),
+        };
+        room.queue.push(requeued);
+      }
+
       this.addEvent(room, 'PLAYER_UNSOLD', {
         player: currentPlayer.player.canonicalName,
         reason: 'Host skipped',
+        autoRequeue,
       });
     }
 
     room.currentBidAmount = 0;
     room.currentBidFranchiseId = null;
 
-    if (room.currentPlayerIndex + 1 < room.queue.length) {
-      room.currentPlayerIndex += 1;
-      room.queue[room.currentPlayerIndex].status = 'IN_AUCTION';
-      room.timerDeadlineAt = Date.now() + room.config.bidTimerSeconds * 1000;
-    } else {
-      this.completeAuctionInternal(room);
-    }
+    this.advanceToNextEligiblePlayer(room);
 
     persistStateToDisk();
     persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
@@ -742,10 +839,396 @@ export class AuctionStore {
   }
 
   /**
+   * Adds players from the master database to the auction queue
+   */
+  static addPlayersToQueue(
+    roomCode: string,
+    sessionToken: string,
+    playerIds: string[]
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can modify the auction queue.');
+    }
+
+    const added: string[] = [];
+    for (const pid of playerIds) {
+      if (room.queue.some((q) => q.playerId === pid)) continue;
+
+      const player = VERIFIED_PLAYERS.find((p) => p.id === pid);
+      if (!player) continue;
+
+      const item: AuctionPlayerItem = {
+        id: generateUUID(),
+        roomId: room.id,
+        playerId: player.id,
+        player,
+        queuePosition: room.queue.length,
+        status: 'PENDING',
+        basePrice: player.defaultBasePrice,
+        finalPrice: null,
+        winningFranchiseId: null,
+        soldAt: null,
+        nominationRound: 1,
+        lastUpdatedAt: new Date().toISOString(),
+      };
+      room.queue.push(item);
+      added.push(player.canonicalName);
+    }
+
+    this.addEvent(room, 'PLAYERS_ADDED' as any, {
+      count: added.length,
+      players: added.slice(0, 5),
+    });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
+   * Removes selected player from auction queue without deleting master record
+   */
+  static removePlayerFromQueue(
+    roomCode: string,
+    sessionToken: string,
+    auctionPlayerId: string
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can remove players from the queue.');
+    }
+
+    const idx = room.queue.findIndex((q) => q.id === auctionPlayerId);
+    if (idx === -1) throw new Error('Player not found in queue');
+
+    const item = room.queue[idx];
+    if (item.status === 'SOLD') {
+      throw new Error('Cannot remove a sold player without performing an administrative reset.');
+    }
+
+    const wasCurrent = item.status === 'IN_AUCTION' || idx === room.currentPlayerIndex;
+    room.queue.splice(idx, 1);
+
+    room.queue.forEach((q, i) => {
+      q.queuePosition = i;
+    });
+
+    if (wasCurrent && room.status === 'ACTIVE') {
+      room.currentBidAmount = 0;
+      room.currentBidFranchiseId = null;
+      room.currentPlayerIndex = Math.max(0, idx - 1);
+      this.advanceToNextEligiblePlayer(room);
+    }
+
+    this.addEvent(room, 'PLAYER_REMOVED' as any, {
+      player: item.player.canonicalName,
+    });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
+   * Excludes a player from the auction entirely
+   */
+  static excludePlayer(
+    roomCode: string,
+    sessionToken: string,
+    auctionPlayerId: string,
+    reason?: string
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can exclude players.');
+    }
+
+    const item = room.queue.find((q) => q.id === auctionPlayerId);
+    if (!item) throw new Error('Player not found in queue');
+    if (item.status === 'SOLD') {
+      throw new Error('Cannot exclude a player who is already sold.');
+    }
+
+    const wasActive = item.status === 'IN_AUCTION';
+    item.status = 'EXCLUDED';
+    item.exclusionReason = reason || 'Excluded by auction organizer';
+    item.lastUpdatedAt = new Date().toISOString();
+
+    if (wasActive && room.status === 'ACTIVE') {
+      room.currentBidAmount = 0;
+      room.currentBidFranchiseId = null;
+      this.advanceToNextEligiblePlayer(room);
+    }
+
+    this.addEvent(room, 'PLAYER_EXCLUDED' as any, {
+      player: item.player.canonicalName,
+      reason: item.exclusionReason,
+    });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
+   * Restores a skipped or excluded player back to the auction queue
+   */
+  static restorePlayer(
+    roomCode: string,
+    sessionToken: string,
+    auctionPlayerId: string,
+    insertPosition: 'NEXT' | 'END' = 'END'
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can restore players.');
+    }
+
+    const idx = room.queue.findIndex((q) => q.id === auctionPlayerId);
+    if (idx === -1) throw new Error('Player not found in queue');
+
+    const item = room.queue[idx];
+    item.status = 'PENDING';
+    item.skippedAt = null;
+    item.skippedBy = null;
+    item.exclusionReason = null;
+    item.lastUpdatedAt = new Date().toISOString();
+
+    if (insertPosition === 'NEXT' && room.currentPlayerIndex + 1 < room.queue.length) {
+      room.queue.splice(idx, 1);
+      room.queue.splice(room.currentPlayerIndex + 1, 0, item);
+    } else if (insertPosition === 'END') {
+      room.queue.splice(idx, 1);
+      room.queue.push(item);
+    }
+
+    room.queue.forEach((q, i) => {
+      q.queuePosition = i;
+    });
+
+    this.addEvent(room, 'PLAYER_RESTORED' as any, {
+      player: item.player.canonicalName,
+      insertPosition,
+    });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
+   * Manually nominates a specific eligible player to the hot seat immediately
+   */
+  static nominatePlayer(
+    roomCode: string,
+    sessionToken: string,
+    auctionPlayerId: string
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can nominate players.');
+    }
+
+    const targetIdx = room.queue.findIndex((q) => q.id === auctionPlayerId);
+    if (targetIdx === -1) throw new Error('Player not found in queue');
+
+    const target = room.queue[targetIdx];
+    if (target.status === 'SOLD') {
+      throw new Error('Player has already been sold and cannot be re-nominated without administrative reset.');
+    }
+
+    const current = room.queue[room.currentPlayerIndex];
+    if (current && current.id !== target.id && current.status === 'IN_AUCTION') {
+      current.status = 'SKIPPED';
+      current.skippedAt = new Date().toISOString();
+      current.skippedBy = sessionToken;
+      current.lastUpdatedAt = new Date().toISOString();
+    }
+
+    target.status = 'IN_AUCTION';
+    target.nominationRound = (target.nominationRound || 1) + 1;
+    target.skippedAt = null;
+    target.skippedBy = null;
+    target.exclusionReason = null;
+    target.lastUpdatedAt = new Date().toISOString();
+
+    room.currentPlayerIndex = targetIdx;
+    room.currentBidAmount = 0;
+    room.currentBidFranchiseId = null;
+    room.timerDeadlineAt = Date.now() + room.config.bidTimerSeconds * 1000;
+
+    if (room.status === 'LOBBY' || room.status === 'PAUSED') {
+      room.status = 'ACTIVE';
+    }
+
+    this.addEvent(room, 'PLAYER_NOMINATED' as any, {
+      player: target.player.canonicalName,
+      round: target.nominationRound,
+    });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
+   * Reorders the queue according to an array of auction player IDs
+   */
+  static reorderQueue(
+    roomCode: string,
+    sessionToken: string,
+    orderedAuctionPlayerIds: string[]
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can reorder the queue.');
+    }
+
+    const idMap = new Map(room.queue.map((q) => [q.id, q]));
+    const reordered: AuctionPlayerItem[] = [];
+
+    for (const id of orderedAuctionPlayerIds) {
+      const item = idMap.get(id);
+      if (item) {
+        reordered.push(item);
+        idMap.delete(id);
+      }
+    }
+
+    for (const remaining of Array.from(idMap.values())) {
+      reordered.push(remaining);
+    }
+
+    reordered.forEach((q, i) => {
+      q.queuePosition = i;
+    });
+
+    room.queue = reordered;
+
+    this.addEvent(room, 'QUEUE_REORDERED' as any, {
+      total: room.queue.length,
+    });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
+   * Administrative reset for an accidentally sold or marked unsold player
+   */
+  static adminResetPlayer(
+    roomCode: string,
+    sessionToken: string,
+    auctionPlayerId: string
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can execute an administrative reset.');
+    }
+
+    const item = room.queue.find((q) => q.id === auctionPlayerId);
+    if (!item) throw new Error('Player not found in queue');
+
+    if (item.status === 'SOLD' && item.winningFranchiseId && item.finalPrice) {
+      const squad = room.squads[item.winningFranchiseId];
+      if (squad) {
+        squad.spentAmount = Math.max(0, squad.spentAmount - item.finalPrice);
+        squad.remainingPurse = Math.min(squad.startingPurse, squad.remainingPurse + item.finalPrice);
+        squad.players = squad.players.filter((p) => p.player.id !== item.player.id);
+        if (item.player.isOverseas) {
+          squad.overseasCount = Math.max(0, squad.overseasCount - 1);
+        }
+      }
+    }
+
+    item.status = 'PENDING';
+    item.finalPrice = null;
+    item.winningFranchiseId = null;
+    item.soldAt = null;
+    item.skippedAt = null;
+    item.skippedBy = null;
+    item.exclusionReason = null;
+    item.lastUpdatedAt = new Date().toISOString();
+
+    this.addEvent(room, 'PLAYER_SALE_RESET' as any, {
+      player: item.player.canonicalName,
+    });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
+   * Imports a player pool (can replace pending or append)
+   */
+  static importCustomPool(
+    roomCode: string,
+    sessionToken: string,
+    playerIds: string[],
+    replacePending: boolean = false
+  ): AuctionRoomState {
+    const room = findRoom(roomCode);
+    if (!room) throw new Error('Room not found');
+    if (room.hostSessionToken !== sessionToken) {
+      throw new Error('Only the room host can import player pools.');
+    }
+
+    if (replacePending) {
+      const preserved = room.queue.filter(
+        (q) => q.status === 'SOLD' || q.status === 'IN_AUCTION'
+      );
+      const existingPlayerIds = new Set(preserved.map((q) => q.playerId));
+
+      const newItems: AuctionPlayerItem[] = [];
+      for (const pid of playerIds) {
+        if (existingPlayerIds.has(pid)) continue;
+        const player = VERIFIED_PLAYERS.find((p) => p.id === pid);
+        if (!player) continue;
+
+        newItems.push({
+          id: generateUUID(),
+          roomId: room.id,
+          playerId: player.id,
+          player,
+          queuePosition: preserved.length + newItems.length,
+          status: 'PENDING',
+          basePrice: player.defaultBasePrice,
+          finalPrice: null,
+          winningFranchiseId: null,
+          soldAt: null,
+          nominationRound: 1,
+          lastUpdatedAt: new Date().toISOString(),
+        });
+      }
+
+      room.queue = [...preserved, ...newItems];
+      room.queue.forEach((q, i) => {
+        q.queuePosition = i;
+      });
+    } else {
+      this.addPlayersToQueue(roomCode, sessionToken, playerIds);
+    }
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    return { ...room, serverTime: Date.now() };
+  }
+
+  /**
    * Pauses / Resumes the auction timer (Host only)
    */
   static togglePause(roomCode: string, sessionToken: string): AuctionRoomState {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+    const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
     if (room.hostSessionToken !== sessionToken) {
@@ -771,7 +1254,7 @@ export class AuctionStore {
    * Concludes the auction and freezes persistent analytics snapshot
    */
   static finishAuction(roomCode: string, sessionToken: string): AuctionRoomState {
-    const room = roomsByCode.get(roomCode.toUpperCase());
+    const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
     if (room.hostSessionToken !== sessionToken) {
@@ -871,7 +1354,12 @@ export class AuctionStore {
    * Retrieves a persistent completed auction report by slug
    */
   static getReport(slug: string): AuctionReportData | null {
-    return reportsBySlug.get(slug) || null;
+    let rep = reportsBySlug.get(slug);
+    if (!rep) {
+      loadStateFromDisk();
+      rep = reportsBySlug.get(slug);
+    }
+    return rep || null;
   }
 
   /**

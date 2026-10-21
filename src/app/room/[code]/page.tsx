@@ -7,6 +7,7 @@ import { formatRupees, getNextMinimumBid, getQuickBidOptions, CRORE } from '@/li
 import { AuctionRoomState, RoomParticipant, AuctionPlayerItem } from '@/lib/types';
 import confetti from 'canvas-confetti';
 import Link from 'next/link';
+import OrganizerPoolModal from './OrganizerPoolModal';
 
 export default function AuctionRoomPage() {
   const params = useParams();
@@ -19,16 +20,24 @@ export default function AuctionRoomPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [bidError, setBidError] = useState('');
-  const [copied, setCopied] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
+  const [copiedCode, setCopiedCode] = useState(false);
   const [customBidAmountCr, setCustomBidAmountCr] = useState<string>('');
+  const [isPoolModalOpen, setIsPoolModalOpen] = useState(false);
+
+  // Join modal state
+  const [isJoiningUser, setIsJoiningUser] = useState(false);
+  const [joinModalError, setJoinModalError] = useState('');
 
   // Clock offset & countdown
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [serverOffset, setServerOffset] = useState<number>(0);
   const confettiTriggered = useRef(false);
 
-  // Poll interval
+  // Poll interval & room synchronization
   useEffect(() => {
+    if (!roomCode || roomCode === 'UNDEFINED') return;
+
     // Load local identity
     const savedToken = localStorage.getItem(`auction_token_${roomCode}`) || '';
     const savedName = localStorage.getItem(`auction_name_${roomCode}`) || '';
@@ -36,14 +45,23 @@ export default function AuctionRoomPage() {
     setDisplayName(savedName);
 
     let isMounted = true;
+    let failCount = 0;
 
     async function syncRoom() {
       try {
         const res = await fetch(`/api/auction/${roomCode}`);
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Failed to fetch room');
+        if (!res.ok) {
+          // If room was just created, allow 3 retries before showing error
+          if (!room && failCount < 3) {
+            failCount++;
+            return;
+          }
+          throw new Error(data.error || 'Failed to fetch room');
+        }
 
         if (isMounted) {
+          failCount = 0;
           const now = Date.now();
           const serverTime = data.room.serverTime || now;
           setServerOffset(serverTime - now);
@@ -57,7 +75,10 @@ export default function AuctionRoomPage() {
         }
       } catch (err: any) {
         if (isMounted) {
-          setError(err.message || 'Error connecting to room');
+          // Only show error screen if room has never loaded
+          if (!room) {
+            setError(err.message || 'Error connecting to room');
+          }
         }
       } finally {
         if (isMounted) setIsLoading(false);
@@ -74,8 +95,61 @@ export default function AuctionRoomPage() {
     };
   }, [roomCode]);
 
+  // Robust clipboard copy with fallback
+  const copyToClipboard = async (text: string): Promise<boolean> => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (e) {
+        // Fallback below
+      }
+    }
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const res = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return res;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const handleCopyInvite = async () => {
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    const success = await copyToClipboard(url);
+    if (success) {
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
+    }
+  };
+
+  const handleCopyCode = async () => {
+    if (!roomCode) return;
+    const success = await copyToClipboard(roomCode);
+    if (success) {
+      setCopiedCode(true);
+      setTimeout(() => setCopiedCode(false), 2500);
+    }
+  };
+
+  const handleShareWhatsApp = () => {
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    const text = encodeURIComponent(
+      `🏏 Join my IPL Auction Arena!\nRoom Code: ${roomCode}\nTap link to pick your franchise & bid live: ${url}`
+    );
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  };
+
   // Join room helper
   const joinUser = async (name: string) => {
+    setIsJoiningUser(true);
+    setJoinModalError('');
     try {
       const res = await fetch('/api/auction/join', {
         method: 'POST',
@@ -87,15 +161,21 @@ export default function AuctionRoomPage() {
         }),
       });
       const data = await res.json();
-      if (res.ok && data.sessionToken) {
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to join room');
+      }
+      if (data.sessionToken) {
         setSessionToken(data.sessionToken);
         setDisplayName(name);
         localStorage.setItem(`auction_token_${roomCode}`, data.sessionToken);
         localStorage.setItem(`auction_name_${roomCode}`, name);
         if (data.room) setRoom(data.room);
       }
-    } catch (e) {
+    } catch (e: any) {
+      setJoinModalError(e.message || 'Could not join room');
       console.error(e);
+    } finally {
+      setIsJoiningUser(false);
     }
   };
 
@@ -166,12 +246,6 @@ export default function AuctionRoomPage() {
     ? getQuickBidOptions(currentBid, basePrice, remainingPurse)
     : [];
 
-  const handleCopyInvite = () => {
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const handleSelectFranchise = async (franchiseId: string | null) => {
     try {
@@ -316,6 +390,12 @@ export default function AuctionRoomPage() {
             Enter your manager name to join the live room, claim your franchise, and compete in the bidding war.
           </p>
 
+          {joinModalError && (
+            <div className="mb-4 p-3 text-xs rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-medium text-left">
+              {joinModalError}
+            </div>
+          )}
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -341,9 +421,10 @@ export default function AuctionRoomPage() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 shadow-lg shadow-amber-500/25 text-xs tracking-wider transition-all"
+              disabled={isJoiningUser}
+              className="w-full py-3 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 shadow-lg shadow-amber-500/25 text-xs tracking-wider transition-all disabled:opacity-50"
             >
-              ENTER AUCTION ARENA 🎯
+              {isJoiningUser ? 'JOINING ROOM...' : 'ENTER AUCTION ARENA 🎯'}
             </button>
           </form>
         </div>
@@ -369,12 +450,20 @@ export default function AuctionRoomPage() {
           <div className="text-3xl mb-3">⚠️</div>
           <h2 className="text-lg font-bold text-white mb-2">Room Unavailable</h2>
           <p className="text-sm text-slate-400 mb-6">{error || 'Room not found or expired.'}</p>
-          <Link
-            href="/"
-            className="inline-block py-2.5 px-5 rounded-xl font-bold bg-amber-500 text-slate-950 text-xs tracking-wide"
-          >
-            ← Return to Arena Home
-          </Link>
+          <div className="flex items-center justify-center gap-3">
+            <button
+              onClick={() => window.location.reload()}
+              className="py-2.5 px-5 rounded-xl font-bold bg-amber-500 text-slate-950 text-xs tracking-wide hover:bg-amber-400 transition-all shadow-md"
+            >
+              🔄 Retry Connection
+            </button>
+            <Link
+              href="/"
+              className="py-2.5 px-5 rounded-xl font-bold bg-slate-800 border border-slate-700 text-slate-300 hover:text-white text-xs tracking-wide transition-all"
+            >
+              ← Return to Arena Home
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -387,8 +476,16 @@ export default function AuctionRoomPage() {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         {renderJoinModal()}
+        <OrganizerPoolModal
+          isOpen={isPoolModalOpen}
+          onClose={() => setIsPoolModalOpen(false)}
+          room={room}
+          sessionToken={sessionToken}
+          isHost={isHost}
+          onRoomUpdate={(updated) => setRoom(updated)}
+        />
         {/* LOBBY HEADER */}
-        <div className="ipl-card p-6 rounded-2xl mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="ipl-card p-6 rounded-2xl mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold mb-2">
               <span>Auction Room Lobby</span>
@@ -403,22 +500,85 @@ export default function AuctionRoomPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <button
+              onClick={handleCopyCode}
+              className="py-2.5 px-3.5 rounded-xl border border-slate-700 bg-slate-900/90 hover:bg-slate-800 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm"
+            >
+              <span>{copiedCode ? '✅ Code Copied!' : '📋 Copy Code'}</span>
+            </button>
+
             <button
               onClick={handleCopyInvite}
-              className="py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 text-xs font-semibold flex items-center gap-2 transition-all"
+              className="py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-900/90 hover:bg-slate-800 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm"
             >
-              <span>{copied ? '✅ Link Copied!' : '📋 Copy Invite Link'}</span>
+              <span>{copiedLink ? '✅ Link Copied!' : '🔗 Copy Invite Link'}</span>
+            </button>
+
+            <button
+              onClick={handleShareWhatsApp}
+              className="py-2.5 px-3.5 rounded-xl bg-emerald-600/20 border border-emerald-500/30 hover:bg-emerald-600/30 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm"
+              title="Share on WhatsApp"
+            >
+              <span>💬 WhatsApp</span>
             </button>
 
             {isHost && (
-              <button
-                onClick={handleStartAuction}
-                className="py-2.5 px-6 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 shadow-lg shadow-amber-500/25 text-xs tracking-wide transition-all"
-              >
-                START AUCTION 🔨
-              </button>
+              <>
+                <button
+                  onClick={() => setIsPoolModalOpen(true)}
+                  className="py-2.5 px-4 rounded-xl font-bold text-amber-300 border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-xs tracking-wide transition-all flex items-center gap-1.5"
+                >
+                  <span>⚙️ Auction Pool ({room.queue?.length || 0})</span>
+                </button>
+                <button
+                  onClick={handleStartAuction}
+                  className="py-2.5 px-6 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 shadow-lg shadow-amber-500/25 text-xs tracking-wide transition-all ml-1"
+                >
+                  START AUCTION 🔨
+                </button>
+              </>
             )}
+          </div>
+        </div>
+
+        {/* INVITE FRIENDS HERO BANNER */}
+        <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-slate-950/40 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg shadow-amber-500/5">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center text-2xl shrink-0">
+              👥
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white flex items-center gap-2">
+                <span>Invite Friends to Claim Franchises</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-extrabold uppercase">
+                  Multiplayer
+                </span>
+              </div>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Share room code <span className="font-mono font-bold text-amber-400">{room.roomCode}</span> with other players to take the helm of CSK, MI, RCB and more!
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            <button
+              onClick={handleCopyCode}
+              className="flex-1 sm:flex-none py-2 px-3 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-slate-200 transition-all flex items-center justify-center gap-1.5"
+            >
+              <span>{copiedCode ? '✅ Copied' : `📋 ${room.roomCode}`}</span>
+            </button>
+            <button
+              onClick={handleCopyInvite}
+              className="flex-1 sm:flex-none py-2 px-3.5 rounded-xl border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-xs font-semibold text-amber-300 transition-all flex items-center justify-center gap-1.5"
+            >
+              <span>{copiedLink ? '✅ Link Copied' : '🔗 Copy Invite Link'}</span>
+            </button>
+            <button
+              onClick={handleShareWhatsApp}
+              className="py-2 px-3 rounded-xl bg-emerald-600/20 border border-emerald-500/30 hover:bg-emerald-600/30 text-emerald-400 text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
+            >
+              <span>💬 Share</span>
+            </button>
           </div>
         </div>
 
@@ -565,6 +725,10 @@ export default function AuctionRoomPage() {
                 <span className="text-white font-extrabold text-sm">{room.config.bidTimerSeconds} Seconds</span>
               </div>
               <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
+                <span className="text-slate-500 block text-[10px] uppercase font-bold">Auction Pool</span>
+                <span className="text-white font-extrabold text-sm">{room.queue ? room.queue.length : 200} Players</span>
+              </div>
+              <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
                 <span className="text-slate-500 block text-[10px] uppercase font-bold">Overseas Quota</span>
                 <span className="text-white font-extrabold text-sm">Max {room.config.maxOverseas} Players</span>
               </div>
@@ -617,12 +781,28 @@ export default function AuctionRoomPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex flex-col justify-between">
       {renderJoinModal()}
+      <OrganizerPoolModal
+        isOpen={isPoolModalOpen}
+        onClose={() => setIsPoolModalOpen(false)}
+        room={room}
+        sessionToken={sessionToken}
+        isHost={isHost}
+        onRoomUpdate={(updated) => setRoom(updated)}
+      />
       {/* HEADER / STATUS BAR */}
       <div className="ipl-card p-4 rounded-2xl mb-6 flex flex-wrap items-center justify-between gap-4 border border-slate-800">
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs font-black px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-amber-400">
             ROOM: {room.roomCode}
           </span>
+
+          <button
+            onClick={handleCopyInvite}
+            className="text-[11px] font-semibold text-slate-300 hover:text-white px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-600 transition-all flex items-center gap-1"
+            title="Copy invite link to share with friends"
+          >
+            <span>{copiedLink ? '✅ Link Copied' : '🔗 Invite'}</span>
+          </button>
 
           <div
             className={`px-3 py-1 rounded-full text-xs font-extrabold flex items-center gap-1.5 ${
@@ -662,6 +842,13 @@ export default function AuctionRoomPage() {
           {/* HOST CONTROLS */}
           {isHost && (
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsPoolModalOpen(true)}
+                className="py-1.5 px-3 rounded-lg text-xs font-bold border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 flex items-center gap-1.5"
+                title="Manage Auction Pool & Queue"
+              >
+                <span>⚙️ Pool ({room.queue?.length || 0})</span>
+              </button>
               <button
                 onClick={handleTogglePause}
                 className="py-1.5 px-3 rounded-lg text-xs font-bold border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-300"
@@ -904,6 +1091,57 @@ export default function AuctionRoomPage() {
               </div>
             ) : (
               <p className="text-xs text-slate-500 italic">No bids recorded yet for this player.</p>
+            )}
+          </div>
+
+          {/* UPCOMING PLAYERS ON DECK */}
+          <div className="ipl-card p-5 rounded-2xl border border-slate-800">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                <span>Upcoming On Deck</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono">
+                  {room.queue.filter((q) => q.status === 'PENDING').length} Queued
+                </span>
+              </h3>
+
+              {isHost && (
+                <button
+                  onClick={() => setIsPoolModalOpen(true)}
+                  className="text-[11px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-all"
+                >
+                  <span>Manage Queue ⚙️</span>
+                </button>
+              )}
+            </div>
+
+            {room.queue.filter((_, idx) => idx > room.currentPlayerIndex && room.queue[idx].status === 'PENDING').length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                {room.queue
+                  .filter((_, idx) => idx > room.currentPlayerIndex && room.queue[idx].status === 'PENDING')
+                  .slice(0, 6)
+                  .map((item, i) => (
+                    <div
+                      key={item.id}
+                      className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between gap-2"
+                    >
+                      <div className="overflow-hidden">
+                        <span className="text-xs font-bold text-white block truncate">
+                          {item.player.canonicalName}
+                        </span>
+                        <div className="flex items-center gap-1.5 text-[10px] text-slate-400 mt-0.5">
+                          <span className="uppercase text-amber-400 font-semibold">{item.player.primaryRole}</span>
+                          {item.player.isOverseas && <span>• ✈️</span>}
+                          <span>• {formatRupees(item.basePrice)}</span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-mono text-slate-500 font-bold shrink-0">
+                        #{room.currentPlayerIndex + 2 + i}
+                      </span>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <p className="text-xs text-slate-500 italic">No more players in queue. Organizer can add more from master database.</p>
             )}
           </div>
         </div>

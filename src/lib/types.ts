@@ -4,14 +4,22 @@ import { TeamEvaluation } from '@/lib/analytics';
 
 export type RoomStatus = 'LOBBY' | 'ACTIVE' | 'PAUSED' | 'COMPLETED';
 export type ParticipantRole = 'HOST' | 'OWNER' | 'SPECTATOR';
-export type PlayerAuctionStatus = 'PENDING' | 'IN_AUCTION' | 'SOLD' | 'UNSOLD';
+export type PlayerAuctionStatus =
+  | 'PENDING'
+  | 'IN_AUCTION'
+  | 'SOLD'
+  | 'UNSOLD'
+  | 'SKIPPED'
+  | 'EXCLUDED'
+  | 'WITHDRAWN';
 
 export interface RoomConfiguration {
   startingPurse: number;   // default 120 Cr (120,00,00,000)
   minSquadSize: number;    // default 18
   maxSquadSize: number;    // default 25
   maxOverseas: number;     // default 8
-  bidTimerSeconds: number; // default 20
+  bidTimerSeconds: number; // default 20 (e.g. 5, 10, 15, 20, 30, or custom)
+  auctionPoolSize?: number; // default 200 (e.g. 50, 100, 150, 200, or custom)
 }
 
 export interface RoomParticipant {
@@ -36,6 +44,11 @@ export interface AuctionPlayerItem {
   finalPrice: number | null;
   winningFranchiseId: string | null;
   soldAt: string | null;
+  nominationRound?: number;
+  exclusionReason?: string | null;
+  skippedAt?: string | null;
+  skippedBy?: string | null;
+  lastUpdatedAt?: string;
 }
 
 export interface BidRecord {

@@ -31,4 +31,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .vercel
-data/
+data/auction-state.json
+data/legacy_*.json
+!data/players-master.json
+!data/players-catalog.csv

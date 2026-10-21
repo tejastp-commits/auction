@@ -272,6 +272,91 @@ app.post('/api/auction/finish', (req: Request, res: Response) => {
   }
 });
 
+// 11. Auction Pool & Queue Management
+app.all('/api/auction/pool', (req: Request, res: Response) => {
+  try {
+    if (req.method === 'GET') {
+      const roomCode = String(req.query.roomCode || '').toUpperCase();
+      if (!roomCode) return res.status(400).json({ error: 'roomCode is required' });
+      const room = AuctionStore.getRoom(roomCode);
+      if (!room) return res.status(404).json({ error: 'Room not found' });
+      return res.json({ success: true, roomCode: room.roomCode, total: room.queue.length, queue: room.queue });
+    }
+
+    if (req.method === 'POST') {
+      const {
+        roomCode,
+        sessionToken,
+        action,
+        playerIds,
+        auctionPlayerId,
+        orderedAuctionPlayerIds,
+        reason,
+        insertPosition,
+        autoRequeue,
+        replacePending,
+      } = req.body || {};
+
+      if (!roomCode || !sessionToken || !action) {
+        return res.status(400).json({ error: 'roomCode, sessionToken, and action are required' });
+      }
+
+      let updatedRoom;
+      switch (String(action).toUpperCase()) {
+        case 'ADD':
+          if (!Array.isArray(playerIds) || playerIds.length === 0) {
+            return res.status(400).json({ error: 'playerIds array is required' });
+          }
+          updatedRoom = AuctionStore.addPlayersToQueue(roomCode, sessionToken, playerIds);
+          break;
+        case 'REMOVE':
+          if (!auctionPlayerId) return res.status(400).json({ error: 'auctionPlayerId is required' });
+          updatedRoom = AuctionStore.removePlayerFromQueue(roomCode, sessionToken, auctionPlayerId);
+          break;
+        case 'SKIP':
+          updatedRoom = AuctionStore.skipPlayer(roomCode, sessionToken, Boolean(autoRequeue));
+          break;
+        case 'EXCLUDE':
+          if (!auctionPlayerId) return res.status(400).json({ error: 'auctionPlayerId is required' });
+          updatedRoom = AuctionStore.excludePlayer(roomCode, sessionToken, auctionPlayerId, reason);
+          break;
+        case 'RESTORE':
+          if (!auctionPlayerId) return res.status(400).json({ error: 'auctionPlayerId is required' });
+          updatedRoom = AuctionStore.restorePlayer(roomCode, sessionToken, auctionPlayerId, insertPosition || 'END');
+          break;
+        case 'NOMINATE':
+          if (!auctionPlayerId) return res.status(400).json({ error: 'auctionPlayerId is required' });
+          updatedRoom = AuctionStore.nominatePlayer(roomCode, sessionToken, auctionPlayerId);
+          break;
+        case 'REORDER':
+          if (!Array.isArray(orderedAuctionPlayerIds)) {
+            return res.status(400).json({ error: 'orderedAuctionPlayerIds array is required' });
+          }
+          updatedRoom = AuctionStore.reorderQueue(roomCode, sessionToken, orderedAuctionPlayerIds);
+          break;
+        case 'RESET':
+          if (!auctionPlayerId) return res.status(400).json({ error: 'auctionPlayerId is required' });
+          updatedRoom = AuctionStore.adminResetPlayer(roomCode, sessionToken, auctionPlayerId);
+          break;
+        case 'IMPORT':
+          if (!Array.isArray(playerIds) || playerIds.length === 0) {
+            return res.status(400).json({ error: 'playerIds array is required' });
+          }
+          updatedRoom = AuctionStore.importCustomPool(roomCode, sessionToken, playerIds, Boolean(replacePending));
+          break;
+        default:
+          return res.status(400).json({ error: `Unknown pool action: ${action}` });
+      }
+
+      return res.json({ success: true, room: updatedRoom });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (err: any) {
+    return res.status(400).json({ error: err.message || 'Pool action failed' });
+  }
+});
+
 // -------------------------------------------------------------
 // Persistent Analytics Report API
 // -------------------------------------------------------------

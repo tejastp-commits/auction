@@ -11,8 +11,18 @@ export default function LandingPage() {
 
   // Create Room state
   const [hostName, setHostName] = useState('');
-  const [startingPurseCr, setStartingPurseCr] = useState(120);
-  const [timerSeconds, setTimerSeconds] = useState(20);
+  const [startingPurseCr, setStartingPurseCr] = useState<number>(120);
+  const [isCustomPurse, setIsCustomPurse] = useState<boolean>(false);
+  const [customPurseInput, setCustomPurseInput] = useState<string>('150');
+
+  const [timerSeconds, setTimerSeconds] = useState<number>(20);
+  const [isCustomTimer, setIsCustomTimer] = useState<boolean>(false);
+  const [customTimerInput, setCustomTimerInput] = useState<string>('10');
+
+  const [poolSize, setPoolSize] = useState<number>(200);
+  const [isCustomPool, setIsCustomPool] = useState<boolean>(false);
+  const [customPoolInput, setCustomPoolInput] = useState<string>('150');
+
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState('');
 
@@ -28,6 +38,31 @@ export default function LandingPage() {
   const handleCreateRoom = async (e: React.FormEvent) => {
     e.preventDefault();
     setCreateError('');
+
+    const finalPurse = isCustomPurse
+      ? parseFloat(customPurseInput)
+      : startingPurseCr;
+    if (isNaN(finalPurse) || finalPurse < 20) {
+      setCreateError('Starting purse must be at least ₹20 Crore.');
+      return;
+    }
+
+    const finalTimer = isCustomTimer
+      ? parseInt(customTimerInput, 10)
+      : timerSeconds;
+    if (isNaN(finalTimer) || finalTimer < 5) {
+      setCreateError('Bid timer must be at least 5 seconds.');
+      return;
+    }
+
+    const finalPool = isCustomPool
+      ? parseInt(customPoolInput, 10)
+      : poolSize;
+    if (isNaN(finalPool) || finalPool < 10) {
+      setCreateError('Auction pool must contain at least 10 players.');
+      return;
+    }
+
     setIsCreating(true);
 
     try {
@@ -37,8 +72,9 @@ export default function LandingPage() {
         body: JSON.stringify({
           hostDisplayName: hostName.trim() || 'Auctioneer',
           config: {
-            startingPurse: startingPurseCr * CRORE,
-            bidTimerSeconds: timerSeconds,
+            startingPurse: Math.round(finalPurse * CRORE),
+            bidTimerSeconds: finalTimer,
+            auctionPoolSize: finalPool,
             minSquadSize: 18,
             maxSquadSize: 25,
             maxOverseas: 8,
@@ -169,37 +205,180 @@ export default function LandingPage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      Starting Purse (₹ Cr)
+                {/* SETTING 1: BID TIMER */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Bid Clock Starting Point
                     </label>
-                    <select
-                      value={startingPurseCr}
-                      onChange={(e) => setStartingPurseCr(Number(e.target.value))}
-                      className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-white text-sm focus:outline-none focus:border-amber-400"
-                    >
-                      <option value={100}>₹100 Crore</option>
-                      <option value={120}>₹120 Crore (Default)</option>
-                      <option value={130}>₹130 Crore</option>
-                      <option value={150}>₹150 Crore</option>
-                    </select>
+                    <span className="text-[11px] font-mono font-bold text-amber-400">
+                      {isCustomTimer ? `${customTimerInput || 0}s` : `${timerSeconds}s`}
+                    </span>
                   </div>
+                  <div className="grid grid-cols-6 gap-1.5 mb-2">
+                    {[5, 10, 15, 20, 30].map((sec) => (
+                      <button
+                        key={sec}
+                        type="button"
+                        onClick={() => {
+                          setTimerSeconds(sec);
+                          setIsCustomTimer(false);
+                        }}
+                        className={`py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                          !isCustomTimer && timerSeconds === sec
+                            ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
+                            : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600'
+                        }`}
+                      >
+                        {sec}s
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => setIsCustomTimer(true)}
+                      className={`py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                        isCustomTimer
+                          ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
+                          : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600'
+                      }`}
+                    >
+                      Custom
+                    </button>
+                  </div>
+                  {isCustomTimer && (
+                    <div className="relative">
+                      <input
+                        type="number"
+                        min={5}
+                        max={120}
+                        value={customTimerInput}
+                        onChange={(e) => setCustomTimerInput(e.target.value)}
+                        placeholder="e.g. 5, 10, 30"
+                        className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-amber-400/80 text-white text-xs focus:outline-none focus:ring-1 focus:ring-amber-400 font-mono"
+                      />
+                      <span className="absolute right-3 top-2 text-xs text-slate-400 font-semibold pointer-events-none">
+                        seconds (min 5s)
+                      </span>
+                    </div>
+                  )}
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      Bid Timer
+                {/* SETTING 2: STARTING PURSE */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Franchise Starting Purse
                     </label>
-                    <select
-                      value={timerSeconds}
-                      onChange={(e) => setTimerSeconds(Number(e.target.value))}
-                      className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700/80 text-white text-sm focus:outline-none focus:border-amber-400"
-                    >
-                      <option value={15}>15 Seconds (Fast)</option>
-                      <option value={20}>20 Seconds (Standard)</option>
-                      <option value={30}>30 Seconds (Strategic)</option>
-                    </select>
+                    <span className="text-[11px] font-mono font-bold text-amber-400">
+                      ₹{isCustomPurse ? customPurseInput : startingPurseCr} Cr
+                    </span>
                   </div>
+                  <div className="grid grid-cols-5 gap-1.5 mb-2">
+                    {[100, 120, 150, 200].map((cr) => (
+                      <button
+                        key={cr}
+                        type="button"
+                        onClick={() => {
+                          setStartingPurseCr(cr);
+                          setIsCustomPurse(false);
+                        }}
+                        className={`py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                          !isCustomPurse && startingPurseCr === cr
+                            ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
+                            : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600'
+                        }`}
+                      >
+                        ₹{cr}Cr
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => setIsCustomPurse(true)}
+                      className={`py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                        isCustomPurse
+                          ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
+                          : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600'
+                      }`}
+                    >
+                      Custom
+                    </button>
+                  </div>
+                  {isCustomPurse && (
+                    <div className="relative">
+                      <input
+                        type="number"
+                        min={20}
+                        max={500}
+                        value={customPurseInput}
+                        onChange={(e) => setCustomPurseInput(e.target.value)}
+                        placeholder="e.g. 150 or 200"
+                        className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-amber-400/80 text-white text-xs focus:outline-none focus:ring-1 focus:ring-amber-400 font-mono"
+                      />
+                      <span className="absolute right-3 top-2 text-xs text-slate-400 font-semibold pointer-events-none">
+                        Crores (₹ Cr)
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* SETTING 3: AUCTION POOL SIZE */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Auction Size (Player Pool)
+                    </label>
+                    <span className="text-[11px] font-mono font-bold text-amber-400">
+                      {isCustomPool
+                        ? `${customPoolInput || 0} Players`
+                        : `${poolSize} Players`}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-5 gap-1.5 mb-2">
+                    {[50, 100, 150, 200].map((size) => (
+                      <button
+                        key={size}
+                        type="button"
+                        onClick={() => {
+                          setPoolSize(size);
+                          setIsCustomPool(false);
+                        }}
+                        className={`py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                          !isCustomPool && poolSize === size
+                            ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
+                            : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => setIsCustomPool(true)}
+                      className={`py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                        isCustomPool
+                          ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
+                          : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600'
+                      }`}
+                    >
+                      Custom
+                    </button>
+                  </div>
+                  {isCustomPool && (
+                    <div className="relative">
+                      <input
+                        type="number"
+                        min={10}
+                        max={622}
+                        value={customPoolInput}
+                        onChange={(e) => setCustomPoolInput(e.target.value)}
+                        placeholder="e.g. 150 to 200"
+                        className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-amber-400/80 text-white text-xs focus:outline-none focus:ring-1 focus:ring-amber-400 font-mono"
+                      />
+                      <span className="absolute right-3 top-2 text-xs text-slate-400 font-semibold pointer-events-none">
+                        players (10 - 622)
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <button

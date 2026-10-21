@@ -1,0 +1,623 @@
+id,canonicalName,nationality,isOverseas,primaryRole,battingStyle,bowlingStyle,bowlingType,dateOfBirth,calculatedAge,internationalStatus,stateAssociation,defaultBasePrice,iplMatches,iplRuns,iplBattingAverage,iplStrikeRate,iplWickets,iplEconomy,latestConfirmedFranchise,franchiseAffiliationStatus,latestAuctionStatus,lastSoldPrice
+vkohli-18,Virat Kohli,India,False,BATTER,Right-hand bat,Right-arm medium,PACE,1988-11-05,35,CAPPED,,20000000,252,8004,38.67,131.97,4,8.8,Royal Challengers Bengaluru,RETAINED,RETAINED,210000000
+rsharma-45,Rohit Sharma,India,False,BATTER,Right-hand bat,Right-arm offbreak,SPIN,1987-04-30,37,CAPPED,,20000000,257,6628,29.72,131.14,15,8.02,Mumbai Indians,RETAINED,RETAINED,163000000
+syadav-63,Suryakumar Yadav,India,False,BATTER,Right-hand bat,Right-arm offbreak,SPIN,1990-09-14,33,CAPPED,,20000000,150,3594,32.09,145.33,0,0,Mumbai Indians,RETAINED,RETAINED,163500000
+sgill-77,Shubman Gill,India,False,BATTER,Right-hand bat,Right-arm offbreak,SPIN,1999-09-08,24,CAPPED,,20000000,103,3216,37.84,135.7,0,0,Gujarat Titans,RETAINED,RETAINED,165000000
+yjaiswal-19,Yashasvi Jaiswal,India,False,BATTER,Left-hand bat,Right-arm legbreak,SPIN,2001-12-28,22,CAPPED,,20000000,52,1607,32.14,150.61,0,0,Rajasthan Royals,RETAINED,RETAINED,180000000
+rgaikwad-31,Ruturaj Gaikwad,India,False,BATTER,Right-hand bat,Right-arm offbreak,SPIN,1997-01-31,27,CAPPED,,20000000,66,2380,41.75,136.86,0,0,Chennai Super Kings,RETAINED,RETAINED,180000000
+thead-62,Travis Head,Australia,True,BATTER,Left-hand bat,Right-arm offbreak,SPIN,1993-12-29,30,CAPPED,,20000000,25,772,35.09,178.65,3,8.9,Sunrisers Hyderabad,RETAINED,RETAINED,140000000
+fduplessis-13,Faf du Plessis,South Africa,True,BATTER,Right-hand bat,Right-arm legbreak,SPIN,1984-07-13,40,CAPPED,,20000000,145,4571,36.57,136.37,0,0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,20000000
+rsingh-35,Rinku Singh,India,False,BATTER,Left-hand bat,Right-arm offbreak,SPIN,1997-10-12,26,CAPPED,,15000000,46,893,30.79,143.34,0,0,Kolkata Knight Riders,RETAINED,RETAINED,130000000
+dmiller-10,David Miller,South Africa,True,BATTER,Left-hand bat,Right-arm offbreak,SPIN,1989-06-10,35,CAPPED,,15000000,130,2924,36.09,139.24,0,0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,75000000
+msdhoni-07,MS Dhoni,India,False,WICKETKEEPER,Right-hand bat,Right-arm medium,PACE,1981-07-07,43,CAPPED,,20000000,264,5243,39.13,137.53,0,0,Chennai Super Kings,RETAINED,RETAINED,40000000
+rpant-17,Rishabh Pant,India,False,WICKETKEEPER,Left-hand bat,Right-arm medium,NONE,1997-10-04,26,CAPPED,,20000000,111,3284,35.31,148.93,0,0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,270000000
+hklaasen-45,Heinrich Klaasen,South Africa,True,WICKETKEEPER,Right-hand bat,Right-arm offbreak,SPIN,1991-07-30,33,CAPPED,,20000000,35,993,38.19,168.31,0,0,Sunrisers Hyderabad,RETAINED,RETAINED,230000000
+jbuttler-63,Jos Buttler,England,True,WICKETKEEPER,Right-hand bat,None,NONE,1990-09-08,33,CAPPED,,20000000,107,3582,38.11,147.53,0,0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,157500000
+npooran-29,Nicholas Pooran,West Indies,True,WICKETKEEPER,Left-hand bat,Right-arm offbreak,SPIN,1995-10-02,28,CAPPED,,20000000,76,1769,29.48,162.29,0,0,Lucknow Super Giants,RETAINED,RETAINED,210000000
+ssamson-11,Sanju Samson,India,False,WICKETKEEPER,Right-hand bat,Right-arm medium,NONE,1994-11-11,29,CAPPED,,20000000,167,4419,30.69,138.96,0,0,Rajasthan Royals,RETAINED,RETAINED,180000000
+klrahul-01,KL Rahul,India,False,WICKETKEEPER,Right-hand bat,Right-arm medium,NONE,1992-04-18,32,CAPPED,,20000000,132,4683,45.47,134.61,0,0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,140000000
+hpandya-33,Hardik Pandya,India,False,ALL_ROUNDER,Right-hand bat,Right-arm fast-medium,PACE,1993-10-11,30,CAPPED,,20000000,137,2525,28.69,145.87,64,9.07,Mumbai Indians,RETAINED,RETAINED,163500000
+rjadeja-08,Ravindra Jadeja,India,False,ALL_ROUNDER,Left-hand bat,Slow left-arm orthodox,SPIN,1988-12-06,35,CAPPED,,20000000,240,2959,27.4,129.78,160,7.62,Chennai Super Kings,RETAINED,RETAINED,180000000
+arussell-12,Andre Russell,West Indies,True,ALL_ROUNDER,Right-hand bat,Right-arm fast,PACE,1988-04-29,36,CAPPED,,20000000,127,2484,29.22,174.93,115,9.24,Kolkata Knight Riders,RETAINED,RETAINED,120000000
+snarine-74,Sunil Narine,West Indies,True,ALL_ROUNDER,Left-hand bat,Right-arm offbreak mystery spin,SPIN,1988-05-26,36,CAPPED,,20000000,177,1534,17.04,165.84,180,6.73,Kolkata Knight Riders,RETAINED,RETAINED,120000000
+gmaxwell-32,Glenn Maxwell,Australia,True,ALL_ROUNDER,Right-hand bat,Right-arm offbreak,SPIN,1988-10-14,35,CAPPED,,20000000,134,2771,24.74,156.73,37,8.32,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,42000000
+apatel-20,Axar Patel,India,False,ALL_ROUNDER,Left-hand bat,Slow left-arm orthodox,SPIN,1994-01-20,30,CAPPED,,20000000,150,1653,21.47,130.88,123,7.24,Delhi Capitals,RETAINED,RETAINED,165000000
+mstoinis-17,Marcus Stoinis,Australia,True,ALL_ROUNDER,Right-hand bat,Right-arm medium-fast,PACE,1989-08-16,35,CAPPED,,20000000,96,1866,28.27,142.01,43,9.48,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,110000000
+scurran-58,Sam Curran,England,True,ALL_ROUNDER,Left-hand bat,Left-arm medium-fast,PACE,1998-06-03,26,CAPPED,,20000000,59,883,24.53,139.72,58,9.54,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,24000000
+jbumrah-93,Jasprit Bumrah,India,False,BOWLER,Right-hand bat,Right-arm fast,PACE,1993-12-06,30,CAPPED,,20000000,133,69,9.86,98.57,165,7.3,Mumbai Indians,RETAINED,RETAINED,180000000
+rkhan-19,Rashid Khan,Afghanistan,True,BOWLER,Right-hand bat,Right-arm legbreak googly,SPIN,1998-09-20,25,CAPPED,,20000000,121,543,15.08,154.26,149,6.82,Gujarat Titans,RETAINED,RETAINED,180000000
+mstarc-56,Mitchell Starc,Australia,True,BOWLER,Left-hand bat,Left-arm fast,PACE,1990-01-30,34,CAPPED,,20000000,41,113,11.3,98.26,51,8.61,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,117500000
+pcummins-30,Pat Cummins,Australia,True,BOWLER,Right-hand bat,Right-arm fast,PACE,1993-05-08,31,CAPPED,,20000000,58,515,18.39,151.03,63,8.86,Sunrisers Hyderabad,RETAINED,RETAINED,180000000
+tboult-18,Trent Boult,New Zealand,True,BOWLER,Right-hand bat,Left-arm fast,PACE,1989-07-22,35,CAPPED,,20000000,104,45,5.62,81.81,121,8.29,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,125000000
+ychahal-03,Yuzvendra Chahal,India,False,BOWLER,Right-hand bat,Right-arm legbreak,SPIN,1990-07-23,34,CAPPED,,20000000,160,37,4.11,46.83,205,7.84,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,180000000
+kyadav-23,Kuldeep Yadav,India,False,BOWLER,Left-hand bat,Left-arm wrist spin,SPIN,1994-12-14,29,CAPPED,,20000000,84,139,12.63,85.27,87,8.12,Delhi Capitals,RETAINED,RETAINED,132500000
+asingh-02,Arshdeep Singh,India,False,BOWLER,Left-hand bat,Left-arm medium-fast,PACE,1999-02-05,25,CAPPED,,20000000,65,31,6.2,72.09,76,9.03,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,180000000
+krabada-25,Kagiso Rabada,South Africa,True,BOWLER,Left-hand bat,Right-arm fast,PACE,1995-05-25,29,CAPPED,,20000000,80,191,10.61,106.11,117,8.42,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,107500000
+msiraj-73,Mohammed Siraj,India,False,BOWLER,Right-hand bat,Right-arm fast,PACE,1994-03-13,30,CAPPED,,20000000,93,108,7.71,85.03,93,8.65,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,122500000
+mshami-11,Mohammed Shami,India,False,BOWLER,Right-hand bat,Right-arm fast,PACE,1990-09-03,34,CAPPED,,20000000,110,79,8.77,98.75,127,8.44,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,100000000
+vchakaravarthy-29,Varun Chakaravarthy,India,False,BOWLER,Right-hand bat,Right-arm legbreak & mystery variations,SPIN,1991-08-29,33,CAPPED,,15000000,71,25,5,67.56,83,7.56,Kolkata Knight Riders,RETAINED,RETAINED,120000000
+tilak-varma-01,Tilak Varma,India,False,BATTER,Left-hand bat,Right-arm offbreak,SPIN,2002-11-08,21,CAPPED,,20000000,38,1156,39.86,146.33,0,0.0,Mumbai Indians,RETAINED,RETAINED,80000000
+matheesha-pathirana-01,Matheesha Pathirana,Sri Lanka,True,BOWLER,Right-hand bat,Right-arm fast sling,PACE,2002-12-18,21,CAPPED,,20000000,20,0,0.0,0.0,34,7.88,Chennai Super Kings,RETAINED,RETAINED,130000000
+shivam-dube-01,Shivam Dube,India,False,ALL_ROUNDER,Left-hand bat,Right-arm medium,PACE,1993-06-26,31,CAPPED,,20000000,65,1502,30.04,148.86,5,9.2,Chennai Super Kings,RETAINED,RETAINED,120000000
+abhishek-sharma-01,Abhishek Sharma,India,False,ALL_ROUNDER,Left-hand bat,Slow left-arm orthodox,SPIN,2000-09-04,24,CAPPED,,20000000,63,1377,25.5,155.24,9,8.54,Sunrisers Hyderabad,RETAINED,RETAINED,140000000
+nitish-kumar-reddy-01,Nitish Kumar Reddy,India,False,ALL_ROUNDER,Right-hand bat,Right-arm medium-fast,PACE,2003-05-26,21,CAPPED,,20000000,15,303,33.67,142.92,3,9.8,Sunrisers Hyderabad,RETAINED,RETAINED,60000000
+riyan-parag-01,Riyan Parag,India,False,ALL_ROUNDER,Right-hand bat,Right-arm offbreak,SPIN,2001-11-10,22,CAPPED,,20000000,69,1173,23.94,136.24,4,8.65,Rajasthan Royals,RETAINED,RETAINED,140000000
+dhruv-jurel-01,Dhruv Jurel,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2001-01-21,23,CAPPED,,20000000,28,347,23.13,151.53,0,0.0,Rajasthan Royals,RETAINED,RETAINED,140000000
+shimron-hetmyer-01,Shimron Hetmyer,West Indies,True,BATTER,Left-hand bat,Right-arm legbreak,SPIN,1996-12-26,27,CAPPED,,20000000,72,1270,30.98,152.09,0,0.0,Rajasthan Royals,RETAINED,RETAINED,110000000
+sandeep-sharma-01,Sandeep Sharma,India,False,BOWLER,Right-hand bat,Right-arm medium,PACE,1993-05-18,31,CAPPED,,20000000,127,75,6.25,83.33,137,7.85,Rajasthan Royals,RETAINED,RETAINED,40000000
+harshit-rana-01,Harshit Rana,India,False,BOWLER,Right-hand bat,Right-arm fast,PACE,2001-12-22,22,CAPPED,,20000000,21,20,6.67,100.0,25,8.92,Kolkata Knight Riders,RETAINED,RETAINED,40000000
+ramandeep-singh-01,Ramandeep Singh,India,False,ALL_ROUNDER,Right-hand bat,Right-arm medium,PACE,1997-04-13,27,CAPPED,,20000000,20,170,21.25,161.9,6,8.5,Kolkata Knight Riders,RETAINED,RETAINED,40000000
+ravi-bishnoi-01,Ravi Bishnoi,India,False,BOWLER,Right-hand bat,Right-arm legbreak googly,SPIN,2000-09-05,24,CAPPED,,20000000,66,50,6.25,70.42,63,7.82,Lucknow Super Giants,RETAINED,RETAINED,110000000
+mayank-yadav-01,Mayank Yadav,India,False,BOWLER,Right-hand bat,Right-arm express fast,PACE,2002-06-17,22,UNCAPPED,,20000000,4,0,0.0,0.0,7,6.99,Lucknow Super Giants,RETAINED,RETAINED,40000000
+mohsin-khan-01,Mohsin Khan,India,False,BOWLER,Left-hand bat,Left-arm fast-medium,PACE,1998-07-15,26,CAPPED,,20000000,24,40,10.0,102.56,27,7.95,Lucknow Super Giants,RETAINED,RETAINED,40000000
+ayush-badoni-01,Ayush Badoni,India,False,ALL_ROUNDER,Right-hand bat,Right-arm offbreak,SPIN,1999-12-03,24,CAPPED,,20000000,42,634,24.38,134.04,2,7.6,Lucknow Super Giants,RETAINED,RETAINED,40000000
+sai-sudharsan-01,Sai Sudharsan,India,False,BATTER,Left-hand bat,Right-arm legbreak,SPIN,2001-10-15,23,CAPPED,,20000000,25,1034,47.0,139.17,0,0.0,Gujarat Titans,RETAINED,RETAINED,85000000
+rahul-tewatia-01,Rahul Tewatia,India,False,ALL_ROUNDER,Left-hand bat,Right-arm legbreak,SPIN,1993-05-20,31,CAPPED,,20000000,93,1013,26.66,144.51,32,7.91,Gujarat Titans,RETAINED,RETAINED,40000000
+shahrukh-khan-01,Shahrukh Khan,India,False,ALL_ROUNDER,Right-hand bat,Right-arm offbreak,SPIN,1995-05-27,29,CAPPED,,20000000,40,553,20.48,142.53,4,8.85,Gujarat Titans,RETAINED,RETAINED,40000000
+tristan-stubbs-01,Tristan Stubbs,South Africa,True,WICKETKEEPER,Right-hand bat,Right-arm offbreak,SPIN,2000-08-14,24,CAPPED,,20000000,18,405,45.0,180.8,3,8.6,Delhi Capitals,RETAINED,RETAINED,100000000
+abishek-porel-01,Abishek Porel,India,False,WICKETKEEPER,Left-hand bat,None,NONE,2002-10-17,22,CAPPED,,20000000,18,360,27.69,151.26,0,0.0,Delhi Capitals,RETAINED,RETAINED,40000000
+rajat-patidar-01,Rajat Patidar,India,False,BATTER,Right-hand bat,Right-arm offbreak,SPIN,1993-06-01,31,CAPPED,,20000000,27,799,34.74,158.85,0,0.0,Royal Challengers Bengaluru,RETAINED,RETAINED,110000000
+yash-dayal-01,Yash Dayal,India,False,BOWLER,Left-hand bat,Left-arm fast-medium,PACE,1997-12-13,26,CAPPED,,20000000,28,5,2.5,50.0,28,8.9,Royal Challengers Bengaluru,RETAINED,RETAINED,50000000
+shashank-singh-01,Shashank Singh,India,False,BATTER,Right-hand bat,Right-arm medium,PACE,1991-11-21,32,CAPPED,,20000000,24,423,38.45,161.45,0,0.0,Punjab Kings,RETAINED,RETAINED,55000000
+prabhsimran-singh-01,Prabhsimran Singh,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2000-08-10,24,CAPPED,,20000000,34,756,22.24,150.3,0,0.0,Punjab Kings,RETAINED,RETAINED,40000000
+chris-morris-01,Chris Morris,South Africa,True,ALL_ROUNDER,Right-hand bat,Right-arm fast-medium,PACE,1987-04-30,37,CAPPED,,15000000,81,618,22.07,155.28,95,8.01,,UNATTACHED,AVAILABLE,162500000
+yuvraj-singh-01,Yuvraj Singh,India,False,ALL_ROUNDER,Left-hand bat,Slow left-arm orthodox,SPIN,1981-12-12,42,CAPPED,,20000000,132,2750,24.77,129.72,36,7.44,,UNATTACHED,AVAILABLE,160000000
+cameron-green-01,Cameron Green,Australia,True,ALL_ROUNDER,Right-hand bat,Right-arm fast-medium,PACE,1999-06-03,25,CAPPED,,20000000,29,707,39.28,153.7,16,9.15,,UNATTACHED,AVAILABLE,175000000
+ben-stokes-01,Ben Stokes,England,True,ALL_ROUNDER,Left-hand bat,Right-arm fast-medium,PACE,1991-06-04,33,CAPPED,,20000000,45,935,24.61,133.95,28,8.64,,UNATTACHED,AVAILABLE,162500000
+shreyas-iyer-02,Shreyas Iyer,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1994-12-06,30,CAPPED,MCA,20000000,116,2842,29.0,132.5,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,267500000
+liam-livingstone-08,Liam Livingstone,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1993-08-04,31,CAPPED,,20000000,39,643,22.4,138.2,29,8.45,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,87500000
+harry-brook-13,Harry Brook,England,True,BATTER,Right-hand bat,Right Arm Medium,PACE,1999-02-22,26,CAPPED,,20000000,11,269,29.89,132.5,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,62500000
+devon-conway-14,Devon Conway,New Zealand,True,BATTER,Left-hand bat,None,NONE,1991-07-08,33,CAPPED,,20000000,23,563,29.63,132.5,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,62500000
+jake-fraser-mcgurk-15,Jake Fraser-Mcgurk,Australia,True,BATTER,Right-hand bat,None,NONE,2002-04-11,22,CAPPED,,20000000,9,220,31.43,132.5,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,90000000
+aiden-markram-16,Aiden Markram,South Africa,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1994-10-04,30,CAPPED,,20000000,44,1078,29.14,132.5,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,20000000
+devdutt-padikkal-17,Devdutt Padikkal,India,False,BATTER,Left-hand bat,None,NONE,2000-07-07,24,CAPPED,KSCA,20000000,64,1568,29.04,132.5,0,0.0,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,20000000
+rahul-tripathi-18,Rahul Tripathi,India,False,BATTER,Right-hand bat,Right Arm Medium,PACE,1991-03-02,34,CAPPED,MACA,7500000,95,2327,29.09,132.5,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,34000000
+david-warner-19,David Warner,Australia,True,BATTER,Left-hand bat,None,NONE,1986-10-27,38,CAPPED,,20000000,184,4508,28.9,132.5,0,0.0,,UNATTACHED,UNSOLD,
+ravichandaran-ashwin-20,Ravichandaran Ashwin,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1986-09-17,38,CAPPED,TNCA,20000000,212,3498,22.4,138.2,159,8.45,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,97500000
+venkatesh-iyer-21,Venkatesh Iyer,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Medium,PACE,1994-12-25,30,CAPPED,MPCA,20000000,51,841,22.4,138.2,38,8.45,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,237500000
+mitchell-marsh-22,Mitchell Marsh,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1991-10-20,33,CAPPED,,20000000,42,693,22.4,138.2,31,8.45,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,34000000
+harshal-patel-24,Harshal Patel,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1990-11-23,34,CAPPED,HCA,20000000,106,1749,22.4,138.2,79,8.45,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,80000000
+rachin-ravindra-25,Rachin Ravindra,New Zealand,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1999-11-18,25,CAPPED,,15000000,10,165,22.4,138.2,7,8.45,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,40000000
+jonny-bairstow-27,Jonny Bairstow,England,True,WICKETKEEPER,Right-hand bat,Right Arm Medium,PACE,1989-09-26,35,CAPPED,,20000000,50,1225,29.17,132.5,0,0.0,,UNATTACHED,UNSOLD,
+quinton-de-kock-28,Quinton De Kock,South Africa,True,WICKETKEEPER,Left-hand bat,None,NONE,1992-12-17,32,CAPPED,,20000000,107,2621,29.12,132.5,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,36000000
+rahmanullah-gurbaz-29,Rahmanullah Gurbaz,Afghanistan,True,WICKETKEEPER,Right-hand bat,None,NONE,2001-11-28,23,CAPPED,,20000000,14,343,31.18,132.5,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,20000000
+ishan-kishan-30,Ishan Kishan,India,False,WICKETKEEPER,Left-hand bat,None,NONE,1998-07-18,26,CAPPED,JSCA,20000000,104,2548,28.95,132.5,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,112500000
+phil-salt-31,Phil Salt,England,True,WICKETKEEPER,Right-hand bat,None,NONE,1996-08-28,28,CAPPED,,20000000,21,514,30.24,132.5,0,0.0,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,115000000
+jitesh-sharma-32,Jitesh Sharma,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1993-10-22,31,CAPPED,VCA,10000000,40,980,28.82,132.5,0,0.0,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,110000000
+syed-khaleel-ahmed-33,Syed Khaleel Ahmed,India,False,BOWLER,Right-hand bat,Left Arm Fast Medium,PACE,1997-12-05,27,CAPPED,RCA,20000000,57,142,6.5,0.0,62,8.15,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,48000000
+josh-hazlewood-35,Josh Hazlewood,Australia,True,BOWLER,Left-hand bat,Right Arm Fast Medium,PACE,1991-01-08,34,CAPPED,,20000000,52,130,6.5,0.0,57,8.15,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,125000000
+avesh-khan-36,Avesh Khan,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-12-13,28,CAPPED,MPCA,20000000,63,157,6.5,0.0,69,8.15,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,97500000
+prasidh-krishna-37,Prasidh Krishna,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-02-19,29,CAPPED,KSCA,20000000,51,127,6.5,0.0,56,8.15,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,95000000
+t-natarajan-38,T. Natarajan,India,False,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,1991-05-27,33,CAPPED,TNCA,20000000,61,152,6.5,0.0,67,8.15,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,107500000
+anrich-nortje-39,Anrich Nortje,South Africa,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1993-11-16,31,CAPPED,,20000000,46,115,6.5,0.0,50,8.15,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,65000000
+noor-ahmad-40,Noor Ahmad,Afghanistan,True,BOWLER,Right-hand bat,Left Arm Slow Unorthodox,SPIN,2005-01-03,20,CAPPED,,20000000,23,57,6.5,0.0,25,8.15,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,100000000
+rahul-chahar-41,Rahul Chahar,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-08-04,25,CAPPED,RCA,10000000,78,195,6.5,0.0,85,8.15,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,32000000
+wanindu-hasaranga-42,Wanindu Hasaranga,Sri Lanka,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1997-07-29,27,CAPPED,,20000000,26,65,6.5,0.0,28,8.15,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,52500000
+waqar-salamkheil-43,Waqar Salamkheil,Afghanistan,True,BOWLER,Right-hand bat,Left Arm Slow Unorthodox,SPIN,2001-10-02,23,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+maheesh-theekshana-44,Maheesh Theekshana,Sri Lanka,True,BOWLER,Right-hand bat,Right Arm Off Spin,SPIN,2000-08-01,24,CAPPED,,20000000,27,67,6.5,0.0,29,8.15,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,44000000
+adam-zampa-45,Adam Zampa,Australia,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1992-12-31,32,CAPPED,,20000000,20,50,6.5,0.0,22,8.15,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,24000000
+yash-dhull-46,Yash Dhull,India,False,BATTER,Right-hand bat,None,NONE,2002-11-11,22,UNCAPPED,DDCA,3000000,4,98,32.67,132.5,0,0.0,,UNATTACHED,UNSOLD,
+abhinav-manohar-47,Abhinav Manohar,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,1994-09-16,30,UNCAPPED,KSCA,3000000,18,441,29.4,132.5,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,32000000
+karun-nair-48,Karun Nair,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1991-12-06,33,UNCAPPED,VCA,3000000,76,1862,29.09,132.5,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,5000000
+angkrish-raghuvanshi-49,Angkrish Raghuvanshi,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2004-06-05,20,UNCAPPED,MCA,3000000,10,245,30.62,132.5,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,30000000
+anmolpreet-singh-50,Anmolpreet Singh,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1998-03-28,27,UNCAPPED,PCA,3000000,9,220,31.43,132.5,0,0.0,,UNATTACHED,UNSOLD,
+atharva-taide-51,Atharva Taide,India,False,BATTER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2000-04-26,24,UNCAPPED,VCA,3000000,9,220,31.43,132.5,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,3000000
+nehal-wadhera-52,Nehal Wadhera,India,False,BATTER,Left-hand bat,Right Arm Leg Spin,SPIN,2000-09-04,24,UNCAPPED,PCA,3000000,20,490,28.82,132.5,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,42000000
+harpreet-brar-53,Harpreet Brar,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1995-09-16,29,UNCAPPED,PCA,3000000,41,676,22.4,138.2,30,8.45,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,15000000
+naman-dhir-54,Naman Dhir,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1999-12-31,25,UNCAPPED,PCA,3000000,7,115,22.4,138.2,5,8.45,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,52500000
+mahipal-lomror-55,Mahipal Lomror,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1999-11-16,25,UNCAPPED,RCA,5000000,40,660,22.4,138.2,30,8.45,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,17000000
+sameer-rizvi-56,Sameer Rizvi,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2003-12-06,21,UNCAPPED,UPCA,3000000,9,148,22.4,138.2,6,8.45,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,9500000
+abdul-samad-57,Abdul Samad,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2001-10-28,23,UNCAPPED,JKCA,3000000,50,825,22.4,138.2,37,8.45,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,42000000
+vijay-shankar-58,Vijay Shankar,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1991-01-26,34,UNCAPPED,TNCA,3000000,72,1188,22.4,138.2,54,8.45,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,12000000
+ashutosh-sharma-59,Ashutosh Sharma,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1998-09-15,26,UNCAPPED,RSPB,3000000,11,181,22.4,138.2,8,8.45,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,38000000
+nishant-sindhu-60,Nishant Sindhu,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2004-04-09,20,UNCAPPED,HCA,3000000,0,0,0.0,0.0,0,0.0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,3000000
+utkarsh-singh-61,Utkarsh Singh,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1998-05-07,26,UNCAPPED,JSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+aryan-juyal-62,Aryan Juyal,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,2001-11-11,23,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+kumar-kushagra-63,Kumar Kushagra,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2004-10-23,20,UNCAPPED,JSCA,3000000,0,0,0.0,0.0,0,0.0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,6500000
+robin-minz-64,Robin Minz,India,False,WICKETKEEPER,Left-hand bat,Right Arm Off Spin,SPIN,2002-09-13,22,UNCAPPED,JSCA,3000000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,6500000
+anuj-rawat-65,Anuj Rawat,India,False,WICKETKEEPER,Left-hand bat,Right Arm Leg Spin,SPIN,1999-10-17,25,UNCAPPED,DDCA,3000000,24,588,29.4,132.5,0,0.0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,3000000
+luvnith-sisodia-66,Luvnith Sisodia,India,False,WICKETKEEPER,Left-hand bat,None,NONE,2000-01-15,25,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,3000000
+vishnu-vinod-67,Vishnu Vinod,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1993-12-02,31,UNCAPPED,KCA,3000000,6,147,29.4,132.5,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,9500000
+upendra-singh-yadav-68,Upendra Singh Yadav,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1996-10-08,28,UNCAPPED,RSPB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vaibhav-arora-69,Vaibhav Arora,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1997-12-14,27,UNCAPPED,HPCA,3000000,20,50,6.5,0.0,22,8.15,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,18000000
+rasikh-dar-70,Rasikh Dar,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,2000-04-05,25,UNCAPPED,JKCA,3000000,11,27,6.5,0.0,12,8.15,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,60000000
+akash-madhwal-71,Akash Madhwal,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1993-11-25,31,UNCAPPED,CAU,3000000,12,30,6.5,0.0,13,8.15,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,12000000
+mohit-sharma-72,Mohit Sharma,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1988-09-18,36,UNCAPPED,HCA,5000000,111,277,6.5,0.0,122,8.15,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,22000000
+simarjeet-singh-73,Simarjeet Singh,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1998-01-17,27,UNCAPPED,DDCA,3000000,10,25,6.5,0.0,11,8.15,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,15000000
+yash-thakur-74,Yash Thakur,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1998-12-28,26,UNCAPPED,VCA,3000000,19,47,6.5,0.0,20,8.15,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,16000000
+kartik-tyagi-75,Kartik Tyagi,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2000-11-08,24,UNCAPPED,UPCA,4000000,20,50,6.5,0.0,22,8.15,,UNATTACHED,UNSOLD,
+vyshak-vijaykumar-76,Vyshak Vijaykumar,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1997-01-31,28,UNCAPPED,KSCA,3000000,11,27,6.5,0.0,12,8.15,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,18000000
+piyush-chawla-77,Piyush Chawla,India,False,BOWLER,Left-hand bat,Right Arm Leg Spin,SPIN,1988-12-24,36,UNCAPPED,UPCA,5000000,192,480,6.5,0.0,211,8.15,,UNATTACHED,UNSOLD,
+shreyas-gopal-78,Shreyas Gopal,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1993-09-04,31,UNCAPPED,KSCA,3000000,52,130,6.5,0.0,57,8.15,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+mayank-markande-79,Mayank Markande,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1997-11-11,27,UNCAPPED,PCA,3000000,37,92,6.5,0.0,40,8.15,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,3000000
+suyash-sharma-80,Suyash Sharma,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2003-05-15,21,UNCAPPED,DDCA,3000000,13,32,6.5,0.0,14,8.15,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,26000000
+karn-sharma-81,Karn Sharma,India,False,BOWLER,Left-hand bat,Right Arm Leg Spin,SPIN,1987-10-23,37,UNCAPPED,RSPB,5000000,84,210,6.5,0.0,92,8.15,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,5000000
+kumar-kartikeya-singh-82,Kumar Kartikeya Singh,India,False,BOWLER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1997-12-26,27,UNCAPPED,MPCA,3000000,12,30,6.5,0.0,13,8.15,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,3000000
+manav-suthar-83,Manav Suthar,India,False,BOWLER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2002-08-03,22,UNCAPPED,RCA,3000000,0,0,0.0,0.0,0,0.0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,3000000
+mayank-agarawal-84,Mayank Agarawal,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1991-02-16,34,CAPPED,KSCA,10000000,127,3111,29.07,132.5,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,20000000
+glenn-phillips-86,Glenn Phillips,New Zealand,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1996-12-06,28,CAPPED,,20000000,8,196,32.67,132.5,0,0.0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,20000000
+rovman-powell-87,Rovman Powell,West Indies,True,BATTER,Right-hand bat,Right Arm Fast Medium,PACE,1993-07-23,31,CAPPED,,15000000,27,661,30.05,132.5,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,15000000
+ajinkya-rahane-88,Ajinkya Rahane,India,False,BATTER,Right-hand bat,None,NONE,1988-06-06,36,CAPPED,MCA,15000000,185,4532,28.87,132.5,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,15000000
+prithvi-shaw-89,Prithvi Shaw,India,False,BATTER,Right-hand bat,None,NONE,1999-11-09,25,CAPPED,MCA,7500000,79,1935,28.88,132.5,0,0.0,,UNATTACHED,UNSOLD,
+kane-williamson-90,Kane Williamson,New Zealand,True,BATTER,Right-hand bat,None,NONE,1990-08-08,34,CAPPED,,20000000,79,1935,28.88,132.5,0,0.0,,UNATTACHED,UNSOLD,
+marco-jansen-92,Marco Jansen,South Africa,True,ALL_ROUNDER,Right-hand bat,Left Arm Fast,PACE,2000-05-01,24,CAPPED,,12500000,21,346,22.4,138.2,15,8.45,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,70000000
+daryl-mitchell-93,Daryl Mitchell,New Zealand,True,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1991-05-20,33,CAPPED,,20000000,15,247,22.4,138.2,11,8.45,,UNATTACHED,UNSOLD,
+krunal-pandya-94,Krunal Pandya,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1991-03-24,34,CAPPED,BCA,20000000,127,2095,22.4,138.2,95,8.45,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,57500000
+nitish-rana-95,Nitish Rana,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1993-12-27,31,CAPPED,UPCA,15000000,107,1765,22.4,138.2,80,8.45,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,42000000
+washington-sundar-96,Washington Sundar,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1999-10-05,25,CAPPED,TNCA,20000000,61,1006,22.4,138.2,45,8.45,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,32000000
+shardul-thakur-97,Shardul Thakur,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1991-10-16,33,CAPPED,MCA,20000000,95,1567,22.4,138.2,71,8.45,,UNATTACHED,UNSOLD,
+k-s-bharat-98,K.S Bharat,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1993-10-03,31,CAPPED,ACA,7500000,11,269,29.89,132.5,0,0.0,,UNATTACHED,UNSOLD,
+alex-carey-99,Alex Carey,Australia,True,WICKETKEEPER,Left-hand bat,None,NONE,1991-08-27,33,CAPPED,,10000000,3,73,36.5,132.5,0,0.0,,UNATTACHED,UNSOLD,
+donovan-ferreira-100,Donovan Ferreira,South Africa,True,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1998-07-21,26,CAPPED,,7500000,2,49,49.0,132.5,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,7500000
+shai-hope-101,Shai Hope,West Indies,True,WICKETKEEPER,Right-hand bat,None,NONE,1993-11-10,31,CAPPED,,12500000,9,220,31.43,132.5,0,0.0,,UNATTACHED,UNSOLD,
+josh-inglis-102,Josh Inglis,Australia,True,WICKETKEEPER,Right-hand bat,None,NONE,1995-03-04,30,CAPPED,,20000000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,26000000
+ryan-rickelton-103,Ryan Rickelton,South Africa,True,WICKETKEEPER,Left-hand bat,None,NONE,1996-07-11,28,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,10000000
+deepak-chahar-104,Deepak Chahar,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1992-08-07,32,CAPPED,RCA,20000000,81,202,6.5,0.0,89,8.15,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,92500000
+gerald-coetzee-105,Gerald Coetzee,South Africa,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,2000-10-02,24,CAPPED,,12500000,10,25,6.5,0.0,11,8.15,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,24000000
+akash-deep-106,Akash Deep,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-12-15,28,CAPPED,CAB,10000000,8,20,6.5,0.0,8,8.15,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,80000000
+tushar-deshpande-107,Tushar Deshpande,India,False,BOWLER,Left-hand bat,Right Arm Fast,PACE,1995-05-15,29,CAPPED,MCA,10000000,36,90,6.5,0.0,39,8.15,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,65000000
+lockie-ferguson-108,Lockie Ferguson,New Zealand,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1991-06-13,33,CAPPED,,20000000,45,112,6.5,0.0,49,8.15,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,20000000
+bhuvneshwar-kumar-109,Bhuvneshwar Kumar,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1990-02-05,35,CAPPED,UPCA,20000000,176,440,6.5,0.0,193,8.15,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,107500000
+mukesh-kumar-110,Mukesh Kumar,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1993-10-12,31,CAPPED,CAB,20000000,20,50,6.5,0.0,22,8.15,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,80000000
+allah-ghazanfar-111,Allah Ghazanfar,Afghanistan,True,BOWLER,Right-hand bat,Right Arm Off Spin,SPIN,2006-03-20,19,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,48000000
+akeal-hosein-112,Akeal Hosein,West Indies,True,BOWLER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1993-04-25,31,CAPPED,,15000000,1,2,6.5,0.0,1,8.15,,UNATTACHED,UNSOLD,
+keshav-maharaj-113,Keshav Maharaj,South Africa,True,BOWLER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1990-02-07,35,CAPPED,,7500000,2,5,6.5,0.0,2,8.15,,UNATTACHED,UNSOLD,
+mujeeb-ur-rahman-114,Mujeeb Ur Rahman,Afghanistan,True,BOWLER,Right-hand bat,Right Arm Off Spin,SPIN,2001-03-28,24,CAPPED,,20000000,46,115,6.5,0.0,50,8.15,,UNATTACHED,UNSOLD,
+adil-rashid-115,Adil Rashid,England,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1988-02-17,37,CAPPED,,20000000,116,290,6.5,0.0,127,8.15,,UNATTACHED,UNSOLD,
+vijayakanth-viyaskanth-116,Vijayakanth Viyaskanth,Sri Lanka,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2001-12-05,23,CAPPED,,7500000,3,7,6.5,0.0,3,8.15,,UNATTACHED,UNSOLD,
+ricky-bhui-117,Ricky Bhui,India,False,BATTER,Right-hand bat,None,NONE,1996-09-29,28,UNCAPPED,ACA,3000000,4,98,32.67,132.5,0,0.0,,UNATTACHED,UNSOLD,
+swastik-chhikara-118,Swastik Chhikara,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2005-04-03,20,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,3000000
+aarya-desai-119,Aarya Desai,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,2003-04-03,22,UNCAPPED,GUCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shubham-dubey-120,Shubham Dubey,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,1994-08-27,30,UNCAPPED,VCA,3000000,4,98,32.67,132.5,0,0.0,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,8000000
+madhav-kaushik-121,Madhav Kaushik,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1998-01-03,27,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+pukhraj-mann-122,Pukhraj Mann,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,2001-06-07,23,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shaik-rasheed-123,Shaik Rasheed,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,2004-09-24,20,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+himmat-singh-124,Himmat Singh,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1996-11-08,28,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+mayank-dagar-125,Mayank Dagar,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1996-11-11,28,UNCAPPED,HPCA,3000000,8,132,22.4,138.2,6,8.45,,UNATTACHED,UNSOLD,
+anshul-kamboj-126,Anshul Kamboj,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2000-12-06,24,UNCAPPED,HCA,3000000,3,49,22.4,138.2,2,8.45,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,34000000
+mohd-arshad-khan-127,Mohd. Arshad Khan,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Fast Medium,PACE,1997-12-20,27,UNCAPPED,MPCA,3000000,10,165,22.4,138.2,7,8.45,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,13000000
+darshan-nalkande-128,Darshan Nalkande,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1998-10-04,26,UNCAPPED,VCA,3000000,5,82,22.4,138.2,3,8.45,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,3000000
+suyash-prabhudessai-129,Suyash Prabhudessai,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1997-12-06,27,UNCAPPED,GCA,3000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+anukul-roy-130,Anukul Roy,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1998-11-30,26,UNCAPPED,JSCA,3000000,11,181,22.4,138.2,8,8.45,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,4000000
+swapnil-singh-131,Swapnil Singh,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1991-01-22,34,UNCAPPED,CAU,3000000,14,231,22.4,138.2,10,8.45,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,5000000
+sanvir-singh-132,Sanvir Singh,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1996-10-12,28,UNCAPPED,PCA,3000000,6,99,22.4,138.2,4,8.45,,UNATTACHED,UNSOLD,
+avanish-aravelly-133,Avanish Aravelly,India,False,WICKETKEEPER,Left-hand bat,Right Arm Off Spin,SPIN,2005-06-02,19,UNCAPPED,HYCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vansh-bedi-134,Vansh Bedi,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2002-12-23,22,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,5500000
+saurav-chauhan-135,Saurav Chauhan,India,False,WICKETKEEPER,Left-hand bat,Right Arm Off Spin,SPIN,2000-05-27,24,UNCAPPED,GUCA,3000000,3,73,36.5,132.5,0,0.0,,UNATTACHED,UNSOLD,
+harvik-desai-136,Harvik Desai,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1999-10-04,25,UNCAPPED,SCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tom-kohler-cadmore-137,Tom Kohler-Cadmore,England,True,WICKETKEEPER,Right-hand bat,None,NONE,1994-08-19,30,UNCAPPED,,5000000,4,98,32.67,132.5,0,0.0,,UNATTACHED,UNSOLD,
+kunal-rathore-138,Kunal Rathore,India,False,WICKETKEEPER,Left-hand bat,Right Arm Off Spin,SPIN,2002-10-09,22,UNCAPPED,RCA,3000000,0,0,0.0,0.0,0,0.0,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,3000000
+b-r-sharath-139,B.R Sharath,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1996-09-28,28,UNCAPPED,KSCA,3000000,1,24,24.0,132.5,0,0.0,,UNATTACHED,UNSOLD,
+gurnoor-singh-brar-140,Gurnoor Singh Brar,India,False,BOWLER,Left-hand bat,Right Arm Fast,PACE,2000-05-25,24,UNCAPPED,PCA,3000000,1,2,6.5,0.0,1,8.15,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,13000000
+mukesh-choudhary-141,Mukesh Choudhary,India,False,BOWLER,Left-hand bat,Left Arm Fast,PACE,1996-07-06,28,UNCAPPED,MACA,3000000,14,35,6.5,0.0,15,8.15,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+sakib-hussain-142,Sakib Hussain,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,2004-12-14,20,UNCAPPED,BICA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vidwath-kaverappa-143,Vidwath Kaverappa,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1999-02-25,26,UNCAPPED,KSCA,3000000,1,2,6.5,0.0,1,8.15,,UNATTACHED,UNSOLD,
+rajan-kumar-144,Rajan Kumar,India,False,BOWLER,Left-hand bat,Left Arm Fast,PACE,1996-07-08,28,UNCAPPED,CAU,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sushant-mishra-145,Sushant Mishra,India,False,BOWLER,Left-hand bat,Left Arm Fast,PACE,2000-12-23,24,UNCAPPED,JSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+arjun-tendulkar-146,Arjun Tendulkar,India,False,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,1999-09-24,25,UNCAPPED,GCA,3000000,5,12,6.5,0.0,5,8.15,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,3000000
+zeeshan-ansari-147,Zeeshan Ansari,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-12-16,25,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,4000000
+prince-choudhary-148,Prince Choudhary,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-09-29,25,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+himanshu-sharma-149,Himanshu Sharma,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1998-06-06,26,UNCAPPED,RCA,3000000,1,2,6.5,0.0,1,8.15,,UNATTACHED,UNSOLD,
+m-siddharth-150,M. Siddharth,India,False,BOWLER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1998-07-03,26,UNCAPPED,TNCA,3000000,3,7,6.5,0.0,3,8.15,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,7500000
+digvesh-singh-151,Digvesh Singh,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-12-15,25,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+prashant-solanki-152,Prashant Solanki,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2000-02-22,25,UNCAPPED,MACA,3000000,2,5,6.5,0.0,2,8.15,,UNATTACHED,UNSOLD,
+jhathavedh-subramanyan-153,Jhathavedh Subramanyan,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-09-16,25,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+finn-allen-154,Finn Allen,New Zealand,True,BATTER,Right-hand bat,None,NONE,1999-04-22,25,CAPPED,,20000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dewald-brevis-155,Dewald Brevis,South Africa,True,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,2003-04-29,21,CAPPED,,7500000,10,245,30.62,132.5,0,0.0,,UNATTACHED,UNSOLD,
+ben-duckett-156,Ben Duckett,England,True,BATTER,Left-hand bat,None,NONE,1994-10-17,30,CAPPED,,20000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+manish-pandey-157,Manish Pandey,India,False,BATTER,Right-hand bat,None,NONE,1989-09-10,35,CAPPED,KSCA,7500000,171,4189,28.89,132.5,0,0.0,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,7500000
+rilee-rossouw-158,Rilee Rossouw,South Africa,True,BATTER,Left-hand bat,None,NONE,1989-10-09,35,CAPPED,,20000000,22,539,29.94,132.5,0,0.0,,UNATTACHED,UNSOLD,
+sherfane-rutherford-159,Sherfane Rutherford,West Indies,True,BATTER,Left-hand bat,Right Arm Fast Medium,PACE,1998-08-15,26,CAPPED,,15000000,10,245,30.62,132.5,0,0.0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,26000000
+ashton-turner-160,Ashton Turner,Australia,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1993-01-25,32,CAPPED,,10000000,6,147,29.4,132.5,0,0.0,,UNATTACHED,UNSOLD,
+james-vince-161,James Vince,England,True,BATTER,Right-hand bat,None,NONE,1991-03-14,34,CAPPED,,20000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shahbaz-ahamad-162,Shahbaz Ahamad,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1994-12-11,30,CAPPED,CAB,10000000,55,907,22.4,138.2,41,8.45,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,24000000
+moeen-ali-163,Moeen Ali,England,True,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1987-06-18,37,CAPPED,,20000000,67,1105,22.4,138.2,50,8.45,,UNATTACHED,UNSOLD,
+tim-david-164,Tim David,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1996-03-16,29,CAPPED,,20000000,38,627,22.4,138.2,28,8.45,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,30000000
+deepak-hooda-165,Deepak Hooda,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1995-04-19,29,CAPPED,RCA,7500000,118,1947,22.4,138.2,88,8.45,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,17000000
+will-jacks-166,Will Jacks,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1998-11-21,26,CAPPED,,20000000,8,132,22.4,138.2,6,8.45,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,52500000
+azmatullah-omarzai-167,Azmatullah Omarzai,Afghanistan,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2000-03-24,25,CAPPED,,15000000,7,115,22.4,138.2,5,8.45,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,24000000
+r-sai-kishore-168,R. Sai Kishore,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Unorthodox,SPIN,1996-11-06,28,CAPPED,TNCA,7500000,10,165,22.4,138.2,7,8.45,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,20000000
+romario-shepherd-169,Romario Shepherd,West Indies,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1994-11-26,30,CAPPED,,15000000,10,165,22.4,138.2,7,8.45,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,15000000
+tom-banton-170,Tom Banton,England,True,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1998-11-11,26,CAPPED,,20000000,2,49,49.0,132.5,0,0.0,,UNATTACHED,UNSOLD,
+sam-billings-171,Sam Billings,England,True,WICKETKEEPER,Right-hand bat,None,NONE,1991-06-15,33,CAPPED,,15000000,37,906,29.23,132.5,0,0.0,,UNATTACHED,UNSOLD,
+jordan-cox-172,Jordan Cox,England,True,WICKETKEEPER,Right-hand bat,None,NONE,2000-10-21,24,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ben-mcdermott-173,Ben McDermott,Australia,True,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1994-12-12,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kusal-mendis-174,Kusal Mendis,Sri Lanka,True,WICKETKEEPER,Right-hand bat,Right Arm Leg Spin,SPIN,1995-02-02,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kusal-perera-175,Kusal Perera,Sri Lanka,True,WICKETKEEPER,Left-hand bat,None,NONE,1990-08-17,34,CAPPED,,7500000,2,49,49.0,132.5,0,0.0,,UNATTACHED,UNSOLD,
+josh-philippe-176,Josh Philippe,Australia,True,WICKETKEEPER,Right-hand bat,None,NONE,1997-06-01,27,CAPPED,,7500000,5,122,30.5,132.5,0,0.0,,UNATTACHED,UNSOLD,
+tim-seifert-177,Tim Seifert,New Zealand,True,WICKETKEEPER,Right-hand bat,None,NONE,1994-12-14,30,CAPPED,,12500000,61,1494,29.29,132.5,0,0.0,,UNATTACHED,UNSOLD,
+nandre-burger-178,Nandre Burger,South Africa,True,BOWLER,Left-hand bat,Left Arm Fast,PACE,1995-08-11,29,CAPPED,,12500000,6,15,6.5,0.0,6,8.15,,UNATTACHED,UNSOLD,
+spencer-johnson-179,Spencer Johnson,Australia,True,BOWLER,Left-hand bat,Left Arm Fast,PACE,1995-12-16,29,CAPPED,,20000000,5,12,6.5,0.0,5,8.15,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,28000000
+umran-malik-180,Umran Malik,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1999-11-22,25,CAPPED,JKCA,7500000,26,65,6.5,0.0,28,8.15,Kolkata Knight Riders,PURCHASED_AT_AUCTION,SOLD,7500000
+mustafizur-rahman-181,Mustafizur Rahman,Bangladesh,True,BOWLER,Left-hand bat,Left Arm Fast,PACE,1995-09-06,29,CAPPED,,20000000,57,142,6.5,0.0,62,8.15,,UNATTACHED,UNSOLD,
+ishant-sharma-182,Ishant Sharma,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1988-09-02,36,CAPPED,DDCA,7500000,109,272,6.5,0.0,119,8.15,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,7500000
+nuwan-thushara-183,Nuwan Thushara,Sri Lanka,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1994-08-06,30,CAPPED,,7500000,7,17,6.5,0.0,7,8.15,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,16000000
+naveen-ul-haq-184,Naveen Ul Haq,Afghanistan,True,BOWLER,Right-hand bat,Right Arm Medium,PACE,1999-09-23,25,CAPPED,,20000000,18,45,6.5,0.0,19,8.15,,UNATTACHED,UNSOLD,
+jaydev-unadkat-185,Jaydev Unadkat,India,False,BOWLER,Right-hand bat,Left Arm Fast Medium,PACE,1991-10-18,33,CAPPED,SCA,10000000,105,262,6.5,0.0,115,8.15,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,10000000
+umesh-yadav-186,Umesh Yadav,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1987-10-25,37,CAPPED,VCA,20000000,148,370,6.5,0.0,162,8.15,,UNATTACHED,UNSOLD,
+rishad-hossain-187,Rishad Hossain,Bangladesh,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2002-07-15,22,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+zahir-khan-pakten-188,Zahir Khan Pakten,Afghanistan,True,BOWLER,Left-hand bat,Left Arm Slow Unorthodox,SPIN,1998-12-20,26,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+nqabayomzi-peter-189,Nqabayomzi Peter,South Africa,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2001-12-09,23,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tanveer-sangha-190,Tanveer Sangha,Australia,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2001-11-26,23,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tabraiz-shamsi-191,Tabraiz Shamsi,South Africa,True,BOWLER,Right-hand bat,Left Arm Slow Unorthodox,SPIN,1990-02-18,35,CAPPED,,20000000,70,175,6.5,0.0,77,8.15,,UNATTACHED,UNSOLD,
+jeffery-vandersay-192,Jeffery Vandersay,Sri Lanka,True,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1990-02-05,35,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sachin-baby-193,Sachin Baby,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,1988-12-18,36,UNCAPPED,KCA,3000000,19,465,29.06,132.5,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,3000000
+priyam-garg-194,Priyam Garg,India,False,BATTER,Right-hand bat,None,NONE,2000-11-30,24,UNCAPPED,UPCA,3000000,23,563,29.63,132.5,0,0.0,,UNATTACHED,UNSOLD,
+harnoor-pannu-195,Harnoor Pannu,India,False,BATTER,Left-hand bat,Right Arm Leg Spin,SPIN,2003-01-30,22,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+smaran-ravichandran-196,Smaran Ravichandran,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,2003-05-05,21,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shashwat-rawat-197,Shashwat Rawat,India,False,BATTER,Right-hand bat,Right Arm Medium,PACE,2001-04-06,24,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+andre-siddarth-198,Andre Siddarth,India,False,BATTER,Right-hand bat,None,NONE,2006-08-28,18,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+avneesh-sudha-199,Avneesh Sudha,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2001-11-20,23,UNCAPPED,CAU,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+apoorv-wankhade-200,Apoorv Wankhade,India,False,BATTER,Right-hand bat,None,NONE,1992-03-14,33,UNCAPPED,VCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+yudhvir-charak-201,Yudhvir Charak,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1997-09-13,27,UNCAPPED,JKCA,3000000,5,82,22.4,138.2,3,8.45,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,3500000
+rishi-dhawan-202,Rishi Dhawan,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1990-02-19,35,UNCAPPED,HPCA,3000000,39,643,22.4,138.2,29,8.45,,UNATTACHED,UNSOLD,
+rajvardhan-hangargekar-203,Rajvardhan Hangargekar,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2002-11-10,22,UNCAPPED,MACA,3000000,2,33,22.4,138.2,1,8.45,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+tanush-kotian-204,Tanush Kotian,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1998-10-16,26,UNCAPPED,MCA,3000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+arshin-kulkarni-205,Arshin Kulkarni,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2005-02-15,20,UNCAPPED,MACA,3000000,2,33,22.4,138.2,1,8.45,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+shams-mulani-206,Shams Mulani,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1997-03-13,28,UNCAPPED,MCA,3000000,2,33,22.4,138.2,1,8.45,,UNATTACHED,UNSOLD,
+shivam-singh-207,Shivam Singh,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1995-11-25,29,UNCAPPED,TNCA,3000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+lalit-yadav-208,Lalit Yadav,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1997-01-03,28,UNCAPPED,DDCA,3000000,27,445,22.4,138.2,20,8.45,,UNATTACHED,UNSOLD,
+mohammed-azharuddeen-209,Mohammed Azharuddeen,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1994-03-22,31,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+l-r-chethan-210,L.R Chethan,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,2000-05-25,24,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+aryaman-singh-dhaliwal-211,Aryaman Singh Dhaliwal,India,False,WICKETKEEPER,Right-hand bat,Left Arm Slow Orthodox,SPIN,2002-04-30,22,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+urvil-patel-212,Urvil Patel,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1998-10-17,26,UNCAPPED,GUCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sanskar-rawat-213,Sanskar Rawat,India,False,WICKETKEEPER,Left-hand bat,None,NONE,2005-06-14,19,UNCAPPED,CAU,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+bipin-saurabh-214,Bipin Saurabh,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1999-11-20,25,UNCAPPED,BICA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tanay-thyagarajann-215,Tanay Thyagarajann,India,False,WICKETKEEPER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1995-11-15,29,UNCAPPED,HYCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+money-grewal-216,Money Grewal,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2000-10-04,24,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ashwani-kumar-217,Ashwani Kumar,India,False,BOWLER,Left-hand bat,Left Arm Fast,PACE,2001-08-29,23,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,3000000
+ishan-porel-218,Ishan Porel,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1998-09-05,26,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abhilash-shetty-219,Abhilash Shetty,India,False,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,1998-06-06,26,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+akash-singh-220,Akash Singh,India,False,BOWLER,Right-hand bat,Left Arm Fast,PACE,2002-04-26,22,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+gurjapneet-singh-221,Gurjapneet Singh,India,False,BOWLER,Right-hand bat,Left Arm Fast Medium,PACE,1998-11-08,26,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,22000000
+basil-thampi-222,Basil Thampi,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1993-09-11,31,UNCAPPED,KCA,3000000,25,62,6.5,0.0,27,8.15,,UNATTACHED,UNSOLD,
+murugan-ashwin-223,Murugan Ashwin,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1990-09-08,34,UNCAPPED,JKCA,3000000,44,110,6.5,0.0,48,8.15,,UNATTACHED,UNSOLD,
+shreyas-chavan-224,Shreyas Chavan,India,False,BOWLER,Left-hand bat,Right Arm Leg Spin,SPIN,2003-09-01,21,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+chintal-gandhi-225,Chintal Gandhi,India,False,BOWLER,Left-hand bat,Right Arm Leg Spin,SPIN,1994-08-25,30,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+raghav-goyal-226,Raghav Goyal,India,False,BOWLER,Left-hand bat,Left Arm Slow Unorthodox,SPIN,2001-06-20,23,UNCAPPED,HCA,3000000,1,2,6.5,0.0,1,8.15,,UNATTACHED,UNSOLD,
+jagadeesha-suchith-227,Jagadeesha Suchith,India,False,BOWLER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1994-01-16,31,UNCAPPED,NCA,3000000,22,55,6.5,0.0,24,8.15,,UNATTACHED,UNSOLD,
+roshan-waghsare-228,Roshan Waghsare,India,False,BOWLER,Right-hand bat,Left Arm Slow Unorthodox,SPIN,2003-09-07,21,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+bailapudi-yeswanth-229,Bailapudi Yeswanth,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2005-03-19,20,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sediqullah-atal-230,Sediqullah Atal,Afghanistan,True,BATTER,Left-hand bat,None,NONE,2001-08-12,23,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+matthew-breetzke-231,Matthew Breetzke,South Africa,True,BATTER,Right-hand bat,None,NONE,1998-11-03,26,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,7500000
+mark-chapman-232,Mark Chapman,New Zealand,True,BATTER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1994-06-27,30,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+brandon-king-233,Brandon King,West Indies,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1994-12-16,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+evin-lewis-234,Evin Lewis,West Indies,True,BATTER,Left-hand bat,None,NONE,1991-12-27,33,CAPPED,,20000000,56,1372,29.19,132.5,0,0.0,,UNATTACHED,UNSOLD,
+pathum-nissanka-235,Pathum Nissanka,Sri Lanka,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1998-05-18,26,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+bhanuka-rajapaksa-236,Bhanuka Rajapaksa,Sri Lanka,True,BATTER,Left-hand bat,None,NONE,1991-10-24,33,CAPPED,,7500000,13,318,28.91,132.5,0,0.0,,UNATTACHED,UNSOLD,
+steve-smith-237,Steve Smith,Australia,True,BATTER,Right-hand bat,None,NONE,1989-06-02,35,CAPPED,,20000000,67,1641,29.3,132.5,0,0.0,,UNATTACHED,UNSOLD,
+gus-atkinson-238,Gus Atkinson,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1998-01-19,27,CAPPED,,20000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tom-curran-239,Tom Curran,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1995-03-12,30,CAPPED,,20000000,13,214,22.4,138.2,9,8.45,,UNATTACHED,UNSOLD,
+krishnappa-gowtham-240,Krishnappa Gowtham,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1988-10-20,36,CAPPED,KSCA,10000000,36,594,22.4,138.2,27,8.45,,UNATTACHED,UNSOLD,
+mohammad-nabi-241,Mohammad Nabi,Afghanistan,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1985-01-01,40,CAPPED,,15000000,24,396,22.4,138.2,18,8.45,,UNATTACHED,UNSOLD,
+gulbadin-naib-242,Gulbadin Naib,Afghanistan,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1991-06-04,33,CAPPED,,10000000,2,33,22.4,138.2,1,8.45,,UNATTACHED,UNSOLD,
+sikandar-raza-243,Sikandar Raza,Zimbabwe,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1986-04-24,38,CAPPED,,12500000,9,148,22.4,138.2,6,8.45,,UNATTACHED,UNSOLD,
+mitchell-santner-244,Mitchell Santner,New Zealand,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1992-02-05,33,CAPPED,,20000000,18,297,22.4,138.2,13,8.45,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,20000000
+jayant-yadav-245,Jayant Yadav,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1990-01-22,35,CAPPED,HCA,7500000,20,330,22.4,138.2,15,8.45,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,7500000
+johnson-charles-246,Johnson Charles,West Indies,True,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1989-01-14,36,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+litton-das-247,Litton Das,Bangladesh,True,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1994-10-13,30,CAPPED,,7500000,1,24,24.0,132.5,0,0.0,,UNATTACHED,UNSOLD,
+andre-fletcher-248,Andre Fletcher,West Indies,True,WICKETKEEPER,Right-hand bat,Right Arm Leg Spin,SPIN,1987-11-28,37,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tom-latham-249,Tom Latham,New Zealand,True,WICKETKEEPER,Left-hand bat,None,NONE,1992-04-02,33,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ollie-pope-250,Ollie Pope,England,True,WICKETKEEPER,Right-hand bat,None,NONE,1998-01-02,27,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kyle-verreynne-251,Kyle Verreynne,South Africa,True,WICKETKEEPER,Right-hand bat,None,NONE,1997-05-12,27,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+fazalhaq-farooqi-252,Fazalhaq Farooqi,Afghanistan,True,BOWLER,Right-hand bat,Left Arm Fast Medium,PACE,2000-09-22,24,CAPPED,,20000000,7,17,6.5,0.0,7,8.15,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,20000000
+richard-gleeson-253,Richard Gleeson,England,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1987-12-02,37,CAPPED,,7500000,2,5,6.5,0.0,2,8.15,,UNATTACHED,UNSOLD,
+matt-henry-254,Matt Henry,New Zealand,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1991-12-14,33,CAPPED,,20000000,6,15,6.5,0.0,6,8.15,,UNATTACHED,UNSOLD,
+alzarri-joseph-255,Alzarri Joseph,West Indies,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-11-20,28,CAPPED,,20000000,22,55,6.5,0.0,24,8.15,,UNATTACHED,UNSOLD,
+kwena-maphaka-256,Kwena Maphaka,South Africa,True,BOWLER,Left-hand bat,Left Arm Fast,PACE,2006-04-08,18,CAPPED,,7500000,2,5,6.5,0.0,2,8.15,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,15000000
+kuldeep-sen-257,Kuldeep Sen,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-10-22,28,CAPPED,MPCA,7500000,12,30,6.5,0.0,13,8.15,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,8000000
+reece-topley-258,Reece Topley,England,True,BOWLER,Right-hand bat,Left Arm Fast,PACE,1994-02-21,31,CAPPED,,7500000,5,12,6.5,0.0,5,8.15,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,7500000
+lizaad-williams-259,Lizaad Williams,South Africa,True,BOWLER,Left-hand bat,Right Arm Fast,PACE,1993-10-01,31,CAPPED,,7500000,2,5,6.5,0.0,2,8.15,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,7500000
+luke-wood-260,Luke Wood,England,True,BOWLER,Left-hand bat,Left Arm Fast,PACE,1995-08-02,29,CAPPED,,7500000,2,5,6.5,0.0,2,8.15,,UNATTACHED,UNSOLD,
+sachin-dhas-261,Sachin Dhas,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2005-02-03,20,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+leus-du-plooy-262,Leus Du Plooy,England,True,BATTER,Left-hand bat,None,NONE,1995-01-12,30,UNCAPPED,,5000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ashwin-hebbar-263,Ashwin Hebbar,India,False,BATTER,Right-hand bat,Right Arm Medium,PACE,1995-11-15,29,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+rohan-kunnummal-264,Rohan Kunnummal,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1998-05-10,26,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ayush-pandey-265,Ayush Pandey,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,2003-09-19,21,UNCAPPED,CSCSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+akshat-raghuwanshi-266,Akshat Raghuwanshi,India,False,BATTER,Right-hand bat,None,NONE,2003-09-15,21,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shoun-roger-267,Shoun Roger,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2002-10-16,22,UNCAPPED,KCA,4000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+virat-singh-268,Virat Singh,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,1997-12-08,27,UNCAPPED,JSCA,3000000,3,73,36.5,132.5,0,0.0,,UNATTACHED,UNSOLD,
+priyansh-arya-269,Priyansh Arya,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,2001-09-18,23,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,38000000
+manoj-bhandage-270,Manoj Bhandage,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Fast Medium,PACE,1998-10-05,26,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,3000000
+pravin-dubey-271,Pravin Dubey,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1993-07-01,31,UNCAPPED,KSCA,3000000,4,66,22.4,138.2,3,8.45,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+ajay-mandal-272,Ajay Mandal,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Unorthodox,SPIN,1996-02-25,29,UNCAPPED,CSCSCA,3000000,0,0,0.0,0.0,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,3000000
+prerak-mankad-273,Prerak Mankad,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1994-04-23,30,UNCAPPED,SCA,3000000,5,82,22.4,138.2,3,8.45,,UNATTACHED,UNSOLD,
+vipraj-nigam-274,Vipraj Nigam,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2004-07-28,20,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,5000000
+vicky-ostwal-275,Vicky Ostwal,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,2002-09-01,22,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shivalik-sharma-276,Shivalik Sharma,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Leg Spin,SPIN,1998-11-28,26,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+salil-arora-277,Salil Arora,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2002-11-07,22,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dinesh-bana-278,Dinesh Bana,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2004-09-15,20,UNCAPPED,HCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ajitesh-guruswamy-279,Ajitesh Guruswamy,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2002-09-26,22,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+narayan-jagadeesan-280,Narayan Jagadeesan,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1995-12-24,29,UNCAPPED,TNCA,3000000,13,318,28.91,132.5,0,0.0,,UNATTACHED,UNSOLD,
+shrijith-krishnan-281,Shrijith Krishnan,India,False,WICKETKEEPER,Left-hand bat,None,NONE,1996-08-12,28,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,3000000
+michael-pepper-282,Michael Pepper,England,True,WICKETKEEPER,Right-hand bat,None,NONE,1998-06-25,26,UNCAPPED,,5000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vishnu-solanki-283,Vishnu Solanki,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1992-10-15,32,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+k-m-asif-284,K.M Asif,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1993-07-24,31,UNCAPPED,KCA,3000000,7,17,6.5,0.0,7,8.15,,UNATTACHED,UNSOLD,
+akhil-chaudhary-285,Akhil Chaudhary,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2002-07-15,22,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+himanshu-chauhan-286,Himanshu Chauhan,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2003-01-18,22,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+arpit-guleria-287,Arpit Guleria,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1997-04-26,27,UNCAPPED,HPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+nishanth-saranu-288,Nishanth Saranu,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,2005-03-03,20,UNCAPPED,HYCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kuldip-yadav-289,Kuldip Yadav,India,False,BOWLER,Left-hand bat,Left Arm Fast,PACE,1996-10-15,28,UNCAPPED,DDCA,3000000,3,7,6.5,0.0,3,8.15,,UNATTACHED,UNSOLD,
+prithviraj-yarra-290,Prithviraj Yarra,India,False,BOWLER,Left-hand bat,Left Arm Fast,PACE,1998-02-20,27,UNCAPPED,ACA,3000000,2,5,6.5,0.0,2,8.15,,UNATTACHED,UNSOLD,
+shubham-agrawal-291,Shubham Agrawal,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1993-11-21,31,UNCAPPED,CSCSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+jass-inder-baidwan-292,Jass Inder Baidwan,India,False,BOWLER,Right-hand bat,Right Arm Off Spin,SPIN,1996-12-14,28,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+jasmer-dhankhar-293,Jasmer Dhankhar,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1998-10-16,26,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+pulkit-narang-294,Pulkit Narang,India,False,BOWLER,Right-hand bat,Right Arm Off Spin,SPIN,1994-06-18,30,UNCAPPED,SSCB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+saumy-pandey-295,Saumy Pandey,India,False,BOWLER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2004-11-04,20,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+mohit-rathee-296,Mohit Rathee,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-01-13,26,UNCAPPED,SSCB,3000000,1,2,6.5,0.0,1,8.15,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,3000000
+himanshu-singh-297,Himanshu Singh,India,False,BOWLER,Right-hand bat,Right Arm Off Spin,SPIN,2003-07-24,21,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+towhid-hridoy-298,Towhid Hridoy,Bangladesh,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2000-12-04,24,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+mikyle-louis-299,Mikyle Louis,West Indies,True,BATTER,Right-hand bat,None,NONE,2000-08-19,24,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+harry-tector-300,Harry Tector,Ireland,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1999-12-06,25,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+rassie-van-der-dussen-301,Rassie Van Der Dussen,South Africa,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1989-02-07,36,CAPPED,,20000000,3,73,36.5,132.5,0,0.0,,UNATTACHED,UNSOLD,
+will-young-302,Will Young,New Zealand,True,BATTER,Right-hand bat,None,NONE,1992-11-22,32,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+najibullah-zadran-303,Najibullah Zadran,Afghanistan,True,BATTER,Left-hand bat,None,NONE,1993-02-28,32,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ibrahim-zadran-304,Ibrahim Zadran,Afghanistan,True,BATTER,Right-hand bat,Right Arm Medium,PACE,2001-01-12,24,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sean-abbott-305,Sean Abbott,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1992-02-29,33,CAPPED,,20000000,20,330,22.4,138.2,15,8.45,,UNATTACHED,UNSOLD,
+jacob-bethell-306,Jacob Bethell,England,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2003-10-23,21,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,26000000
+brydon-carse-307,Brydon Carse,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1995-07-31,29,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,10000000
+aaron-hardie-308,Aaron Hardie,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1999-01-07,26,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,12500000
+sarfaraz-khan-309,Sarfaraz Khan,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1997-10-22,27,CAPPED,MCA,7500000,5,82,22.4,138.2,3,8.45,,UNATTACHED,UNSOLD,
+kyle-mayers-310,Kyle Mayers,West Indies,True,ALL_ROUNDER,Left-hand bat,Right Arm Fast Medium,PACE,1992-09-08,32,CAPPED,,15000000,12,198,22.4,138.2,9,8.45,,UNATTACHED,UNSOLD,
+kamindu-mendis-311,Kamindu Mendis,Sri Lanka,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1998-09-30,26,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,7500000
+matthew-short-312,Matthew Short,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1995-11-08,29,CAPPED,,7500000,6,99,22.4,138.2,4,8.45,,UNATTACHED,UNSOLD,
+jason-behrendorff-313,Jason Behrendorff,Australia,True,BOWLER,Right-hand bat,Left Arm Fast,PACE,1990-04-20,34,CAPPED,,15000000,17,42,6.5,0.0,18,8.15,,UNATTACHED,UNSOLD,
+dushmantha-chameera-314,Dushmantha Chameera,Sri Lanka,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1992-01-11,33,CAPPED,,7500000,13,32,6.5,0.0,14,8.15,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,7500000
+nathan-ellis-315,Nathan Ellis,Australia,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1994-09-22,30,CAPPED,,12500000,16,40,6.5,0.0,17,8.15,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,20000000
+shamar-joseph-316,Shamar Joseph,West Indies,True,BOWLER,Left-hand bat,Right Arm Fast,PACE,1999-08-31,25,CAPPED,,7500000,1,2,6.5,0.0,1,8.15,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,7500000
+josh-little-317,Josh Little,Ireland,True,BOWLER,Right-hand bat,Left Arm Fast Medium,PACE,1999-11-01,25,CAPPED,,7500000,11,27,6.5,0.0,12,8.15,,UNATTACHED,UNSOLD,
+shivam-mavi-318,Shivam Mavi,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1998-11-26,26,CAPPED,UPCA,7500000,32,80,6.5,0.0,35,8.15,,UNATTACHED,UNSOLD,
+jhye-richardson-319,Jhye Richardson,Australia,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-09-20,28,CAPPED,,15000000,4,10,6.5,0.0,4,8.15,,UNATTACHED,UNSOLD,
+navdeep-saini-320,Navdeep Saini,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1992-11-23,32,CAPPED,DDCA,7500000,32,80,6.5,0.0,35,8.15,,UNATTACHED,UNSOLD,
+tanmay-agarwal-321,Tanmay Agarwal,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,1995-05-03,29,UNCAPPED,HYCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+amandeep-khare-322,Amandeep Khare,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1997-08-05,27,UNCAPPED,CSCSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ayush-mhatre-323,Ayush Mhatre,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2007-07-16,17,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+salman-nizar-324,Salman Nizar,India,False,BATTER,Left-hand bat,None,NONE,1997-06-30,27,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+aniket-verma-325,Aniket Verma,India,False,BATTER,Right-hand bat,None,NONE,2002-02-05,23,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,3000000
+sumeet-verma-326,Sumeet Verma,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,1990-11-18,34,UNCAPPED,HPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+manan-vohra-327,Manan Vohra,India,False,BATTER,Right-hand bat,None,NONE,1993-07-18,31,UNCAPPED,UTCA,3000000,56,1372,29.19,132.5,0,0.0,,UNATTACHED,UNSOLD,
+samarth-vyas-328,Samarth Vyas,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,1995-11-28,29,UNCAPPED,SCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+raj-angad-bawa-329,Raj Angad Bawa,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Fast Medium,PACE,2002-11-12,22,UNCAPPED,UTCA,3000000,2,33,22.4,138.2,1,8.45,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,3000000
+emanjot-chahal-330,Emanjot Chahal,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,2004-08-17,20,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+musheer-khan-331,Musheer Khan,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,2005-02-27,20,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+manvanth-kumar-l-332,Manvanth Kumar L,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Fast Medium,PACE,2004-01-11,21,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,3000000
+mayank-rawat-333,Mayank Rawat,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1999-12-04,25,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+suryansh-shedge-334,Suryansh Shedge,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2003-01-29,22,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+hritik-shokeen-335,Hritik Shokeen,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2000-08-14,24,UNCAPPED,DDCA,3000000,13,214,22.4,138.2,9,8.45,,UNATTACHED,UNSOLD,
+sonu-yadav-336,Sonu Yadav,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1999-11-11,25,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+s-rithik-easwaran-337,S. Rithik Easwaran,India,False,WICKETKEEPER,Left-hand bat,None,NONE,2002-02-15,23,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+anmol-malhotra-338,Anmol Malhotra,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1995-11-29,29,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+pradosh-paul-339,Pradosh Paul,India,False,WICKETKEEPER,Left-hand bat,Right Arm Off Spin,SPIN,2000-12-21,24,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+karteek-sharma-340,Karteek Sharma,India,False,WICKETKEEPER,Left-hand bat,Right Arm Off Spin,SPIN,2001-10-25,23,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tejasvi-singh-342,Tejasvi Singh,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,2002-04-18,22,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+siddharth-yadav-343,Siddharth Yadav,India,False,WICKETKEEPER,Left-hand bat,Right Arm Medium,PACE,2003-08-13,21,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+saurabh-dubey-344,Saurabh Dubey,India,False,BOWLER,Right-hand bat,Left Arm Fast Medium,PACE,1998-01-23,27,UNCAPPED,VCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+aaqib-khan-345,Aaqib Khan,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,2003-12-25,21,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kulwant-khejroliya-346,Kulwant Khejroliya,India,False,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,1992-03-13,33,UNCAPPED,MPCA,3000000,7,17,6.5,0.0,7,8.15,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,3000000
+ankit-singh-rajpoot-347,Ankit Singh Rajpoot,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1993-12-04,31,UNCAPPED,UPCA,3000000,29,72,6.5,0.0,31,8.15,,UNATTACHED,UNSOLD,
+divesh-sharma-348,Divesh Sharma,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2001-04-20,23,UNCAPPED,HPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+naman-tiwari-349,Naman Tiwari,India,False,BOWLER,Left-hand bat,Left Arm Fast,PACE,2005-11-08,19,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+prince-yadav-350,Prince Yadav,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2001-12-12,23,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+kunal-singh-chibb-351,Kunal Singh Chibb,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1997-03-31,28,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+yuvraj-chudasama-352,Yuvraj Chudasama,India,False,BOWLER,Left-hand bat,Right Arm Leg Spin,SPIN,1995-11-23,29,UNCAPPED,SCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+deepak-devadiga-353,Deepak Devadiga,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-04-14,25,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ramesh-prasad-354,Ramesh Prasad,India,False,BOWLER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1994-01-30,31,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shivam-shukla-355,Shivam Shukla,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,1995-12-11,29,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tejpreet-singh-357,Tejpreet Singh,India,False,BOWLER,Right-hand bat,Right Arm Leg Spin,SPIN,2000-08-11,24,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+qais-ahmad-358,Qais Ahmad,Afghanistan,True,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2000-08-15,24,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+charith-asalanka-359,Charith Asalanka,Sri Lanka,True,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1997-06-29,27,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+michael-bracewell-360,Michael Bracewell,New Zealand,True,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1991-02-14,34,CAPPED,,15000000,5,82,22.4,138.2,3,8.45,,UNATTACHED,UNSOLD,
+gudakesh-motie-361,Gudakesh Motie,West Indies,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1995-03-29,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+daniel-mousley-362,Daniel Mousley,England,True,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,2001-07-08,23,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+jamie-overton-363,Jamie Overton,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1984-04-10,41,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,15000000
+dunith-wellalage-364,Dunith Wellalage,Sri Lanka,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2003-01-09,22,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ottneil-baartman-365,Ottneil Baartman,South Africa,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1993-03-18,32,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+xavier-bartlett-366,Xavier Bartlett,Australia,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1998-12-17,26,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,8000000
+dilshan-madushanka-367,Dilshan Madushanka,Sri Lanka,True,BOWLER,Right-hand bat,Left Arm Fast,PACE,2000-09-18,24,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+adam-milne-368,Adam Milne,New Zealand,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1992-04-13,32,CAPPED,,20000000,53,132,6.5,0.0,58,8.15,,UNATTACHED,UNSOLD,
+lungisani-ngidi-369,Lungisani Ngidi,South Africa,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1996-03-29,29,CAPPED,,10000000,14,35,6.5,0.0,15,8.15,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,10000000
+william-o-rourke-370,William O'Rourke,New Zealand,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,2001-08-06,23,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+chetan-sakariya-371,Chetan Sakariya,India,False,BOWLER,Left-hand bat,Left Arm Medium,PACE,1998-02-28,27,CAPPED,SCA,7500000,19,47,6.5,0.0,20,8.15,,UNATTACHED,UNSOLD,
+sandeep-warrier-372,Sandeep Warrier,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1991-04-04,34,CAPPED,TNCA,7500000,1,2,6.5,0.0,1,8.15,,UNATTACHED,UNSOLD,
+musaif-ajaz-373,Musaif Ajaz,India,False,BATTER,Right-hand bat,Left Arm Slow Orthodox,SPIN,2002-08-03,22,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+agni-chopra-374,Agni Chopra,India,False,BATTER,Left-hand bat,None,NONE,1998-11-04,26,UNCAPPED,CAM,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abhimanyu-easwaran-375,Abhimanyu Easwaran,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,1995-09-06,29,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sudip-gharami-376,Sudip Gharami,India,False,BATTER,Right-hand bat,None,NONE,1999-03-21,26,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shubham-khajuria-377,Shubham Khajuria,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1995-09-13,29,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+akhil-rawat-378,Akhil Rawat,India,False,BATTER,Right-hand bat,None,NONE,2000-11-04,24,UNCAPPED,CAU,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+prateek-yadav-379,Prateek Yadav,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,1999-02-16,26,UNCAPPED,CSCSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abdul-bazith-380,Abdul Bazith,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1998-10-09,26,UNCAPPED,KCA,3000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+k-c-cariappa-381,K.C Cariappa,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1994-04-13,30,UNCAPPED,CAM,3000000,11,181,22.4,138.2,8,8.45,,UNATTACHED,UNSOLD,
+yuvraj-chaudhary-382,Yuvraj Chaudhary,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2001-10-06,23,UNCAPPED,CAU,3000000,0,0,0.0,0.0,0,0.0,Lucknow Super Giants,PURCHASED_AT_AUCTION,SOLD,3000000
+aman-khan-383,Aman Khan,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1996-11-23,28,UNCAPPED,CAP,3000000,12,198,22.4,138.2,9,8.45,,UNATTACHED,UNSOLD,
+sumit-kumar-384,Sumit Kumar,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1995-12-12,29,UNCAPPED,HCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kamlesh-nagarkoti-385,Kamlesh Nagarkoti,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1999-12-28,25,UNCAPPED,RCA,3000000,12,198,22.4,138.2,9,8.45,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+hardik-raj-386,Hardik Raj,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2006-03-10,19,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+harsh-tyagi-387,Harsh Tyagi,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1999-12-23,25,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+m-ajnas-388,M. Ajnas,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1997-05-08,27,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+unmukt-chand-389,Unmukt Chand,USA,True,WICKETKEEPER,Right-hand bat,None,NONE,1993-03-26,32,ASSOCIATE,,3000000,21,514,30.24,132.5,0,0.0,,UNATTACHED,UNSOLD,
+tejasvi-dahiya-390,Tejasvi Dahiya,India,False,WICKETKEEPER,Right-hand bat,None,NONE,2002-04-18,22,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sumit-ghadigaonkar-391,Sumit Ghadigaonkar,India,False,WICKETKEEPER,Right-hand bat,None,NONE,1992-04-11,32,UNCAPPED,ASCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+baba-indrajith-392,Baba Indrajith,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,1994-07-08,30,UNCAPPED,TNCA,3000000,3,73,36.5,132.5,0,0.0,,UNATTACHED,UNSOLD,
+muhammed-khan-393,Muhammed Khan,India,False,WICKETKEEPER,Right-hand bat,Right Arm Off Spin,SPIN,2000-12-30,24,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+bhagmender-lather-394,Bhagmender Lather,India,False,WICKETKEEPER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1997-06-18,27,UNCAPPED,UTCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+baltej-dhanda-395,Baltej Dhanda,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1990-11-04,34,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ali-khan-396,Ali Khan,USA,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1990-12-13,34,ASSOCIATE,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ravi-kumar-397,Ravi Kumar,India,False,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,2003-10-29,21,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vineet-panwar-398,Vineet Panwar,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1998-06-28,26,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vidyadhar-patil-399,Vidyadhar Patil,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,2000-09-05,24,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+aradhya-shukla-400,Aradhya Shukla,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2004-12-06,20,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abhinandan-singh-401,Abhinandan Singh,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1997-03-30,28,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,Royal Challengers Bengaluru,PURCHASED_AT_AUCTION,SOLD,3000000
+cooper-connolly-402,Cooper Connolly,Australia,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2003-08-22,21,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dushan-hemantha-403,Dushan Hemantha,Sri Lanka,True,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1994-05-24,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+jason-holder-404,Jason Holder,West Indies,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1991-11-05,33,CAPPED,,20000000,63,1039,22.4,138.2,47,8.45,,UNATTACHED,UNSOLD,
+karim-janat-405,Karim Janat,Afghanistan,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1998-08-11,26,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,Gujarat Titans,PURCHASED_AT_AUCTION,SOLD,7500000
+jimmy-neesham-406,Jimmy Neesham,New Zealand,True,ALL_ROUNDER,Left-hand bat,Right Arm Fast Medium,PACE,1990-09-17,34,CAPPED,,15000000,79,1303,22.4,138.2,59,8.45,,UNATTACHED,UNSOLD,
+daniel-sams-407,Daniel Sams,Australia,True,ALL_ROUNDER,Right-hand bat,Left Arm Fast,PACE,1992-10-27,32,CAPPED,,15000000,10,165,22.4,138.2,7,8.45,,UNATTACHED,UNSOLD,
+william-sutherland-408,William Sutherland,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1999-10-27,25,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+taskin-ahmed-409,Taskin Ahmed,Bangladesh,True,BOWLER,Left-hand bat,Right Arm Fast,PACE,1995-04-03,30,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ben-dwarshuis-410,Ben Dwarshuis,Australia,True,BOWLER,Left-hand bat,Left Arm Fast,PACE,1994-06-23,30,CAPPED,,7500000,3,7,6.5,0.0,3,8.15,,UNATTACHED,UNSOLD,
+obed-mccoy-411,Obed McCoy,West Indies,True,BOWLER,Right-hand bat,Left Arm Fast,PACE,1997-01-04,28,CAPPED,,12500000,8,20,6.5,0.0,8,8.15,,UNATTACHED,UNSOLD,
+riley-meredith-412,Riley Meredith,Australia,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-06-21,28,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+lance-morris-413,Lance Morris,Australia,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1998-03-28,27,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+olly-stone-414,Olly Stone,England,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1993-10-09,31,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+daniel-worrall-415,Daniel Worrall,England,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1991-07-10,33,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+pyla-avinash-416,Pyla Avinash,India,False,BATTER,Right-hand bat,Right Arm Fast Medium,PACE,2000-07-07,24,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,Punjab Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+kiran-chormale-417,Kiran Chormale,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2005-10-11,19,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ashish-dahariya-418,Ashish Dahariya,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,2004-10-17,20,UNCAPPED,CSCSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tushar-raheja-419,Tushar Raheja,India,False,BATTER,Left-hand bat,None,NONE,2001-02-07,24,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sarthak-ranjan-420,Sarthak Ranjan,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1996-09-25,28,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abhijeet-tomar-421,Abhijeet Tomar,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1995-03-14,30,UNCAPPED,RCA,3000000,1,24,24.0,132.5,0,0.0,,UNATTACHED,UNSOLD,
+krish-bhagat-422,Krish Bhagat,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2004-11-06,20,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sohraab-dhaliwal-423,Sohraab Dhaliwal,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1991-11-18,33,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+harsh-dubey-424,Harsh Dubey,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2002-07-23,22,UNCAPPED,VCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ramakrishna-ghosh-425,Ramakrishna Ghosh,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1997-08-28,27,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,Chennai Super Kings,PURCHASED_AT_AUCTION,SOLD,3000000
+raj-limbani-426,Raj Limbani,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Fast Medium,PACE,2005-02-02,20,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ninad-rathva-427,Ninad Rathva,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1999-03-10,26,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vivrant-sharma-428,Vivrant Sharma,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Leg Spin,SPIN,1999-10-30,25,UNCAPPED,JKCA,3000000,2,33,22.4,138.2,1,8.45,,UNATTACHED,UNSOLD,
+shiva-singh-429,Shiva Singh,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1999-10-16,25,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sayed-irfan-aftab-430,Sayed Irfan Aftab,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2003-11-20,21,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+anirudh-chowdhary-431,Anirudh Chowdhary,India,False,BOWLER,Left-hand bat,Right Arm Fast Medium,PACE,1999-11-08,25,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+anshuman-hooda-432,Anshuman Hooda,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2001-01-04,24,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+siddharth-kaul-433,Siddharth Kaul,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1990-05-19,34,UNCAPPED,PCA,4000000,55,137,6.5,0.0,60,8.15,,UNATTACHED,UNSOLD,
+prashant-sai-painkra-434,Prashant Sai Painkra,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,2002-09-08,22,UNCAPPED,CSCSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+venkata-satyanarayana-penmetsa-435,Venkata Satyanarayana Penmetsa,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1999-07-10,25,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,3000000
+yeddala-reddy-436,Yeddala Reddy,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1999-12-13,25,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+zak-foulkes-437,Zak Foulkes,New Zealand,True,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,2002-06-05,22,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+chris-green-438,Chris Green,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1993-10-01,31,CAPPED,,10000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+shakib-al-hasan-439,Shakib Al Hasan,Bangladesh,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1987-03-24,38,CAPPED,,10000000,129,2128,22.4,138.2,96,8.45,,UNATTACHED,UNSOLD,
+mehidy-hasan-miraz-440,Mehidy Hasan Miraz,Bangladesh,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1997-10-25,27,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+wiaan-mulder-441,Wiaan Mulder,South Africa,True,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1998-02-19,27,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dwaine-pretorius-442,Dwaine Pretorius,South Africa,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1989-03-29,36,CAPPED,,7500000,7,115,22.4,138.2,5,8.45,,UNATTACHED,UNSOLD,
+dasun-shanaka-443,Dasun Shanaka,Sri Lanka,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1991-09-09,33,CAPPED,,7500000,3,49,22.4,138.2,2,8.45,,UNATTACHED,UNSOLD,
+shoriful-islam-444,Shoriful Islam,Bangladesh,True,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,2001-06-03,23,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+blessing-muzarabani-445,Blessing Muzarabani,Zimbabwe,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1996-10-02,28,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+matthew-potts-446,Matthew Potts,England,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1998-10-29,26,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tanzim-hasan-sakib-447,Tanzim Hasan Sakib,Bangladesh,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,2002-10-20,22,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+benjamin-sears-448,Benjamin Sears,New Zealand,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1998-02-11,27,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tim-southee-449,Tim Southee,New Zealand,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1988-12-11,36,CAPPED,,15000000,126,315,6.5,0.0,138,8.15,,UNATTACHED,UNSOLD,
+john-turner-450,John Turner,England,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,2001-04-10,23,CAPPED,,15000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+joshua-brown-451,Joshua Brown,Australia,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1993-12-26,31,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+oliver-davies-452,Oliver Davies,Australia,True,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2000-10-14,24,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+bevan-john-jacobs-453,Bevan John Jacobs,New Zealand,True,BATTER,Right-hand bat,Right Arm Fast Medium,PACE,2002-05-06,22,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,3000000
+atharva-kale-454,Atharva Kale,India,False,BATTER,Right-hand bat,Right Arm Leg Spin,SPIN,1999-09-21,25,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abhishek-nair-455,Abhishek Nair,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2004-06-06,20,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vishwanath-pratap-singh-456,Vishwanath Pratap Singh,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1998-06-18,26,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+nasir-lone-457,Nasir Lone,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1997-09-05,27,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+brandon-mcmullen-458,Brandon McMullen,Scotland,True,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1999-10-18,25,ASSOCIATE,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+s-midhun-459,S. Midhun,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1994-10-07,30,UNCAPPED,KCA,3000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+abid-mushtaq-460,Abid Mushtaq,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1997-01-17,28,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+mahesh-pithiya-461,Mahesh Pithiya,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2001-12-24,23,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+maramreddy-reddy-462,Maramreddy Reddy,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2002-10-28,22,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+atit-sheth-463,Atit Sheth,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1996-02-03,29,UNCAPPED,BCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+jonty-sidhu-464,Jonty Sidhu,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1997-12-09,27,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+mohit-avasthi-465,Mohit Avasthi,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1992-11-18,32,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+faridoon-dawoodzai-466,Faridoon Dawoodzai,Afghanistan,True,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,2005-11-26,19,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+praful-hinge-467,Praful Hinge,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2002-01-18,23,UNCAPPED,VCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+pankaj-jaswal-468,Pankaj Jaswal,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1995-09-20,29,UNCAPPED,HPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vijay-kumar-469,Vijay Kumar,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2005-12-24,19,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ashok-sharma-470,Ashok Sharma,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2002-06-17,22,UNCAPPED,RCA,3000000,0,0,0.0,0.0,0,0.0,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,3000000
+mujtaba-yousuf-471,Mujtaba Yousuf,India,False,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,2002-06-07,22,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ashton-agar-472,Ashton Agar,Australia,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1993-10-14,31,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+roston-chase-473,Roston Chase,West Indies,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1992-03-22,33,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+junior-dala-474,Junior Dala,South Africa,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1989-12-29,35,CAPPED,,7500000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+mahedi-hasan-475,Mahedi Hasan,Bangladesh,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1994-12-12,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+nangeyalia-kharote-476,Nangeyalia Kharote,Afghanistan,True,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2004-04-25,20,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dan-lawrence-477,Dan Lawrence,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1997-07-12,27,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+nathan-smith-478,Nathan Smith,New Zealand,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1998-07-15,26,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+james-anderson-479,James Anderson,England,True,BOWLER,Left-hand bat,Right Arm Fast,PACE,1982-07-30,42,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kyle-jamieson-480,Kyle Jamieson,New Zealand,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1994-12-30,30,CAPPED,,15000000,13,32,6.5,0.0,14,8.15,,UNATTACHED,UNSOLD,
+chris-jordan-481,Chris Jordan,England,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1988-10-04,36,CAPPED,,20000000,95,237,6.5,0.0,104,8.15,,UNATTACHED,UNSOLD,
+hasan-mahmud-482,Hasan Mahmud,Bangladesh,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1997-02-12,28,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tymal-mills-483,Tymal Mills,England,True,BOWLER,Right-hand bat,Left Arm Fast,PACE,1992-08-12,32,CAPPED,,20000000,16,40,6.5,0.0,17,8.15,,UNATTACHED,UNSOLD,
+david-payne-484,David Payne,England,True,BOWLER,Right-hand bat,Left Arm Fast Medium,PACE,1991-02-15,34,CAPPED,,10000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+nahid-rana-485,Nahid Rana,Bangladesh,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,2002-10-25,22,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+prayas-ray-barman-486,Prayas Ray Barman,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,2002-10-25,22,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+jafar-jamal-487,Jafar Jamal,India,False,BATTER,Right-hand bat,Right Arm Off Spin,SPIN,1990-03-20,35,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ayaz-khan-488,Ayaz Khan,India,False,BATTER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2002-09-10,22,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kaushik-maity-489,Kaushik Maity,India,False,BATTER,Right-hand bat,Left Arm Slow Orthodox,SPIN,1999-10-14,25,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+rituraj-sharma-490,Rituraj Sharma,India,False,BATTER,Left-hand bat,Right Arm Off Spin,SPIN,2002-11-27,22,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vaibhav-suryavanshi-491,Vaibhav Suryavanshi,India,False,BATTER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2011-03-27,14,UNCAPPED,BICA,3000000,0,0,0.0,0.0,0,0.0,Rajasthan Royals,PURCHASED_AT_AUCTION,SOLD,11000000
+kartik-chadha-492,Kartik Chadha,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Leg Spin,SPIN,2004-01-08,21,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+writtick-chatterjee-493,Writtick Chatterjee,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1992-09-28,32,UNCAPPED,CAB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+prerit-dutta-494,Prerit Dutta,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1998-09-22,26,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+rajneesh-gurbani-495,Rajneesh Gurbani,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1993-01-28,32,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shubhang-hegde-496,Shubhang Hegde,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2001-03-30,24,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+saransh-jain-497,Saransh Jain,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1993-03-31,32,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ripal-patel-498,Ripal Patel,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1995-09-28,29,UNCAPPED,GUCA,3000000,9,148,22.4,138.2,6,8.45,,UNATTACHED,UNSOLD,
+akash-vashisht-499,Akash Vashisht,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1994-12-17,30,UNCAPPED,HPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+anirudh-kanwar-500,Anirudh Kanwar,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1994-03-13,31,UNCAPPED,UTCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shubham-kapse-501,Shubham Kapse,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1994-07-22,30,UNCAPPED,VCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+atif-mushtaq-502,Atif Mushtaq,India,False,BOWLER,Left-hand bat,Right Arm Fast,PACE,2003-03-20,22,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dipesh-parwani-503,Dipesh Parwani,India,False,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,2000-01-14,25,UNCAPPED,VCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+manish-reddy-504,Manish Reddy,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1999-01-07,26,UNCAPPED,HYCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+chetan-sharma-505,Chetan Sharma,India,False,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,2005-11-23,19,UNCAPPED,RCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+avinash-singh-506,Avinash Singh,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1998-07-05,26,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+alick-athanaze-507,Alick Athanaze,West Indies,True,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1998-12-07,26,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+hilton-cartwright-508,Hilton Cartwright,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1992-02-14,33,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dominic-drakes-509,Dominic Drakes,West Indies,True,ALL_ROUNDER,Left-hand bat,Left Arm Fast,PACE,1998-02-06,27,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+daryn-dupavillon-510,Daryn Dupavillon,South Africa,True,BOWLER,Right-hand bat,Right Arm Fast,PACE,1994-07-15,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+matthew-forde-511,Matthew Forde,West Indies,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2002-04-29,22,CAPPED,,12500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+patrick-kruger-512,Patrick Kruger,South Africa,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1995-02-03,30,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+lahiru-kumara-513,Lahiru Kumara,Sri Lanka,True,BOWLER,Left-hand bat,Right Arm Fast,PACE,1997-02-13,28,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+michael-neser-514,Michael Neser,Australia,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1990-03-29,35,CAPPED,,7500000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+richard-ngarava-515,Richard Ngarava,Zimbabwe,True,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,1997-12-29,27,CAPPED,,7500000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+wayne-parnell-516,Wayne Parnell,South Africa,True,BOWLER,Left-hand bat,Left Arm Fast Medium,PACE,1989-07-30,35,CAPPED,,10000000,56,140,6.5,0.0,61,8.15,,UNATTACHED,UNSOLD,
+keemo-paul-517,Keemo Paul,West Indies,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1998-02-21,27,CAPPED,,12500000,8,132,22.4,138.2,6,8.45,,UNATTACHED,UNSOLD,
+odean-smith-518,Odean Smith,West Indies,True,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1996-11-01,28,CAPPED,,7500000,27,445,22.4,138.2,20,8.45,,UNATTACHED,UNSOLD,
+andrew-tye-519,Andrew Tye,Australia,True,BOWLER,Right-hand bat,Right Arm Fast Medium,PACE,1986-12-12,38,CAPPED,,7500000,32,80,6.5,0.0,35,8.15,,UNATTACHED,UNSOLD,
+ajay-ahlawat-520,Ajay Ahlawat,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Fast,PACE,1997-05-27,27,UNCAPPED,DDCA,4000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+corbin-bosch-521,Corbin Bosch,South Africa,True,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1994-09-10,30,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+mayank-gusain-522,Mayank Gusain,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,2001-09-25,23,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+mukhtar-hussain-523,Mukhtar Hussain,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1999-01-11,26,UNCAPPED,ASCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+girinath-reddy-524,Girinath Reddy,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1998-10-08,26,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+jalaj-saxena-525,Jalaj Saxena,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1986-12-15,38,UNCAPPED,KCA,4000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+yajas-sharma-526,Yajas Sharma,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2005-08-21,19,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sanjay-yadav-527,Sanjay Yadav,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1995-05-10,29,UNCAPPED,TNCA,3000000,1,16,22.4,138.2,0,8.45,,UNATTACHED,UNSOLD,
+vishal-godara-528,Vishal Godara,India,False,BOWLER,Left-hand bat,Right Arm Medium,PACE,2003-02-25,22,UNCAPPED,RCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+eshan-malinga-529,Eshan Malinga,Sri Lanka,True,BOWLER,Left-hand bat,Right Arm Fast,PACE,2001-02-04,24,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,Sunrisers Hyderabad,PURCHASED_AT_AUCTION,SOLD,12000000
+samarth-nagraj-530,Samarth Nagraj,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2005-10-21,19,UNCAPPED,KSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abhishek-saini-531,Abhishek Saini,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,1998-12-02,26,UNCAPPED,UTCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dumindu-sewmina-532,Dumindu Sewmina,Sri Lanka,True,BOWLER,Right-hand bat,Right Arm Medium,PACE,2004-12-19,20,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+pradyuman-kumar-singh-533,Pradyuman Kumar Singh,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2001-12-03,23,UNCAPPED,UTCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vasu-vats-534,Vasu Vats,India,False,BOWLER,Right-hand bat,Right Arm Fast,PACE,2002-09-08,22,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+umang-kumar-535,Umang  Kumar,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2000-12-11,24,UNCAPPED,GUCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+mohamed-ali-536,Mohamed Ali,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2004-10-03,20,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+atharva-ankolekar-537,Atharva Ankolekar,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2000-09-26,24,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vaisakh-chandran-538,Vaisakh Chandran,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1996-05-31,28,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+auqib-dar-539,Auqib Dar,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1996-11-04,28,UNCAPPED,JKCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+rohit-rayudu-540,Rohit Rayudu,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1994-07-29,30,UNCAPPED,HYCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+uday-saharan-541,Uday Saharan,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2004-09-08,20,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ayush-vartak-542,Ayush Vartak,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2004-10-29,20,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+baba-aparajith-543,Baba Aparajith,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1994-07-08,30,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sumit-kumar-beniwal-544,Sumit Kumar Beniwal,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,1999-04-11,25,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+nishunk-birla-545,Nishunk Birla,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Orthodox,SPIN,2004-10-22,20,UNCAPPED,UTCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+digvijay-deshmukh-546,Digvijay Deshmukh,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1998-04-12,26,UNCAPPED,MACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+lakshay-jain-547,Lakshay Jain,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,2002-07-05,22,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+duan-jansen-548,Duan Jansen,South Africa,True,ALL_ROUNDER,Right-hand bat,Left Arm Fast,PACE,2000-05-01,24,UNCAPPED,,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+kritagya-singh-549,Kritagya Singh,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2000-09-25,24,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+p-vignesh-550,P. Vignesh,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2005-04-06,20,UNCAPPED,TNCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sabhay-chadha-551,Sabhay Chadha,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1998-05-07,26,UNCAPPED,CAP,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+ben-howell-552,Ben Howell,England,True,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1988-10-05,36,UNCAPPED,,5000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+hemanth-kumar-553,Hemanth Kumar,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2004-12-12,20,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+rohan-rana-554,Rohan Rana,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast,PACE,2002-01-12,23,UNCAPPED,HCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+bharat-sharma-555,Bharat Sharma,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1995-11-15,29,UNCAPPED,CAP,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+pratham-singh-556,Pratham Singh,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Off Spin,SPIN,1992-08-31,32,UNCAPPED,RSPB,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tripurana-vijay-557,Tripurana Vijay,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2001-09-05,23,UNCAPPED,ACA,3000000,0,0,0.0,0.0,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,3000000
+ravi-yadav-558,Ravi Yadav,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,1997-12-26,27,UNCAPPED,JSCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+arjun-azad-559,Arjun Azad,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2001-08-08,23,UNCAPPED,UTCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+abhay-choudhary-560,Abhay Choudhary,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2002-06-26,22,UNCAPPED,PCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+gaurav-gambhir-561,Gaurav Gambhir,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1987-11-26,37,UNCAPPED,UTCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+shubham-garhwal-562,Shubham Garhwal,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,1995-05-14,29,UNCAPPED,RCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+tejasvi-jaiswal-563,Tejasvi Jaiswal,India,False,ALL_ROUNDER,Left-hand bat,Right Arm Fast,PACE,1997-03-02,28,UNCAPPED,TCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+sairaj-patil-564,Sairaj Patil,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,1996-10-31,28,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+madhav-tiwari-565,Madhav Tiwari,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2003-09-28,21,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,Delhi Capitals,PURCHASED_AT_AUCTION,SOLD,4000000
+kamal-tripathi-566,Kamal Tripathi,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,1998-08-15,26,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+prashant-chauhan-567,Prashant Chauhan,India,False,ALL_ROUNDER,Left-hand bat,Left Arm Slow Orthodox,SPIN,2001-04-01,24,UNCAPPED,CAU,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+yash-dabas-568,Yash Dabas,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Fast Medium,PACE,2004-12-08,20,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+dhruv-kaushik-569,Dhruv Kaushik,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2000-07-11,24,UNCAPPED,DDCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+khrievitso-kense-570,Khrievitso Kense,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Leg Spin,SPIN,2004-03-06,21,UNCAPPED,NCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+akash-parkar-571,Akash Parkar,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,1994-05-20,30,UNCAPPED,MCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vignesh-puthur-572,Vignesh Puthur,India,False,ALL_ROUNDER,Right-hand bat,Left Arm Slow Unorthodox,SPIN,2001-03-02,24,UNCAPPED,KCA,3000000,0,0,0.0,0.0,0,0.0,Mumbai Indians,PURCHASED_AT_AUCTION,SOLD,3000000
+tripuresh-singh-573,Tripuresh Singh,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Medium,PACE,2002-04-13,22,UNCAPPED,MPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
+vijay-yadav-574,Vijay Yadav,India,False,ALL_ROUNDER,Right-hand bat,Right Arm Off Spin,SPIN,2001-12-19,23,UNCAPPED,UPCA,3000000,0,0,0.0,0.0,0,0.0,,UNATTACHED,UNSOLD,
