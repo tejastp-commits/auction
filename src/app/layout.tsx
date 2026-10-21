@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   title: 'IPL Auction Arena — Live Multiplayer IPL Auction Simulator',
   description:
     'Experience the live bidding tension of an official IPL auction with friends. Real-time multiplayer, 10 iconic franchises, authentic player stats, and persistent squad intelligence reports.',
+  icons: {
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({

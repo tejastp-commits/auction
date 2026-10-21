@@ -89,7 +89,9 @@ export default function AuctionRoomPage() {
       const data = await res.json();
       if (res.ok && data.sessionToken) {
         setSessionToken(data.sessionToken);
+        setDisplayName(name);
         localStorage.setItem(`auction_token_${roomCode}`, data.sessionToken);
+        localStorage.setItem(`auction_name_${roomCode}`, name);
         if (data.room) setRoom(data.room);
       }
     } catch (e) {
@@ -298,6 +300,57 @@ export default function AuctionRoomPage() {
     } catch (e) {}
   };
 
+  const renderJoinModal = () => {
+    if (sessionToken) return null;
+    return (
+      <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="max-w-md w-full ipl-card p-6 sm:p-8 rounded-2xl border border-amber-500/40 shadow-2xl shadow-amber-500/10 text-center animate-fade-in">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg shadow-amber-500/30">
+            🏏
+          </div>
+          <h2 className="text-xl font-black text-white mb-1">Join IPL Auction Room</h2>
+          <p className="text-xs text-amber-400 font-mono tracking-wider font-bold mb-4">
+            ROOM CODE: {roomCode}
+          </p>
+          <p className="text-xs text-slate-400 mb-6">
+            Enter your manager name to join the live room, claim your franchise, and compete in the bidding war.
+          </p>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const name = displayName.trim() || 'CricketFan';
+              joinUser(name);
+            }}
+            className="space-y-4"
+          >
+            <div>
+              <label className="block text-left text-xs font-semibold text-slate-300 mb-1.5">
+                Your Manager Name
+              </label>
+              <input
+                type="text"
+                required
+                autoFocus
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="e.g. Rohan Sharma"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 placeholder:text-slate-600"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 shadow-lg shadow-amber-500/25 text-xs tracking-wider transition-all"
+            >
+              ENTER AUCTION ARENA 🎯
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  };
+
   if (isLoading) {
     return (
       <div className="flex-1 flex items-center justify-center py-20">
@@ -333,6 +386,7 @@ export default function AuctionRoomPage() {
   if (room.status === 'LOBBY') {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        {renderJoinModal()}
         {/* LOBBY HEADER */}
         <div className="ipl-card p-6 rounded-2xl mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
@@ -562,6 +616,7 @@ export default function AuctionRoomPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex flex-col justify-between">
+      {renderJoinModal()}
       {/* HEADER / STATUS BAR */}
       <div className="ipl-card p-4 rounded-2xl mb-6 flex flex-wrap items-center justify-between gap-4 border border-slate-800">
         <div className="flex items-center gap-3">
