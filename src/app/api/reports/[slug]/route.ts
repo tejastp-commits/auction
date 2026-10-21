@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { AuctionStore } from '@/lib/auction-store';
+import { getReportFromSupabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,7 +10,14 @@ export async function GET(
 ) {
   try {
     const slug = params.slug;
-    const report = AuctionStore.getReport(slug);
+    let report = AuctionStore.getReport(slug);
+
+    if (!report) {
+      report = await getReportFromSupabase(slug);
+      if (report) {
+        AuctionStore.setReport(slug, report);
+      }
+    }
 
     if (!report) {
       return NextResponse.json(

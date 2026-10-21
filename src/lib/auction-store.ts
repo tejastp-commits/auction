@@ -1,7 +1,15 @@
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
 import { VERIFIED_PLAYERS, Player } from '@/data/players';
 import { IPL_FRANCHISES, Franchise, FRANCHISE_MAP } from '@/data/franchises';
 import { getNextMinimumBid, CRORE } from './currency';
 import { evaluateSquad, rankAllSquads, TeamEvaluation } from './analytics';
+import {
+  persistRoomToSupabase,
+  persistBidToSupabase,
+  persistReportToSupabase,
+} from './supabase';
 import {
   AuctionRoomState,
   RoomConfiguration,
@@ -13,10 +21,82 @@ import {
   AuctionReportData,
 } from './types';
 
+function generateUUID(): string {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+// Single Persistence Storage Path (Render disk /var/data or local project ./data)
+const DATA_DIR =
+  process.env.DATA_DIR ||
+  (fs.existsSync('/var/data') ? '/var/data' : path.join(process.cwd(), 'data'));
+const STATE_FILE = path.join(DATA_DIR, 'auction-state.json');
+
 // In-Memory Authoritative Store with durable state transitions
 const roomsByCode = new Map<string, AuctionRoomState>();
 const reportsBySlug = new Map<string, AuctionReportData>();
 const processedCommandIds = new Set<string>();
+
+/**
+ * Saves in-memory state snapshot to disk for persistent single-instance durability
+ */
+function persistStateToDisk(): void {
+  if (process.env.NODE_ENV === 'test') return;
+  try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    const payload = {
+      savedAt: new Date().toISOString(),
+      rooms: Array.from(roomsByCode.entries()),
+      reports: Array.from(reportsBySlug.entries()),
+      processedCommandIds: Array.from(processedCommandIds),
+    };
+    const tmp = `${STATE_FILE}.tmp`;
+    fs.writeFileSync(tmp, JSON.stringify(payload), 'utf8');
+    fs.renameSync(tmp, STATE_FILE);
+  } catch {
+    // In serverless read-only contexts, disk persistence gracefully falls back
+  }
+}
+
+/**
+ * Loads stored state snapshot from disk on system boot
+ */
+function loadStateFromDisk(): void {
+  if (process.env.NODE_ENV === 'test') return;
+  try {
+    if (fs.existsSync(STATE_FILE)) {
+      const raw = fs.readFileSync(STATE_FILE, 'utf8');
+      const data = JSON.parse(raw);
+      if (Array.isArray(data.rooms)) {
+        for (const [code, r] of data.rooms) {
+          roomsByCode.set(code, r);
+        }
+      }
+      if (Array.isArray(data.reports)) {
+        for (const [slug, rep] of data.reports) {
+          reportsBySlug.set(slug, rep);
+        }
+      }
+      if (Array.isArray(data.processedCommandIds)) {
+        for (const cmd of data.processedCommandIds) {
+          processedCommandIds.add(cmd);
+        }
+      }
+    }
+  } catch {
+    // Graceful fallback if file is empty or corrupted
+  }
+}
+
+loadStateFromDisk();
 
 // Pre-seed a permanent verified sample report for instant demo inspection
 function seedSampleReport() {
@@ -150,13 +230,39 @@ export class AuctionStore {
     hostDisplayName: string,
     customConfig?: Partial<RoomConfiguration>
   ): { room: AuctionRoomState; hostToken: string } {
+    // Free Tier Concurrent Active Room Capacity Enforcement (1-2 concurrent active rooms)
+    if (process.env.NODE_ENV !== 'test') {
+      const maxActiveRooms = parseInt(process.env.MAX_CONCURRENT_ROOMS || '2', 10);
+      const activeRooms = Array.from(roomsByCode.values()).filter(
+        (r) => r.status === 'ACTIVE' || r.status === 'LOBBY'
+      );
+      if (activeRooms.length >= maxActiveRooms) {
+        // Auto-purge abandoned lobbies older than 1 hour to free slots
+        const oneHourAgo = Date.now() - 60 * 60 * 1000;
+        let purged = false;
+        for (const oldRoom of activeRooms) {
+          if (oldRoom.status === 'LOBBY' && new Date(oldRoom.createdAt).getTime() < oneHourAgo) {
+            roomsByCode.delete(oldRoom.roomCode);
+            purged = true;
+            break;
+          }
+        }
+
+        if (!purged && activeRooms.length >= maxActiveRooms) {
+          throw new Error(
+            `Free tier capacity reached: Maximum ${maxActiveRooms} concurrent auction houses are currently running. Please wait for an active auction to conclude or join an existing room.`
+          );
+        }
+      }
+    }
+
     let roomCode = generateRoomCode();
     while (roomsByCode.has(roomCode)) {
       roomCode = generateRoomCode();
     }
 
     const hostToken = `host_${Math.random().toString(36).substring(2)}_${Date.now()}`;
-    const roomId = `room_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+    const roomId = generateUUID();
     const config: RoomConfiguration = { ...DEFAULT_CONFIG, ...customConfig };
 
     // Initial squads for all 10 franchises
@@ -175,7 +281,7 @@ export class AuctionStore {
 
     // Initial player queue from verified players
     const queue: AuctionPlayerItem[] = VERIFIED_PLAYERS.map((player, idx) => ({
-      id: `ap_${player.id}_${roomId}`,
+      id: generateUUID(),
       roomId,
       playerId: player.id,
       player,
@@ -188,7 +294,7 @@ export class AuctionStore {
     }));
 
     const hostParticipant: RoomParticipant = {
-      id: `p_${hostToken}`,
+      id: generateUUID(),
       roomId,
       sessionToken: hostToken,
       displayName: hostDisplayName || 'Auctioneer (Host)',
@@ -199,7 +305,7 @@ export class AuctionStore {
     };
 
     const initialEvent: AuctionEvent = {
-      id: `ev_${Date.now()}_1`,
+      id: generateUUID(),
       roomId,
       sequenceNumber: 1,
       eventType: 'ROOM_CREATED',
@@ -229,6 +335,8 @@ export class AuctionStore {
     };
 
     roomsByCode.set(roomCode, room);
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
     return { room, hostToken };
   }
 
@@ -298,6 +406,9 @@ export class AuctionStore {
       });
     }
 
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+
     return {
       room: { ...room, serverTime: Date.now() },
       participant,
@@ -343,6 +454,9 @@ export class AuctionStore {
       franchiseId,
     });
 
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+
     return { ...room, serverTime: Date.now() };
   }
 
@@ -376,6 +490,9 @@ export class AuctionStore {
       timerSeconds: room.config.bidTimerSeconds,
     });
 
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+
     return { ...room, serverTime: Date.now() };
   }
 
@@ -392,8 +509,9 @@ export class AuctionStore {
     const room = roomsByCode.get(roomCode.toUpperCase());
     if (!room) throw new Error('Room not found');
 
-    // 1. Check idempotency
-    if (processedCommandIds.has(commandId)) {
+    // 1. Check idempotency (scoped to room)
+    const scopedCommandKey = `${roomCode.toUpperCase()}:${commandId}`;
+    if (processedCommandIds.has(scopedCommandKey)) {
       return { ...room, serverTime: Date.now() };
     }
 
@@ -458,7 +576,7 @@ export class AuctionStore {
     }
 
     // Bid accepted! Apply authoritative state updates:
-    processedCommandIds.add(commandId);
+    processedCommandIds.add(scopedCommandKey);
     room.currentBidAmount = amount;
     room.currentBidFranchiseId = franchiseId;
 
@@ -471,7 +589,7 @@ export class AuctionStore {
     }
 
     const bidRecord: BidRecord = {
-      id: `bid_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      id: generateUUID(),
       roomId: room.id,
       auctionPlayerId: currentPlayer.id,
       franchiseId,
@@ -492,6 +610,12 @@ export class AuctionStore {
       amount,
       newDeadline: room.timerDeadlineAt,
     });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    persistBidToSupabase(room.id, currentPlayer.id, bidRecord).catch((e) =>
+      console.error('Supabase bid sync:', e)
+    );
 
     return { ...room, serverTime: Date.now() };
   }
@@ -571,6 +695,9 @@ export class AuctionStore {
       // All players in queue processed: AUCTION COMPLETED
       this.completeAuctionInternal(room);
     }
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
   }
 
   /**
@@ -608,6 +735,9 @@ export class AuctionStore {
       this.completeAuctionInternal(room);
     }
 
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+
     return { ...room, serverTime: Date.now() };
   }
 
@@ -630,6 +760,9 @@ export class AuctionStore {
       room.timerDeadlineAt = Date.now() + room.config.bidTimerSeconds * 1000;
       this.addEvent(room, 'AUCTION_RESUMED', { newDeadline: room.timerDeadlineAt });
     }
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
 
     return { ...room, serverTime: Date.now() };
   }
@@ -728,6 +861,10 @@ export class AuctionStore {
       totalSpent,
       totalSold: allSoldPlayers.length,
     });
+
+    persistStateToDisk();
+    persistRoomToSupabase(room).catch((e) => console.error('Supabase room sync:', e));
+    persistReportToSupabase(reportData, room.id).catch((e) => console.error('Supabase report sync:', e));
   }
 
   /**
@@ -737,6 +874,34 @@ export class AuctionStore {
     return reportsBySlug.get(slug) || null;
   }
 
+  /**
+   * Sets or caches an auction report
+   */
+  static setReport(slug: string, report: AuctionReportData): void {
+    reportsBySlug.set(slug, report);
+    persistStateToDisk();
+  }
+
+  /**
+   * Returns all in-memory auction rooms for metrics and monitoring
+   */
+  static getAllRooms(): AuctionRoomState[] {
+    return Array.from(roomsByCode.values());
+  }
+
+  static getRoomsCount(): number {
+    return roomsByCode.size;
+  }
+
+  static getReportsCount(): number {
+    return reportsBySlug.size;
+  }
+
+  static clearForTesting(): void {
+    roomsByCode.clear();
+    processedCommandIds.clear();
+  }
+
   private static addEvent(
     room: AuctionRoomState,
     eventType: AuctionEvent['eventType'],
@@ -744,7 +909,7 @@ export class AuctionStore {
   ): void {
     const seq = room.events.length + 1;
     const event: AuctionEvent = {
-      id: `ev_${Date.now()}_${seq}`,
+      id: generateUUID(),
       roomId: room.id,
       sequenceNumber: seq,
       eventType,
@@ -752,5 +917,8 @@ export class AuctionStore {
       createdAt: new Date().toISOString(),
     };
     room.events.push(event);
+    if (room.events.length > 50) {
+      room.events.shift(); // retain last 50 events to prevent memory bloat on free tier
+    }
   }
 }

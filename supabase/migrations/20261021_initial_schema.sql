@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS auction_events (
 -- 10. AUCTION REPORTS (Persistent Frozen Snapshots)
 CREATE TABLE IF NOT EXISTS auction_reports (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  room_id UUID NOT NULL REFERENCES auction_rooms(id) ON DELETE CASCADE,
+  room_id UUID REFERENCES auction_rooms(id) ON DELETE SET NULL,
   public_slug TEXT UNIQUE NOT NULL,
   report_version TEXT NOT NULL DEFAULT '1.0.0',
   analytics_version TEXT NOT NULL DEFAULT '100-point-v1',

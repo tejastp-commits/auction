@@ -1,0 +1,39 @@
+# ===================================================================
+# Render Blueprint Specification — IPL Auction Arena API Coordinator
+# ===================================================================
+# Free-tier persistent web service for stateful multiplayer auction rooms,
+# authoritative bidding, synchronized timers, and Supabase DB sync.
+# ===================================================================
+
+services:
+  - type: web
+    name: ipl-auction-arena-api
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build:server
+    startCommand: npm run server:start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATA_DIR
+        value: ./data
+      - key: CORS_ORIGIN
+        value: '*'
+      - key: MAX_CONCURRENT_ROOMS
+        value: '2'
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+    # Optional persistent disk for paid tiers (Free tier uses local ./data snapshot + Supabase sync):
+    # disk:
+    #   name: auction-persistent-disk
+    #   mountPath: /var/data
+    #   sizeGB: 1
