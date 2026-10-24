@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { IPL_FRANCHISES } from '@/data/franchises';
 import FranchiseLogo from '@/components/FranchiseLogo';
 import AuctionArenaLogo from '@/components/AuctionArenaLogo';
+import DoodleSection from '@/components/DoodleSection';
+import { THEMES } from '@/components/ThemeCustomizer';
 import { POOL_PRESETS, CURATED_SETS } from '@/data/curated-pools';
 import { VERIFIED_PLAYERS, PlayerRole } from '@/data/players';
 import { CRORE, formatRupees } from '@/lib/currency';
@@ -185,23 +187,70 @@ export default function LandingPage() {
                 <Radio className="w-4 h-4 theme-accent-text animate-pulse" />
                 <span>Live Multiplayer War Rooms</span>
               </div>
+              <button
+                type="button"
+                onClick={() => {
+                  const theme = THEMES.find((t) => t.id === 'doodle') || THEMES[0];
+                  const root = document.documentElement;
+                  root.setAttribute('data-theme', theme.id);
+                  root.style.setProperty('--theme-bg', theme.bg);
+                  root.style.setProperty('--theme-surface', theme.surface);
+                  root.style.setProperty('--theme-subtle', theme.subtle);
+                  root.style.setProperty('--theme-subtle-border', theme.subtleBorder);
+                  root.style.setProperty('--theme-text', theme.text);
+                  root.style.setProperty('--theme-muted', theme.muted);
+                  root.style.setProperty('--theme-border', theme.border);
+                  root.style.setProperty('--theme-accent', theme.accent);
+                  root.style.setProperty('--theme-accent-hover', theme.accentHover);
+                  root.style.setProperty('--theme-accent-light', `${theme.accent}28`);
+                  root.style.setProperty('--theme-shadow', theme.shadow);
+                  localStorage.setItem('auction_theme_id', theme.id);
+                  localStorage.removeItem('auction_custom_accent');
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100 text-amber-950 dark:bg-amber-950/40 dark:text-amber-200 text-xs font-black border border-amber-300 dark:border-amber-700/50 hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-sm"
+                title="Switch entire website to Hand-Drawn Pastel Doodle Mode"
+              >
+                <span>✏️ Pastel Doodle Mode</span>
+              </button>
             </div>
 
             {/* Headline */}
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
                 Command the Table.{' '}
-                <span className="block theme-accent-text">
+                <span className="block theme-accent-text relative">
                   IPL Auction Arena.
+                  {/* Hand-Drawn Squiggly Underline */}
+                  <svg
+                    className="w-48 sm:w-64 h-3.5 text-[var(--theme-accent)] opacity-80 mt-1 block"
+                    viewBox="0 0 200 12"
+                    fill="none"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M3 8 C 40 2, 75 11, 110 5 C 145 1, 175 10, 197 6"
+                      stroke="currentColor"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
                 </span>
               </h1>
               <p className="mt-3.5 text-base sm:text-lg opacity-80 leading-snug max-w-2xl font-medium">
                 Live multiplayer franchise bidding war. ₹120 Cr purses, BCCI increment paddles, and 5-year curated player pools.
               </p>
+              <div className="font-doodle text-lg text-[var(--theme-accent)] flex items-center gap-1.5 mt-2 opacity-90 font-bold">
+                <span>✍️</span>
+                <span>Select a seat, nominate 300 curated stars & bid in real-time</span>
+              </div>
             </div>
 
             {/* THE ARENA CONSOLE (ENLARGED CONTROLS & SPACING) */}
             <div className="theme-card rounded-[2.5rem] rounded-tr-[4.5rem] p-6 sm:p-8 shadow-2xl relative border theme-border">
+              {/* Hand-drawn Sticky Note Tape on Console */}
+              <div className="hidden sm:block absolute -top-3.5 -right-3 px-3.5 py-1 bg-amber-200 text-amber-950 font-doodle text-lg font-bold rounded-lg border border-amber-400 rotate-6 shadow-md pointer-events-none z-10">
+                Start Here! ✏️
+              </div>
               {/* Tab Switcher */}
               <div className="flex rounded-2xl theme-subtle-box p-1.5 mb-6 border theme-border">
                 <button
@@ -724,6 +773,11 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ========================================================
+          HAND-DRAWN DOODLE CRICKET WAR ROOM & PASTEL STUDIO SECTION
+          ======================================================== */}
+      <DoodleSection />
 
       {/* ========================================================
           FRANCHISE WAR ROOM TABLE (10 REPLICATED TEAMS)

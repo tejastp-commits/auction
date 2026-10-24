@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -18,6 +18,86 @@
   --theme-accent-light: rgba(79, 70, 229, 0.12);
   --theme-accent-text: #FFFFFF;
   --theme-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+}
+
+/* HAND-DRAWN PASTEL DOODLE THEME */
+[data-theme="doodle"] {
+  --theme-bg: #FAF7F0;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #F3EFE6;
+  --theme-subtle-border: #2C2825;
+  --theme-text: #24201D;
+  --theme-muted: #685E53;
+  --theme-border: #2C2825;
+  --theme-accent: #6366F1;
+  --theme-accent-hover: #4F46E5;
+  --theme-accent-light: rgba(99, 102, 241, 0.15);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 3px 3px 0px #2C2825;
+}
+
+/* SOFT PASTEL LAVENDER MIST */
+[data-theme="pastel-lavender"] {
+  --theme-bg: #F8F5FF;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #F3EBFF;
+  --theme-subtle-border: rgba(168, 85, 247, 0.2);
+  --theme-text: #2E1065;
+  --theme-muted: #7E22CE;
+  --theme-border: rgba(168, 85, 247, 0.22);
+  --theme-accent: #8B5CF6;
+  --theme-accent-hover: #7C3AED;
+  --theme-accent-light: rgba(139, 92, 246, 0.15);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(139, 92, 246, 0.08);
+}
+
+/* SOFT PASTEL MATCHA MINT */
+[data-theme="pastel-mint"] {
+  --theme-bg: #F0FDF4;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #DCFCE7;
+  --theme-subtle-border: rgba(34, 197, 94, 0.2);
+  --theme-text: #14532D;
+  --theme-muted: #16A34A;
+  --theme-border: rgba(34, 197, 94, 0.22);
+  --theme-accent: #10B981;
+  --theme-accent-hover: #059669;
+  --theme-accent-light: rgba(16, 185, 129, 0.15);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
+}
+
+/* SOFT PASTEL POWDER SKY */
+[data-theme="pastel-sky"] {
+  --theme-bg: #F0F7FF;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #E0F2FE;
+  --theme-subtle-border: rgba(14, 165, 233, 0.2);
+  --theme-text: #0C4A6E;
+  --theme-muted: #0284C7;
+  --theme-border: rgba(14, 165, 233, 0.22);
+  --theme-accent: #0284C7;
+  --theme-accent-hover: #0369A1;
+  --theme-accent-light: rgba(2, 132, 199, 0.15);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08);
+}
+
+/* SOFT PASTEL PEACH SORBET */
+[data-theme="pastel-peach"] {
+  --theme-bg: #FFF7ED;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #FFEDD5;
+  --theme-subtle-border: rgba(249, 115, 22, 0.2);
+  --theme-text: #7C2D12;
+  --theme-muted: #EA580C;
+  --theme-border: rgba(249, 115, 22, 0.22);
+  --theme-accent: #F97316;
+  --theme-accent-hover: #C2410C;
+  --theme-accent-light: rgba(249, 115, 22, 0.15);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(249, 115, 22, 0.08);
 }
 
 [data-theme="midnight"] {
@@ -315,3 +395,56 @@ input[type='range']::-moz-range-thumb {
   backdrop-filter: blur(12px);
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
+
+/* HAND-DRAWN DOODLE & SKETCH AESTHETIC UTILITIES */
+.font-doodle {
+  font-family: 'Caveat', cursive, sans-serif;
+}
+
+.doodle-box {
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border-width: 2px;
+  border-style: solid;
+  transition: all 0.2s ease;
+}
+
+.doodle-box-alt {
+  border-radius: 20px 255px 20px 255px/255px 20px 255px 20px;
+  border-width: 2px;
+  border-style: solid;
+  transition: all 0.2s ease;
+}
+
+.doodle-pill {
+  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+  border-width: 1.5px;
+  border-style: solid;
+}
+
+.doodle-shadow {
+  box-shadow: 4px 5px 0px var(--theme-border);
+}
+
+.doodle-shadow-soft {
+  box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+.doodle-tape {
+  position: relative;
+}
+.doodle-tape::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 70px;
+  height: 16px;
+  background-color: rgba(254, 240, 138, 0.7);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  border-left: 2px dashed rgba(0,0,0,0.15);
+  border-right: 2px dashed rgba(0,0,0,0.15);
+  z-index: 10;
+  pointer-events: none;
+}
+

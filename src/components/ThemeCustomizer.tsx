@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Palette, Check, X, RotateCcw, Sparkles, ChevronDown, Moon, Sun } from 'lucide-react';
+import { Palette, Check, X, RotateCcw, Sparkles, ChevronDown, Moon, Sun, Pencil } from 'lucide-react';
 
 export interface ThemeDefinition {
   id: string;
   name: string;
-  category: 'dark' | 'light';
+  category: 'dark' | 'light' | 'pastel';
   bg: string;
   surface: string;
   subtle: string;
@@ -21,10 +21,185 @@ export interface ThemeDefinition {
   shadow: string;
   description: string;
   swatches: [string, string, string]; // [bg, surface, accent]
+  isDoodle?: boolean;
 }
 
 export const THEMES: ThemeDefinition[] = [
-  // 1. DARK & STADIUM MODES (STARTING FROM MIDNIGHT BLACK & CYBER PURPLE)
+  // 1. HAND-DRAWN DOODLE & PASTEL MODES
+  {
+    id: 'doodle',
+    name: 'Hand-Drawn Doodle',
+    category: 'pastel',
+    isDoodle: true,
+    bg: '#FAF7F0',
+    surface: '#FFFFFF',
+    subtle: '#F3EFE6',
+    subtleBorder: '#2C2825',
+    text: '#24201D',
+    muted: '#685E53',
+    border: '#2C2825',
+    accent: '#6366F1',
+    accentHover: '#4F46E5',
+    accentLight: 'rgba(99, 102, 241, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '3px 3px 0px #2C2825',
+    description: 'Sketched parchment & chalk doodles',
+    swatches: ['#FAF7F0', '#FFFFFF', '#6366F1'],
+  },
+  {
+    id: 'pastel-lavender',
+    name: 'Pastel Lavender Mist',
+    category: 'pastel',
+    bg: '#F8F5FF',
+    surface: '#FFFFFF',
+    subtle: '#F3EBFF',
+    subtleBorder: 'rgba(168, 85, 247, 0.2)',
+    text: '#2E1065',
+    muted: '#7E22CE',
+    border: 'rgba(168, 85, 247, 0.22)',
+    accent: '#8B5CF6',
+    accentHover: '#7C3AED',
+    accentLight: 'rgba(139, 92, 246, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(139, 92, 246, 0.08)',
+    description: 'Soothing lilac cream & gentle violet',
+    swatches: ['#F8F5FF', '#FFFFFF', '#8B5CF6'],
+  },
+  {
+    id: 'pastel-mint',
+    name: 'Pastel Matcha Mint',
+    category: 'pastel',
+    bg: '#F0FDF4',
+    surface: '#FFFFFF',
+    subtle: '#DCFCE7',
+    subtleBorder: 'rgba(34, 197, 94, 0.2)',
+    text: '#14532D',
+    muted: '#16A34A',
+    border: 'rgba(34, 197, 94, 0.22)',
+    accent: '#10B981',
+    accentHover: '#059669',
+    accentLight: 'rgba(16, 185, 129, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(16, 185, 129, 0.08)',
+    description: 'Gentle pistachio cream & soft jade',
+    swatches: ['#F0FDF4', '#FFFFFF', '#10B981'],
+  },
+  {
+    id: 'pastel-sky',
+    name: 'Pastel Powder Sky',
+    category: 'pastel',
+    bg: '#F0F7FF',
+    surface: '#FFFFFF',
+    subtle: '#E0F2FE',
+    subtleBorder: 'rgba(14, 165, 233, 0.2)',
+    text: '#0C4A6E',
+    muted: '#0284C7',
+    border: 'rgba(14, 165, 233, 0.22)',
+    accent: '#0284C7',
+    accentHover: '#0369A1',
+    accentLight: 'rgba(2, 132, 199, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(2, 132, 199, 0.08)',
+    description: 'Soft morning sky blue & airy cyan',
+    swatches: ['#F0F7FF', '#FFFFFF', '#0284C7'],
+  },
+  {
+    id: 'pastel-peach',
+    name: 'Pastel Peach Sorbet',
+    category: 'pastel',
+    bg: '#FFF7ED',
+    surface: '#FFFFFF',
+    subtle: '#FFEDD5',
+    subtleBorder: 'rgba(249, 115, 22, 0.2)',
+    text: '#7C2D12',
+    muted: '#EA580C',
+    border: 'rgba(249, 115, 22, 0.22)',
+    accent: '#F97316',
+    accentHover: '#C2410C',
+    accentLight: 'rgba(249, 115, 22, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(249, 115, 22, 0.08)',
+    description: 'Soft apricot cream & gentle coral',
+    swatches: ['#FFF7ED', '#FFFFFF', '#F97316'],
+  },
+  {
+    id: 'pastel',
+    name: 'Pastel Alabaster',
+    category: 'pastel',
+    bg: '#FAF9F6',
+    surface: '#FFFFFF',
+    subtle: '#F1F5F9',
+    subtleBorder: 'rgba(226, 232, 240, 0.9)',
+    text: '#0F172A',
+    muted: '#64748B',
+    border: 'rgba(226, 232, 240, 0.9)',
+    accent: '#4F46E5',
+    accentHover: '#4338CA',
+    accentLight: 'rgba(79, 70, 229, 0.12)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(15, 23, 42, 0.05)',
+    description: 'Porcelain alabaster with royal indigo',
+    swatches: ['#FAF9F6', '#FFFFFF', '#4F46E5'],
+  },
+  {
+    id: 'sakura',
+    name: 'Sakura Blossom',
+    category: 'pastel',
+    bg: '#FDF2F4',
+    surface: '#FFFFFF',
+    subtle: '#FCE7EB',
+    subtleBorder: 'rgba(244, 114, 182, 0.2)',
+    text: '#1F1014',
+    muted: '#9F6274',
+    border: 'rgba(244, 114, 182, 0.25)',
+    accent: '#EC4899',
+    accentHover: '#DB2777',
+    accentLight: 'rgba(236, 72, 153, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(236, 72, 153, 0.1)',
+    description: 'Cherry blossom pink & soft blush',
+    swatches: ['#FDF2F4', '#FFFFFF', '#EC4899'],
+  },
+  {
+    id: 'sage',
+    name: 'Nordic Sage',
+    category: 'pastel',
+    bg: '#F2F6F3',
+    surface: '#FFFFFF',
+    subtle: '#E2ECE4',
+    subtleBorder: 'rgba(16, 185, 129, 0.2)',
+    text: '#0E1A12',
+    muted: '#567360',
+    border: 'rgba(16, 185, 129, 0.25)',
+    accent: '#059669',
+    accentHover: '#047857',
+    accentLight: 'rgba(5, 150, 105, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(5, 150, 105, 0.1)',
+    description: 'Scandinavian eucalyptus & pastel jade',
+    swatches: ['#F2F6F3', '#FFFFFF', '#059669'],
+  },
+  {
+    id: 'mocha',
+    name: 'Warm Mocha',
+    category: 'pastel',
+    bg: '#FAF4EE',
+    surface: '#FFFFFF',
+    subtle: '#F3EAE0',
+    subtleBorder: 'rgba(217, 119, 6, 0.2)',
+    text: '#1F1510',
+    muted: '#8C6F60',
+    border: 'rgba(217, 119, 6, 0.25)',
+    accent: '#D97706',
+    accentHover: '#B45309',
+    accentLight: 'rgba(217, 119, 6, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(217, 119, 6, 0.1)',
+    description: 'Warm almond cream with amber caramel',
+    swatches: ['#FAF4EE', '#FFFFFF', '#D97706'],
+  },
+
+  // 2. DARK & STADIUM MODES
   {
     id: 'midnight',
     name: 'Midnight Black',
@@ -158,84 +333,6 @@ export const THEMES: ThemeDefinition[] = [
     description: 'Graphite charcoal & electric yellow',
     swatches: ['#0E0F12', '#191A20', '#FACC15'],
   },
-
-  // 2. LIGHT & PASTEL MODES
-  {
-    id: 'pastel',
-    name: 'Pastel Alabaster',
-    category: 'light',
-    bg: '#FAF9F6',
-    surface: '#FFFFFF',
-    subtle: '#F1F5F9',
-    subtleBorder: 'rgba(226, 232, 240, 0.9)',
-    text: '#0F172A',
-    muted: '#64748B',
-    border: 'rgba(226, 232, 240, 0.9)',
-    accent: '#4F46E5',
-    accentHover: '#4338CA',
-    accentLight: 'rgba(79, 70, 229, 0.12)',
-    accentText: '#FFFFFF',
-    shadow: '0 10px 30px -5px rgba(15, 23, 42, 0.05)',
-    description: 'Porcelain alabaster with royal indigo',
-    swatches: ['#FAF9F6', '#FFFFFF', '#4F46E5'],
-  },
-  {
-    id: 'sakura',
-    name: 'Sakura Blossom',
-    category: 'light',
-    bg: '#FDF2F4',
-    surface: '#FFFFFF',
-    subtle: '#FCE7EB',
-    subtleBorder: 'rgba(244, 114, 182, 0.2)',
-    text: '#1F1014',
-    muted: '#9F6274',
-    border: 'rgba(244, 114, 182, 0.25)',
-    accent: '#EC4899',
-    accentHover: '#DB2777',
-    accentLight: 'rgba(236, 72, 153, 0.15)',
-    accentText: '#FFFFFF',
-    shadow: '0 10px 30px -5px rgba(236, 72, 153, 0.1)',
-    description: 'Cherry blossom pink & soft blush',
-    swatches: ['#FDF2F4', '#FFFFFF', '#EC4899'],
-  },
-  {
-    id: 'sage',
-    name: 'Nordic Sage',
-    category: 'light',
-    bg: '#F2F6F3',
-    surface: '#FFFFFF',
-    subtle: '#E2ECE4',
-    subtleBorder: 'rgba(16, 185, 129, 0.2)',
-    text: '#0E1A12',
-    muted: '#567360',
-    border: 'rgba(16, 185, 129, 0.25)',
-    accent: '#059669',
-    accentHover: '#047857',
-    accentLight: 'rgba(5, 150, 105, 0.15)',
-    accentText: '#FFFFFF',
-    shadow: '0 10px 30px -5px rgba(5, 150, 105, 0.1)',
-    description: 'Scandinavian eucalyptus & pastel jade',
-    swatches: ['#F2F6F3', '#FFFFFF', '#059669'],
-  },
-  {
-    id: 'mocha',
-    name: 'Warm Mocha',
-    category: 'light',
-    bg: '#FAF4EE',
-    surface: '#FFFFFF',
-    subtle: '#F3EAE0',
-    subtleBorder: 'rgba(217, 119, 6, 0.2)',
-    text: '#1F1510',
-    muted: '#8C6F60',
-    border: 'rgba(217, 119, 6, 0.25)',
-    accent: '#D97706',
-    accentHover: '#B45309',
-    accentLight: 'rgba(217, 119, 6, 0.15)',
-    accentText: '#FFFFFF',
-    shadow: '0 10px 30px -5px rgba(217, 119, 6, 0.1)',
-    description: 'Warm almond cream with amber caramel',
-    swatches: ['#FAF4EE', '#FFFFFF', '#D97706'],
-  },
 ];
 
 const ACCENT_SWATCHES = [
@@ -260,7 +357,7 @@ export default function ThemeCustomizer() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeThemeId, setActiveThemeId] = useState<string>('midnight');
   const [customAccent, setCustomAccent] = useState<string>('');
-  const [activeTab, setActiveTab] = useState<'all' | 'dark' | 'light'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'pastel' | 'dark' | 'light'>('all');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -314,7 +411,7 @@ export default function ThemeCustomizer() {
   };
 
   const handleReset = () => {
-    const defaultTheme = THEMES[0]; // Midnight Black
+    const defaultTheme = THEMES[0]; // Hand-Drawn Doodle / Midnight Black
     setActiveThemeId(defaultTheme.id);
     setCustomAccent('');
     applyThemeToDOM(defaultTheme);
@@ -329,7 +426,7 @@ export default function ThemeCustomizer() {
     }
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      // Ensure the scroll starts at the absolute top (Midnight Black)
+      // Ensure the scroll starts at the absolute top
       if (scrollContainerRef.current) {
         scrollContainerRef.current.scrollTop = 0;
       }
@@ -351,8 +448,9 @@ export default function ThemeCustomizer() {
   }, []);
 
   const visibleThemes = THEMES.filter((t) => {
+    if (activeTab === 'pastel') return t.category === 'pastel' || t.isDoodle;
     if (activeTab === 'dark') return t.category === 'dark';
-    if (activeTab === 'light') return t.category === 'light';
+    if (activeTab === 'light') return t.category === 'light' || t.category === 'pastel';
     return true;
   });
 
@@ -415,14 +513,14 @@ export default function ThemeCustomizer() {
           </div>
 
           {/* CATEGORY TABS */}
-          <div className="px-4 pt-3 pb-1 flex gap-1.5 border-b theme-border theme-subtle-box">
+          <div className="px-3 pt-3 pb-1 flex flex-wrap gap-1 border-b theme-border theme-subtle-box">
             <button
               type="button"
               onClick={() => {
                 setActiveTab('all');
                 if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0;
               }}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'all'
                   ? 'theme-card shadow-sm font-black'
                   : 'opacity-60 hover:opacity-100'
@@ -433,10 +531,25 @@ export default function ThemeCustomizer() {
             <button
               type="button"
               onClick={() => {
+                setActiveTab('pastel');
+                if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0;
+              }}
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                activeTab === 'pastel'
+                  ? 'theme-card shadow-sm font-black ring-1 ring-[var(--theme-accent)]'
+                  : 'opacity-70 hover:opacity-100'
+              }`}
+            >
+              <Pencil className="w-3 h-3 text-indigo-400" />
+              <span>Pastel & Doodle ({THEMES.filter(t => t.category === 'pastel').length})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
                 setActiveTab('dark');
                 if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0;
               }}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
                 activeTab === 'dark'
                   ? 'theme-card shadow-sm font-black'
                   : 'opacity-60 hover:opacity-100'
@@ -451,14 +564,14 @@ export default function ThemeCustomizer() {
                 setActiveTab('light');
                 if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0;
               }}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
                 activeTab === 'light'
                   ? 'theme-card shadow-sm font-black'
                   : 'opacity-60 hover:opacity-100'
               }`}
             >
               <Sun className="w-3 h-3" />
-              <span>Light ({THEMES.filter(t => t.category === 'light').length})</span>
+              <span>Light ({THEMES.filter(t => t.category === 'light' || t.category === 'pastel').length})</span>
             </button>
           </div>
 
@@ -501,9 +614,16 @@ export default function ThemeCustomizer() {
                     </div>
 
                     <div className="min-w-0 flex-1">
-                      <span className="text-xs font-bold block truncate">
-                        {theme.name}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-bold block truncate">
+                          {theme.name}
+                        </span>
+                        {theme.isDoodle && (
+                          <span className="text-[9px] font-black px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-700 border border-amber-400/40 shrink-0">
+                            ✏️ DOODLE
+                          </span>
+                        )}
+                      </div>
                       <span className="text-[10px] opacity-60 block truncate">
                         {theme.description}
                       </span>
