@@ -183,7 +183,7 @@ export default function LandingPage() {
               </div>
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full theme-subtle-box text-xs sm:text-sm font-bold border theme-border">
                 <Radio className="w-4 h-4 theme-accent-text animate-pulse" />
-                <span>Official Increments: +10L / +25L</span>
+                <span>Live Multiplayer War Rooms</span>
               </div>
             </div>
 
@@ -898,7 +898,7 @@ export default function LandingPage() {
               <div className="space-y-2 text-xs opacity-85">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full theme-btn-primary" />
-                  <span className="font-bold">+₹10L under ₹2 Cr • +₹25L over ₹2 Cr</span>
+                  <span className="font-bold">Authentic bidding paddle & raises</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full theme-btn-primary" />
