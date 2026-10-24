@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Palette, Check, X, RotateCcw, Sparkles, Sliders, ChevronDown } from 'lucide-react';
+import { Palette, Check, X, RotateCcw, Sparkles, ChevronDown, Sun, Moon } from 'lucide-react';
 
 export interface ThemeDefinition {
   id: string;
@@ -24,25 +24,7 @@ export interface ThemeDefinition {
 }
 
 export const THEMES: ThemeDefinition[] = [
-  {
-    id: 'pastel',
-    name: 'Pastel Alabaster',
-    category: 'light',
-    bg: '#FAF9F6',
-    surface: '#FFFFFF',
-    subtle: '#F1F5F9',
-    subtleBorder: 'rgba(226, 232, 240, 0.9)',
-    text: '#0F172A',
-    muted: '#64748B',
-    border: 'rgba(226, 232, 240, 0.9)',
-    accent: '#4F46E5',
-    accentHover: '#4338CA',
-    accentLight: 'rgba(79, 70, 229, 0.12)',
-    accentText: '#FFFFFF',
-    shadow: '0 10px 30px -5px rgba(15, 23, 42, 0.05)',
-    description: 'Soft porcelain alabaster with clean royal indigo',
-    swatches: ['#FAF9F6', '#FFFFFF', '#4F46E5'],
-  },
+  // 8 DARK & STADIUM THEMES
   {
     id: 'midnight',
     name: 'Midnight Black',
@@ -59,7 +41,7 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(245, 158, 11, 0.18)',
     accentText: '#070B14',
     shadow: '0 16px 40px rgba(0, 0, 0, 0.6)',
-    description: 'Deep obsidian stadium night with glowing gold highlights',
+    description: 'Deep obsidian stadium & gold',
     swatches: ['#070B14', '#0E1626', '#F59E0B'],
   },
   {
@@ -78,7 +60,7 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(168, 85, 247, 0.2)',
     accentText: '#FFFFFF',
     shadow: '0 16px 40px rgba(12, 6, 23, 0.7)',
-    description: 'Deep royal amethyst with neon violet energy',
+    description: 'Royal amethyst & neon violet',
     swatches: ['#0C0617', '#170D2C', '#A855F7'],
   },
   {
@@ -97,7 +79,7 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(255, 255, 255, 0.15)',
     accentText: '#000000',
     shadow: '0 16px 40px rgba(0, 0, 0, 0.9)',
-    description: 'Minimalist true black with clean platinum contrast',
+    description: 'Minimalist true black & platinum',
     swatches: ['#000000', '#111111', '#FFFFFF'],
   },
   {
@@ -116,7 +98,7 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(16, 185, 129, 0.2)',
     accentText: '#03130C',
     shadow: '0 16px 40px rgba(3, 19, 12, 0.7)',
-    description: 'Deep pitch green with fresh mint accents',
+    description: 'Pitch forest green & mint neon',
     swatches: ['#03130C', '#082317', '#10B981'],
   },
   {
@@ -135,7 +117,7 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(14, 165, 233, 0.2)',
     accentText: '#FFFFFF',
     shadow: '0 16px 40px rgba(5, 15, 29, 0.7)',
-    description: 'Deep nautical navy with electric cyan sparks',
+    description: 'Nautical navy & electric cyan',
     swatches: ['#050F1D', '#0A1C35', '#0EA5E9'],
   },
   {
@@ -154,65 +136,8 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(244, 63, 94, 0.2)',
     accentText: '#FFFFFF',
     shadow: '0 16px 40px rgba(20, 5, 8, 0.7)',
-    description: 'Rich royal ruby with warm coral highlights',
+    description: 'Maroon ruby & warm coral',
     swatches: ['#140508', '#250B10', '#F43F5E'],
-  },
-  {
-    id: 'sakura',
-    name: 'Sakura Blossom',
-    category: 'light',
-    bg: '#FDF2F4',
-    surface: '#FFFFFF',
-    subtle: '#FCE7EB',
-    subtleBorder: 'rgba(244, 114, 182, 0.2)',
-    text: '#1F1014',
-    muted: '#9F6274',
-    border: 'rgba(244, 114, 182, 0.25)',
-    accent: '#EC4899',
-    accentHover: '#DB2777',
-    accentLight: 'rgba(236, 72, 153, 0.15)',
-    accentText: '#FFFFFF',
-    shadow: '0 10px 30px -5px rgba(236, 72, 153, 0.1)',
-    description: 'Soft Japanese cherry blossom pink & light rose',
-    swatches: ['#FDF2F4', '#FFFFFF', '#EC4899'],
-  },
-  {
-    id: 'sage',
-    name: 'Nordic Sage',
-    category: 'light',
-    bg: '#F2F6F3',
-    surface: '#FFFFFF',
-    subtle: '#E2ECE4',
-    subtleBorder: 'rgba(16, 185, 129, 0.2)',
-    text: '#0E1A12',
-    muted: '#567360',
-    border: 'rgba(16, 185, 129, 0.25)',
-    accent: '#059669',
-    accentHover: '#047857',
-    accentLight: 'rgba(5, 150, 105, 0.15)',
-    accentText: '#FFFFFF',
-    shadow: '0 10px 30px -5px rgba(5, 150, 105, 0.1)',
-    description: 'Calm Scandinavian eucalyptus & pastel jade',
-    swatches: ['#F2F6F3', '#FFFFFF', '#059669'],
-  },
-  {
-    id: 'mocha',
-    name: 'Warm Mocha',
-    category: 'dark',
-    bg: '#120C09',
-    surface: '#201510',
-    subtle: '#2B1D16',
-    subtleBorder: 'rgba(217, 119, 6, 0.2)',
-    text: '#FDF8F5',
-    muted: '#BFA094',
-    border: 'rgba(217, 119, 6, 0.25)',
-    accent: '#D97706',
-    accentHover: '#B45309',
-    accentLight: 'rgba(217, 119, 6, 0.2)',
-    accentText: '#FFFFFF',
-    shadow: '0 16px 40px rgba(18, 12, 9, 0.8)',
-    description: 'Warm dark espresso with rich amber caramel',
-    swatches: ['#120C09', '#201510', '#D97706'],
   },
   {
     id: 'glacier',
@@ -230,7 +155,7 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(6, 182, 212, 0.2)',
     accentText: '#030F17',
     shadow: '0 16px 40px rgba(3, 15, 23, 0.8)',
-    description: 'Deep Arctic night with ice-cold cyan glow',
+    description: 'Arctic night with ice-cold cyan',
     swatches: ['#030F17', '#082030', '#06B6D4'],
   },
   {
@@ -249,8 +174,86 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(250, 204, 21, 0.2)',
     accentText: '#000000',
     shadow: '0 16px 40px rgba(14, 15, 18, 0.8)',
-    description: 'Charcoal graphite with electric bumblebee gold',
+    description: 'Graphite & bumblebee yellow',
     swatches: ['#0E0F12', '#191A20', '#FACC15'],
+  },
+
+  // 4 LIGHT & PASTEL THEMES
+  {
+    id: 'pastel',
+    name: 'Pastel Alabaster',
+    category: 'light',
+    bg: '#FAF9F6',
+    surface: '#FFFFFF',
+    subtle: '#F1F5F9',
+    subtleBorder: 'rgba(226, 232, 240, 0.9)',
+    text: '#0F172A',
+    muted: '#64748B',
+    border: 'rgba(226, 232, 240, 0.9)',
+    accent: '#4F46E5',
+    accentHover: '#4338CA',
+    accentLight: 'rgba(79, 70, 229, 0.12)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(15, 23, 42, 0.05)',
+    description: 'Porcelain alabaster with royal indigo',
+    swatches: ['#FAF9F6', '#FFFFFF', '#4F46E5'],
+  },
+  {
+    id: 'sakura',
+    name: 'Sakura Blossom',
+    category: 'light',
+    bg: '#FDF2F4',
+    surface: '#FFFFFF',
+    subtle: '#FCE7EB',
+    subtleBorder: 'rgba(244, 114, 182, 0.2)',
+    text: '#1F1014',
+    muted: '#9F6274',
+    border: 'rgba(244, 114, 182, 0.25)',
+    accent: '#EC4899',
+    accentHover: '#DB2777',
+    accentLight: 'rgba(236, 72, 153, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(236, 72, 153, 0.1)',
+    description: 'Cherry blossom pink & soft blush',
+    swatches: ['#FDF2F4', '#FFFFFF', '#EC4899'],
+  },
+  {
+    id: 'sage',
+    name: 'Nordic Sage',
+    category: 'light',
+    bg: '#F2F6F3',
+    surface: '#FFFFFF',
+    subtle: '#E2ECE4',
+    subtleBorder: 'rgba(16, 185, 129, 0.2)',
+    text: '#0E1A12',
+    muted: '#567360',
+    border: 'rgba(16, 185, 129, 0.25)',
+    accent: '#059669',
+    accentHover: '#047857',
+    accentLight: 'rgba(5, 150, 105, 0.15)',
+    accentText: '#FFFFFF',
+    shadow: '0 10px 30px -5px rgba(5, 150, 105, 0.1)',
+    description: 'Scandinavian eucalyptus & pastel jade',
+    swatches: ['#F2F6F3', '#FFFFFF', '#059669'],
+  },
+  {
+    id: 'mocha',
+    name: 'Warm Mocha',
+    category: 'dark',
+    bg: '#120C09',
+    surface: '#201510',
+    subtle: '#2B1D16',
+    subtleBorder: 'rgba(217, 119, 6, 0.2)',
+    text: '#FDF8F5',
+    muted: '#BFA094',
+    border: 'rgba(217, 119, 6, 0.25)',
+    accent: '#D97706',
+    accentHover: '#B45309',
+    accentLight: 'rgba(217, 119, 6, 0.2)',
+    accentText: '#FFFFFF',
+    shadow: '0 16px 40px rgba(18, 12, 9, 0.8)',
+    description: 'Dark espresso with rich amber caramel',
+    swatches: ['#120C09', '#201510', '#D97706'],
   },
 ];
 
@@ -277,7 +280,6 @@ export default function ThemeCustomizer() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeThemeId, setActiveThemeId] = useState<string>('pastel');
   const [customAccent, setCustomAccent] = useState<string>('');
-  const [categoryFilter, setCategoryFilter] = useState<'all' | 'dark' | 'light'>('all');
 
   const currentTheme = THEMES.find((t) => t.id === activeThemeId) || THEMES[0];
 
@@ -346,21 +348,18 @@ export default function ThemeCustomizer() {
     applyThemeToDOM(theme, savedAccent || undefined);
   }, []);
 
-  const filteredThemes = THEMES.filter((t) => {
-    if (categoryFilter === 'all') return true;
-    return t.category === categoryFilter;
-  });
+  const darkThemes = THEMES.filter((t) => t.category === 'dark');
+  const lightThemes = THEMES.filter((t) => t.category === 'light');
 
   return (
     <>
-      {/* INTEGRATED NAVBAR THEME PILL (PREMIUM & ACCESSIBLE) */}
+      {/* INTEGRATED NAVBAR THEME PILL */}
       <button
         type="button"
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen((prev) => !prev)}
         className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold theme-subtle-box hover:opacity-90 transition-all border theme-border shadow-sm cursor-pointer"
         title="Open Color Studio"
       >
-        {/* 3-Dot Color Swatch Preview */}
         <div className="flex items-center -space-x-1">
           <span
             className="w-2.5 h-2.5 rounded-full border border-black/20"
@@ -376,28 +375,28 @@ export default function ThemeCustomizer() {
           />
         </div>
         <span className="hidden sm:inline">{currentTheme.name}</span>
-        <ChevronDown className="w-3 h-3 opacity-60" />
+        <ChevronDown className={`w-3.5 h-3.5 opacity-60 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      {/* LUXURY COLOR STUDIO MODAL / DRAWER (PERFECT FIT ON ALL SCREENS) */}
+      {/* EXPANSIVE PANORAMIC STUDIO MODAL — FITS 100% ON ANY SCREEN WITHOUT CLIPPING */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div
-            className="w-full max-w-lg theme-card rounded-3xl shadow-2xl relative border theme-border flex flex-col max-h-[85vh] overflow-hidden"
+            className="w-full max-w-4xl theme-card rounded-3xl shadow-2xl relative border theme-border flex flex-col max-h-[92vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* PINNED HEADER */}
-            <div className="px-5 py-4 border-b theme-border flex items-center justify-between shrink-0 theme-subtle-box">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl theme-accent-badge flex items-center justify-center">
+            {/* PINNED COMPACT HEADER */}
+            <div className="px-5 py-3.5 border-b theme-border flex items-center justify-between shrink-0 theme-subtle-box">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl theme-accent-badge flex items-center justify-center">
                   <Palette className="w-4 h-4 theme-accent-text" />
                 </div>
                 <div>
                   <h3 className="text-sm font-black tracking-tight">
-                    Website Color Studio
+                    Website Color Grading Studio
                   </h3>
                   <p className="text-[11px] opacity-70">
-                    Live color grading — updates instantly as you click
+                    All themes and colors adapt the website live with zero page reloads
                   </p>
                 </div>
               </div>
@@ -412,84 +411,41 @@ export default function ThemeCustomizer() {
               </button>
             </div>
 
-            {/* SCROLLABLE INTERIOR (SMOOTH, NO CUTOFF) */}
-            <div className="flex-1 overflow-y-auto p-5 space-y-5 overscroll-contain">
-              {/* CATEGORY SWITCHER */}
-              <div className="flex rounded-xl theme-subtle-box p-1 border theme-border">
-                <button
-                  type="button"
-                  onClick={() => setCategoryFilter('all')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                    categoryFilter === 'all'
-                      ? 'theme-card shadow-sm font-black'
-                      : 'opacity-60 hover:opacity-100'
-                  }`}
-                >
-                  All ({THEMES.length})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setCategoryFilter('dark')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                    categoryFilter === 'dark'
-                      ? 'theme-card shadow-sm font-black'
-                      : 'opacity-60 hover:opacity-100'
-                  }`}
-                >
-                  Dark & Stadium
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setCategoryFilter('light')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                    categoryFilter === 'light'
-                      ? 'theme-card shadow-sm font-black'
-                      : 'opacity-60 hover:opacity-100'
-                  }`}
-                >
-                  Light & Pastel
-                </button>
-              </div>
-
-              {/* PRESET THEMES GRID */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider opacity-75">
-                  <span>Curated Palettes</span>
-                  <span className="text-[10px] font-mono lowercase opacity-60">
-                    instant grade
-                  </span>
+            {/* MAIN CONTENT AREA (PANORAMIC GRID — NO OVERFLOW/CUTOFF ON LAPTOPS) */}
+            <div className="p-4 sm:p-5 space-y-4 overflow-y-auto">
+              
+              {/* SECTION 1: DARK & STADIUM THEMES (8 IN A COMPACT 4-COL GRID) */}
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider opacity-75 mb-2">
+                  <Moon className="w-3.5 h-3.5 theme-accent-text" />
+                  <span>Dark & Stadium Themes ({darkThemes.length})</span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {filteredThemes.map((theme) => {
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {darkThemes.map((theme) => {
                     const isSelected = activeThemeId === theme.id;
                     return (
                       <button
                         key={theme.id}
                         type="button"
                         onClick={() => handleSelectTheme(theme)}
-                        className={`p-3 rounded-2xl border text-left transition-all flex items-start gap-3 cursor-pointer ${
+                        className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
                           isSelected
-                            ? 'ring-2 ring-[var(--theme-accent)] border-transparent shadow-md scale-[1.01]'
-                            : 'theme-subtle-box opacity-80 hover:opacity-100 hover:scale-[1.01]'
+                            ? 'ring-2 ring-[var(--theme-accent)] border-transparent shadow-md'
+                            : 'theme-subtle-box opacity-80 hover:opacity-100'
                         }`}
                       >
-                        {/* 3-Part Color Disk */}
+                        {/* 2-Color Swatch Disk */}
                         <div
-                          className="w-9 h-9 rounded-xl shrink-0 flex items-center justify-center border shadow-inner relative overflow-hidden"
+                          className="w-7 h-7 rounded-lg shrink-0 flex items-center justify-center border shadow-inner relative overflow-hidden"
                           style={{ backgroundColor: theme.bg }}
                         >
                           <div
-                            className="w-4 h-4 rounded-full absolute bottom-1 right-1 border"
+                            className="w-3.5 h-3.5 rounded-full absolute bottom-0.5 right-0.5 border"
                             style={{ backgroundColor: theme.accent }}
                           />
                           {isSelected && (
-                            <Check
-                              className="w-3.5 h-3.5 relative z-10"
-                              style={{
-                                color: theme.category === 'dark' ? '#FFFFFF' : '#000000',
-                              }}
-                            />
+                            <Check className="w-3.5 h-3.5 text-white relative z-10" />
                           )}
                         </div>
 
@@ -497,9 +453,6 @@ export default function ThemeCustomizer() {
                           <span className="text-xs font-bold block truncate">
                             {theme.name}
                           </span>
-                          <p className="text-[10px] opacity-65 leading-tight line-clamp-1 mt-0.5">
-                            {theme.description}
-                          </p>
                         </div>
                       </button>
                     );
@@ -507,27 +460,82 @@ export default function ThemeCustomizer() {
                 </div>
               </div>
 
-              {/* 16 ACCENT HIGHLIGHTS & NATIVE PICKER */}
-              <div className="p-4 rounded-2xl theme-subtle-box border theme-border space-y-3">
-                <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 theme-accent-text" />
-                    <span>Custom Accent Color (16 Swatches)</span>
-                  </span>
-                  {customAccent && (
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded theme-accent-badge font-bold uppercase">
-                      {customAccent}
-                    </span>
-                  )}
+              {/* SECTION 2: LIGHT & PASTEL THEMES (4 IN A COMPACT 4-COL GRID) */}
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider opacity-75 mb-2">
+                  <Sun className="w-3.5 h-3.5 theme-accent-text" />
+                  <span>Light & Pastel Themes ({lightThemes.length})</span>
                 </div>
 
-                <div className="grid grid-cols-8 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {lightThemes.map((theme) => {
+                    const isSelected = activeThemeId === theme.id;
+                    return (
+                      <button
+                        key={theme.id}
+                        type="button"
+                        onClick={() => handleSelectTheme(theme)}
+                        className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
+                          isSelected
+                            ? 'ring-2 ring-[var(--theme-accent)] border-transparent shadow-md'
+                            : 'theme-subtle-box opacity-80 hover:opacity-100'
+                        }`}
+                      >
+                        <div
+                          className="w-7 h-7 rounded-lg shrink-0 flex items-center justify-center border shadow-inner relative overflow-hidden"
+                          style={{ backgroundColor: theme.bg }}
+                        >
+                          <div
+                            className="w-3.5 h-3.5 rounded-full absolute bottom-0.5 right-0.5 border"
+                            style={{ backgroundColor: theme.accent }}
+                          />
+                          {isSelected && (
+                            <Check className="w-3.5 h-3.5 text-black relative z-10" />
+                          )}
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <span className="text-xs font-bold block truncate">
+                            {theme.name}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* SECTION 3: 16 CUSTOM ACCENT COLORS + NATIVE WHEEL */}
+              <div className="p-3.5 rounded-2xl theme-subtle-box border theme-border">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
+                  <div className="flex items-center gap-1.5 text-xs font-bold">
+                    <Sparkles className="w-3.5 h-3.5 theme-accent-text" />
+                    <span>Custom Accent Color (16 Swatches)</span>
+                    {customAccent && (
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded theme-accent-badge font-bold uppercase ml-1">
+                        {customAccent}
+                      </span>
+                    )}
+                  </div>
+
+                  <label className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border theme-border theme-card cursor-pointer hover:opacity-90 transition-all text-xs font-bold w-fit">
+                    <input
+                      type="color"
+                      value={customAccent || currentTheme.accent}
+                      onChange={(e) => handleSelectAccent(e.target.value)}
+                      className="w-4 h-4 rounded cursor-pointer border-0 p-0"
+                    />
+                    <span>Open Palette Wheel</span>
+                  </label>
+                </div>
+
+                <div className="grid grid-cols-8 sm:grid-cols-16 gap-1.5">
                   {ACCENT_SWATCHES.map((color) => (
                     <button
                       key={color}
                       type="button"
                       onClick={() => handleSelectAccent(color)}
-                      className="w-7 h-7 rounded-full border-2 transition-transform hover:scale-115 active:scale-95 flex items-center justify-center cursor-pointer shadow-sm mx-auto"
+                      className="w-6 h-6 rounded-full border transition-transform hover:scale-125 active:scale-95 flex items-center justify-center cursor-pointer shadow-sm mx-auto"
                       style={{
                         backgroundColor: color,
                         borderColor:
@@ -537,47 +545,35 @@ export default function ThemeCustomizer() {
                     >
                       {customAccent === color && (
                         <Check
-                          className="w-3.5 h-3.5"
+                          className="w-3 h-3"
                           style={{ color: getContrastColor(color) }}
                         />
                       )}
                     </button>
                   ))}
                 </div>
-
-                {/* NATIVE COLOR WHEEL */}
-                <div className="pt-2 border-t theme-border flex items-center justify-between">
-                  <span className="text-[11px] opacity-70">
-                    Pick exact color with native wheel:
-                  </span>
-                  <label className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border theme-border theme-card cursor-pointer hover:opacity-90 transition-all text-xs font-bold">
-                    <input
-                      type="color"
-                      value={customAccent || currentTheme.accent}
-                      onChange={(e) => handleSelectAccent(e.target.value)}
-                      className="w-4 h-4 rounded cursor-pointer border-0 p-0"
-                    />
-                    <span>Color Wheel</span>
-                  </label>
-                </div>
               </div>
             </div>
 
-            {/* PINNED FOOTER (ALWAYS VISIBLE) */}
-            <div className="px-5 py-3.5 border-t theme-border flex items-center justify-between shrink-0 theme-subtle-box">
+            {/* PINNED COMPACT FOOTER */}
+            <div className="px-5 py-3 border-t theme-border flex items-center justify-between shrink-0 theme-subtle-box">
               <button
                 type="button"
                 onClick={handleReset}
                 className="inline-flex items-center gap-1.5 text-xs opacity-70 hover:opacity-100 transition-opacity cursor-pointer font-medium"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
-                <span>Reset Default</span>
+                <span>Reset to Default</span>
               </button>
+
+              <div className="text-[11px] opacity-60 hidden sm:block">
+                Active Theme: <span className="font-bold">{currentTheme.name}</span>
+              </div>
 
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="px-5 py-2 rounded-xl text-xs font-bold theme-btn-primary shadow-sm hover:opacity-90 transition-all cursor-pointer"
+                className="px-5 py-1.5 rounded-xl text-xs font-bold theme-btn-primary shadow-sm hover:opacity-90 transition-all cursor-pointer"
               >
                 Done
               </button>
