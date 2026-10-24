@@ -42,79 +42,90 @@ import {
 const FRANCHISE_HONORS: Record<string, {
   titles: number;
   yearsWon: number[];
-  runnersUp: number[];
+  yearsWonShort: string;
+  runnersUpShort: string;
   finals: number;
   highlight: string;
 }> = {
   csk: {
     titles: 5,
     yearsWon: [2010, 2011, 2018, 2021, 2023],
-    runnersUp: [2008, 2012, 2013, 2015, 2019],
+    yearsWonShort: "'10, '11, '18, '21, '23",
+    runnersUpShort: "'08, '12, '13, '15, '19",
     finals: 10,
     highlight: '5x Champions • 10 Finals',
   },
   mi: {
     titles: 5,
     yearsWon: [2013, 2015, 2017, 2019, 2020],
-    runnersUp: [2010],
+    yearsWonShort: "'13, '15, '17, '19, '20",
+    runnersUpShort: "'10",
     finals: 6,
     highlight: '5x Champions • 6 Finals',
   },
   kkr: {
     titles: 3,
     yearsWon: [2012, 2014, 2024],
-    runnersUp: [2021],
+    yearsWonShort: "'12, '14, '24",
+    runnersUpShort: "'21",
     finals: 4,
-    highlight: '3x Champions (Defending 2024)',
+    highlight: '3x Champions (Defending)',
   },
   srh: {
     titles: 1,
     yearsWon: [2016],
-    runnersUp: [2018, 2024],
+    yearsWonShort: "'16",
+    runnersUpShort: "'18, '24",
     finals: 3,
     highlight: '2016 Champions • 2024 Finalists',
   },
   rr: {
     titles: 1,
     yearsWon: [2008],
-    runnersUp: [2022],
+    yearsWonShort: "'08",
+    runnersUpShort: "'22",
     finals: 2,
     highlight: 'Inaugural 2008 Champions',
   },
   gt: {
     titles: 1,
     yearsWon: [2022],
-    runnersUp: [2023],
+    yearsWonShort: "'22",
+    runnersUpShort: "'23",
     finals: 2,
-    highlight: '2022 Champions • 2 Finals in 3 Yrs',
+    highlight: '2022 Champions • 2 Finals',
   },
   rcb: {
     titles: 0,
     yearsWon: [],
-    runnersUp: [2009, 2011, 2016],
+    yearsWonShort: 'None',
+    runnersUpShort: "'09, '11, '16",
     finals: 3,
-    highlight: '3x Finalists • 8 Playoffs • Chasing #1',
+    highlight: '3x Finalists • 8 Playoffs',
   },
   dc: {
     titles: 0,
     yearsWon: [],
-    runnersUp: [2020],
+    yearsWonShort: 'None',
+    runnersUpShort: "'20",
     finals: 1,
     highlight: '2020 Finalists • 6 Playoffs',
   },
   pbks: {
     titles: 0,
     yearsWon: [],
-    runnersUp: [2014],
+    yearsWonShort: 'None',
+    runnersUpShort: "'14",
     finals: 1,
-    highlight: '2014 Finalists • Contenders',
+    highlight: '2014 Finalists • 2 Playoffs',
   },
   lsg: {
     titles: 0,
     yearsWon: [],
-    runnersUp: [],
+    yearsWonShort: 'None',
+    runnersUpShort: 'None',
     finals: 0,
-    highlight: 'Back-to-Back Playoffs (2022, 2023)',
+    highlight: 'Playoffs 2022, 2023',
   },
 };
 
@@ -285,11 +296,11 @@ export default function LandingPage() {
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] text-[#1E1B18]">
                 Command the Table.{' '}
-                <span className="block text-orange-600 relative inline-block mt-1">
+                <span className="block text-orange-600 relative inline-block mt-1.5 pb-3">
                   <span>IPL Auction Arena.</span>
-                  {/* Modern Doodle Underline */}
+                  {/* Modern Doodle Underline (Zero Overlap) */}
                   <svg
-                    className="w-full h-3.5 absolute -bottom-2 left-0 pointer-events-none"
+                    className="w-full h-3.5 absolute bottom-0 left-0 pointer-events-none"
                     viewBox="0 0 160 16"
                     preserveAspectRatio="none"
                     fill="none"
@@ -863,14 +874,15 @@ export default function LandingPage() {
           </p>
         </div>
 
-        {/* 10 FRANCHISE PODIUM CARDS WITH INTERACTIVE HOVER SLIDE */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        {/* 10 FRANCHISE PODIUM CARDS WITH SLIDING HONORS DRAWER (NO OVERLAPPING TEXT) */}
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
           {IPL_FRANCHISES.map((team) => {
             const isHovered = hoveredTeam === team.id;
             const honors = FRANCHISE_HONORS[team.id] || {
               titles: team.titles,
               yearsWon: [],
-              runnersUp: [],
+              yearsWonShort: 'None',
+              runnersUpShort: 'None',
               finals: 0,
               highlight: `${team.titles}x Champion`,
             };
@@ -880,12 +892,12 @@ export default function LandingPage() {
                 key={team.id}
                 onMouseEnter={() => setHoveredTeam(team.id)}
                 onMouseLeave={() => setHoveredTeam(null)}
-                className={`p-3.5 rounded-2xl border border-[#FED7AA] bg-white transition-all duration-300 relative overflow-hidden group shadow-xs ${
+                className={`p-3.5 rounded-2xl border border-[#FED7AA] bg-white transition-all duration-300 relative overflow-hidden group shadow-xs min-h-[185px] flex flex-col justify-between ${
                   isHovered ? 'scale-105 shadow-xl border-orange-500 ring-2 ring-orange-400/40 z-10' : 'hover:scale-[1.02]'
                 }`}
               >
                 {/* Top: Emblem & Code */}
-                <div className="flex items-center justify-between mb-2.5">
+                <div className="flex items-center justify-between">
                   <div className="w-14 h-12 rounded-xl p-1 flex items-center justify-center shadow-xs bg-orange-50/50 border border-[#FED7AA] transition-transform group-hover:scale-110">
                     <FranchiseLogo franchiseId={team.id} size="lg" />
                   </div>
@@ -895,7 +907,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Team Info */}
-                <div className="space-y-0.5">
+                <div className="space-y-0.5 my-2">
                   <div className="text-xs sm:text-sm font-extrabold truncate text-[#1E1B18]">
                     {team.name}
                   </div>
@@ -908,7 +920,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Hover Trigger Cue & Purse */}
-                <div className="mt-2.5 pt-2 border-t border-[#FED7AA] flex items-center justify-between text-xs">
+                <div className="pt-2 border-t border-[#FED7AA] flex items-center justify-between text-xs">
                   <span className="text-orange-700 font-bold text-[11px] flex items-center gap-1 group-hover:text-amber-800">
                     <Trophy className="w-3 h-3 text-amber-500" />
                     <span>Honors</span>
@@ -918,9 +930,9 @@ export default function LandingPage() {
                   </span>
                 </div>
 
-                {/* HOVER SLIDE: CHAMPIONSHIP YEARS & PEDIGREE DRAWER */}
+                {/* HOVER SLIDE: EXACT CHAMPIONSHIP YEARS & HONORS (ZERO OVERLAPPING TEXT) */}
                 <div
-                  className={`absolute inset-0 z-20 p-3 bg-gradient-to-b from-[#1C1917] via-[#292524] to-[#0C0A09] text-white flex flex-col justify-between transition-transform duration-300 ease-out ${
+                  className={`absolute inset-0 z-20 p-3.5 bg-gradient-to-b from-[#1C1917] via-[#24201D] to-[#0A0806] text-white flex flex-col justify-between transition-transform duration-300 ease-out ${
                     isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
                   }`}
                 >
@@ -935,48 +947,41 @@ export default function LandingPage() {
                     </span>
                   </div>
 
-                  {/* Middle: Trophy Years Pills */}
+                  {/* Middle: Trophy Years & Runner-up stats (Clean spacing) */}
                   <div className="my-auto space-y-1.5">
-                    {honors.yearsWon.length > 0 ? (
+                    {honors.titles > 0 ? (
                       <div>
                         <span className="text-[9px] uppercase font-mono tracking-wider text-amber-300/80 block mb-0.5">
                           Champions
                         </span>
-                        <div className="flex flex-wrap gap-1">
-                          {honors.yearsWon.map((year) => (
-                            <span
-                              key={year}
-                              className="px-1.5 py-0.2 rounded bg-amber-400 text-neutral-950 font-black text-[10px] shadow-xs"
-                            >
-                              {year}
-                            </span>
-                          ))}
-                        </div>
+                        <span className="px-2 py-0.5 rounded bg-amber-400 text-neutral-950 font-black text-[10px] tracking-wide inline-block shadow-xs">
+                          {honors.yearsWonShort}
+                        </span>
                       </div>
                     ) : (
                       <div>
                         <span className="text-[9px] uppercase font-mono tracking-wider text-neutral-400 block mb-0.5">
                           Status
                         </span>
-                        <span className="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/40 font-bold text-[10px] block">
+                        <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30 font-bold text-[10px] inline-block">
                           Chasing Maiden Trophy
                         </span>
                       </div>
                     )}
 
-                    {honors.runnersUp.length > 0 && (
+                    {honors.runnersUpShort !== 'None' && (
                       <div className="text-[10px] text-neutral-300 leading-tight">
-                        <span className="opacity-70 font-mono">Finals: </span>
-                        <span className="font-semibold text-neutral-200">
-                          {honors.runnersUp.join(', ')}
+                        <span className="opacity-70 font-mono">Finalist: </span>
+                        <span className="font-semibold text-neutral-100">
+                          {honors.runnersUpShort}
                         </span>
                       </div>
                     )}
                   </div>
 
-                  {/* Bottom: Pedigree & Purse */}
-                  <div className="pt-1.5 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-amber-400/90 font-bold truncate max-w-[100px]" title={honors.highlight}>
+                  {/* Bottom: Pedigree Summary & Purse */}
+                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
+                    <span className="text-amber-400/90 font-bold truncate max-w-[110px]" title={honors.highlight}>
                       {honors.highlight}
                     </span>
                     <span className="text-neutral-400">₹120 Cr</span>

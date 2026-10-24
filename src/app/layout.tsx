@@ -72,11 +72,11 @@ export default function RootLayout({
                 <AuctionArenaLogo size="md" />
               </div>
               <div>
-                <span className="font-black text-lg sm:text-xl tracking-tight flex items-center gap-1.5 text-[#1E1B18] relative inline-block">
+                <span className="font-black text-lg sm:text-xl tracking-tight flex items-center gap-1.5 text-[#1E1B18] relative inline-block pb-1.5">
                   <span>IPL <span className="text-orange-600">Auction</span> Arena 🏏</span>
-                  {/* Modern Hand-Drawn Doodle Underline */}
+                  {/* Modern Hand-Drawn Doodle Underline (Zero Overlap) */}
                   <svg
-                    className="w-full h-2.5 absolute -bottom-1 left-0 pointer-events-none"
+                    className="w-full h-2.5 absolute bottom-0 left-0 pointer-events-none"
                     viewBox="0 0 120 10"
                     preserveAspectRatio="none"
                     fill="none"
