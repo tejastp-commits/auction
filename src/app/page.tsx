@@ -22,6 +22,7 @@ import {
   Trophy,
   Sliders,
   CheckCircle2,
+  Flame,
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -47,11 +48,11 @@ export default function LandingPage() {
 
   // Interactive Live War Room Preview State (Tactile Demo)
   const [demoBidCr, setDemoBidCr] = useState<number>(21.5);
-  const [demoLeader, setDemoLeader] = useState<string>('CSK');
+  const [demoLeader, setDemoLeader] = useState<string>('RCB');
   const [demoTimer, setDemoTimer] = useState<number>(8);
   const [demoHistory, setDemoHistory] = useState<Array<{ team: string; amount: number; time: string }>>([
-    { team: 'CSK', amount: 21.5, time: 'Just now' },
-    { team: 'RCB', amount: 21.0, time: '4s ago' },
+    { team: 'RCB', amount: 21.5, time: 'Just now' },
+    { team: 'CSK', amount: 21.0, time: '4s ago' },
     { team: 'MI', amount: 20.5, time: '8s ago' },
   ]);
 
@@ -161,7 +162,7 @@ export default function LandingPage() {
                 <span>OFFICIAL 2025 BCCI AUCTION ENGINE</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full theme-subtle-box text-xs font-medium border theme-border">
-                <Sparkles className="w-3.5 h-3.5 theme-accent-text" />
+                <Flame className="w-3.5 h-3.5 theme-accent-text" />
                 <span>Multiplayer Live Rooms</span>
               </div>
             </div>
@@ -169,13 +170,13 @@ export default function LandingPage() {
             {/* Headline */}
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08]">
-                Command The Auction.{' '}
+                Experience High-Stakes{' '}
                 <span className="block theme-accent-text">
-                  Build The Champions.
+                  IPL Bidding Wars.
                 </span>
               </h1>
-              <p className="mt-4 text-base sm:text-lg opacity-75 leading-relaxed max-w-2xl">
-                Take the franchise owner’s seat for CSK, MI, or RCB. Command synchronized bidding wars with official BCCI player stats, customizable starting purses, and instant AI-powered squad evaluations.
+              <p className="mt-4 text-base sm:text-lg opacity-75 leading-relaxed max-w-2xl font-normal">
+                Assemble your war room. Outbid rivals with authoritative synchronized timers, real franchise purse allocations, and the complete 622-player BCCI 2025 catalog.
               </p>
             </div>
 
@@ -426,7 +427,7 @@ export default function LandingPage() {
                     className="w-full py-4 px-6 rounded-2xl font-bold theme-btn-primary shadow-lg hover:opacity-95 active:scale-[0.99] disabled:opacity-50 text-sm tracking-wide flex items-center justify-center gap-2.5 cursor-pointer transition-all"
                   >
                     <Gavel className="w-4 h-4" />
-                    <span>{isCreating ? 'INITIALIZING ARENA...' : 'INITIALIZE AUCTION ARENA'}</span>
+                    <span>{isCreating ? 'INITIALIZING ARENA...' : 'INITIALIZE AUCTION ARENA 🔨'}</span>
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </button>
                 </form>
@@ -482,7 +483,7 @@ export default function LandingPage() {
                     disabled={isJoining}
                     className="w-full py-4 px-6 rounded-2xl font-bold theme-btn-primary shadow-lg hover:opacity-95 active:scale-[0.99] disabled:opacity-50 text-sm tracking-wide flex items-center justify-center gap-2 cursor-pointer transition-all"
                   >
-                    <span>{isJoining ? 'JOINING ROOM...' : 'ENTER AUCTION ROOM'}</span>
+                    <span>{isJoining ? 'JOINING ROOM...' : 'ENTER AUCTION ROOM →'}</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </form>
@@ -509,7 +510,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* COUNTDOWN TIMER BADGE */}
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500 font-bold">
                   <Clock className="w-3.5 h-3.5 animate-pulse" />
                   <span className="font-mono font-black text-xs">
                     00:0{demoTimer}s
@@ -524,13 +525,13 @@ export default function LandingPage() {
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-sm">🇮🇳</span>
                       <span className="text-[11px] font-bold uppercase tracking-wider theme-accent-badge px-2 py-0.5 rounded">
-                        Wicketkeeper-Batter
+                        Top-Order Batter
                       </span>
                     </div>
                     <h3 className="text-2xl font-black tracking-tight">
-                      Rishabh Pant
+                      Virat Kohli
                     </h3>
-                    <p className="text-xs opacity-65 mt-0.5">
+                    <p className="text-xs opacity-65 mt-0.5 font-medium">
                       Marquee Set 1 • Base Price ₹2.00 Cr
                     </p>
                   </div>
@@ -544,20 +545,20 @@ export default function LandingPage() {
                 {/* Quick stats grid */}
                 <div className="grid grid-cols-4 gap-2 mt-4 p-2.5 rounded-xl theme-subtle-box border theme-border text-center font-mono text-xs">
                   <div>
-                    <span className="text-[10px] opacity-50 block">RUNS</span>
-                    <span className="font-bold">3,284</span>
+                    <span className="text-[10px] opacity-50 block font-sans">IPL RUNS</span>
+                    <span className="font-bold">8,004</span>
                   </div>
                   <div>
-                    <span className="text-[10px] opacity-50 block">SR</span>
-                    <span className="font-bold theme-accent-text">148.9</span>
+                    <span className="text-[10px] opacity-50 block font-sans">STRIKE RATE</span>
+                    <span className="font-bold theme-accent-text">131.97</span>
                   </div>
                   <div>
-                    <span className="text-[10px] opacity-50 block">MATCHES</span>
-                    <span className="font-bold">111</span>
+                    <span className="text-[10px] opacity-50 block font-sans">MATCHES</span>
+                    <span className="font-bold">252</span>
                   </div>
                   <div>
-                    <span className="text-[10px] opacity-50 block">50s / 100s</span>
-                    <span className="font-bold">18 / 1</span>
+                    <span className="text-[10px] opacity-50 block font-sans">50s / 100s</span>
+                    <span className="font-bold">55 / 8</span>
                   </div>
                 </div>
               </div>
@@ -569,13 +570,13 @@ export default function LandingPage() {
                     Current Highest Bid
                   </span>
                   <span className="text-emerald-500 font-bold flex items-center gap-1 text-[11px]">
-                    <CheckCircle2 className="w-3 h-3" /> Live Auction
+                    <CheckCircle2 className="w-3 h-3" /> Live Bidding War
                   </span>
                 </div>
 
                 <div className="flex items-baseline justify-between">
                   <div className="text-3xl font-black font-mono tracking-tight theme-accent-text">
-                    ₹{demoBidCr.toFixed(2)} <span className="text-base font-normal opacity-75">Cr</span>
+                    ₹{demoBidCr.toFixed(2)} <span className="text-base font-normal opacity-75 font-sans">Cr</span>
                   </div>
                   <div className="flex items-center gap-2 px-2.5 py-1 rounded-lg theme-card border theme-border">
                     <span className="w-2.5 h-2.5 rounded-full theme-btn-primary" />

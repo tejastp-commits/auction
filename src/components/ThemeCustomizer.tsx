@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Palette, Check, X, RotateCcw, Sparkles, ChevronDown, Sun, Moon } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Palette, Check, X, RotateCcw, Sparkles, ChevronDown, Moon, Sun } from 'lucide-react';
 
 export interface ThemeDefinition {
   id: string;
@@ -24,7 +24,7 @@ export interface ThemeDefinition {
 }
 
 export const THEMES: ThemeDefinition[] = [
-  // 8 DARK & STADIUM THEMES
+  // 1. DARK & STADIUM MODES (STARTING FROM MIDNIGHT BLACK & CYBER PURPLE)
   {
     id: 'midnight',
     name: 'Midnight Black',
@@ -140,27 +140,8 @@ export const THEMES: ThemeDefinition[] = [
     swatches: ['#140508', '#250B10', '#F43F5E'],
   },
   {
-    id: 'glacier',
-    name: 'Glacier Cyan',
-    category: 'dark',
-    bg: '#030F17',
-    surface: '#082030',
-    subtle: '#0D2D44',
-    subtleBorder: 'rgba(34, 211, 238, 0.2)',
-    text: '#F0FDFF',
-    muted: '#67E8F9',
-    border: 'rgba(34, 211, 238, 0.25)',
-    accent: '#06B6D4',
-    accentHover: '#0891B2',
-    accentLight: 'rgba(6, 182, 212, 0.2)',
-    accentText: '#030F17',
-    shadow: '0 16px 40px rgba(3, 15, 23, 0.8)',
-    description: 'Arctic night with ice-cold cyan',
-    swatches: ['#030F17', '#082030', '#06B6D4'],
-  },
-  {
     id: 'bumblebee',
-    name: 'Electric Yellow',
+    name: 'Electric Gold',
     category: 'dark',
     bg: '#0E0F12',
     surface: '#191A20',
@@ -174,11 +155,11 @@ export const THEMES: ThemeDefinition[] = [
     accentLight: 'rgba(250, 204, 21, 0.2)',
     accentText: '#000000',
     shadow: '0 16px 40px rgba(14, 15, 18, 0.8)',
-    description: 'Graphite & bumblebee yellow',
+    description: 'Graphite charcoal & electric yellow',
     swatches: ['#0E0F12', '#191A20', '#FACC15'],
   },
 
-  // 4 LIGHT & PASTEL THEMES
+  // 2. LIGHT & PASTEL MODES
   {
     id: 'pastel',
     name: 'Pastel Alabaster',
@@ -239,21 +220,21 @@ export const THEMES: ThemeDefinition[] = [
   {
     id: 'mocha',
     name: 'Warm Mocha',
-    category: 'dark',
-    bg: '#120C09',
-    surface: '#201510',
-    subtle: '#2B1D16',
+    category: 'light',
+    bg: '#FAF4EE',
+    surface: '#FFFFFF',
+    subtle: '#F3EAE0',
     subtleBorder: 'rgba(217, 119, 6, 0.2)',
-    text: '#FDF8F5',
-    muted: '#BFA094',
+    text: '#1F1510',
+    muted: '#8C6F60',
     border: 'rgba(217, 119, 6, 0.25)',
     accent: '#D97706',
     accentHover: '#B45309',
-    accentLight: 'rgba(217, 119, 6, 0.2)',
+    accentLight: 'rgba(217, 119, 6, 0.15)',
     accentText: '#FFFFFF',
-    shadow: '0 16px 40px rgba(18, 12, 9, 0.8)',
-    description: 'Dark espresso with rich amber caramel',
-    swatches: ['#120C09', '#201510', '#D97706'],
+    shadow: '0 10px 30px -5px rgba(217, 119, 6, 0.1)',
+    description: 'Warm almond cream with amber caramel',
+    swatches: ['#FAF4EE', '#FFFFFF', '#D97706'],
   },
 ];
 
@@ -268,7 +249,6 @@ const ACCENT_SWATCHES = [
   '#FACC15', // Electric Yellow
   '#10B981', // Emerald
   '#059669', // Mint
-  '#84CC16', // Lime
   '#06B6D4', // Cyan
   '#0EA5E9', // Sky Blue
   '#3B82F6', // Cobalt Blue
@@ -278,8 +258,11 @@ const ACCENT_SWATCHES = [
 
 export default function ThemeCustomizer() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeThemeId, setActiveThemeId] = useState<string>('pastel');
+  const [activeThemeId, setActiveThemeId] = useState<string>('midnight');
   const [customAccent, setCustomAccent] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<'all' | 'dark' | 'light'>('all');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const currentTheme = THEMES.find((t) => t.id === activeThemeId) || THEMES[0];
 
@@ -331,15 +314,34 @@ export default function ThemeCustomizer() {
   };
 
   const handleReset = () => {
-    const defaultTheme = THEMES[0];
-    setActiveThemeId('pastel');
+    const defaultTheme = THEMES[0]; // Midnight Black
+    setActiveThemeId(defaultTheme.id);
     setCustomAccent('');
     applyThemeToDOM(defaultTheme);
   };
 
+  // Close when clicking outside and reset scroll on open
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      // Ensure the scroll starts at the absolute top (Midnight Black)
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = 0;
+      }
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
   // Hydrate on mount
   useEffect(() => {
-    const savedThemeId = localStorage.getItem('auction_theme_id') || 'pastel';
+    const savedThemeId = localStorage.getItem('auction_theme_id') || 'midnight';
     const savedAccent = localStorage.getItem('auction_custom_accent') || '';
     const theme = THEMES.find((t) => t.id === savedThemeId) || THEMES[0];
 
@@ -348,17 +350,22 @@ export default function ThemeCustomizer() {
     applyThemeToDOM(theme, savedAccent || undefined);
   }, []);
 
-  const darkThemes = THEMES.filter((t) => t.category === 'dark');
-  const lightThemes = THEMES.filter((t) => t.category === 'light');
+  const visibleThemes = THEMES.filter((t) => {
+    if (activeTab === 'dark') return t.category === 'dark';
+    if (activeTab === 'light') return t.category === 'light';
+    return true;
+  });
 
   return (
-    <>
-      {/* INTEGRATED NAVBAR THEME PILL */}
+    <div className="relative inline-block text-left" ref={dropdownRef}>
+      {/* NAVBAR PILL BUTTON (WITH LIVE PALETTE SWATCH & CHEVRON) */}
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold theme-subtle-box hover:opacity-90 transition-all border theme-border shadow-sm cursor-pointer"
-        title="Open Color Studio"
+        title="Choose Theme & Color"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
       >
         <div className="flex items-center -space-x-1">
           <span
@@ -374,213 +381,210 @@ export default function ThemeCustomizer() {
             style={{ backgroundColor: customAccent || currentTheme.swatches[2] }}
           />
         </div>
-        <span className="hidden sm:inline">{currentTheme.name}</span>
-        <ChevronDown className={`w-3.5 h-3.5 opacity-60 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <span className="hidden sm:inline font-bold">{currentTheme.name}</span>
+        <ChevronDown className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      {/* EXPANSIVE PANORAMIC STUDIO MODAL — FITS 100% ON ANY SCREEN WITHOUT CLIPPING */}
+      {/* ANCHORED LUXURY DROPDOWN POPOVER (PERFECTLY ANCHORED, ALWAYS STARTS AT THE TOP) */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div
-            className="w-full max-w-4xl theme-card rounded-3xl shadow-2xl relative border theme-border flex flex-col max-h-[92vh] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* PINNED COMPACT HEADER */}
-            <div className="px-5 py-3.5 border-b theme-border flex items-center justify-between shrink-0 theme-subtle-box">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl theme-accent-badge flex items-center justify-center">
-                  <Palette className="w-4 h-4 theme-accent-text" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-black tracking-tight">
-                    Website Color Grading Studio
-                  </h3>
-                  <p className="text-[11px] opacity-70">
-                    All themes and colors adapt the website live with zero page reloads
-                  </p>
-                </div>
+        <div className="absolute right-0 top-full mt-2 z-50 w-[min(calc(100vw-24px),480px)] theme-card rounded-2xl shadow-2xl border theme-border overflow-hidden text-left animate-fade-in">
+          {/* HEADER */}
+          <div className="px-4 py-3 border-b theme-border flex items-center justify-between theme-subtle-box">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg theme-accent-badge flex items-center justify-center">
+                <Palette className="w-3.5 h-3.5 theme-accent-text" />
               </div>
-
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-xl opacity-70 hover:opacity-100 hover:bg-slate-500/10 transition-all cursor-pointer"
-                title="Close"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div>
+                <h3 className="text-xs font-black tracking-tight uppercase">
+                  Website Color Studio
+                </h3>
+                <p className="text-[10px] opacity-65">
+                  Select any preset theme or custom accent below
+                </p>
+              </div>
             </div>
 
-            {/* MAIN CONTENT AREA (PANORAMIC GRID — NO OVERFLOW/CUTOFF ON LAPTOPS) */}
-            <div className="p-4 sm:p-5 space-y-4 overflow-y-auto">
-              
-              {/* SECTION 1: DARK & STADIUM THEMES (8 IN A COMPACT 4-COL GRID) */}
-              <div>
-                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider opacity-75 mb-2">
-                  <Moon className="w-3.5 h-3.5 theme-accent-text" />
-                  <span>Dark & Stadium Themes ({darkThemes.length})</span>
-                </div>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="p-1 rounded-lg opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
+              title="Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {darkThemes.map((theme) => {
-                    const isSelected = activeThemeId === theme.id;
-                    return (
-                      <button
-                        key={theme.id}
-                        type="button"
-                        onClick={() => handleSelectTheme(theme)}
-                        className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
-                          isSelected
-                            ? 'ring-2 ring-[var(--theme-accent)] border-transparent shadow-md'
-                            : 'theme-subtle-box opacity-80 hover:opacity-100'
-                        }`}
-                      >
-                        {/* 2-Color Swatch Disk */}
-                        <div
-                          className="w-7 h-7 rounded-lg shrink-0 flex items-center justify-center border shadow-inner relative overflow-hidden"
-                          style={{ backgroundColor: theme.bg }}
-                        >
-                          <div
-                            className="w-3.5 h-3.5 rounded-full absolute bottom-0.5 right-0.5 border"
-                            style={{ backgroundColor: theme.accent }}
-                          />
-                          {isSelected && (
-                            <Check className="w-3.5 h-3.5 text-white relative z-10" />
-                          )}
-                        </div>
+          {/* CATEGORY TABS */}
+          <div className="px-4 pt-3 pb-1 flex gap-1.5 border-b theme-border theme-subtle-box">
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('all');
+                if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0;
+              }}
+              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                activeTab === 'all'
+                  ? 'theme-card shadow-sm font-black'
+                  : 'opacity-60 hover:opacity-100'
+              }`}
+            >
+              All ({THEMES.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('dark');
+                if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0;
+              }}
+              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                activeTab === 'dark'
+                  ? 'theme-card shadow-sm font-black'
+                  : 'opacity-60 hover:opacity-100'
+              }`}
+            >
+              <Moon className="w-3 h-3" />
+              <span>Dark ({THEMES.filter(t => t.category === 'dark').length})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('light');
+                if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0;
+              }}
+              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                activeTab === 'light'
+                  ? 'theme-card shadow-sm font-black'
+                  : 'opacity-60 hover:opacity-100'
+              }`}
+            >
+              <Sun className="w-3 h-3" />
+              <span>Light ({THEMES.filter(t => t.category === 'light').length})</span>
+            </button>
+          </div>
 
-                        <div className="min-w-0 flex-1">
-                          <span className="text-xs font-bold block truncate">
-                            {theme.name}
-                          </span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* SECTION 2: LIGHT & PASTEL THEMES (4 IN A COMPACT 4-COL GRID) */}
-              <div>
-                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider opacity-75 mb-2">
-                  <Sun className="w-3.5 h-3.5 theme-accent-text" />
-                  <span>Light & Pastel Themes ({lightThemes.length})</span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {lightThemes.map((theme) => {
-                    const isSelected = activeThemeId === theme.id;
-                    return (
-                      <button
-                        key={theme.id}
-                        type="button"
-                        onClick={() => handleSelectTheme(theme)}
-                        className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
-                          isSelected
-                            ? 'ring-2 ring-[var(--theme-accent)] border-transparent shadow-md'
-                            : 'theme-subtle-box opacity-80 hover:opacity-100'
-                        }`}
-                      >
-                        <div
-                          className="w-7 h-7 rounded-lg shrink-0 flex items-center justify-center border shadow-inner relative overflow-hidden"
-                          style={{ backgroundColor: theme.bg }}
-                        >
-                          <div
-                            className="w-3.5 h-3.5 rounded-full absolute bottom-0.5 right-0.5 border"
-                            style={{ backgroundColor: theme.accent }}
-                          />
-                          {isSelected && (
-                            <Check className="w-3.5 h-3.5 text-black relative z-10" />
-                          )}
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <span className="text-xs font-bold block truncate">
-                            {theme.name}
-                          </span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* SECTION 3: 16 CUSTOM ACCENT COLORS + NATIVE WHEEL */}
-              <div className="p-3.5 rounded-2xl theme-subtle-box border theme-border">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
-                  <div className="flex items-center gap-1.5 text-xs font-bold">
-                    <Sparkles className="w-3.5 h-3.5 theme-accent-text" />
-                    <span>Custom Accent Color (16 Swatches)</span>
-                    {customAccent && (
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded theme-accent-badge font-bold uppercase ml-1">
-                        {customAccent}
-                      </span>
-                    )}
-                  </div>
-
-                  <label className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border theme-border theme-card cursor-pointer hover:opacity-90 transition-all text-xs font-bold w-fit">
-                    <input
-                      type="color"
-                      value={customAccent || currentTheme.accent}
-                      onChange={(e) => handleSelectAccent(e.target.value)}
-                      className="w-4 h-4 rounded cursor-pointer border-0 p-0"
-                    />
-                    <span>Open Palette Wheel</span>
-                  </label>
-                </div>
-
-                <div className="grid grid-cols-8 sm:grid-cols-16 gap-1.5">
-                  {ACCENT_SWATCHES.map((color) => (
-                    <button
-                      key={color}
-                      type="button"
-                      onClick={() => handleSelectAccent(color)}
-                      className="w-6 h-6 rounded-full border transition-transform hover:scale-125 active:scale-95 flex items-center justify-center cursor-pointer shadow-sm mx-auto"
-                      style={{
-                        backgroundColor: color,
-                        borderColor:
-                          customAccent === color ? 'var(--theme-text)' : 'rgba(0,0,0,0.2)',
-                      }}
-                      title={color}
+          {/* THEMES GRID (STARTS PROPERLY FROM THE VERY FIRST OPTION: MIDNIGHT BLACK & CYBER PURPLE) */}
+          <div
+            ref={scrollContainerRef}
+            className="p-3 sm:p-4 max-h-[min(55vh,420px)] overflow-y-auto space-y-3"
+          >
+            <div className="grid grid-cols-2 gap-2">
+              {visibleThemes.map((theme) => {
+                const isSelected = activeThemeId === theme.id;
+                return (
+                  <button
+                    key={theme.id}
+                    type="button"
+                    onClick={() => handleSelectTheme(theme)}
+                    className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2.5 cursor-pointer ${
+                      isSelected
+                        ? 'ring-2 ring-[var(--theme-accent)] border-transparent shadow-md font-bold'
+                        : 'theme-subtle-box opacity-80 hover:opacity-100 hover:scale-[1.01]'
+                    }`}
+                  >
+                    {/* Swatch indicator */}
+                    <div
+                      className="w-7 h-7 rounded-lg shrink-0 flex items-center justify-center border shadow-inner relative overflow-hidden"
+                      style={{ backgroundColor: theme.bg }}
                     >
-                      {customAccent === color && (
+                      <div
+                        className="w-3.5 h-3.5 rounded-full absolute bottom-0.5 right-0.5 border"
+                        style={{ backgroundColor: theme.accent }}
+                      />
+                      {isSelected && (
                         <Check
-                          className="w-3 h-3"
-                          style={{ color: getContrastColor(color) }}
+                          className="w-3.5 h-3.5 relative z-10"
+                          style={{
+                            color: theme.category === 'dark' ? '#FFFFFF' : '#000000',
+                          }}
                         />
                       )}
-                    </button>
-                  ))}
-                </div>
-              </div>
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <span className="text-xs font-bold block truncate">
+                        {theme.name}
+                      </span>
+                      <span className="text-[10px] opacity-60 block truncate">
+                        {theme.description}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* PINNED COMPACT FOOTER */}
-            <div className="px-5 py-3 border-t theme-border flex items-center justify-between shrink-0 theme-subtle-box">
-              <button
-                type="button"
-                onClick={handleReset}
-                className="inline-flex items-center gap-1.5 text-xs opacity-70 hover:opacity-100 transition-opacity cursor-pointer font-medium"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Reset to Default</span>
-              </button>
-
-              <div className="text-[11px] opacity-60 hidden sm:block">
-                Active Theme: <span className="font-bold">{currentTheme.name}</span>
+            {/* CUSTOM ACCENT SWATCHES (15 SWATCHES + COLOR WHEEL) */}
+            <div className="pt-2 border-t theme-border space-y-2">
+              <div className="flex items-center justify-between text-xs font-bold">
+                <span className="flex items-center gap-1.5 opacity-80">
+                  <Sparkles className="w-3 h-3 theme-accent-text" />
+                  <span>Custom Accent Highlight</span>
+                </span>
+                {customAccent && (
+                  <span className="text-[10px] font-mono px-1.5 py-0.2 rounded theme-accent-badge font-bold uppercase">
+                    {customAccent}
+                  </span>
+                )}
               </div>
 
-              <button
-                type="button"
-                onClick={() => setIsOpen(false)}
-                className="px-5 py-1.5 rounded-xl text-xs font-bold theme-btn-primary shadow-sm hover:opacity-90 transition-all cursor-pointer"
-              >
-                Done
-              </button>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {ACCENT_SWATCHES.map((color) => (
+                  <button
+                    key={color}
+                    type="button"
+                    onClick={() => handleSelectAccent(color)}
+                    className="w-6 h-6 rounded-full border transition-transform hover:scale-125 active:scale-95 flex items-center justify-center cursor-pointer shadow-sm"
+                    style={{
+                      backgroundColor: color,
+                      borderColor:
+                        customAccent === color ? 'var(--theme-text)' : 'rgba(0,0,0,0.2)',
+                    }}
+                    title={color}
+                  >
+                    {customAccent === color && (
+                      <Check
+                        className="w-3 h-3"
+                        style={{ color: getContrastColor(color) }}
+                      />
+                    )}
+                  </button>
+                ))}
+
+                {/* NATIVE COLOR WHEEL PICKER */}
+                <label className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg border theme-border theme-card cursor-pointer hover:opacity-90 transition-all text-[11px] font-bold ml-auto">
+                  <input
+                    type="color"
+                    value={customAccent || currentTheme.accent}
+                    onChange={(e) => handleSelectAccent(e.target.value)}
+                    className="w-3.5 h-3.5 rounded cursor-pointer border-0 p-0"
+                  />
+                  <span>Wheel</span>
+                </label>
+              </div>
             </div>
+          </div>
+
+          {/* FOOTER */}
+          <div className="px-4 py-2.5 border-t theme-border flex items-center justify-between theme-subtle-box text-xs">
+            <button
+              type="button"
+              onClick={handleReset}
+              className="inline-flex items-center gap-1 text-[11px] opacity-70 hover:opacity-100 transition-opacity cursor-pointer font-medium"
+            >
+              <RotateCcw className="w-3 h-3" />
+              <span>Reset to Default</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-1.5 rounded-xl text-xs font-bold theme-btn-primary shadow-sm hover:opacity-90 transition-all cursor-pointer"
+            >
+              Done
+            </button>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

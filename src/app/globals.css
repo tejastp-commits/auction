@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +15,7 @@
   --theme-border: rgba(226, 232, 240, 0.9);
   --theme-accent: #4F46E5;
   --theme-accent-hover: #4338CA;
-  --theme-accent-light: #EEF2FF;
+  --theme-accent-light: rgba(79, 70, 229, 0.12);
   --theme-accent-text: #FFFFFF;
   --theme-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
 }
@@ -28,14 +30,14 @@
   --theme-border: rgba(255, 255, 255, 0.12);
   --theme-accent: #F59E0B;
   --theme-accent-hover: #D97706;
-  --theme-accent-light: rgba(245, 158, 11, 0.15);
+  --theme-accent-light: rgba(245, 158, 11, 0.18);
   --theme-accent-text: #070B14;
   --theme-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
 }
 
 [data-theme="purple"] {
   --theme-bg: #0C0617;
-  --theme-surface: #180C2E;
+  --theme-surface: #170D2C;
   --theme-subtle: #251347;
   --theme-subtle-border: rgba(192, 132, 252, 0.16);
   --theme-text: #FAF5FF;
@@ -50,7 +52,7 @@
 
 [data-theme="noir"] {
   --theme-bg: #000000;
-  --theme-surface: #121212;
+  --theme-surface: #111111;
   --theme-subtle: #1C1C1C;
   --theme-subtle-border: rgba(255, 255, 255, 0.14);
   --theme-text: #FFFFFF;
@@ -64,8 +66,8 @@
 }
 
 [data-theme="emerald"] {
-  --theme-bg: #04140D;
-  --theme-surface: #0A261A;
+  --theme-bg: #03130C;
+  --theme-surface: #082317;
   --theme-subtle: #103B29;
   --theme-subtle-border: rgba(110, 231, 183, 0.16);
   --theme-text: #ECFDF5;
@@ -74,13 +76,13 @@
   --theme-accent: #10B981;
   --theme-accent-hover: #059669;
   --theme-accent-light: rgba(16, 185, 129, 0.2);
-  --theme-accent-text: #04140D;
-  --theme-shadow: 0 16px 40px rgba(4, 20, 13, 0.7);
+  --theme-accent-text: #03130C;
+  --theme-shadow: 0 16px 40px rgba(3, 19, 12, 0.7);
 }
 
 [data-theme="ocean"] {
-  --theme-bg: #05101E;
-  --theme-surface: #0B1F3B;
+  --theme-bg: #050F1D;
+  --theme-surface: #0A1C35;
   --theme-subtle: #12305C;
   --theme-subtle-border: rgba(125, 211, 252, 0.16);
   --theme-text: #F0F9FF;
@@ -90,12 +92,12 @@
   --theme-accent-hover: #0284C7;
   --theme-accent-light: rgba(14, 165, 233, 0.2);
   --theme-accent-text: #FFFFFF;
-  --theme-shadow: 0 16px 40px rgba(5, 16, 30, 0.7);
+  --theme-shadow: 0 16px 40px rgba(5, 15, 29, 0.7);
 }
 
 [data-theme="crimson"] {
   --theme-bg: #140508;
-  --theme-surface: #260B10;
+  --theme-surface: #250B10;
   --theme-subtle: #3D121A;
   --theme-subtle-border: rgba(253, 164, 175, 0.16);
   --theme-text: #FFF1F2;
@@ -109,69 +111,54 @@
 }
 
 [data-theme="sakura"] {
-  --theme-bg: #FDF4F5;
+  --theme-bg: #FDF2F4;
   --theme-surface: #FFFFFF;
-  --theme-subtle: #FCE7E9;
+  --theme-subtle: #FCE7EB;
   --theme-subtle-border: rgba(244, 114, 182, 0.2);
   --theme-text: #1F1014;
   --theme-muted: #9F6274;
   --theme-border: rgba(244, 114, 182, 0.25);
   --theme-accent: #EC4899;
   --theme-accent-hover: #DB2777;
-  --theme-accent-light: #FCE7F3;
+  --theme-accent-light: rgba(236, 72, 153, 0.15);
   --theme-accent-text: #FFFFFF;
   --theme-shadow: 0 10px 30px -5px rgba(236, 72, 153, 0.1);
 }
 
 [data-theme="sage"] {
-  --theme-bg: #F4F7F4;
+  --theme-bg: #F2F6F3;
   --theme-surface: #FFFFFF;
-  --theme-subtle: #E3EBE3;
+  --theme-subtle: #E2ECE4;
   --theme-subtle-border: rgba(16, 185, 129, 0.2);
   --theme-text: #0E1A12;
   --theme-muted: #567360;
   --theme-border: rgba(16, 185, 129, 0.25);
   --theme-accent: #059669;
   --theme-accent-hover: #047857;
-  --theme-accent-light: #D1FAE5;
+  --theme-accent-light: rgba(5, 150, 105, 0.15);
   --theme-accent-text: #FFFFFF;
   --theme-shadow: 0 10px 30px -5px rgba(5, 150, 105, 0.1);
 }
 
 [data-theme="mocha"] {
-  --theme-bg: #110B08;
-  --theme-surface: #1E140F;
-  --theme-subtle: #2B1D16;
+  --theme-bg: #FAF4EE;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #F3EAE0;
   --theme-subtle-border: rgba(217, 119, 6, 0.2);
-  --theme-text: #FDF8F5;
-  --theme-muted: #BFA094;
+  --theme-text: #1F1510;
+  --theme-muted: #8C6F60;
   --theme-border: rgba(217, 119, 6, 0.25);
   --theme-accent: #D97706;
   --theme-accent-hover: #B45309;
-  --theme-accent-light: rgba(217, 119, 6, 0.2);
+  --theme-accent-light: rgba(217, 119, 6, 0.15);
   --theme-accent-text: #FFFFFF;
-  --theme-shadow: 0 16px 40px rgba(17, 11, 8, 0.8);
-}
-
-[data-theme="glacier"] {
-  --theme-bg: #030F17;
-  --theme-surface: #071C2B;
-  --theme-subtle: #0D293D;
-  --theme-subtle-border: rgba(34, 211, 238, 0.2);
-  --theme-text: #F0FDFF;
-  --theme-muted: #67E8F9;
-  --theme-border: rgba(34, 211, 238, 0.25);
-  --theme-accent: #06B6D4;
-  --theme-accent-hover: #0891B2;
-  --theme-accent-light: rgba(6, 182, 212, 0.2);
-  --theme-accent-text: #030F17;
-  --theme-shadow: 0 16px 40px rgba(3, 15, 23, 0.8);
+  --theme-shadow: 0 10px 30px -5px rgba(217, 119, 6, 0.1);
 }
 
 [data-theme="bumblebee"] {
-  --theme-bg: #0D0E11;
-  --theme-surface: #181920;
-  --theme-subtle: #242630;
+  --theme-bg: #0E0F12;
+  --theme-surface: #191A20;
+  --theme-subtle: #252630;
   --theme-subtle-border: rgba(250, 204, 21, 0.2);
   --theme-text: #FFFFFF;
   --theme-muted: #FDE047;
@@ -180,15 +167,19 @@
   --theme-accent-hover: #EAB308;
   --theme-accent-light: rgba(250, 204, 21, 0.2);
   --theme-accent-text: #000000;
-  --theme-shadow: 0 16px 40px rgba(13, 14, 17, 0.8);
+  --theme-shadow: 0 16px 40px rgba(14, 15, 18, 0.8);
 }
 
 body {
   background-color: var(--theme-bg);
   color: var(--theme-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+code, kbd, samp, pre, .font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* Dynamic Theme Card */
@@ -313,20 +304,6 @@ input[type='range']::-moz-range-thumb {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--theme-muted);
-}
-
-/* Drawer slide animation */
-@keyframes slide-in-right {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Preserve Room & Report Card Utilities */
