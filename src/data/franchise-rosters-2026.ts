@@ -106,7 +106,7 @@ export const FRANCHISE_2026_ROSTERS: Record<string, Franchise2026Data> = {
     name: 'Royal Challengers Bengaluru',
     shortName: 'RCB',
     city: 'Bengaluru',
-    titles: 0,
+    titles: 2,
     captain: 'Virat Kohli',
     homeGround: 'M. Chinnaswamy Stadium, Bengaluru',
     primaryColor: '#D81920',

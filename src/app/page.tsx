@@ -7,7 +7,6 @@ import FranchiseLogo from '@/components/FranchiseLogo';
 import AuctionArenaLogo from '@/components/AuctionArenaLogo';
 import DoodleSection from '@/components/DoodleSection';
 import DoodleFlag from '@/components/DoodleFlag';
-import GrandOpeningIntro from '@/components/GrandOpeningIntro';
 import { THEMES } from '@/components/ThemeCustomizer';
 import { POOL_PRESETS, CURATED_SETS } from '@/data/curated-pools';
 import { VERIFIED_PLAYERS, PlayerRole } from '@/data/players';
@@ -96,12 +95,12 @@ const FRANCHISE_HONORS: Record<string, {
     highlight: '2022 Champions • 2 Finals',
   },
   rcb: {
-    titles: 0,
-    yearsWon: [],
-    yearsWonShort: 'None',
+    titles: 2,
+    yearsWon: [2025, 2026],
+    yearsWonShort: "'25, '26",
     runnersUpShort: "'09, '11, '16",
-    finals: 3,
-    highlight: '3x Finalists • 8 Playoffs',
+    finals: 5,
+    highlight: '2x Champions (2025, 2026)',
   },
   dc: {
     titles: 0,
@@ -161,8 +160,6 @@ export default function LandingPage() {
 
   // Hovered Franchise Table State
   const [hoveredTeam, setHoveredTeam] = useState<string | null>(null);
-  // Grand Opening Cinematic Intro State
-  const [showOpeningIntro, setShowOpeningIntro] = useState(false);
 
   // Memoized Search Filter for 622 BCCI Players
   const filteredPlayers = useMemo(() => {
@@ -281,15 +278,6 @@ export default function LandingPage() {
                 <Radio className="w-4 h-4 text-orange-600 animate-pulse" />
                 <span>Live Multiplayer War Rooms</span>
               </div>
-              <button
-                type="button"
-                onClick={() => setShowOpeningIntro(true)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-300 text-xs sm:text-sm font-black shadow-xs transition-all cursor-pointer hover:scale-105"
-                title="Watch Sandstorm & Trophy Opening with Fireworks"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                <span>✨ Grand Opening Show</span>
-              </button>
             </div>
 
             {/* Headline with Modern Doodle Underline */}
@@ -992,12 +980,6 @@ export default function LandingPage() {
           })}
         </div>
       </section>
-
-      {/* GRAND OPENING CINEMATIC INTRO (SANDSTORM, CUP & FIREWORKS) */}
-      <GrandOpeningIntro
-        forceShow={showOpeningIntro}
-        onComplete={() => setShowOpeningIntro(false)}
-      />
 
       {/* ========================================================
           BUILT FOR SERIOUS CRICKET COMPETITION (DYNAMIC BUBBLE ZOOM)

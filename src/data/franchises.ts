@@ -94,7 +94,7 @@ export const IPL_FRANCHISES: Franchise[] = [
     accentColor: '#C4122F',
     logo: '🛡️',
     city: 'Bengaluru',
-    titles: 0,
+    titles: 2,
   },
   {
     id: 'dc',
