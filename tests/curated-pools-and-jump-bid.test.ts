@@ -159,6 +159,24 @@ describe('Curated Player Pools & Official Incremental Bidding Suite', () => {
         );
       }).toThrow(/Insufficient purse/);
     });
+
+    it('rejects a bid if the franchise already holds the highest bid (anti-self-bidding)', () => {
+      const { room, hostToken } = AuctionStore.createRoom('Auctioneer', {
+        startingPurse: 120 * CRORE,
+      });
+
+      AuctionStore.startAuction(room.roomCode, hostToken);
+      const p1 = AuctionStore.joinRoom(room.roomCode, 'Owner 1');
+      AuctionStore.selectFranchise(room.roomCode, p1.sessionToken, 'rcb');
+
+      // First bid by RCB
+      AuctionStore.placeBid(room.roomCode, p1.sessionToken, 'rcb', 2 * CRORE, 'b_rcb_1');
+
+      // Attempt to bid again with RCB
+      expect(() => {
+        AuctionStore.placeBid(room.roomCode, p1.sessionToken, 'rcb', 2.25 * CRORE, 'b_rcb_2');
+      }).toThrow(/already holds the highest bid/);
+    });
   });
 
   describe('Single-Player Atomic Skip & Anti-Double-Skip Guards', () => {

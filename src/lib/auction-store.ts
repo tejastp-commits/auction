@@ -608,7 +608,12 @@ export class AuctionStore {
       );
     }
 
-    // 7. Purse check
+    // 7. Anti-self-bidding: Cannot raise when already holding the current highest bid
+    if (room.currentBidAmount > 0 && room.currentBidFranchiseId === franchiseId) {
+      throw new Error('Your franchise already holds the highest bid.');
+    }
+
+    // 8. Purse check
     const squad = room.squads[franchiseId];
     if (!squad) throw new Error('Invalid franchise squad.');
 

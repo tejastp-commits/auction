@@ -302,6 +302,10 @@ export default function AuctionRoomPage() {
 
   const handleCustomBid = (e: React.FormEvent) => {
     e.preventDefault();
+    if (isHoldingHighBid) {
+      setBidError('Your franchise already holds the current highest bid.');
+      return;
+    }
     const cr = parseFloat(customBidAmountCr);
     if (isNaN(cr) || cr <= 0) {
       setBidError('Please enter a valid bid amount in Crores (e.g. 10 or 10.5).');
@@ -1082,7 +1086,7 @@ export default function AuctionRoomPage() {
                         </div>
                         <button
                           type="submit"
-                          disabled={room.status !== 'ACTIVE' || !customBidAmountCr}
+                          disabled={room.status !== 'ACTIVE' || !customBidAmountCr || isHoldingHighBid}
                           className="py-2.5 px-5 rounded-xl font-black bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-400/30 text-xs transition-all disabled:opacity-40 flex items-center gap-1.5 cursor-pointer shrink-0"
                         >
                           <span>Jump Bid</span>
