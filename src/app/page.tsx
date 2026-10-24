@@ -6,6 +6,7 @@ import { IPL_FRANCHISES } from '@/data/franchises';
 import FranchiseLogo from '@/components/FranchiseLogo';
 import AuctionArenaLogo from '@/components/AuctionArenaLogo';
 import DoodleSection from '@/components/DoodleSection';
+import DoodleFlag from '@/components/DoodleFlag';
 import { THEMES } from '@/components/ThemeCustomizer';
 import { POOL_PRESETS, CURATED_SETS } from '@/data/curated-pools';
 import { VERIFIED_PLAYERS, PlayerRole } from '@/data/players';
@@ -162,11 +163,11 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-between py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-colors relative overflow-hidden">
+    <div className="flex-1 flex flex-col justify-between py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-colors relative overflow-hidden font-doodle text-lg">
       
       {/* BACKGROUND LUXURY AMBIENT GLOWS & STADIUM CURVED RINGS */}
-      <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute top-[35%] right-[-100px] w-[500px] h-[500px] bg-blue-500/10 blur-[140px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-pink-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-[35%] right-[-100px] w-[500px] h-[500px] bg-rose-500/10 blur-[140px] rounded-full pointer-events-none -z-10" />
 
       {/* ========================================================
           HERO SECTION: DUAL-COLUMN BROADCAST COMMAND DECK
@@ -658,9 +659,7 @@ export default function LandingPage() {
                           className="p-2.5 rounded-xl theme-subtle-box border theme-border flex items-center justify-between hover:scale-[1.01] transition-transform"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <span className="text-base shrink-0">
-                              {p.nationality === 'India' ? '🇮🇳' : p.nationality === 'Australia' ? '🇦🇺' : p.nationality === 'England' ? '🏴󠁧󠁢󠁥󠁮󠁧󠁿' : p.nationality === 'South Africa' ? '🇿🇦' : p.nationality === 'West Indies' ? '🌴' : p.nationality === 'New Zealand' ? '🇳🇿' : p.nationality === 'Afghanistan' ? '🇦🇫' : '🏏'}
-                            </span>
+                            <DoodleFlag country={p.nationality} className="w-7 h-5 shrink-0" />
                             <div className="min-w-0">
                               <div className="font-extrabold text-xs truncate">
                                 {p.canonicalName}
@@ -813,10 +812,10 @@ export default function LandingPage() {
               >
                 {/* Top: Emblem & Code */}
                 <div className="flex items-center justify-between mb-2.5">
-                  <div className="w-11 h-11 rounded-xl p-1 flex items-center justify-center shadow-md bg-slate-950/70 border theme-border transition-transform group-hover:scale-110">
+                  <div className="w-12 h-12 rounded-2xl p-1 flex items-center justify-center shadow-[2px_2px_0px_#2C2825] bg-white border-2 border-[#2C2825] transition-transform group-hover:scale-110">
                     <FranchiseLogo franchiseId={team.id} size="lg" />
                   </div>
-                  <span className="text-[10px] font-black font-mono tracking-wider px-2 py-0.5 rounded-md theme-subtle-box border theme-border">
+                  <span className="text-xs font-black px-2 py-0.5 rounded-lg bg-pink-100 border border-pink-300">
                     {team.shortName}
                   </span>
                 </div>

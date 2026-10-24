@@ -505,7 +505,7 @@ export default function RoomPage({ params }: { params: { code: string } }) {
   // -------------------------------------------------------------
   if (room.status === 'LOBBY') {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full theme-bg text-[var(--theme-text)] transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full theme-bg text-[var(--theme-text)] transition-colors font-doodle text-lg">
         {renderJoinModal()}
         <OrganizerPoolModal
           isOpen={isPoolModalOpen}
@@ -838,7 +838,7 @@ export default function RoomPage({ params }: { params: { code: string } }) {
     : null;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex flex-col justify-between theme-bg text-[var(--theme-text)] transition-colors">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 flex flex-col justify-between theme-bg text-[var(--theme-text)] transition-colors font-doodle text-lg">
       {renderJoinModal()}
       <OrganizerPoolModal
         isOpen={isPoolModalOpen}

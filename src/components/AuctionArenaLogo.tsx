@@ -9,21 +9,17 @@ interface AuctionArenaLogoProps {
 }
 
 const SIZE_MAP = {
-  xs: 'w-5 h-5',
-  sm: 'w-7 h-7',
-  md: 'w-9 h-9',
-  lg: 'w-12 h-12',
-  xl: 'w-16 h-16',
+  xs: 'w-6 h-6',
+  sm: 'w-8 h-8',
+  md: 'w-11 h-11',
+  lg: 'w-14 h-14',
+  xl: 'w-20 h-20',
 };
 
 /**
- * IPL Auction Arena - Pleasing, Harmonious Luxury Emblem
- * 
- * Redesigned to remove harsh popping colors (no aggressive reds or loud neon yellows).
- * Features a soothing, balanced composition:
- * - Serene amphitheater stadium ellipse with delicate orbital cricket trajectory
- * - Minimalist, sculpted auctioneer gavel in soft champagne platinum
- * - Harmonious geometric balance with gentle curves, generous negative space, and pleasing warmth.
+ * 100% HAND-DRAWN DOODLE LOGO FOR IPL AUCTION ARENA
+ * Complete with wavy sketched outlines, crosshatching, doodle cricket bat,
+ * doodle auction gavel with impact sparks, and handwritten marker typography.
  */
 export default function AuctionArenaLogo({
   size = 'md',
@@ -33,161 +29,116 @@ export default function AuctionArenaLogo({
   const dimensionClass = SIZE_MAP[size] || SIZE_MAP.md;
 
   return (
-    <div className={`inline-flex items-center gap-2.5 ${className}`}>
+    <div className={`inline-flex items-center gap-2.5 font-doodle ${className}`}>
       <svg
         viewBox="0 0 100 100"
-        className={`${dimensionClass} shrink-0 drop-shadow-sm transition-transform duration-300`}
+        className={`${dimensionClass} shrink-0 drop-shadow-sm transition-transform duration-300 hover:rotate-3`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        aria-label="IPL Auction Arena Emblem"
+        aria-label="IPL Auction Arena Hand-Drawn Doodle Emblem"
       >
-        <defs>
-          {/* Soothing, Pleasing Champagne Platinum & Cashmere Slate Gradients */}
-          <linearGradient id="arena-lux-base" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1E232E" />
-            <stop offset="50%" stopColor="#141821" />
-            <stop offset="100%" stopColor="#0B0E14" />
-          </linearGradient>
-
-          {/* Gentle, Harmonious Champagne Satin Gradient (Soft, not loud or popping) */}
-          <linearGradient id="arena-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FAF4E8" />
-            <stop offset="40%" stopColor="#E5D6BA" />
-            <stop offset="75%" stopColor="#C4B18E" />
-            <stop offset="100%" stopColor="#96815F" />
-          </linearGradient>
-
-          {/* Warm Frosted Rosewood Accent for subtle warmth (replaces harsh neon ruby) */}
-          <linearGradient id="arena-lux-warmth" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#E2A599" />
-            <stop offset="60%" stopColor="#B87364" />
-            <stop offset="100%" stopColor="#7E473C" />
-          </linearGradient>
-
-          {/* Soft Serene Radial Glow */}
-          <radialGradient id="arena-lux-ambient" cx="50%" cy="46%" r="52%">
-            <stop offset="0%" stopColor="#E5D6BA" stopOpacity="0.22" />
-            <stop offset="60%" stopColor="#E5D6BA" stopOpacity="0.06" />
-            <stop offset="100%" stopColor="#0B0E14" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* Pleasing Shield / Stadium Colosseum Outer Ring */}
+        {/* Hand-Drawn Wavy Oval/Stadium Crest with Doodle Hatching */}
         <path
-          d="M50 5 C75 5 91 18 91 46 C91 72 73 91 50 95 C27 91 9 72 9 46 C9 18 25 5 50 5 Z"
-          fill="url(#arena-lux-base)"
-          stroke="url(#arena-lux-gold)"
-          strokeWidth="2.2"
+          d="M50 5 C 76 4, 93 17, 92 48 C 91 76, 74 94, 50 95 C 24 94, 7 75, 8 48 C 9 17, 26 6, 50 5 Z"
+          fill="#FFF1F5"
+          stroke="#2C2825"
+          strokeWidth="2.8"
+          strokeLinejoin="round"
         />
 
-        {/* Ambient Warm Atmosphere */}
-        <ellipse cx="50" cy="50" rx="38" ry="40" fill="url(#arena-lux-ambient)" />
-
-        {/* Delicate Inner Stadium Tier Rings (Concentric amphitheater arcs) */}
-        <ellipse
-          cx="50"
-          cy="48"
-          rx="32"
-          ry="32"
-          stroke="url(#arena-lux-gold)"
-          strokeWidth="0.8"
-          strokeOpacity="0.45"
+        {/* Hand-drawn inner dashed doodle ring */}
+        <path
+          d="M50 11 C 72 10, 86 21, 85 48 C 84 72, 70 88, 50 89 C 30 88, 15 72, 16 48 C 17 21, 30 11, 50 11 Z"
+          stroke="#F472B6"
+          strokeWidth="1.8"
           strokeDasharray="4 3"
-        />
-        <circle
-          cx="50"
-          cy="48"
-          r="26"
-          stroke="url(#arena-lux-gold)"
-          strokeWidth="0.5"
-          strokeOpacity="0.25"
+          strokeLinecap="round"
         />
 
-        {/* Sweeping Cricket Ball Seam Orbit (Gentle diagonal trajectory) */}
-        <path
-          d="M24 70 C30 38 68 24 80 40"
-          stroke="url(#arena-lux-gold)"
-          strokeWidth="1.2"
-          strokeDasharray="2.5 2"
-          strokeOpacity="0.85"
-        />
+        {/* Doodle Stadium Crosshatching in the corner */}
+        <path d="M18 32 L26 24 M22 40 L30 32 M20 48 L28 40" stroke="#F472B6" strokeWidth="1.2" opacity="0.6" />
+        <path d="M82 32 L74 24 M78 40 L70 32 M80 48 L72 40" stroke="#F472B6" strokeWidth="1.2" opacity="0.6" />
 
-        {/* Sculpted, Pleasing Minimalist Gavel (Diagonal 40deg angle) */}
-        <g transform="rotate(38 50 48)">
-          {/* Gavel Handle with rounded finial */}
-          <rect
-            x="48"
-            y="22"
-            width="4"
-            height="36"
-            rx="2"
-            fill="url(#arena-lux-gold)"
+        {/* Hand-Drawn Doodle Cricket Bat (Slanted right) */}
+        <g transform="rotate(32 50 48)">
+          {/* Bat Handle with doodle grip lines */}
+          <rect x="48" y="16" width="4" height="18" rx="2" fill="#FEF08A" stroke="#2C2825" strokeWidth="2" />
+          <line x1="48" y1="21" x2="52" y2="21" stroke="#2C2825" strokeWidth="1.2" />
+          <line x1="48" y1="26" x2="52" y2="26" stroke="#2C2825" strokeWidth="1.2" />
+          <line x1="48" y1="31" x2="52" y2="31" stroke="#2C2825" strokeWidth="1.2" />
+
+          {/* Bat Blade */}
+          <path
+            d="M45 34 C 45 32, 55 32, 55 34 L54 74 C 54 77, 44 77, 44 74 Z"
+            fill="#FED7AA"
+            stroke="#2C2825"
+            strokeWidth="2.2"
+            strokeLinejoin="round"
           />
-          {/* Subtle handle grip wrap rings */}
-          <line x1="48" y1="46" x2="52" y2="46" stroke="#0B0E14" strokeWidth="0.8" opacity="0.4" />
-          <line x1="48" y1="50" x2="52" y2="50" stroke="#0B0E14" strokeWidth="0.8" opacity="0.4" />
-
-          {/* Symmetrical, Sculpted Gavel Head */}
-          <rect
-            x="36"
-            y="22"
-            width="28"
-            height="11"
-            rx="3"
-            fill="url(#arena-lux-gold)"
-          />
-          {/* Beveled Polished End Striking Caps */}
-          <rect x="34.5" y="23" width="2" height="9" rx="1" fill="#FFFFFF" opacity="0.9" />
-          <rect x="63.5" y="23" width="2" height="9" rx="1" fill="#FFFFFF" opacity="0.9" />
-
-          {/* Central Medallion on Gavel Head */}
-          <circle cx="50" cy="27.5" r="2.2" fill="#141821" />
-          <circle cx="50" cy="27.5" r="1.2" fill="url(#arena-lux-gold)" />
+          {/* Wood grain doodle lines */}
+          <path d="M49 38 L49 70" stroke="#2C2825" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
         </g>
 
-        {/* Cricket Leather Sphere - Soft Warm Terracotta/Rosewood (Not neon red) */}
-        <circle
-          cx="56"
-          cy="60"
-          r="7.5"
-          fill="url(#arena-lux-warmth)"
-          stroke="url(#arena-lux-gold)"
-          strokeWidth="1"
-        />
-        {/* Soft White Curved Seam Stitching */}
+        {/* Hand-Drawn Doodle Auctioneer Gavel (Slanted left) */}
+        <g transform="rotate(-32 50 48)">
+          {/* Gavel Handle */}
+          <rect x="48" y="18" width="4" height="42" rx="2" fill="#FEF08A" stroke="#2C2825" strokeWidth="2" />
+          
+          {/* Gavel Hammer Head */}
+          <path
+            d="M34 22 C 34 20, 66 20, 66 22 L65 35 C 65 37, 35 37, 35 35 Z"
+            fill="#FECDD3"
+            stroke="#2C2825"
+            strokeWidth="2.2"
+            strokeLinejoin="round"
+          />
+          {/* Gavel End Caps */}
+          <rect x="31" y="24" width="4" height="9" rx="1.5" fill="#FFFFFF" stroke="#2C2825" strokeWidth="1.8" />
+          <rect x="65" y="24" width="4" height="9" rx="1.5" fill="#FFFFFF" stroke="#2C2825" strokeWidth="1.8" />
+          {/* Center heart / star on gavel */}
+          <circle cx="50" cy="28.5" r="2.5" fill="#E11D48" />
+        </g>
+
+        {/* Impact Action Stars from Hammer Strike */}
+        <path d="M45 42 L42 37 M55 42 L58 37 M49 38 L49 33" stroke="#E11D48" strokeWidth="2" strokeLinecap="round" />
+
+        {/* Doodle Cricket Leather Ball with Seam */}
+        <circle cx="50" cy="62" r="8" fill="#FDA4AF" stroke="#2C2825" strokeWidth="2.2" />
         <path
-          d="M51.5 57.5 C54 60 58 60 60.5 57.5"
+          d="M44 60 Q 50 64, 56 60"
           stroke="#FFFFFF"
-          strokeWidth="0.9"
-          strokeDasharray="1.2 1"
+          strokeWidth="1.5"
+          strokeDasharray="1.5 1.5"
           fill="none"
-          opacity="0.95"
         />
 
-        {/* Three Serene Championship Stars (Minimalist & Delicate) */}
-        <g fill="url(#arena-lux-gold)" opacity="0.9">
-          <circle cx="50" cy="13" r="1.6" />
-          <circle cx="43" cy="16" r="1.2" />
-          <circle cx="57" cy="16" r="1.2" />
+        {/* Three Sketched Hand-Drawn Stars at the Top */}
+        <g fill="#FACC15" stroke="#2C2825" strokeWidth="1.2">
+          {/* Center Star */}
+          <polygon points="50,11 52,15 57,15 53,18 55,23 50,20 45,23 47,18 43,15 48,15" />
+          {/* Left Star */}
+          <polygon points="34,16 35.5,19 39,19 36,21.5 37.5,25 34,23 30.5,25 32,21.5 29,19 32.5,19" />
+          {/* Right Star */}
+          <polygon points="66,16 67.5,19 71,19 68,21.5 69.5,25 66,23 62.5,25 64,21.5 61,19 64.5,19" />
         </g>
 
-        {/* Soft Bottom Arch Wordmark Plaque */}
+        {/* Lower Hand-Drawn Plaque / Banner */}
         <path
-          d="M32 82 C44 85 56 85 68 82"
-          stroke="url(#arena-lux-gold)"
-          strokeWidth="1"
-          strokeOpacity="0.4"
+          d="M26 78 C 38 82, 62 82, 74 78 L 71 88 C 60 92, 40 92, 29 88 Z"
+          fill="#FEF08A"
+          stroke="#2C2825"
+          strokeWidth="2"
+          strokeLinejoin="round"
         />
         <text
           x="50"
           y="87"
           textAnchor="middle"
-          fontSize="5.5"
-          fontWeight="800"
-          letterSpacing="2.5"
-          fill="url(#arena-lux-gold)"
-          fontFamily="system-ui, -apple-system, sans-serif"
-          opacity="0.9"
+          fontSize="9.5"
+          fontWeight="900"
+          fontFamily="Caveat, cursive"
+          fill="#2C2825"
+          letterSpacing="0.8"
         >
           AUCTION
         </text>
@@ -196,12 +147,14 @@ export default function AuctionArenaLogo({
       {showWordmark && (
         <div className="flex flex-col leading-none">
           <div className="flex items-center gap-1.5">
-            <span className="font-extrabold text-xs tracking-widest uppercase opacity-85">IPL</span>
-            <span className="font-mono text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-[var(--theme-accent)]/15 text-[var(--theme-accent)] border border-[var(--theme-accent)]/25">
-              WAR ROOM
+            <span className="font-doodle text-xl font-bold tracking-wider text-[#2C2825]">
+              IPL
+            </span>
+            <span className="font-doodle text-xs font-black px-2 py-0.5 rounded-lg bg-pink-100 text-pink-700 border border-pink-300 rotate-2">
+              WAR ROOM 🏏
             </span>
           </div>
-          <span className="font-black text-sm tracking-tight text-[var(--theme-text)]">
+          <span className="font-doodle text-2xl font-bold tracking-tight text-[var(--theme-accent)]">
             Auction Arena
           </span>
         </div>

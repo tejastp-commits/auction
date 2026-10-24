@@ -9,13 +9,20 @@ interface FranchiseLogoProps {
 }
 
 const SIZE_MAP = {
-  xs: 'w-4 h-4',
-  sm: 'w-6 h-6',
-  md: 'w-8 h-8',
-  lg: 'w-12 h-12',
-  xl: 'w-16 h-16',
+  xs: 'w-6 h-6',
+  sm: 'w-8 h-8',
+  md: 'w-11 h-11',
+  lg: 'w-14 h-14',
+  xl: 'w-20 h-20',
 };
 
+/**
+ * 100% HAND-DRAWN DOODLE CRESTS FOR ALL 10 IPL FRANCHISES
+ * 
+ * Genuine sketchbook drawings with wavy outlines, sketch crosshatching,
+ * hand-drawn mascot doodles (lions, cyclones, knights, eagles, tigers),
+ * and handwritten marker typography.
+ */
 export default function FranchiseLogo({
   franchiseId,
   size = 'md',
@@ -25,778 +32,521 @@ export default function FranchiseLogo({
   const dimensionClass = SIZE_MAP[size] || SIZE_MAP.md;
 
   switch (fid) {
-    // 1. CHENNAI SUPER KINGS (CSK) - Luxury Champagne Gold & Sovereign Midnight Navy
+    // 1. CHENNAI SUPER KINGS (CSK) - Hand-drawn roaring lion doodle & crown
     case 'csk':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Chennai Super Kings Luxury Crest"
+          aria-label="CSK Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="csk-lux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0B1A30" />
-              <stop offset="60%" stopColor="#050E1B" />
-              <stop offset="100%" stopColor="#02060D" />
-            </linearGradient>
-            <linearGradient id="csk-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF4B8" />
-              <stop offset="40%" stopColor="#F5C042" />
-              <stop offset="100%" stopColor="#C98B14" />
-            </linearGradient>
-            <radialGradient id="csk-lux-glow" cx="50%" cy="40%" r="55%">
-              <stop offset="0%" stopColor="#F5C042" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#0B1A30" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
-          {/* Luxury Shield Silhouette */}
+          {/* Wavy sketched shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#csk-lux-bg)"
-            stroke="url(#csk-lux-gold)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#FEF9C3"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
-          {/* Inner Hairline Ring */}
+          {/* Dashed inner doodle border */}
           <path
-            d="M50 9 L81 20 C81 53 68 74 50 88 C32 74 19 53 19 20 Z"
-            stroke="url(#csk-lux-gold)"
-            strokeWidth="0.8"
-            strokeOpacity="0.5"
-            fill="url(#csk-lux-glow)"
+            d="M50 11 C 72 13, 80 23, 79 48 C 78 70, 66 84, 50 87 C 34 84, 22 70, 21 48 C 20 23, 28 13, 50 11 Z"
+            stroke="#F59E0B"
+            strokeWidth="1.5"
+            strokeDasharray="3 3"
           />
-
-          {/* Minimalist Aristocratic Crown */}
-          <g fill="url(#csk-lux-gold)">
-            <path d="M39 20 L50 13 L61 20 L57 25 L43 25 Z" />
-            <circle cx="50" cy="11.5" r="1.8" fill="#FFFFFF" />
-            <circle cx="39" cy="18.5" r="1.3" fill="#FFFFFF" />
-            <circle cx="61" cy="18.5" r="1.3" fill="#FFFFFF" />
-          </g>
-
-          {/* Sleek Geometric Lion Mane Arcs */}
+          {/* Hand-drawn crown */}
           <path
-            d="M27 34 Q38 27 50 33 Q36 38 27 34 Z"
-            fill="url(#csk-lux-gold)"
-            opacity="0.85"
+            d="M37 22 L42 28 L50 16 L58 28 L63 22 L61 32 L39 32 Z"
+            fill="#FDE047"
+            stroke="#2C2825"
+            strokeWidth="2"
+            strokeLinejoin="round"
           />
+          <circle cx="50" cy="14" r="2" fill="#E11D48" />
+          {/* Cute hand-drawn roaring lion face/mane */}
           <path
-            d="M73 34 Q62 27 50 33 Q64 38 73 34 Z"
-            fill="url(#csk-lux-gold)"
-            opacity="0.85"
+            d="M32 40 C 26 34, 38 32, 42 36 C 46 32, 54 32, 58 36 C 62 32, 74 34, 68 40 C 74 46, 68 54, 64 54 C 60 58, 40 58, 36 54 C 32 54, 26 46, 32 40 Z"
+            fill="#FED7AA"
+            stroke="#2C2825"
+            strokeWidth="2"
           />
-
-          {/* Center Luxury Monogram CSK */}
+          {/* Whiskers & roar mouth */}
+          <line x1="28" y1="44" x2="36" y2="44" stroke="#2C2825" strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="64" y1="44" x2="72" y2="44" stroke="#2C2825" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="43" cy="42" r="1.5" fill="#2C2825" />
+          <circle cx="57" cy="42" r="1.5" fill="#2C2825" />
+          <path d="M46 48 Q 50 52, 54 48" stroke="#2C2825" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+          {/* Bold Handwritten CSK */}
           <text
             x="50"
-            y="62"
+            y="74"
             textAnchor="middle"
             fontSize="26"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#csk-lux-gold)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             CSK
           </text>
-
-          {/* Champagne Gold Ribbon Bar */}
-          <rect x="25" y="73" width="50" height="9" rx="2.5" fill="url(#csk-lux-gold)" />
-          <text
-            x="50"
-            y="80"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#050E1B"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            SUPER KINGS
-          </text>
+          {/* Bottom little ribbon */}
+          <path d="M30 80 Q 50 84, 70 80" stroke="#E11D48" strokeWidth="2.5" strokeLinecap="round" />
         </svg>
       );
 
-    // 2. MUMBAI INDIANS (MI) - Luxury Deep Sapphire & Machined Platinum Gold
+    // 2. MUMBAI INDIANS (MI) - Hand-drawn spinning cyclone & cricket ball
     case 'mi':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Mumbai Indians Luxury Crest"
+          aria-label="MI Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="mi-lux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0B1E3F" />
-              <stop offset="50%" stopColor="#061226" />
-              <stop offset="100%" stopColor="#020812" />
-            </linearGradient>
-            <linearGradient id="mi-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF8D6" />
-              <stop offset="50%" stopColor="#E2BA49" />
-              <stop offset="100%" stopColor="#A87913" />
-            </linearGradient>
-            <radialGradient id="mi-lux-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#E2BA49" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="#061226" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
-          {/* Precision Circular Medallion */}
-          <circle cx="50" cy="50" r="46" fill="url(#mi-lux-bg)" stroke="url(#mi-lux-gold)" strokeWidth="2.5" />
-          <circle cx="50" cy="50" r="41" stroke="url(#mi-lux-gold)" strokeWidth="0.8" strokeOpacity="0.4" fill="url(#mi-lux-glow)" />
-
-          {/* Aerodynamic Minimalist Chakra Vortex Blades */}
-          <g transform="translate(50,50)">
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-              <path
-                key={angle}
-                d="M0 -40 C5 -30 9 -18 2 -8 C-1 -18 -2 -30 0 -40 Z"
-                fill={i % 2 === 0 ? 'url(#mi-lux-gold)' : '#FFFFFF'}
-                transform={`rotate(${angle})`}
-                opacity={i % 2 === 0 ? '0.9' : '0.4'}
-              />
-            ))}
-          </g>
-
-          {/* Center Matte Sapphire Hub */}
-          <circle cx="50" cy="50" r="26" fill="#061226" stroke="url(#mi-lux-gold)" strokeWidth="1.8" />
-
-          {/* Center Luxury Monogram MI */}
+          {/* Wavy round crest */}
+          <circle
+            cx="50"
+            cy="50"
+            r="44"
+            fill="#E0F2FE"
+            stroke="#2C2825"
+            strokeWidth="2.5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="38"
+            stroke="#0284C7"
+            strokeWidth="1.5"
+            strokeDasharray="4 3"
+          />
+          {/* Hand-drawn swirl vortex / cyclone */}
+          <path
+            d="M50 20 C 65 20, 72 32, 68 45 M78 50 C 78 65, 66 72, 53 68 M50 80 C 35 80, 28 68, 32 55 M22 50 C 22 35, 34 28, 47 32"
+            stroke="#0284C7"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+          {/* Center cricket ball */}
+          <circle cx="50" cy="46" r="10" fill="#FDA4AF" stroke="#2C2825" strokeWidth="2" />
+          <path d="M43 44 Q 50 49, 57 44" stroke="#FFFFFF" strokeWidth="1.5" strokeDasharray="1.5 1.5" />
+          {/* Bold Handwritten MI */}
           <text
             x="50"
-            y="61"
+            y="76"
             textAnchor="middle"
             fontSize="30"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2.5"
-            fill="url(#mi-lux-gold)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             MI
           </text>
-
-          {/* Refined Tricolor Accent Pin */}
-          <path d="M35 83 Q50 79 65 83" stroke="#FF9933" strokeWidth="1.8" strokeLinecap="round" />
-          <path d="M37 86 Q50 82 63 86" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-          <path d="M39 89 Q50 85 61 89" stroke="#138808" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       );
 
-    // 3. ROYAL CHALLENGERS BENGALURU (RCB) - Luxury Velvet Carmine & Champagne Gold
+    // 3. ROYAL CHALLENGERS BENGALURU (RCB) - Hand-drawn regal lion sketch & crown
     case 'rcb':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Royal Challengers Bengaluru Luxury Crest"
+          aria-label="RCB Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="rcb-lux-red" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#7E1521" />
-              <stop offset="50%" stopColor="#4A0A10" />
-              <stop offset="100%" stopColor="#1E0306" />
-            </linearGradient>
-            <linearGradient id="rcb-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF4B8" />
-              <stop offset="50%" stopColor="#E5B242" />
-              <stop offset="100%" stopColor="#9E7314" />
-            </linearGradient>
-            <radialGradient id="rcb-lux-glow" cx="50%" cy="40%" r="55%">
-              <stop offset="0%" stopColor="#E5B242" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="#1E0306" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
-          {/* Luxury Shield */}
+          {/* Wavy shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#rcb-lux-red)"
-            stroke="url(#rcb-lux-gold)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#FFE4E6"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
-          {/* Inner Matte Obsidian Core */}
+          {/* Inner gold dashed border */}
           <path
-            d="M50 9 L80 20 C80 52 67 73 50 87 C33 73 20 52 20 20 Z"
-            fill="#0C0A0A"
-            stroke="url(#rcb-lux-gold)"
-            strokeWidth="0.8"
-            strokeOpacity="0.45"
+            d="M50 11 C 72 13, 80 23, 79 48 C 78 70, 66 84, 50 87 C 34 84, 22 70, 21 48 C 20 23, 28 13, 50 11 Z"
+            stroke="#E11D48"
+            strokeWidth="1.5"
+            strokeDasharray="3 3"
           />
-
-          {/* Aristocratic Sovereign Crown */}
-          <g fill="url(#rcb-lux-gold)">
-            <path d="M39 19 L50 12 L61 19 L57 24 L43 24 Z" />
-            <circle cx="50" cy="10.5" r="1.8" fill="#FFFFFF" />
-            <circle cx="39" cy="17.5" r="1.3" fill="#FFFFFF" />
-            <circle cx="61" cy="17.5" r="1.3" fill="#FFFFFF" />
-          </g>
-
-          {/* Stylized Rampant Lion Silhouette Header */}
+          {/* Hand-drawn crown */}
           <path
-            d="M44 26 C47 24 53 24 56 26 C54 29 51 31 47 30 C45 29 44 28 44 26 Z"
-            fill="url(#rcb-lux-gold)"
-            opacity="0.8"
+            d="M38 20 L43 26 L50 15 L57 26 L62 20 L60 30 L40 30 Z"
+            fill="#FEF08A"
+            stroke="#2C2825"
+            strokeWidth="2"
+            strokeLinejoin="round"
           />
-
-          {/* Center Luxury Monogram RCB */}
+          {/* Rampant lion sketch silhouette */}
+          <path
+            d="M44 32 C 40 34, 42 42, 46 44 L 43 52 L 48 54 L 49 46 C 54 46, 56 42, 54 34 Z"
+            fill="#E11D48"
+            stroke="#2C2825"
+            strokeWidth="1.5"
+          />
+          {/* Extended paw with claws */}
+          <line x1="42" y1="36" x2="36" y2="34" stroke="#2C2825" strokeWidth="2" strokeLinecap="round" />
+          <line x1="36" y1="34" x2="34" y2="32" stroke="#2C2825" strokeWidth="1.5" />
+          {/* Bold Handwritten RCB */}
           <text
             x="50"
-            y="60"
+            y="74"
             textAnchor="middle"
             fontSize="26"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#rcb-lux-gold)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             RCB
           </text>
-
-          {/* Gold Filigree Ribbon */}
-          <rect x="24" y="72" width="52" height="9" rx="2.5" fill="url(#rcb-lux-gold)" />
-          <text
-            x="50"
-            y="79"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#0C0A0A"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            BENGALURU
-          </text>
+          {/* Hand-drawn star */}
+          <polygon points="50,78 52,82 56,82 53,84.5 54,88 50,86 46,88 47,84.5 44,82 48,82" fill="#E11D48" />
         </svg>
       );
 
-    // 4. KOLKATA KNIGHT RIDERS (KKR) - Luxury Imperial Royal Amethyst & Polished Gold
+    // 4. KOLKATA KNIGHT RIDERS (KKR) - Hand-drawn knight helmet with plume
     case 'kkr':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Kolkata Knight Riders Luxury Crest"
+          aria-label="KKR Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="kkr-lux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3B175E" />
-              <stop offset="50%" stopColor="#220B38" />
-              <stop offset="100%" stopColor="#10031B" />
-            </linearGradient>
-            <linearGradient id="kkr-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF4B8" />
-              <stop offset="45%" stopColor="#E2BA49" />
-              <stop offset="100%" stopColor="#9C700F" />
-            </linearGradient>
-          </defs>
-
-          {/* Corinthian Shield Silhouette */}
+          {/* Wavy rounded shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#kkr-lux-bg)"
-            stroke="url(#kkr-lux-gold)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#F3E8FF"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
+          {/* Feathery wavy plume on top */}
           <path
-            d="M50 9 L81 20 C81 53 68 74 50 88 C32 74 19 53 19 20 Z"
-            stroke="url(#kkr-lux-gold)"
-            strokeWidth="0.8"
-            strokeOpacity="0.45"
+            d="M50 10 C 45 4, 38 6, 42 16 C 36 12, 32 18, 44 22 C 38 24, 46 28, 50 26 C 54 28, 62 24, 56 22 C 68 18, 64 12, 58 16 C 62 6, 55 4, 50 10 Z"
+            fill="#FDE047"
+            stroke="#2C2825"
+            strokeWidth="2"
+            strokeLinejoin="round"
           />
-
-          {/* Minimalist Corinthian Plume & Visor Crest */}
-          <g fill="url(#kkr-lux-gold)">
-            <path d="M47 11 C47 19 53 19 53 11 C50 14 50 14 47 11 Z" />
-            <circle cx="50" cy="19" r="4.5" />
-            <path d="M44 26 L56 26 L53 30 L47 30 Z" opacity="0.7" />
-          </g>
-
-          {/* Center Luxury Monogram KKR */}
+          {/* Hand-drawn knight visor helmet */}
+          <path
+            d="M36 28 C 36 24, 64 24, 64 28 L 62 48 C 62 56, 38 56, 38 48 Z"
+            fill="#DDD6FE"
+            stroke="#2C2825"
+            strokeWidth="2.2"
+            strokeLinejoin="round"
+          />
+          {/* Visor slit lines */}
+          <line x1="42" y1="36" x2="58" y2="36" stroke="#2C2825" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="45" y1="42" x2="55" y2="42" stroke="#2C2825" strokeWidth="1.8" strokeLinecap="round" />
+          {/* Bold Handwritten KKR */}
           <text
             x="50"
-            y="60"
+            y="75"
             textAnchor="middle"
             fontSize="26"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#kkr-lux-gold)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             KKR
-          </text>
-
-          {/* Polished Gold Banner */}
-          <rect x="24" y="72" width="52" height="9" rx="2.5" fill="url(#kkr-lux-gold)" />
-          <text
-            x="50"
-            y="79"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#10031B"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            KNIGHT RIDERS
           </text>
         </svg>
       );
 
-    // 5. RAJASTHAN ROYALS (RR) - Luxury Frosted Jaipur Rose & Sovereign Navy
+    // 5. RAJASTHAN ROYALS (RR) - Hand-drawn royal crown & crossed cricket bats
     case 'rr':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Rajasthan Royals Luxury Crest"
+          aria-label="RR Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="rr-lux-pink" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#9E205D" />
-              <stop offset="50%" stopColor="#5E0D36" />
-              <stop offset="100%" stopColor="#2D0318" />
-            </linearGradient>
-            <linearGradient id="rr-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF4B8" />
-              <stop offset="50%" stopColor="#E2BA49" />
-              <stop offset="100%" stopColor="#9C700F" />
-            </linearGradient>
-          </defs>
-
-          {/* Regal Shield Silhouette */}
+          {/* Wavy shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#rr-lux-pink)"
-            stroke="url(#rr-lux-gold)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#FCE7F3"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
-          <path
-            d="M50 9 L81 20 C81 53 68 74 50 88 C32 74 19 53 19 20 Z"
-            stroke="url(#rr-lux-gold)"
-            strokeWidth="0.8"
-            strokeOpacity="0.45"
-          />
-
-          {/* Minimalist Maharajah Tiara */}
-          <g fill="url(#rr-lux-gold)">
-            <path d="M38 18 L50 11 L62 18 L58 23 L42 23 Z" />
-            <circle cx="50" cy="9.5" r="1.8" fill="#FFFFFF" />
+          {/* Crossed doodle cricket bats */}
+          <g stroke="#2C2825" strokeWidth="2">
+            <line x1="28" y1="24" x2="72" y2="60" strokeLinecap="round" />
+            <line x1="72" y1="24" x2="28" y2="60" strokeLinecap="round" />
           </g>
-
-          {/* Center Navy Roundel */}
-          <circle cx="50" cy="51" r="26" fill="#0C152B" stroke="url(#rr-lux-gold)" strokeWidth="1.8" />
-
-          {/* Center Luxury Monogram RR */}
+          {/* Hand-drawn crown */}
+          <path
+            d="M34 22 L41 30 L50 18 L59 30 L66 22 L63 36 L37 36 Z"
+            fill="#FEF08A"
+            stroke="#2C2825"
+            strokeWidth="2.2"
+            strokeLinejoin="round"
+          />
+          <circle cx="50" cy="16" r="2.5" fill="#EC4899" />
+          {/* Bold Handwritten RR */}
           <text
             x="50"
-            y="61"
+            y="75"
             textAnchor="middle"
-            fontSize="30"
+            fontSize="32"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2.5"
-            fill="url(#rr-lux-gold)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             RR
           </text>
-
-          {/* Royals Banner */}
-          <rect x="25" y="73" width="50" height="9" rx="2.5" fill="#0C152B" stroke="url(#rr-lux-gold)" strokeWidth="0.8" />
-          <text
-            x="50"
-            y="80"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#FFFFFF"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            ROYALS
-          </text>
+          {/* Little pink ribbon */}
+          <path d="M34 81 Q 50 85, 66 81" stroke="#EC4899" strokeWidth="2.5" strokeLinecap="round" />
         </svg>
       );
 
-    // 6. SUNRISERS HYDERABAD (SRH) - Luxury Terracotta Amber & Basalt Noir
+    // 6. SUNRISERS HYDERABAD (SRH) - Hand-drawn rising sun & raptor eagle wings
     case 'srh':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Sunrisers Hyderabad Luxury Crest"
+          aria-label="SRH Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="srh-lux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1E1916" />
-              <stop offset="100%" stopColor="#0B0908" />
-            </linearGradient>
-            <linearGradient id="srh-lux-amber" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFCE7A" />
-              <stop offset="45%" stopColor="#E66A23" />
-              <stop offset="100%" stopColor="#9C3408" />
-            </linearGradient>
-          </defs>
-
-          {/* Luxury Shield Silhouette */}
+          {/* Wavy round shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#srh-lux-bg)"
-            stroke="url(#srh-lux-amber)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#FFEDD5"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
+          {/* Rising sun with wavy radiant beams */}
           <path
-            d="M50 9 L81 20 C81 53 68 74 50 88 C32 74 19 53 19 20 Z"
-            stroke="url(#srh-lux-amber)"
-            strokeWidth="0.8"
-            strokeOpacity="0.45"
+            d="M32 40 C 32 28, 68 28, 68 40 Z"
+            fill="#FDBA74"
+            stroke="#2C2825"
+            strokeWidth="2"
           />
-
-          {/* Architectural Falcon Wing & Sun Arc */}
-          <circle cx="50" cy="30" r="10" stroke="url(#srh-lux-amber)" strokeWidth="1" strokeDasharray="2 2" fill="none" />
-          <path d="M28 28 Q50 36 72 28 Q50 31 28 28 Z" fill="url(#srh-lux-amber)" opacity="0.85" />
-
-          {/* Center Luxury Monogram SRH */}
+          <line x1="50" y1="16" x2="50" y2="24" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="36" y1="22" x2="42" y2="28" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="64" y1="22" x2="58" y2="28" stroke="#F97316" strokeWidth="2.5" strokeLinecap="round" />
+          {/* Raptor eagle wing silhouette doodle */}
+          <path
+            d="M26 36 Q 42 44, 50 38 Q 58 44, 74 36 Q 62 52, 50 48 Q 38 52, 26 36 Z"
+            fill="#EA580C"
+            stroke="#2C2825"
+            strokeWidth="1.8"
+          />
+          {/* Bold Handwritten SRH */}
           <text
             x="50"
-            y="60"
+            y="74"
             textAnchor="middle"
             fontSize="26"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#srh-lux-amber)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             SRH
-          </text>
-
-          {/* Amber Terracotta Banner */}
-          <rect x="24" y="72" width="52" height="9" rx="2.5" fill="url(#srh-lux-amber)" />
-          <text
-            x="50"
-            y="79"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#0B0908"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            SUNRISERS
           </text>
         </svg>
       );
 
-    // 7. GUJARAT TITANS (GT) - Luxury Faceted Titanium Slate & Pale Gold
+    // 7. GUJARAT TITANS (GT) - Hand-drawn lightning bolt & diamond chevron
     case 'gt':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Gujarat Titans Luxury Crest"
+          aria-label="GT Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="gt-lux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1E2738" />
-              <stop offset="50%" stopColor="#111722" />
-              <stop offset="100%" stopColor="#070A0F" />
-            </linearGradient>
-            <linearGradient id="gt-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F5DFB3" />
-              <stop offset="50%" stopColor="#C49F5A" />
-              <stop offset="100%" stopColor="#87672B" />
-            </linearGradient>
-          </defs>
-
-          {/* Faceted Titanium Prism Kite */}
-          <polygon
-            points="50,4 90,25 77,87 50,96 23,87 10,25"
-            fill="url(#gt-lux-bg)"
-            stroke="url(#gt-lux-gold)"
+          {/* Wavy diamond chevron */}
+          <path
+            d="M50 6 L 88 38 L 50 94 L 12 38 Z"
+            fill="#CCFBF1"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
-          <polygon
-            points="50,9 83,27 72,81 50,89 28,81 17,27"
-            stroke="url(#gt-lux-gold)"
-            strokeWidth="0.8"
-            strokeOpacity="0.4"
+          {/* Hand-drawn lightning bolt doodle */}
+          <path
+            d="M54 16 L 40 38 L 52 38 L 44 62 L 62 36 L 50 36 Z"
+            fill="#FACC15"
+            stroke="#2C2825"
+            strokeWidth="2"
+            strokeLinejoin="round"
           />
-
-          {/* Geometric Precision Chevron / Lightning Accent */}
-          <polygon points="52,14 40,32 49,32 45,46 59,28 50,28" fill="url(#gt-lux-gold)" opacity="0.85" />
-
-          {/* Center Luxury Monogram GT */}
+          {/* Bold Handwritten GT */}
           <text
             x="50"
-            y="64"
+            y="78"
             textAnchor="middle"
-            fontSize="32"
+            fontSize="30"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2.5"
-            fill="url(#gt-lux-gold)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             GT
-          </text>
-
-          {/* Titanium Gold Plaque */}
-          <rect x="25" y="74" width="50" height="9" rx="2.5" fill="url(#gt-lux-gold)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="6"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#070A0F"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            TITANS
           </text>
         </svg>
       );
 
-    // 8. LUCKNOW SUPER GIANTS (LSG) - Luxury Arctic Ice Sky & Saffron/Emerald Arcs
+    // 8. LUCKNOW SUPER GIANTS (LSG) - Hand-drawn eagle wings & cricket ball
     case 'lsg':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Lucknow Super Giants Luxury Crest"
+          aria-label="LSG Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="lsg-lux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0B3C68" />
-              <stop offset="50%" stopColor="#06223D" />
-              <stop offset="100%" stopColor="#020E1C" />
-            </linearGradient>
-            <linearGradient id="lsg-lux-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#90E0EF" />
-              <stop offset="100%" stopColor="#0077B6" />
-            </linearGradient>
-          </defs>
-
-          {/* Luxury Shield Silhouette */}
+          {/* Wavy shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#lsg-lux-bg)"
-            stroke="url(#lsg-lux-cyan)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#E0F2FE"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
+          {/* Hand-drawn wings */}
           <path
-            d="M50 9 L81 20 C81 53 68 74 50 88 C32 74 19 53 19 20 Z"
-            stroke="url(#lsg-lux-cyan)"
-            strokeWidth="0.8"
-            strokeOpacity="0.45"
+            d="M24 28 C 36 28, 44 38, 50 42 C 56 38, 64 28, 76 28 C 68 44, 58 48, 50 46 C 42 48, 32 44, 24 28 Z"
+            fill="#BAE6FD"
+            stroke="#2C2825"
+            strokeWidth="2"
           />
-
-          {/* Minimalist Wing Arcs in Saffron & Emerald */}
-          <path d="M26 26 Q38 22 48 30 Q36 33 26 26 Z" fill="#E87A1E" opacity="0.9" />
-          <path d="M74 26 Q62 22 52 30 Q64 33 74 26 Z" fill="#E87A1E" opacity="0.9" />
-          <path d="M28 32 Q39 28 48 36 Q37 39 28 32 Z" fill="#2E8540" opacity="0.9" />
-          <path d="M72 32 Q61 28 52 36 Q63 39 72 32 Z" fill="#2E8540" opacity="0.9" />
-
-          {/* Center Luxury Monogram LSG */}
+          {/* Center ball */}
+          <circle cx="50" cy="38" r="7" fill="#F43F5E" stroke="#2C2825" strokeWidth="1.8" />
+          {/* Bold Handwritten LSG */}
           <text
             x="50"
-            y="60"
+            y="74"
             textAnchor="middle"
             fontSize="26"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="#FFFFFF"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             LSG
-          </text>
-
-          {/* Cyan Silver Plaque */}
-          <rect x="24" y="72" width="52" height="9" rx="2.5" fill="#FFFFFF" opacity="0.95" />
-          <text
-            x="50"
-            y="79"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#020E1C"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            SUPER GIANTS
           </text>
         </svg>
       );
 
-    // 9. DELHI CAPITALS (DC) - Luxury Heritage Venetian Navy & Scarlet Red
+    // 9. DELHI CAPITALS (DC) - Hand-drawn tiger face & red ribbon
     case 'dc':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Delhi Capitals Luxury Crest"
+          aria-label="DC Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="dc-lux-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0E274D" />
-              <stop offset="50%" stopColor="#081730" />
-              <stop offset="100%" stopColor="#030A17" />
-            </linearGradient>
-            <linearGradient id="dc-lux-red" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FF6B6B" />
-              <stop offset="50%" stopColor="#D92534" />
-              <stop offset="100%" stopColor="#8C0814" />
-            </linearGradient>
-          </defs>
-
-          {/* Luxury Shield Silhouette */}
+          {/* Wavy shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#dc-lux-bg)"
-            stroke="url(#dc-lux-red)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#DBEAFE"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
-          <path
-            d="M50 9 L81 20 C81 53 68 74 50 88 C32 74 19 53 19 20 Z"
-            stroke="url(#dc-lux-red)"
-            strokeWidth="0.8"
-            strokeOpacity="0.45"
-          />
-
-          {/* Architectural Parliament Dome & Triple Crest Arcs */}
-          <path d="M43 20 C43 14 57 14 57 20 Z" fill="#FFFFFF" opacity="0.8" />
-          <rect x="41" y="20" width="18" height="2" fill="#FFFFFF" opacity="0.8" />
-
-          {/* Center Luxury Monogram DC */}
+          {/* Hand-drawn tiger ears */}
+          <circle cx="37" cy="26" r="6" fill="#FDBA74" stroke="#2C2825" strokeWidth="1.8" />
+          <circle cx="63" cy="26" r="6" fill="#FDBA74" stroke="#2C2825" strokeWidth="1.8" />
+          {/* Tiger head outline */}
+          <circle cx="50" cy="36" r="16" fill="#FED7AA" stroke="#2C2825" strokeWidth="2" />
+          {/* Tiger stripes */}
+          <line x1="50" y1="22" x2="50" y2="28" stroke="#2C2825" strokeWidth="2" />
+          <line x1="38" y1="36" x2="42" y2="36" stroke="#2C2825" strokeWidth="2" />
+          <line x1="58" y1="36" x2="62" y2="36" stroke="#2C2825" strokeWidth="2" />
+          {/* Eyes & nose */}
+          <circle cx="45" cy="34" r="1.5" fill="#2C2825" />
+          <circle cx="55" cy="34" r="1.5" fill="#2C2825" />
+          <polygon points="50,38 48,41 52,41" fill="#E11D48" />
+          {/* Bold Handwritten DC */}
           <text
             x="50"
-            y="60"
+            y="74"
             textAnchor="middle"
             fontSize="32"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2.5"
-            fill="#FFFFFF"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             DC
-          </text>
-
-          {/* Venetian Red Ribbon */}
-          <rect x="25" y="72" width="50" height="9" rx="2.5" fill="url(#dc-lux-red)" />
-          <text
-            x="50"
-            y="79"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#FFFFFF"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            CAPITALS
           </text>
         </svg>
       );
 
-    // 10. PUNJAB KINGS (PBKS) - Luxury Bordeaux Scarlet & Warm Brushed Gold
+    // 10. PUNJAB KINGS (PBKS) - Hand-drawn lion shield & pennant
     case 'pbks':
     case 'pk':
       return (
         <svg
           viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm ${className}`}
+          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:rotate-2 ${className}`}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Punjab Kings Luxury Crest"
+          aria-label="PBKS Hand-Drawn Doodle Crest"
         >
-          <defs>
-            <linearGradient id="pbks-lux-red" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#8C1824" />
-              <stop offset="50%" stopColor="#540810" />
-              <stop offset="100%" stopColor="#240206" />
-            </linearGradient>
-            <linearGradient id="pbks-lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF4B8" />
-              <stop offset="50%" stopColor="#E2BA49" />
-              <stop offset="100%" stopColor="#9C700F" />
-            </linearGradient>
-          </defs>
-
-          {/* Luxury Shield Silhouette */}
+          {/* Wavy shield */}
           <path
-            d="M50 4 L86 17 C86 57 71 81 50 96 C29 81 14 57 14 17 Z"
-            fill="url(#pbks-lux-red)"
-            stroke="url(#pbks-lux-gold)"
+            d="M50 5 C 78 7, 88 20, 87 50 C 86 76, 72 92, 50 95 C 28 92, 14 76, 13 50 C 12 20, 22 7, 50 5 Z"
+            fill="#FFE4E6"
+            stroke="#2C2825"
             strokeWidth="2.5"
+            strokeLinejoin="round"
           />
+          {/* Crown pennant on top */}
           <path
-            d="M50 9 L81 20 C81 53 68 74 50 88 C32 74 19 53 19 20 Z"
-            stroke="url(#pbks-lux-gold)"
-            strokeWidth="0.8"
-            strokeOpacity="0.45"
+            d="M38 20 L44 26 L50 14 L56 26 L62 20 L60 30 L40 30 Z"
+            fill="#FEF08A"
+            stroke="#2C2825"
+            strokeWidth="2"
+            strokeLinejoin="round"
           />
-
-          {/* Minimalist Crown Pennants */}
-          <g fill="url(#pbks-lux-gold)">
-            <path d="M38 18 L50 11 L62 18 L58 23 L42 23 Z" />
-            <circle cx="50" cy="9.5" r="1.8" fill="#FFFFFF" />
-          </g>
-
-          {/* Center Luxury Monogram PBKS */}
+          <circle cx="50" cy="12" r="2" fill="#E11D48" />
+          {/* Hand-drawn lion profile doodle */}
+          <path
+            d="M40 36 C 40 32, 60 32, 60 36 C 60 46, 40 46, 40 36 Z"
+            fill="#FDA4AF"
+            stroke="#2C2825"
+            strokeWidth="2"
+          />
+          <circle cx="46" cy="38" r="1.5" fill="#2C2825" />
+          <circle cx="54" cy="38" r="1.5" fill="#2C2825" />
+          {/* Bold Handwritten PBKS */}
           <text
             x="50"
-            y="59"
+            y="74"
             textAnchor="middle"
-            fontSize="23"
+            fontSize="26"
             fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="1.8"
-            fill="url(#pbks-lux-gold)"
+            fontFamily="Caveat, cursive"
+            fill="#2C2825"
           >
             PBKS
-          </text>
-
-          {/* Brushed Gold Banner */}
-          <rect x="25" y="72" width="50" height="9" rx="2.5" fill="url(#pbks-lux-gold)" />
-          <text
-            x="50"
-            y="79"
-            textAnchor="middle"
-            fontSize="6"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#240206"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            PUNJAB
           </text>
         </svg>
       );
 
     default:
       return (
-        <span
-          className={`inline-flex items-center justify-center rounded-full bg-slate-800 text-[10px] font-bold text-white uppercase ${dimensionClass} ${className}`}
+        <div
+          className={`${dimensionClass} shrink-0 inline-flex items-center justify-center rounded-2xl bg-amber-100 border-2 border-[#2C2825] font-doodle font-black text-xs uppercase shadow-[2px_2px_0px_#2C2825] ${className}`}
         >
-          {fid.substring(0, 3)}
-        </span>
+          {fid.slice(0, 3)}
+        </div>
       );
   }
 }

@@ -64,46 +64,46 @@ export default function RootLayout({
           </span>
         </div>
 
-        {/* DYNAMIC THEMED HEADER */}
-        <header className="sticky top-0 z-40 border-b theme-border theme-card/90 backdrop-blur-md transition-all">
+        {/* DYNAMIC THEMED HEADER (DOODLE AESTHETIC) */}
+        <header className="sticky top-0 z-40 border-b-2 border-dashed theme-border bg-[var(--theme-surface)]/95 backdrop-blur-md transition-all font-doodle">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group">
               <div className="group-hover:scale-105 transition-transform duration-300 drop-shadow-md">
                 <AuctionArenaLogo size="md" />
               </div>
               <div>
-                <span className="font-extrabold text-base sm:text-lg tracking-tight flex items-center gap-1">
-                  IPL <span className="theme-accent-text">Auction</span> Arena
+                <span className="font-black text-xl sm:text-2xl tracking-tight flex items-center gap-1 text-[var(--theme-text)]">
+                  IPL <span className="theme-accent-text">Auction</span> Arena 🏏
                 </span>
-                <span className="hidden sm:block text-[9px] font-mono tracking-widest uppercase opacity-60">
-                  Official War Room Simulator
+                <span className="hidden sm:block text-xs font-bold opacity-75">
+                  Hand-Drawn Multiplayer War Room
                 </span>
               </div>
             </Link>
 
-            <nav className="flex items-center gap-2 sm:gap-3">
+            <nav className="flex items-center gap-2 sm:gap-3 text-base font-bold">
               <Link
                 href="/players"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
+                className="hidden sm:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-pink-100 transition-all border border-transparent hover:border-[#2C2825]"
               >
-                <Users className="w-3.5 h-3.5 opacity-60" />
+                <Users className="w-4 h-4 opacity-75" />
                 <span>Player Catalog</span>
-                <span className="text-[10px] theme-subtle-box px-1.5 py-0.5 rounded font-mono font-medium">622</span>
+                <span className="text-xs bg-pink-100 px-2 py-0.5 rounded-md border border-pink-300 font-bold">622</span>
               </Link>
 
               <Link
                 href="/rules"
-                className="hidden md:inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
+                className="hidden md:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-pink-100 transition-all border border-transparent hover:border-[#2C2825]"
               >
-                <FileText className="w-3.5 h-3.5 opacity-60" />
+                <FileText className="w-4 h-4 opacity-75" />
                 <span>Rules</span>
               </Link>
 
               <Link
                 href="/reports/sample-mega-auction-2024"
-                className="hidden xs:inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
+                className="hidden xs:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-pink-100 transition-all border border-transparent hover:border-[#2C2825]"
               >
-                <BarChart3 className="w-3.5 h-3.5 text-emerald-500" />
+                <BarChart3 className="w-4 h-4 text-emerald-600" />
                 <span>Sample Report</span>
               </Link>
 
@@ -115,22 +115,22 @@ export default function RootLayout({
 
         <main className="flex-1 flex flex-col">{children}</main>
 
-        {/* MINIMAL THEMED FOOTER */}
-        <footer className="border-t theme-border theme-card py-8 text-xs opacity-75">
+        {/* MINIMAL THEMED FOOTER (DOODLE STYLE) */}
+        <footer className="border-t-2 border-dashed theme-border bg-[var(--theme-surface)] py-8 font-doodle text-sm opacity-90">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div className="flex items-center gap-3">
               <AuctionArenaLogo size="sm" />
               <div>
-                <p className="font-bold text-sm tracking-tight">
-                  IPL <span className="theme-accent-text">Auction</span> Arena
+                <p className="font-black text-lg tracking-tight">
+                  IPL <span className="theme-accent-text">Auction</span> Arena 🏏
                 </p>
-                <p className="text-[11px] opacity-70 mt-0.5">
+                <p className="text-xs opacity-75 mt-0.5">
                   Multiplayer cricket auction simulator. 622 official BCCI players with server-authoritative bidding.
                 </p>
               </div>
             </div>
-            <div className="text-[11px] opacity-60">
-              © {new Date().getFullYear()} IPL Auction Arena. Built for competitive cricket fans.
+            <div className="text-xs opacity-70">
+              © {new Date().getFullYear()} IPL Auction Arena • Hand-drawn sketchbook edition
             </div>
           </div>
         </footer>
