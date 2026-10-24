@@ -1,109 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ========================================================
-   9 PURE PASTEL & DOODLE COLOR PALETTES
-   DEFAULT: PASTEL ROSE PINK (STICK TO PINK & PASTEL DOODLE)
+   9 PURE PASTEL COLOR PALETTES
+   DEFAULT FIXED TO: PASTEL PEACH SORBET
    ======================================================== */
 
 :root,
-[data-theme="pastel-rose"],
-[data-theme="doodle"] {
-  --theme-bg: #FFF1F5;
-  --theme-surface: #FFFFFF;
-  --theme-subtle: #FCE7F3;
-  --theme-subtle-border: #F472B6;
-  --theme-text: #2C2825;
-  --theme-muted: #831843;
-  --theme-border: #2C2825;
-  --theme-accent: #E11D48;
-  --theme-accent-hover: #BE123C;
-  --theme-accent-light: rgba(225, 29, 72, 0.15);
-  --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
-}
-
-/* 2. PASTEL LAVENDER MIST */
-[data-theme="pastel-lavender"] {
-  --theme-bg: #FAF5FF;
-  --theme-surface: #FFFFFF;
-  --theme-subtle: #F3E8FF;
-  --theme-subtle-border: #C084FC;
-  --theme-text: #2C2825;
-  --theme-muted: #581C87;
-  --theme-border: #2C2825;
-  --theme-accent: #9333EA;
-  --theme-accent-hover: #7E22CE;
-  --theme-accent-light: rgba(147, 51, 234, 0.15);
-  --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
-}
-
-/* 3. PASTEL MATCHA MINT */
-[data-theme="pastel-mint"] {
-  --theme-bg: #F0FDF4;
-  --theme-surface: #FFFFFF;
-  --theme-subtle: #DCFCE7;
-  --theme-subtle-border: #4ADE80;
-  --theme-text: #2C2825;
-  --theme-muted: #14532D;
-  --theme-border: #2C2825;
-  --theme-accent: #10B981;
-  --theme-accent-hover: #059669;
-  --theme-accent-light: rgba(16, 185, 129, 0.15);
-  --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
-}
-
-/* 4. PASTEL BUTTER CHALK */
-[data-theme="pastel-butter"] {
-  --theme-bg: #FEFCE8;
-  --theme-surface: #FFFFFF;
-  --theme-subtle: #FEF9C3;
-  --theme-subtle-border: #FACC15;
-  --theme-text: #2C2825;
-  --theme-muted: #713F12;
-  --theme-border: #2C2825;
-  --theme-accent: #D97706;
-  --theme-accent-hover: #B45309;
-  --theme-accent-light: rgba(217, 119, 6, 0.15);
-  --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
-}
-
-/* 5. PASTEL POWDER SKY */
-[data-theme="pastel-sky"] {
-  --theme-bg: #F0F9FF;
-  --theme-surface: #FFFFFF;
-  --theme-subtle: #E0F2FE;
-  --theme-subtle-border: #38BDF8;
-  --theme-text: #2C2825;
-  --theme-muted: #0C4A6E;
-  --theme-border: #2C2825;
-  --theme-accent: #0284C7;
-  --theme-accent-hover: #0369A1;
-  --theme-accent-light: rgba(2, 132, 199, 0.15);
-  --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
-}
-
-/* 6. PASTEL PEACH SORBET */
 [data-theme="pastel-peach"] {
   --theme-bg: #FFF7ED;
   --theme-surface: #FFFFFF;
   --theme-subtle: #FFEDD5;
-  --theme-subtle-border: #FB923C;
-  --theme-text: #2C2825;
+  --theme-subtle-border: #FED7AA;
+  --theme-text: #1E1B18;
   --theme-muted: #7C2D12;
-  --theme-border: #2C2825;
-  --theme-accent: #F97316;
+  --theme-border: rgba(234, 88, 12, 0.2);
+  --theme-accent: #EA580C;
   --theme-accent-hover: #C2410C;
-  --theme-accent-light: rgba(249, 115, 22, 0.15);
+  --theme-accent-light: rgba(234, 88, 12, 0.12);
   --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
+  --theme-shadow: 0 10px 30px -5px rgba(234, 88, 12, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+}
+
+/* 2. PASTEL ROSE PINK */
+[data-theme="pastel-rose"] {
+  --theme-bg: #FFF1F5;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #FCE7F3;
+  --theme-subtle-border: #FBCFE8;
+  --theme-text: #1E1B18;
+  --theme-muted: #831843;
+  --theme-border: rgba(225, 29, 72, 0.2);
+  --theme-accent: #E11D48;
+  --theme-accent-hover: #BE123C;
+  --theme-accent-light: rgba(225, 29, 72, 0.12);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(225, 29, 72, 0.08);
+}
+
+/* 3. PASTEL LAVENDER MIST */
+[data-theme="pastel-lavender"] {
+  --theme-bg: #FAF5FF;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #F3E8FF;
+  --theme-subtle-border: #E9D5FF;
+  --theme-text: #1E1B18;
+  --theme-muted: #581C87;
+  --theme-border: rgba(147, 51, 234, 0.2);
+  --theme-accent: #9333EA;
+  --theme-accent-hover: #7E22CE;
+  --theme-accent-light: rgba(147, 51, 234, 0.12);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(147, 51, 234, 0.08);
+}
+
+/* 4. PASTEL MATCHA MINT */
+[data-theme="pastel-mint"] {
+  --theme-bg: #F0FDF4;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #DCFCE7;
+  --theme-subtle-border: #BBF7D0;
+  --theme-text: #1E1B18;
+  --theme-muted: #14532D;
+  --theme-border: rgba(16, 185, 129, 0.2);
+  --theme-accent: #10B981;
+  --theme-accent-hover: #059669;
+  --theme-accent-light: rgba(16, 185, 129, 0.12);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
+}
+
+/* 5. PASTEL BUTTER CHALK */
+[data-theme="pastel-butter"] {
+  --theme-bg: #FEFCE8;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #FEF9C3;
+  --theme-subtle-border: #FEF08A;
+  --theme-text: #1E1B18;
+  --theme-muted: #713F12;
+  --theme-border: rgba(217, 119, 6, 0.2);
+  --theme-accent: #D97706;
+  --theme-accent-hover: #B45309;
+  --theme-accent-light: rgba(217, 119, 6, 0.12);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(217, 119, 6, 0.08);
+}
+
+/* 6. PASTEL POWDER SKY */
+[data-theme="pastel-sky"] {
+  --theme-bg: #F0F9FF;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #E0F2FE;
+  --theme-subtle-border: #BAE6FD;
+  --theme-text: #1E1B18;
+  --theme-muted: #0C4A6E;
+  --theme-border: rgba(2, 132, 199, 0.2);
+  --theme-accent: #0284C7;
+  --theme-accent-hover: #0369A1;
+  --theme-accent-light: rgba(2, 132, 199, 0.12);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08);
 }
 
 /* 7. PASTEL OAT PARCHMENT */
@@ -111,15 +110,15 @@
   --theme-bg: #FAF7F0;
   --theme-surface: #FFFFFF;
   --theme-subtle: #F3EFE6;
-  --theme-subtle-border: #DCD4C4;
-  --theme-text: #2C2825;
+  --theme-subtle-border: #E5DEC9;
+  --theme-text: #1E1B18;
   --theme-muted: #685E53;
-  --theme-border: #2C2825;
+  --theme-border: rgba(99, 102, 241, 0.2);
   --theme-accent: #6366F1;
   --theme-accent-hover: #4F46E5;
-  --theme-accent-light: rgba(99, 102, 241, 0.15);
+  --theme-accent-light: rgba(99, 102, 241, 0.12);
   --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
+  --theme-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.08);
 }
 
 /* 8. PASTEL COTTON CANDY */
@@ -127,15 +126,15 @@
   --theme-bg: #FFF0F5;
   --theme-surface: #FFFFFF;
   --theme-subtle: #FDF2F8;
-  --theme-subtle-border: #F472B6;
-  --theme-text: #2C2825;
+  --theme-subtle-border: #FBCFE8;
+  --theme-text: #1E1B18;
   --theme-muted: #9D174D;
-  --theme-border: #2C2825;
+  --theme-border: rgba(236, 72, 153, 0.2);
   --theme-accent: #EC4899;
   --theme-accent-hover: #DB2777;
-  --theme-accent-light: rgba(236, 72, 153, 0.15);
+  --theme-accent-light: rgba(236, 72, 153, 0.12);
   --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
+  --theme-shadow: 0 10px 30px -5px rgba(236, 72, 153, 0.08);
 }
 
 /* 9. PASTEL SAGE MIST */
@@ -143,33 +142,20 @@
   --theme-bg: #F4F7F4;
   --theme-surface: #FFFFFF;
   --theme-subtle: #E2ECE4;
-  --theme-subtle-border: #86EFAC;
-  --theme-text: #2C2825;
+  --theme-subtle-border: #C8D6CA;
+  --theme-text: #1E1B18;
   --theme-muted: #1E3A24;
-  --theme-border: #2C2825;
+  --theme-border: rgba(5, 150, 105, 0.2);
   --theme-accent: #059669;
   --theme-accent-hover: #047857;
-  --theme-accent-light: rgba(5, 150, 105, 0.15);
+  --theme-accent-light: rgba(5, 150, 105, 0.12);
   --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
+  --theme-shadow: 0 10px 30px -5px rgba(5, 150, 105, 0.08);
 }
 
-/* Backward compatibility for previous theme IDs to map cleanly into pastels */
-[data-theme="pastel"] {
-  --theme-bg: #FFF1F5;
-  --theme-surface: #FFFFFF;
-  --theme-subtle: #FCE7F3;
-  --theme-subtle-border: #F472B6;
-  --theme-text: #2C2825;
-  --theme-muted: #831843;
-  --theme-border: #2C2825;
-  --theme-accent: #E11D48;
-  --theme-accent-hover: #BE123C;
-  --theme-accent-light: rgba(225, 29, 72, 0.15);
-  --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
-}
-
+/* Backward compatibility mapping */
+[data-theme="doodle"],
+[data-theme="pastel"],
 [data-theme="midnight"],
 [data-theme="purple"],
 [data-theme="noir"],
@@ -180,38 +166,30 @@
 [data-theme="sakura"],
 [data-theme="sage"],
 [data-theme="mocha"] {
-  --theme-bg: #FFF1F5;
+  --theme-bg: #FFF7ED;
   --theme-surface: #FFFFFF;
-  --theme-subtle: #FCE7F3;
-  --theme-subtle-border: #F472B6;
-  --theme-text: #2C2825;
-  --theme-muted: #831843;
-  --theme-border: #2C2825;
-  --theme-accent: #E11D48;
-  --theme-accent-hover: #BE123C;
-  --theme-accent-light: rgba(225, 29, 72, 0.15);
+  --theme-subtle: #FFEDD5;
+  --theme-subtle-border: #FED7AA;
+  --theme-text: #1E1B18;
+  --theme-muted: #7C2D12;
+  --theme-border: rgba(234, 88, 12, 0.2);
+  --theme-accent: #EA580C;
+  --theme-accent-hover: #C2410C;
+  --theme-accent-light: rgba(234, 88, 12, 0.12);
   --theme-accent-text: #FFFFFF;
-  --theme-shadow: 4px 4px 0px #2C2825;
+  --theme-shadow: 0 10px 30px -5px rgba(234, 88, 12, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
 }
 
 /* ========================================================
    GLOBAL BODY & TYPOGRAPHY
+   Clean, sharp, modern broadcast aesthetics
    ======================================================== */
 body {
   background-color: var(--theme-bg);
   color: var(--theme-text);
-  font-family: 'Caveat', cursive, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Text class for doodle handwritten style */
-.font-doodle {
-  font-family: 'Caveat', cursive, sans-serif;
-}
-
-.font-sans-clean {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 code, kbd, samp, pre, .font-mono {
@@ -219,21 +197,21 @@ code, kbd, samp, pre, .font-mono {
 }
 
 /* ========================================================
-   DOODLE HAND-DRAWN SKETCHBOOK UTILITIES
+   CLEAN, EYE-CATCHING COMPONENT UTILITIES (NO VAGUE/DEFORMED SHAPES)
    ======================================================== */
 .theme-card {
   background-color: var(--theme-surface);
   color: var(--theme-text);
-  border: 2px solid var(--theme-border);
+  border: 1px solid var(--theme-border);
   box-shadow: var(--theme-shadow);
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border-radius: 1.5rem;
   transition: all 0.2s ease;
 }
 
 .theme-subtle-box {
   background-color: var(--theme-subtle);
-  border: 1.5px solid var(--theme-border);
-  border-radius: 20px 255px 20px 255px/255px 20px 255px 20px;
+  border: 1px solid var(--theme-border);
+  border-radius: 1rem;
 }
 
 .theme-border {
@@ -243,86 +221,41 @@ code, kbd, samp, pre, .font-mono {
 .theme-btn-primary {
   background-color: var(--theme-accent);
   color: var(--theme-accent-text);
-  border: 2px solid var(--theme-border);
-  box-shadow: 3px 3px 0px var(--theme-border);
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 14px 0 rgba(234, 88, 12, 0.25);
+  border-radius: 1rem;
   transition: all 0.15s ease;
 }
 .theme-btn-primary:hover {
-  transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0px var(--theme-border);
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(234, 88, 12, 0.35);
 }
 .theme-btn-primary:active {
-  transform: translate(3px, 3px);
-  box-shadow: none;
+  transform: translateY(1px);
 }
 
 .theme-accent-badge {
   background-color: var(--theme-subtle);
   color: var(--theme-accent);
-  border: 1.5px solid var(--theme-border);
-  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+  border: 1px solid var(--theme-border);
+  border-radius: 9999px;
 }
 
 .theme-accent-text {
   color: var(--theme-accent);
 }
 
-/* Organic Doodle Boxes */
-.doodle-box {
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--theme-border);
-  box-shadow: var(--theme-shadow);
-  transition: all 0.2s ease;
-}
-
-.doodle-box-alt {
-  border-radius: 20px 255px 20px 255px/255px 20px 255px 20px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--theme-border);
-  box-shadow: var(--theme-shadow);
-  transition: all 0.2s ease;
-}
-
-.doodle-pill {
-  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--theme-border);
-}
-
-.doodle-tape {
-  position: relative;
-}
-.doodle-tape::before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-1deg);
-  width: 70px;
-  height: 16px;
-  background-color: rgba(254, 205, 211, 0.85);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  border-left: 2px dashed rgba(44, 40, 37, 0.3);
-  border-right: 2px dashed rgba(44, 40, 37, 0.3);
-  z-index: 10;
-  pointer-events: none;
-}
-
 .ipl-card {
   background: var(--theme-surface);
-  border: 2px solid var(--theme-border);
+  border: 1px solid var(--theme-border);
   box-shadow: var(--theme-shadow);
   color: var(--theme-text);
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border-radius: 1.5rem;
   transition: all 0.2s ease;
 }
 
-/* Range input styling in doodle sketch style */
+/* Range input styling in modern athletic style */
 input[type='range'] {
   -webkit-appearance: none;
   appearance: none;
@@ -334,20 +267,20 @@ input[type='range']:focus {
 }
 input[type='range']::-webkit-slider-runnable-track {
   background: var(--theme-subtle);
-  border: 2px solid var(--theme-border);
-  height: 10px;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border: 1px solid var(--theme-border);
+  height: 8px;
+  border-radius: 9999px;
 }
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   margin-top: -6px;
   background-color: var(--theme-accent);
-  height: 22px;
-  width: 22px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
-  border: 2px solid var(--theme-border);
-  box-shadow: 2px 2px 0px var(--theme-border);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: transform 0.12s ease;
 }

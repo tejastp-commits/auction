@@ -64,50 +64,50 @@ export default function RootLayout({
           </span>
         </div>
 
-        {/* DYNAMIC THEMED HEADER (DOODLE AESTHETIC) */}
-        <header className="sticky top-0 z-40 border-b-2 border-dashed theme-border bg-[var(--theme-surface)]/95 backdrop-blur-md transition-all font-doodle">
+        {/* DYNAMIC THEMED HEADER */}
+        <header className="sticky top-0 z-40 border-b border-[#FED7AA] bg-[#FFFBF8]/95 backdrop-blur-md transition-all">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="group-hover:scale-105 transition-transform duration-300 drop-shadow-md">
+              <div className="group-hover:scale-105 transition-transform duration-300 drop-shadow-sm">
                 <AuctionArenaLogo size="md" />
               </div>
               <div>
-                <span className="font-black text-xl sm:text-2xl tracking-tight flex items-center gap-1 text-[var(--theme-text)]">
-                  IPL <span className="theme-accent-text">Auction</span> Arena 🏏
+                <span className="font-black text-lg sm:text-xl tracking-tight flex items-center gap-1.5 text-[#1E1B18]">
+                  IPL <span className="text-orange-600">Auction</span> Arena 🏏
                 </span>
-                <span className="hidden sm:block text-xs font-bold opacity-75">
-                  Hand-Drawn Multiplayer War Room
+                <span className="hidden sm:block text-[10px] font-mono tracking-widest uppercase opacity-70">
+                  Official War Room Simulator
                 </span>
               </div>
             </Link>
 
-            <nav className="flex items-center gap-2 sm:gap-3 text-base font-bold">
+            <nav className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold">
               <Link
                 href="/players"
-                className="hidden sm:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-pink-100 transition-all border border-transparent hover:border-[#2C2825]"
+                className="hidden sm:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-orange-50 transition-all text-[#1E1B18]"
               >
-                <Users className="w-4 h-4 opacity-75" />
+                <Users className="w-3.5 h-3.5 opacity-70" />
                 <span>Player Catalog</span>
-                <span className="text-xs bg-pink-100 px-2 py-0.5 rounded-md border border-pink-300 font-bold">622</span>
+                <span className="text-[10px] bg-orange-100 text-orange-900 px-1.5 py-0.5 rounded font-mono font-bold">622</span>
               </Link>
 
               <Link
                 href="/rules"
-                className="hidden md:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-pink-100 transition-all border border-transparent hover:border-[#2C2825]"
+                className="hidden md:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-orange-50 transition-all text-[#1E1B18]"
               >
-                <FileText className="w-4 h-4 opacity-75" />
+                <FileText className="w-3.5 h-3.5 opacity-70" />
                 <span>Rules</span>
               </Link>
 
               <Link
                 href="/reports/sample-mega-auction-2024"
-                className="hidden xs:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-pink-100 transition-all border border-transparent hover:border-[#2C2825]"
+                className="hidden xs:inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 px-3 py-1.5 rounded-xl hover:bg-orange-50 transition-all text-[#1E1B18]"
               >
-                <BarChart3 className="w-4 h-4 text-emerald-600" />
+                <BarChart3 className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Sample Report</span>
               </Link>
 
-              {/* ANCHORED LUXURY THEME PICKER */}
+              {/* ANCHORED SIDE PALETTE PICKER */}
               <ThemeCustomizer />
             </nav>
           </div>
@@ -115,22 +115,22 @@ export default function RootLayout({
 
         <main className="flex-1 flex flex-col">{children}</main>
 
-        {/* MINIMAL THEMED FOOTER (DOODLE STYLE) */}
-        <footer className="border-t-2 border-dashed theme-border bg-[var(--theme-surface)] py-8 font-doodle text-sm opacity-90">
+        {/* MINIMAL THEMED FOOTER */}
+        <footer className="border-t border-[#FED7AA] bg-[#FFFBF8] py-8 text-xs text-[#786C64]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div className="flex items-center gap-3">
               <AuctionArenaLogo size="sm" />
               <div>
-                <p className="font-black text-lg tracking-tight">
-                  IPL <span className="theme-accent-text">Auction</span> Arena 🏏
+                <p className="font-extrabold text-sm tracking-tight text-[#1E1B18]">
+                  IPL <span className="text-orange-600">Auction</span> Arena 🏏
                 </p>
-                <p className="text-xs opacity-75 mt-0.5">
+                <p className="text-[11px] opacity-75 mt-0.5">
                   Multiplayer cricket auction simulator. 622 official BCCI players with server-authoritative bidding.
                 </p>
               </div>
             </div>
-            <div className="text-xs opacity-70">
-              © {new Date().getFullYear()} IPL Auction Arena • Hand-drawn sketchbook edition
+            <div className="text-[11px] opacity-70">
+              © {new Date().getFullYear()} IPL Auction Arena. Built for competitive cricket fans.
             </div>
           </div>
         </footer>

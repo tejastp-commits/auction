@@ -7,6 +7,7 @@ import FranchiseLogo from '@/components/FranchiseLogo';
 import AuctionArenaLogo from '@/components/AuctionArenaLogo';
 import DoodleSection from '@/components/DoodleSection';
 import DoodleFlag from '@/components/DoodleFlag';
+import FranchiseRosterModal from '@/components/FranchiseRosterModal';
 import { THEMES } from '@/components/ThemeCustomizer';
 import { POOL_PRESETS, CURATED_SETS } from '@/data/curated-pools';
 import { VERIFIED_PLAYERS, PlayerRole } from '@/data/players';
@@ -70,6 +71,8 @@ export default function LandingPage() {
 
   // Hovered Franchise Table State
   const [hoveredTeam, setHoveredTeam] = useState<string | null>(null);
+  // Selected Franchise for 2026 Roster Modal
+  const [selectedFranchiseForRoster, setSelectedFranchiseForRoster] = useState<string | null>(null);
 
   // Memoized Search Filter for 622 BCCI Players
   const filteredPlayers = useMemo(() => {
@@ -163,11 +166,11 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-between py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-colors relative overflow-hidden font-doodle text-lg">
+    <div className="flex-1 flex flex-col justify-between py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-colors relative overflow-hidden text-[#1E1B18]">
       
-      {/* BACKGROUND LUXURY AMBIENT GLOWS & STADIUM CURVED RINGS */}
-      <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-pink-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute top-[35%] right-[-100px] w-[500px] h-[500px] bg-rose-500/10 blur-[140px] rounded-full pointer-events-none -z-10" />
+      {/* BACKGROUND WARM PEACH AMBIENT GLOWS */}
+      <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-orange-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-[35%] right-[-100px] w-[500px] h-[500px] bg-amber-500/10 blur-[140px] rounded-full pointer-events-none -z-10" />
 
       {/* ========================================================
           HERO SECTION: DUAL-COLUMN BROADCAST COMMAND DECK
@@ -180,80 +183,33 @@ export default function LandingPage() {
             
             {/* Status Pills */}
             <div className="flex flex-wrap items-center gap-2.5">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full theme-accent-badge text-xs sm:text-sm font-black tracking-wide shadow-sm border border-amber-500/25">
-                <span className="w-2.5 h-2.5 rounded-full theme-btn-primary animate-ping" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-900 border border-orange-200 text-xs sm:text-sm font-black tracking-wide shadow-xs">
+                <span className="w-2.5 h-2.5 rounded-full bg-orange-600 animate-ping" />
                 <span>IPL 2026 WAR ROOM LIVE</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full theme-subtle-box text-xs sm:text-sm font-bold border theme-border">
-                <Radio className="w-4 h-4 theme-accent-text animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-xs sm:text-sm font-bold border border-[#FED7AA] shadow-xs">
+                <Radio className="w-4 h-4 text-orange-600 animate-pulse" />
                 <span>Live Multiplayer War Rooms</span>
               </div>
-              <button
-                type="button"
-                onClick={() => {
-                  const theme = THEMES.find((t) => t.id === 'doodle') || THEMES[0];
-                  const root = document.documentElement;
-                  root.setAttribute('data-theme', theme.id);
-                  root.style.setProperty('--theme-bg', theme.bg);
-                  root.style.setProperty('--theme-surface', theme.surface);
-                  root.style.setProperty('--theme-subtle', theme.subtle);
-                  root.style.setProperty('--theme-subtle-border', theme.subtleBorder);
-                  root.style.setProperty('--theme-text', theme.text);
-                  root.style.setProperty('--theme-muted', theme.muted);
-                  root.style.setProperty('--theme-border', theme.border);
-                  root.style.setProperty('--theme-accent', theme.accent);
-                  root.style.setProperty('--theme-accent-hover', theme.accentHover);
-                  root.style.setProperty('--theme-accent-light', `${theme.accent}28`);
-                  root.style.setProperty('--theme-shadow', theme.shadow);
-                  localStorage.setItem('auction_theme_id', theme.id);
-                  localStorage.removeItem('auction_custom_accent');
-                }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-100 text-amber-950 dark:bg-amber-950/40 dark:text-amber-200 text-xs font-black border border-amber-300 dark:border-amber-700/50 hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-sm"
-                title="Switch entire website to Hand-Drawn Pastel Doodle Mode"
-              >
-                <span>✏️ Pastel Doodle Mode</span>
-              </button>
             </div>
 
             {/* Headline */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] text-[#1E1B18]">
                 Command the Table.{' '}
-                <span className="block theme-accent-text relative">
+                <span className="block text-orange-600">
                   IPL Auction Arena.
-                  {/* Hand-Drawn Squiggly Underline */}
-                  <svg
-                    className="w-48 sm:w-64 h-3.5 text-[var(--theme-accent)] opacity-80 mt-1 block"
-                    viewBox="0 0 200 12"
-                    fill="none"
-                    preserveAspectRatio="none"
-                  >
-                    <path
-                      d="M3 8 C 40 2, 75 11, 110 5 C 145 1, 175 10, 197 6"
-                      stroke="currentColor"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                    />
-                  </svg>
                 </span>
               </h1>
-              <p className="mt-3.5 text-base sm:text-lg opacity-80 leading-snug max-w-2xl font-medium">
-                Live multiplayer franchise bidding war. ₹120 Cr purses, BCCI increment paddles, and 5-year curated player pools.
+              <p className="mt-3.5 text-base sm:text-lg text-[#786C64] leading-relaxed max-w-2xl font-medium">
+                Live multiplayer franchise bidding war. ₹120 Cr purses, official BCCI increment paddles, and 5-year curated player pools.
               </p>
-              <div className="font-doodle text-lg text-[var(--theme-accent)] flex items-center gap-1.5 mt-2 opacity-90 font-bold">
-                <span>✍️</span>
-                <span>Select a seat, nominate 300 curated stars & bid in real-time</span>
-              </div>
             </div>
 
             {/* THE ARENA CONSOLE (ENLARGED CONTROLS & SPACING) */}
-            <div className="theme-card rounded-[2.5rem] rounded-tr-[4.5rem] p-6 sm:p-8 shadow-2xl relative border theme-border">
-              {/* Hand-drawn Sticky Note Tape on Console */}
-              <div className="hidden sm:block absolute -top-3.5 -right-3 px-3.5 py-1 bg-amber-200 text-amber-950 font-doodle text-lg font-bold rounded-lg border border-amber-400 rotate-6 shadow-md pointer-events-none z-10">
-                Start Here! ✏️
-              </div>
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl relative border border-[#FED7AA]">
               {/* Tab Switcher */}
-              <div className="flex rounded-2xl theme-subtle-box p-1.5 mb-6 border theme-border">
+              <div className="flex rounded-2xl bg-[#FFF7ED] p-1.5 mb-6 border border-[#FED7AA]">
                 <button
                   type="button"
                   onClick={() => setActiveTab('create')}
@@ -804,47 +760,43 @@ export default function LandingPage() {
             return (
               <div
                 key={team.id}
+                onClick={() => setSelectedFranchiseForRoster(team.id)}
                 onMouseEnter={() => setHoveredTeam(team.id)}
                 onMouseLeave={() => setHoveredTeam(null)}
-                className={`p-3.5 rounded-2xl border theme-border theme-card transition-all duration-300 cursor-default relative overflow-hidden group ${
-                  isHovered ? 'scale-105 shadow-xl ring-2 ring-[var(--theme-accent)] z-10' : 'hover:scale-[1.02]'
+                className={`p-3.5 rounded-2xl border border-[#FED7AA] bg-white transition-all duration-200 cursor-pointer relative overflow-hidden group shadow-xs ${
+                  isHovered ? 'scale-105 shadow-xl border-orange-500 ring-2 ring-orange-400/40 z-10' : 'hover:scale-[1.02]'
                 }`}
+                title={`Click to view ${team.name} 2026 Squad Roster`}
               >
                 {/* Top: Emblem & Code */}
                 <div className="flex items-center justify-between mb-2.5">
-                  <div className="w-12 h-12 rounded-2xl p-1 flex items-center justify-center shadow-[2px_2px_0px_#2C2825] bg-white border-2 border-[#2C2825] transition-transform group-hover:scale-110">
+                  <div className="w-12 h-12 rounded-xl p-1 flex items-center justify-center shadow-xs bg-orange-50/50 border border-[#FED7AA] transition-transform group-hover:scale-110">
                     <FranchiseLogo franchiseId={team.id} size="lg" />
                   </div>
-                  <span className="text-xs font-black px-2 py-0.5 rounded-lg bg-pink-100 border border-pink-300">
+                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-orange-100 text-orange-950 border border-orange-200">
                     {team.shortName}
                   </span>
                 </div>
 
                 {/* Team Info */}
                 <div className="space-y-0.5">
-                  <div className="text-xs sm:text-sm font-black truncate">
+                  <div className="text-xs sm:text-sm font-extrabold truncate text-[#1E1B18]">
                     {team.name}
                   </div>
-                  <div className="flex items-center justify-between text-[11px] opacity-70">
+                  <div className="flex items-center justify-between text-[11px] text-[#786C64]">
                     <span>{team.city}</span>
-                    <span className="font-bold text-[10px] theme-accent-text">
+                    <span className="font-bold text-[10px] text-orange-700">
                       {team.titles > 0 ? `${team.titles}x Champion` : 'Contender'}
                     </span>
                   </div>
                 </div>
 
-                {/* Trophies & Purse */}
-                <div className="mt-2 pt-2 border-t theme-border flex items-center justify-between">
-                  <div className="flex items-center gap-0.5 text-xs">
-                    {team.titles > 0 ? (
-                      Array.from({ length: team.titles }).map((_, i) => (
-                        <span key={i} className="text-[11px] leading-none">⭐</span>
-                      ))
-                    ) : (
-                      <span className="text-[9px] opacity-40">Chasing #1</span>
-                    )}
-                  </div>
-                  <span className="text-[10px] font-mono font-bold opacity-60">
+                {/* 2026 Roster Trigger & Purse */}
+                <div className="mt-2.5 pt-2 border-t border-[#FED7AA] flex items-center justify-between text-xs">
+                  <span className="text-orange-700 font-bold group-hover:underline text-[11px] flex items-center gap-0.5">
+                    2026 Squad →
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-[#786C64]">
                     ₹120 Cr
                   </span>
                 </div>
@@ -852,6 +804,12 @@ export default function LandingPage() {
             );
           })}
         </div>
+
+        {/* 2026 FRANCHISE ROSTER MODAL */}
+        <FranchiseRosterModal
+          franchiseId={selectedFranchiseForRoster}
+          onClose={() => setSelectedFranchiseForRoster(null)}
+        />
       </section>
 
       {/* ========================================================
