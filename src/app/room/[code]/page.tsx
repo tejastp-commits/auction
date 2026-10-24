@@ -7,6 +7,7 @@ import { formatRupees, getNextMinimumBid, getQuickBidOptions, CRORE } from '@/li
 import { AuctionRoomState, RoomParticipant, AuctionPlayerItem } from '@/lib/types';
 import confetti from 'canvas-confetti';
 import Link from 'next/link';
+import FranchiseLogo from '@/components/FranchiseLogo';
 import OrganizerPoolModal from './OrganizerPoolModal';
 
 export default function AuctionRoomPage() {
@@ -24,6 +25,7 @@ export default function AuctionRoomPage() {
   const [copiedCode, setCopiedCode] = useState(false);
   const [customBidAmountCr, setCustomBidAmountCr] = useState<string>('');
   const [isPoolModalOpen, setIsPoolModalOpen] = useState(false);
+  const [isSkipping, setIsSkipping] = useState(false);
 
   // Join modal state
   const [isJoiningUser, setIsJoiningUser] = useState(false);
@@ -191,11 +193,6 @@ export default function AuctionRoomPage() {
       const msRemaining = room.timerDeadlineAt! - effectiveNow;
       const seconds = Math.max(0, Math.ceil(msRemaining / 1000));
       setTimeLeft(seconds);
-
-      // Trigger automatic finalization if timer hits 0
-      if (seconds === 0 && room.status === 'ACTIVE') {
-        autoFinalize();
-      }
     };
 
     updateTimer();
@@ -216,16 +213,6 @@ export default function AuctionRoomPage() {
       } catch (e) {}
     }
   }, [room?.status]);
-
-  const autoFinalize = async () => {
-    try {
-      await fetch('/api/auction/finalize', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ roomCode, sessionToken }),
-      });
-    } catch (e) {}
-  };
 
   // User participant and franchise info
   const currentParticipant = room?.participants.find((p) => p.sessionToken === sessionToken);
@@ -336,28 +323,25 @@ export default function AuctionRoomPage() {
     handlePlaceBid(targetAmount);
   };
 
-  const handleFinalize = async () => {
-    try {
-      const res = await fetch('/api/auction/finalize', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ roomCode, sessionToken }),
-      });
-      const data = await res.json();
-      if (res.ok && data.room) setRoom(data.room);
-    } catch (e) {}
-  };
-
   const handleSkip = async () => {
+    if (isSkipping || !currentPlayerItem) return;
+    setIsSkipping(true);
     try {
       const res = await fetch('/api/auction/skip', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ roomCode, sessionToken }),
+        body: JSON.stringify({
+          roomCode,
+          sessionToken,
+          targetAuctionPlayerId: currentPlayerItem.id,
+        }),
       });
       const data = await res.json();
       if (res.ok && data.room) setRoom(data.room);
-    } catch (e) {}
+    } catch (e) {
+    } finally {
+      setIsSkipping(false);
+    }
   };
 
   const handleTogglePause = async () => {
@@ -630,14 +614,8 @@ export default function AuctionRoomPage() {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-md"
-                        style={{
-                          backgroundColor: franchise.primaryColor,
-                          color: franchise.secondaryColor,
-                        }}
-                      >
-                        {franchise.logo}
+                      <div className="w-10 h-10 rounded-xl p-1 flex items-center justify-center shadow-md bg-slate-900 border border-slate-700/80">
+                        <FranchiseLogo franchiseId={franchise.id} size="md" />
                       </div>
                       <span className="text-xs font-black text-slate-400">{franchise.shortName}</span>
                     </div>
@@ -715,8 +693,8 @@ export default function AuctionRoomPage() {
 
                     <div className="text-slate-400">
                       {team ? (
-                        <span className="font-semibold text-slate-300 flex items-center gap-1">
-                          <span>{team.logo}</span>
+                        <span className="font-semibold text-slate-300 flex items-center gap-1.5">
+                          <FranchiseLogo franchiseId={team.id} size="xs" />
                           <span>{team.shortName}</span>
                         </span>
                       ) : (
@@ -873,19 +851,15 @@ export default function AuctionRoomPage() {
               </button>
               <button
                 onClick={handleSkip}
-                className="py-1.5 px-3 rounded-lg text-xs font-bold border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-300"
+                disabled={isSkipping}
+                className="py-1.5 px-3 rounded-lg text-xs font-bold border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-300 disabled:opacity-50 cursor-pointer"
+                title="Skip to next player"
               >
-                Skip ⏭
-              </button>
-              <button
-                onClick={handleFinalize}
-                className="py-1.5 px-3 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow"
-              >
-                Sell Now 🔨
+                {isSkipping ? 'Skipping...' : 'Skip Player ⏭'}
               </button>
               <button
                 onClick={handleFinishAuction}
-                className="py-1.5 px-2.5 rounded-lg text-[11px] font-bold text-red-400 hover:bg-red-500/10"
+                className="py-1.5 px-2.5 rounded-lg text-[11px] font-bold text-red-400 hover:bg-red-500/10 cursor-pointer"
               >
                 End Auction
               </button>
@@ -1006,7 +980,7 @@ export default function AuctionRoomPage() {
                     </span>
                     {leadingFranchise ? (
                       <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-700 bg-slate-950 font-bold text-white text-sm">
-                        <span>{leadingFranchise.logo}</span>
+                        <FranchiseLogo franchiseId={leadingFranchise.id} size="sm" />
                         <span>{leadingFranchise.name}</span>
                       </div>
                     ) : (
@@ -1155,7 +1129,7 @@ export default function AuctionRoomPage() {
                       className="p-2 rounded-lg bg-slate-900/60 border border-slate-800/80 flex items-center justify-between text-xs"
                     >
                       <div className="flex items-center gap-2">
-                        <span>{f?.logo}</span>
+                        <FranchiseLogo franchiseId={bid.franchiseId} size="xs" />
                         <span className="font-bold text-white">{f?.name || bid.franchiseId}</span>
                       </div>
                       <span className="font-mono font-extrabold text-amber-400">
@@ -1249,7 +1223,7 @@ export default function AuctionRoomPage() {
                   >
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">{f.logo}</span>
+                        <FranchiseLogo franchiseId={f.id} size="xs" />
                         <span className="text-xs font-bold text-white">
                           {f.shortName} {isMine && '(You)'}
                         </span>

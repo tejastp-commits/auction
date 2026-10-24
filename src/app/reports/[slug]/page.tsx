@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { AuctionReportData } from '@/lib/types';
 import { formatRupees, CRORE } from '@/lib/currency';
 import { FRANCHISE_MAP } from '@/data/franchises';
+import FranchiseLogo from '@/components/FranchiseLogo';
 import Link from 'next/link';
 
 export default function OverallReportPage() {
@@ -172,14 +173,8 @@ export default function OverallReportPage() {
                     #{idx + 1}
                   </div>
 
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shrink-0 shadow"
-                    style={{
-                      backgroundColor: franchise?.primaryColor,
-                      color: franchise?.secondaryColor,
-                    }}
-                  >
-                    {franchise?.logo}
+                  <div className="w-10 h-10 rounded-xl p-1 flex items-center justify-center shrink-0 shadow bg-slate-900 border border-slate-700">
+                    <FranchiseLogo franchiseId={team.franchiseId} size="md" />
                   </div>
 
                   <div>
@@ -280,7 +275,7 @@ export default function OverallReportPage() {
                     <td className="py-3 px-3 text-slate-300 font-medium">{item.player.primaryRole}</td>
                     <td className="py-3 px-3">
                       <span className="inline-flex items-center gap-1.5 font-semibold text-slate-200">
-                        <span>{f?.logo}</span>
+                        <FranchiseLogo franchiseId={item.franchiseId} size="xs" />
                         <span>{f?.name || item.franchiseName}</span>
                       </span>
                     </td>

@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     if (forwarded) return forwarded;
 
     const body = await req.json();
-    const { roomCode, sessionToken } = body;
+    const { roomCode, sessionToken, autoRequeue, targetAuctionPlayerId, auctionPlayerId } = body;
 
     if (!roomCode || !sessionToken) {
       return NextResponse.json(
@@ -19,7 +19,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const updatedRoom = AuctionStore.skipPlayer(roomCode, sessionToken);
+    const targetId = targetAuctionPlayerId || auctionPlayerId;
+    const updatedRoom = AuctionStore.skipPlayer(
+      roomCode,
+      sessionToken,
+      Boolean(autoRequeue),
+      targetId
+    );
 
     return NextResponse.json({
       success: true,

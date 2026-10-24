@@ -686,7 +686,11 @@ export class AuctionStore {
   /**
    * Finalizes the current player in auction (sells to highest bidder or marks unsold)
    */
-  static finalizePlayer(roomCode: string, sessionToken: string): AuctionRoomState {
+  static finalizePlayer(
+    roomCode: string,
+    sessionToken: string,
+    targetAuctionPlayerId?: string
+  ): AuctionRoomState {
     const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
 
@@ -695,18 +699,34 @@ export class AuctionStore {
       throw new Error('Only the host can manually finalize or sell a player.');
     }
 
-    this.autoFinalizeCurrentPlayer(room);
+    const currentPlayer = room.queue[room.currentPlayerIndex];
+    if (!currentPlayer || currentPlayer.status !== 'IN_AUCTION') {
+      return { ...room, serverTime: Date.now() };
+    }
+
+    // TARGET GUARD: Prevent double-skip/double-finalize race conditions
+    if (targetAuctionPlayerId && currentPlayer.id !== targetAuctionPlayerId) {
+      return { ...room, serverTime: Date.now() };
+    }
+
+    this.autoFinalizeCurrentPlayer(room, true);
     return { ...room, serverTime: Date.now() };
   }
 
   /**
    * Internal auto-finalization triggered by timer expiration or host action
    */
-  private static autoFinalizeCurrentPlayer(room: AuctionRoomState): void {
+  private static autoFinalizeCurrentPlayer(room: AuctionRoomState, force: boolean = false): void {
     if (room.status !== 'ACTIVE') return;
 
     const currentPlayer = room.queue[room.currentPlayerIndex];
     if (!currentPlayer || currentPlayer.status !== 'IN_AUCTION') return;
+
+    // Safety guard against double-expiration race conditions:
+    // If not explicitly forced by host, the active timer MUST have genuinely expired
+    if (!force && room.timerDeadlineAt && Date.now() < room.timerDeadlineAt) {
+      return;
+    }
 
     if (room.currentBidAmount > 0 && room.currentBidFranchiseId) {
       // SOLD!
@@ -796,7 +816,8 @@ export class AuctionStore {
   static skipPlayer(
     roomCode: string,
     sessionToken: string,
-    autoRequeue: boolean = false
+    autoRequeue: boolean = false,
+    targetAuctionPlayerId?: string
   ): AuctionRoomState {
     const room = findRoom(roomCode);
     if (!room) throw new Error('Room not found');
@@ -810,6 +831,15 @@ export class AuctionStore {
     }
 
     const currentPlayer = room.queue[room.currentPlayerIndex];
+    if (!currentPlayer || currentPlayer.status !== 'IN_AUCTION') {
+      return { ...room, serverTime: Date.now() };
+    }
+
+    // TARGET GUARD: If targetAuctionPlayerId is provided, prevent double-skipping next player
+    if (targetAuctionPlayerId && currentPlayer.id !== targetAuctionPlayerId) {
+      return { ...room, serverTime: Date.now() };
+    }
+
     if (currentPlayer) {
       currentPlayer.status = 'SKIPPED';
       currentPlayer.skippedAt = new Date().toISOString();

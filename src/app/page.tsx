@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { IPL_FRANCHISES } from '@/data/franchises';
+import FranchiseLogo from '@/components/FranchiseLogo';
 import { POOL_PRESETS } from '@/data/curated-pools';
 import { CRORE } from '@/lib/currency';
 import Link from 'next/link';
@@ -708,10 +709,9 @@ export default function LandingPage() {
             >
               <div className="flex items-center justify-between mb-3">
                 <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-base shadow-md group-hover:scale-105 transition-transform"
-                  style={{ backgroundColor: team.primaryColor, color: team.secondaryColor }}
+                  className="w-10 h-10 rounded-xl p-1 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform bg-slate-900 border theme-border"
                 >
-                  {team.logo}
+                  <FranchiseLogo franchiseId={team.id} size="md" />
                 </div>
                 <span className="text-[10px] font-bold font-mono tracking-wider px-2 py-0.5 rounded theme-subtle-box border theme-border">
                   {team.shortName}

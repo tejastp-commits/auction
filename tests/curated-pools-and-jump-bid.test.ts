@@ -160,4 +160,72 @@ describe('Curated Player Pools & Official Incremental Bidding Suite', () => {
       }).toThrow(/Insufficient purse/);
     });
   });
+
+  describe('Single-Player Atomic Skip & Anti-Double-Skip Guards', () => {
+    it('skips only the target active player and does NOT skip the subsequent player', () => {
+      const { room, hostToken } = AuctionStore.createRoom('Auctioneer', {
+        auctionPoolSize: 150,
+      });
+
+      AuctionStore.startAuction(room.roomCode, hostToken);
+      const activeRoom = AuctionStore.getRoom(room.roomCode)!;
+
+      const player1 = activeRoom.queue[activeRoom.currentPlayerIndex];
+      const nextPendingIdx = activeRoom.queue.findIndex(
+        (q, idx) => idx > activeRoom.currentPlayerIndex && q.status === 'PENDING'
+      );
+      const player2 = activeRoom.queue[nextPendingIdx];
+
+      expect(player1.status).toBe('IN_AUCTION');
+      expect(player2.status).toBe('PENDING');
+
+      // Skip player 1 targeting player 1's ID
+      const afterSkip1 = AuctionStore.skipPlayer(
+        room.roomCode,
+        hostToken,
+        false,
+        player1.id
+      );
+
+      // Verify player 1 is skipped
+      const skippedPlayer1 = afterSkip1.queue.find((q) => q.id === player1.id)!;
+      expect(skippedPlayer1.status).toBe('SKIPPED');
+
+      // Verify player 2 is now in auction (NOT skipped)
+      const currentInAuction = afterSkip1.queue[afterSkip1.currentPlayerIndex];
+      expect(currentInAuction.id).toBe(player2.id);
+      expect(currentInAuction.status).toBe('IN_AUCTION');
+
+      // Now simulate a duplicate/stale skip request intended for player 1 arriving again
+      const afterStaleSkip = AuctionStore.skipPlayer(
+        room.roomCode,
+        hostToken,
+        false,
+        player1.id // Target ID is player 1, but player 2 is now in hot seat
+      );
+
+      // Verify player 2 was NOT skipped!
+      const stillActive = afterStaleSkip.queue[afterStaleSkip.currentPlayerIndex];
+      expect(stillActive.id).toBe(player2.id);
+      expect(stillActive.status).toBe('IN_AUCTION');
+    });
+
+    it('protects newly introduced player from timer auto-finalization when deadline is in the future', () => {
+      const { room, hostToken } = AuctionStore.createRoom('Auctioneer', {
+        bidTimerSeconds: 15,
+        auctionPoolSize: 150,
+      });
+
+      AuctionStore.startAuction(room.roomCode, hostToken);
+      const activeRoom = AuctionStore.getRoom(room.roomCode)!;
+
+      // Timer deadline is in the future
+      expect(activeRoom.timerDeadlineAt).toBeGreaterThan(Date.now());
+
+      // Calling getRoom should NOT auto-finalize the player because deadline is in the future
+      const roomCheck = AuctionStore.getRoom(room.roomCode)!;
+      const current = roomCheck.queue[roomCheck.currentPlayerIndex];
+      expect(current.status).toBe('IN_AUCTION');
+    });
+  });
 });

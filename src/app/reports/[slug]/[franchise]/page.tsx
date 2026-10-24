@@ -6,6 +6,7 @@ import { AuctionReportData } from '@/lib/types';
 import { TeamEvaluation } from '@/lib/analytics';
 import { formatRupees, CRORE } from '@/lib/currency';
 import { FRANCHISE_MAP } from '@/data/franchises';
+import FranchiseLogo from '@/components/FranchiseLogo';
 import Link from 'next/link';
 
 export default function FranchiseReportPage() {
@@ -90,14 +91,8 @@ export default function FranchiseReportPage() {
       <div className="ipl-card p-6 sm:p-8 rounded-3xl border border-slate-800 mb-8 relative overflow-hidden">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-slate-800">
           <div className="flex items-center gap-5">
-            <div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center font-black text-3xl shadow-xl shrink-0"
-              style={{
-                backgroundColor: franchise.primaryColor,
-                color: franchise.secondaryColor,
-              }}
-            >
-              {franchise.logo}
+            <div className="w-16 h-16 rounded-2xl p-1.5 flex items-center justify-center shadow-xl shrink-0 bg-slate-900 border border-slate-700">
+              <FranchiseLogo franchiseId={franchise.id} size="xl" />
             </div>
 
             <div>
