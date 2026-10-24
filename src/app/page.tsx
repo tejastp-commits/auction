@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { IPL_FRANCHISES } from '@/data/franchises';
 import FranchiseLogo from '@/components/FranchiseLogo';
 import AuctionArenaLogo from '@/components/AuctionArenaLogo';
-import { POOL_PRESETS } from '@/data/curated-pools';
-import { CRORE } from '@/lib/currency';
+import { POOL_PRESETS, CURATED_SETS } from '@/data/curated-pools';
+import { VERIFIED_PLAYERS, PlayerRole } from '@/data/players';
+import { CRORE, formatRupees } from '@/lib/currency';
 import Link from 'next/link';
 import {
   Gavel,
@@ -26,9 +27,12 @@ import {
   Sliders,
   CheckCircle2,
   Flame,
-  ChevronRight,
   Radio,
-  Award,
+  Search,
+  Filter,
+  Layers,
+  Building2,
+  TrendingUp,
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -53,16 +57,10 @@ export default function LandingPage() {
   // Active tab in hero console
   const [activeTab, setActiveTab] = useState<'create' | 'join'>('create');
 
-  // Interactive Live War Room Preview State (Tactile Broadcast Demo)
-  const [demoBidCr, setDemoBidCr] = useState<number>(21.5);
-  const [demoLeader, setDemoLeader] = useState<string>('RCB');
-  const [demoTimer, setDemoTimer] = useState<number>(8);
-  const [hammerActive, setHammerActive] = useState<boolean>(false);
-  const [demoHistory, setDemoHistory] = useState<Array<{ team: string; amount: number; time: string }>>([
-    { team: 'RCB', amount: 21.5, time: 'Just now' },
-    { team: 'CSK', amount: 21.0, time: '4s ago' },
-    { team: 'MI', amount: 20.5, time: '8s ago' },
-  ]);
+  // Right-side Tactical Intelligence Deck State
+  const [scoutTab, setScoutTab] = useState<'players' | 'sets' | 'franchises'>('players');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [roleFilter, setRoleFilter] = useState<'ALL' | PlayerRole>('ALL');
 
   // Interactive Hover State for "Built for Serious Cricket Competition" Steps
   const [hoveredStep, setHoveredStep] = useState<number>(1);
@@ -70,18 +68,19 @@ export default function LandingPage() {
   // Hovered Franchise Table State
   const [hoveredTeam, setHoveredTeam] = useState<string | null>(null);
 
-  const handleDemoBid = (teamName: string, increment: number) => {
-    const nextBid = +(demoBidCr + increment).toFixed(2);
-    setDemoBidCr(nextBid);
-    setDemoLeader(teamName);
-    setDemoTimer(12);
-    setHammerActive(true);
-    setTimeout(() => setHammerActive(false), 600);
-    setDemoHistory((prev) => [
-      { team: teamName, amount: nextBid, time: 'Just now' },
-      ...prev.slice(0, 2),
-    ]);
-  };
+  // Memoized Search Filter for 622 BCCI Players
+  const filteredPlayers = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    return VERIFIED_PLAYERS.filter((player) => {
+      const matchesQuery =
+        !q ||
+        player.canonicalName.toLowerCase().includes(q) ||
+        player.nationality.toLowerCase().includes(q) ||
+        player.primaryRole.toLowerCase().includes(q);
+      const matchesRole = roleFilter === 'ALL' || player.primaryRole === roleFilter;
+      return matchesQuery && matchesRole;
+    }).slice(0, 30);
+  }, [searchQuery, roleFilter]);
 
   const handleCreateRoom = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -164,8 +163,8 @@ export default function LandingPage() {
     <div className="flex-1 flex flex-col justify-between py-6 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-colors relative overflow-hidden">
       
       {/* BACKGROUND LUXURY AMBIENT GLOWS & STADIUM CURVED RINGS */}
-      <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-amber-500/10 blur-[120px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute top-[35%] right-[-100px] w-[450px] h-[450px] bg-blue-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-[35%] right-[-100px] w-[500px] h-[500px] bg-blue-500/10 blur-[140px] rounded-full pointer-events-none -z-10" />
 
       {/* ========================================================
           HERO SECTION: DUAL-COLUMN BROADCAST COMMAND DECK
@@ -173,24 +172,24 @@ export default function LandingPage() {
       <section className="relative mb-14 sm:mb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* LEFT: TITLE & LAUNCH CONSOLE */}
+          {/* LEFT: COMMAND CONSOLE (ENLARGED & PROMINENT) */}
           <div className="lg:col-span-7 space-y-6">
             
             {/* Status Pills */}
             <div className="flex flex-wrap items-center gap-2.5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full theme-accent-badge text-xs font-bold tracking-wide shadow-sm border border-amber-500/20">
-                <span className="w-2 h-2 rounded-full theme-btn-primary animate-ping" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full theme-accent-badge text-xs sm:text-sm font-black tracking-wide shadow-sm border border-amber-500/25">
+                <span className="w-2.5 h-2.5 rounded-full theme-btn-primary animate-ping" />
                 <span>IPL 2026 WAR ROOM LIVE</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full theme-subtle-box text-xs font-semibold border theme-border">
-                <Radio className="w-3.5 h-3.5 theme-accent-text animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full theme-subtle-box text-xs sm:text-sm font-bold border theme-border">
+                <Radio className="w-4 h-4 theme-accent-text animate-pulse" />
                 <span>Official Increments: +10L / +25L</span>
               </div>
             </div>
 
             {/* Headline */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.06]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
                 Command the Table.{' '}
                 <span className="block theme-accent-text">
                   IPL Auction Arena.
@@ -201,14 +200,14 @@ export default function LandingPage() {
               </p>
             </div>
 
-            {/* THE ARENA CONSOLE (Stadium Beveled Edge Shape) */}
-            <div className="theme-card rounded-[2rem] rounded-tr-[4rem] p-6 sm:p-7 shadow-2xl relative border theme-border">
+            {/* THE ARENA CONSOLE (ENLARGED CONTROLS & SPACING) */}
+            <div className="theme-card rounded-[2.5rem] rounded-tr-[4.5rem] p-6 sm:p-8 shadow-2xl relative border theme-border">
               {/* Tab Switcher */}
-              <div className="flex rounded-xl theme-subtle-box p-1.5 mb-6 border theme-border">
+              <div className="flex rounded-2xl theme-subtle-box p-1.5 mb-6 border theme-border">
                 <button
                   type="button"
                   onClick={() => setActiveTab('create')}
-                  className={`flex-1 py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all cursor-pointer ${
+                  className={`flex-1 py-3 text-sm sm:text-base font-black rounded-xl transition-all cursor-pointer ${
                     activeTab === 'create'
                       ? 'theme-card font-black shadow-md'
                       : 'opacity-60 hover:opacity-100'
@@ -219,7 +218,7 @@ export default function LandingPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('join')}
-                  className={`flex-1 py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all cursor-pointer ${
+                  className={`flex-1 py-3 text-sm sm:text-base font-black rounded-xl transition-all cursor-pointer ${
                     activeTab === 'join'
                       ? 'theme-card font-black shadow-md'
                       : 'opacity-60 hover:opacity-100'
@@ -230,16 +229,16 @@ export default function LandingPage() {
               </div>
 
               {activeTab === 'create' ? (
-                <form onSubmit={handleCreateRoom} className="space-y-4.5">
+                <form onSubmit={handleCreateRoom} className="space-y-5">
                   {createError && (
-                    <div className="p-3.5 text-xs rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 font-medium">
+                    <div className="p-4 text-xs sm:text-sm rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 font-bold">
                       {createError}
                     </div>
                   )}
 
-                  {/* Host Name */}
+                  {/* 1. Host Name (Enlarged) */}
                   <div>
-                    <label className="block text-xs font-bold mb-1.5 opacity-90">
+                    <label className="block text-sm font-black mb-2 opacity-95">
                       Auctioneer / Host Name
                     </label>
                     <div className="relative">
@@ -249,20 +248,20 @@ export default function LandingPage() {
                         placeholder="e.g. Richard Madley"
                         value={hostName}
                         onChange={(e) => setHostName(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl theme-subtle-box text-sm focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)] transition-all font-medium border theme-border"
+                        className="w-full px-4.5 py-3.5 sm:py-4 rounded-2xl theme-subtle-box text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)] transition-all font-bold border theme-border"
                       />
-                      <User className="w-4 h-4 opacity-40 absolute right-3.5 top-3 pointer-events-none" />
+                      <User className="w-5 h-5 opacity-40 absolute right-4 top-4 sm:top-4.5 pointer-events-none" />
                     </div>
                   </div>
 
-                  {/* SETTING 1: BID TIMER (COMPACT SLIDER + STEPPER) */}
-                  <div className="theme-subtle-box p-3.5 rounded-2xl border theme-border space-y-2.5">
+                  {/* 2. BID TIMER (ENLARGED COUNTER & STEPPER) */}
+                  <div className="theme-subtle-box p-4.5 sm:p-5 rounded-2xl border theme-border space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-xs font-bold opacity-90">
-                        <Clock className="w-4 h-4 theme-accent-text" />
+                      <div className="flex items-center gap-2 text-sm font-black opacity-95">
+                        <Clock className="w-5 h-5 theme-accent-text" />
                         <span>Bid Countdown Timer</span>
                       </div>
-                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md theme-accent-badge">
+                      <span className="text-sm sm:text-base font-mono font-black px-3.5 py-1 rounded-xl theme-accent-badge border border-amber-500/20">
                         {timerSeconds}s {timerSeconds <= 10 ? '⚡ Blitz' : '⏱️ Standard'}
                       </span>
                     </div>
@@ -275,40 +274,42 @@ export default function LandingPage() {
                       value={timerSeconds}
                       onChange={(e) => setTimerSeconds(parseInt(e.target.value, 10))}
                       aria-label="Bid timer in seconds"
-                      className="w-full"
+                      className="w-full h-2 rounded-lg cursor-pointer accent-[var(--theme-accent)]"
                     />
 
-                    <div className="flex items-center justify-between text-[11px] opacity-60">
-                      <span>5s</span>
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-between text-xs sm:text-sm opacity-70 font-bold">
+                      <span>5s (Blitz)</span>
+                      <div className="flex items-center gap-2.5">
                         <button
                           type="button"
                           onClick={() => setTimerSeconds((prev) => Math.max(5, prev - 5))}
-                          className="px-2 py-0.5 rounded theme-card border theme-border font-bold hover:opacity-100"
+                          className="w-8 h-8 rounded-xl theme-card border theme-border font-black text-sm flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-pointer"
                         >
-                          -5s
+                          -5
                         </button>
-                        <span className="font-mono font-bold text-xs">{timerSeconds} sec</span>
+                        <span className="font-mono font-black text-sm sm:text-base px-2">
+                          {timerSeconds} sec
+                        </span>
                         <button
                           type="button"
                           onClick={() => setTimerSeconds((prev) => Math.min(60, prev + 5))}
-                          className="px-2 py-0.5 rounded theme-card border theme-border font-bold hover:opacity-100"
+                          className="w-8 h-8 rounded-xl theme-card border theme-border font-black text-sm flex items-center justify-center hover:scale-105 active:scale-95 transition-all cursor-pointer"
                         >
-                          +5s
+                          +5
                         </button>
                       </div>
                       <span>60s</span>
                     </div>
                   </div>
 
-                  {/* SETTING 2: STARTING PURSE */}
-                  <div className="theme-subtle-box p-3.5 rounded-2xl border theme-border space-y-2.5">
+                  {/* 3. STARTING PURSE (ENLARGED COUNTER & CONTROLS) */}
+                  <div className="theme-subtle-box p-4.5 sm:p-5 rounded-2xl border theme-border space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-xs font-bold opacity-90">
-                        <Coins className="w-4 h-4 theme-accent-text" />
+                      <div className="flex items-center gap-2 text-sm font-black opacity-95">
+                        <Coins className="w-5 h-5 theme-accent-text" />
                         <span>Franchise Starting Purse</span>
                       </div>
-                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md theme-accent-badge">
+                      <span className="text-sm sm:text-base font-mono font-black px-3.5 py-1 rounded-xl theme-accent-badge border border-amber-500/20">
                         ₹{startingPurseCr} Crore
                       </span>
                     </div>
@@ -321,24 +322,26 @@ export default function LandingPage() {
                       value={startingPurseCr}
                       onChange={(e) => setStartingPurseCr(parseInt(e.target.value, 10))}
                       aria-label="Starting purse in Crores"
-                      className="w-full"
+                      className="w-full h-2 rounded-lg cursor-pointer accent-[var(--theme-accent)]"
                     />
 
-                    <div className="flex items-center justify-between text-[11px] opacity-60">
+                    <div className="flex items-center justify-between text-xs sm:text-sm opacity-70 font-bold">
                       <span>₹50 Cr</span>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2.5">
                         <button
                           type="button"
                           onClick={() => setStartingPurseCr((prev) => Math.max(20, prev - 10))}
-                          className="px-2 py-0.5 rounded theme-card border theme-border font-bold hover:opacity-100"
+                          className="px-2.5 py-1 rounded-xl theme-card border theme-border font-black text-xs hover:scale-105 active:scale-95 transition-all cursor-pointer"
                         >
                           -10 Cr
                         </button>
-                        <span className="font-mono font-bold text-xs">₹{startingPurseCr} Cr</span>
+                        <span className="font-mono font-black text-sm sm:text-base px-1">
+                          ₹{startingPurseCr} Cr
+                        </span>
                         <button
                           type="button"
                           onClick={() => setStartingPurseCr((prev) => Math.min(250, prev + 10))}
-                          className="px-2 py-0.5 rounded theme-card border theme-border font-bold hover:opacity-100"
+                          className="px-2.5 py-1 rounded-xl theme-card border theme-border font-black text-xs hover:scale-105 active:scale-95 transition-all cursor-pointer"
                         >
                           +10 Cr
                         </button>
@@ -347,20 +350,20 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  {/* SETTING 3: CURATED PLAYER POOL PRESET */}
-                  <div className="theme-subtle-box p-3.5 rounded-2xl border theme-border space-y-2.5">
+                  {/* 4. POOL PRESETS (ENLARGED CARDS) */}
+                  <div className="theme-subtle-box p-4.5 sm:p-5 rounded-2xl border theme-border space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-xs font-bold opacity-90">
-                        <Users className="w-4 h-4 theme-accent-text" />
-                        <span>Curated Pool Preset (Aligned with Teams)</span>
+                      <div className="flex items-center gap-2 text-sm font-black opacity-95">
+                        <Users className="w-5 h-5 theme-accent-text" />
+                        <span>Curated Player Pool (Aligned with Teams)</span>
                       </div>
-                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md theme-accent-badge">
+                      <span className="text-sm sm:text-base font-mono font-black px-3.5 py-1 rounded-xl theme-accent-badge border border-amber-500/20">
                         {poolSize} Players
                       </span>
                     </div>
 
-                    {/* 3 PRESET CARDS */}
-                    <div className="grid grid-cols-3 gap-2">
+                    {/* 3 PRESET SELECTION CARDS (ENLARGED) */}
+                    <div className="grid grid-cols-3 gap-2.5 pt-1">
                       {POOL_PRESETS.map((preset) => {
                         const isSelected = poolSize === preset.playerCount;
                         return (
@@ -368,39 +371,43 @@ export default function LandingPage() {
                             key={preset.id}
                             type="button"
                             onClick={() => setPoolSize(preset.playerCount)}
-                            className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                            className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                               isSelected
-                                ? 'theme-card ring-2 ring-[var(--theme-accent)] shadow-md'
-                                : 'theme-card border-transparent opacity-70 hover:opacity-100'
+                                ? 'theme-card ring-2 ring-[var(--theme-accent)] shadow-xl scale-[1.02]'
+                                : 'theme-card border-transparent opacity-70 hover:opacity-100 hover:scale-[1.01]'
                             }`}
                           >
-                            <span className="text-[10px] font-black uppercase tracking-wider theme-accent-text">
+                            <span className="text-xs font-black uppercase tracking-wider theme-accent-text">
                               {preset.targetTeams}
                             </span>
-                            <div className="text-xs font-extrabold my-0.5">
+                            <div className="text-sm sm:text-base font-black my-1">
                               {preset.playerCount} Players
                             </div>
-                            <span className="text-[9px] opacity-60 leading-tight truncate">
-                              {preset.playerCount === 300 ? '10 Teams Max' : preset.playerCount === 200 ? '6-8 Teams' : '4-5 Teams'}
+                            <span className="text-[10px] sm:text-[11px] opacity-65 font-medium leading-tight line-clamp-1">
+                              {preset.playerCount === 300
+                                ? '10 Teams Max'
+                                : preset.playerCount === 200
+                                ? '6–8 Teams'
+                                : '4–5 Teams'}
                             </span>
                           </button>
                         );
                       })}
                     </div>
 
-                    <div className="flex items-center justify-between pt-0.5 text-[11px] opacity-65">
-                      <span>Curated by 5-yr IPL stats</span>
+                    <div className="flex items-center justify-between pt-1 text-xs opacity-75 font-medium">
+                      <span>Curated by 5-yr IPL & T20 statistics</span>
                       <button
                         type="button"
                         onClick={() => setShowCustomPool(!showCustomPool)}
-                        className="underline hover:opacity-100 cursor-pointer font-medium"
+                        className="underline hover:opacity-100 cursor-pointer font-bold"
                       >
-                        {showCustomPool ? 'Hide Custom Pool' : 'Custom Pool?'}
+                        {showCustomPool ? 'Hide Custom Pool' : 'Custom Size?'}
                       </button>
                     </div>
 
                     {showCustomPool && (
-                      <div className="pt-2 border-t theme-border space-y-1.5">
+                      <div className="pt-2.5 border-t theme-border space-y-2 animate-fade-in">
                         <input
                           type="range"
                           min={20}
@@ -409,38 +416,38 @@ export default function LandingPage() {
                           value={poolSize}
                           onChange={(e) => setPoolSize(parseInt(e.target.value, 10))}
                           aria-label="Auction pool size"
-                          className="w-full"
+                          className="w-full h-2 rounded-lg cursor-pointer accent-[var(--theme-accent)]"
                         />
-                        <div className="flex items-center justify-between text-[11px] font-mono">
+                        <div className="flex items-center justify-between text-xs font-mono font-bold">
                           <span>20</span>
-                          <span className="font-bold theme-accent-text">{poolSize} Players</span>
+                          <span className="theme-accent-text">{poolSize} Players Selected</span>
                           <span>622</span>
                         </div>
                       </div>
                     )}
                   </div>
 
-                  {/* LAUNCH BUTTON */}
+                  {/* LAUNCH BUTTON (ENLARGED) */}
                   <button
                     type="submit"
                     disabled={isCreating}
-                    className="w-full py-3.5 px-6 rounded-xl font-bold theme-btn-primary shadow-xl hover:opacity-95 active:scale-[0.99] disabled:opacity-50 text-sm tracking-wide flex items-center justify-center gap-2 cursor-pointer transition-all"
+                    className="w-full py-4.5 sm:py-5 px-8 rounded-2xl font-black theme-btn-primary shadow-2xl hover:opacity-95 active:scale-[0.99] disabled:opacity-50 text-base sm:text-lg tracking-wide flex items-center justify-center gap-3 cursor-pointer transition-all"
                   >
-                    <Gavel className="w-4 h-4" />
+                    <Gavel className="w-5 h-5" />
                     <span>{isCreating ? 'INITIALIZING WAR ROOM...' : 'LAUNCH AUCTION WAR ROOM 🔨'}</span>
-                    <ArrowRight className="w-4 h-4 ml-1" />
+                    <ArrowRight className="w-5 h-5 ml-1" />
                   </button>
                 </form>
               ) : (
-                <form onSubmit={handleJoinRoom} className="space-y-4.5">
+                <form onSubmit={handleJoinRoom} className="space-y-5">
                   {joinError && (
-                    <div className="p-3.5 text-xs rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 font-medium">
+                    <div className="p-4 text-xs sm:text-sm rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 font-bold">
                       {joinError}
                     </div>
                   )}
 
                   <div>
-                    <label className="block text-xs font-bold mb-1.5 opacity-90">
+                    <label className="block text-sm font-black mb-2 opacity-95">
                       6-Digit Room Code
                     </label>
                     <div className="relative">
@@ -451,14 +458,14 @@ export default function LandingPage() {
                         placeholder="e.g. ABC123"
                         value={joinCode}
                         onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
-                        className="w-full px-4 py-3 rounded-xl theme-subtle-box uppercase tracking-widest font-mono text-center font-bold text-xl focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)] transition-all border theme-border"
+                        className="w-full px-4.5 py-4 rounded-2xl theme-subtle-box uppercase tracking-widest font-mono text-center font-black text-2xl focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)] transition-all border theme-border"
                       />
-                      <KeyRound className="w-4 h-4 opacity-40 absolute right-3.5 top-4 pointer-events-none" />
+                      <KeyRound className="w-5 h-5 opacity-40 absolute right-4 top-4.5 pointer-events-none" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold mb-1.5 opacity-90">
+                    <label className="block text-sm font-black mb-2 opacity-95">
                       Your Manager Name
                     </label>
                     <div className="relative">
@@ -468,195 +475,248 @@ export default function LandingPage() {
                         placeholder="e.g. CaptainCool99"
                         value={joinName}
                         onChange={(e) => setJoinName(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl theme-subtle-box text-sm focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)] transition-all font-medium border theme-border"
+                        className="w-full px-4.5 py-3.5 sm:py-4 rounded-2xl theme-subtle-box text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)] transition-all font-bold border theme-border"
                       />
-                      <User className="w-4 h-4 opacity-40 absolute right-3.5 top-3 pointer-events-none" />
+                      <User className="w-5 h-5 opacity-40 absolute right-4 top-4 pointer-events-none" />
                     </div>
                   </div>
 
-                  <div className="p-3 rounded-xl theme-accent-badge text-xs opacity-90 leading-tight">
-                    ⚡ Pick any open IPL franchise table to start bidding live with other managers.
+                  <div className="p-4 rounded-2xl theme-accent-badge text-xs sm:text-sm opacity-90 leading-relaxed font-medium">
+                    ⚡ Pick any open IPL franchise table to bid live with other managers in real-time.
                   </div>
 
                   <button
                     type="submit"
                     disabled={isJoining}
-                    className="w-full py-3.5 px-6 rounded-xl font-bold theme-btn-primary shadow-xl hover:opacity-95 active:scale-[0.99] disabled:opacity-50 text-sm tracking-wide flex items-center justify-center gap-2 cursor-pointer transition-all"
+                    className="w-full py-4.5 sm:py-5 px-8 rounded-2xl font-black theme-btn-primary shadow-2xl hover:opacity-95 active:scale-[0.99] disabled:opacity-50 text-base sm:text-lg tracking-wide flex items-center justify-center gap-3 cursor-pointer transition-all"
                   >
                     <span>{isJoining ? 'JOINING ROOM...' : 'ENTER WAR ROOM TABLE →'}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5" />
                   </button>
                 </form>
               )}
             </div>
           </div>
 
-          {/* RIGHT: BROADCAST TV WAR ROOM CONSOLE (ORGANIC STADIUM-WEDGE GEOMETRY) */}
+          {/* RIGHT: TACTICAL WAR ROOM INTELLIGENCE & DATABASE SCOUT */}
           <div className="lg:col-span-5 space-y-4">
             <div className="theme-card rounded-[2.5rem] rounded-bl-[4rem] p-5 sm:p-6 border theme-border shadow-2xl relative overflow-hidden backdrop-blur-xl">
               
-              {/* Broadcast Top Ribbon */}
-              <div className="flex items-center justify-between pb-3 border-b theme-border">
+              {/* Header & Feature Tabs */}
+              <div className="flex items-center justify-between pb-3.5 border-b theme-border">
                 <div className="flex items-center gap-2">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500" />
-                  </span>
-                  <span className="text-[11px] font-black uppercase tracking-wider">
-                    WAR ROOM LOT #1
-                  </span>
-                  <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-500 font-bold border border-amber-500/30">
-                    M1 • MARQUEE
-                  </span>
-                </div>
-
-                {/* COUNTDOWN TIMER BADGE */}
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-500/15 border border-rose-500/30 text-rose-500 font-bold">
-                  <Clock className="w-3.5 h-3.5 animate-pulse" />
-                  <span className="font-mono font-black text-xs">
-                    00:0{demoTimer}s
-                  </span>
-                </div>
-              </div>
-
-              {/* Active Player Card with Stadium Spotlight */}
-              <div className="py-4">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="text-sm">🇮🇳</span>
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider theme-accent-badge px-2 py-0.5 rounded-full">
-                        Top-Order Batter
-                      </span>
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-black tracking-tight flex items-center gap-2">
-                      <span>Virat Kohli</span>
-                    </h3>
-                    <p className="text-xs opacity-70 mt-0.5 font-medium">
-                      Marquee Set 1 • Base Price ₹2.00 Cr
-                    </p>
-                  </div>
-
-                  <div className="w-12 h-12 rounded-2xl theme-subtle-box border theme-border flex flex-col items-center justify-center text-center shadow-md">
+                  <div className="w-8 h-8 rounded-xl theme-accent-badge flex items-center justify-center">
                     <Sparkles className="w-4 h-4 theme-accent-text" />
-                    <span className="text-[9px] font-black uppercase tracking-tighter">ELITE</span>
-                  </div>
-                </div>
-
-                {/* Quick stats capsules */}
-                <div className="grid grid-cols-4 gap-1.5 mt-3.5 p-2 rounded-xl theme-subtle-box border theme-border text-center font-mono text-xs">
-                  <div>
-                    <span className="text-[9px] opacity-60 block font-sans">RUNS</span>
-                    <span className="font-extrabold">8,004</span>
                   </div>
                   <div>
-                    <span className="text-[9px] opacity-60 block font-sans">S/R</span>
-                    <span className="font-extrabold theme-accent-text">131.97</span>
-                  </div>
-                  <div>
-                    <span className="text-[9px] opacity-60 block font-sans">INNINGS</span>
-                    <span className="font-extrabold">244</span>
-                  </div>
-                  <div>
-                    <span className="text-[9px] opacity-60 block font-sans">TONS</span>
-                    <span className="font-extrabold text-amber-500">8</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Current High Bid Box with Dynamic Bidding Duel */}
-              <div className={`p-4 rounded-2xl theme-subtle-box border theme-border space-y-2 transition-all ${
-                hammerActive ? 'ring-2 ring-amber-500 scale-[1.01]' : ''
-              }`}>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold opacity-60 uppercase tracking-wider text-[10px]">
-                    Current Hammer Strike
-                  </span>
-                  <span className="text-emerald-500 font-bold flex items-center gap-1 text-[11px]">
-                    <Zap className="w-3 h-3 fill-emerald-500" /> Live War Room Duel
-                  </span>
-                </div>
-
-                <div className="flex items-baseline justify-between">
-                  <div className="text-3xl sm:text-4xl font-black font-mono tracking-tight theme-accent-text">
-                    ₹{demoBidCr.toFixed(2)} <span className="text-sm font-normal opacity-70 font-sans">Cr</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl theme-card border theme-border shadow-sm">
-                    <FranchiseLogo franchiseId={demoLeader} size="xs" />
-                    <span className="font-black text-xs">{demoLeader}</span>
-                    <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-bold">
-                      IN LEAD
+                    <h3 className="text-sm font-black tracking-tight leading-none">
+                      War Room Intelligence Deck
+                    </h3>
+                    <span className="text-[10px] opacity-60 font-medium">
+                      Live Database & Strategy Explorer
                     </span>
                   </div>
                 </div>
+
+                {/* Live Database Pill */}
+                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  622 PLAYERS
+                </span>
               </div>
 
-              {/* Live Bid Ticker with Franchise Vector Logos */}
-              <div className="mt-3 space-y-1.5">
-                <span className="text-[9px] uppercase font-bold tracking-wider opacity-60 block px-1">
-                  Live Floor Action
-                </span>
-                <div className="space-y-1 font-mono text-xs">
-                  {demoHistory.map((h, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between p-2 rounded-lg theme-subtle-box border theme-border text-[11px]"
-                    >
-                      <div className="flex items-center gap-2">
-                        <FranchiseLogo franchiseId={h.team} size="xs" />
-                        <span className="font-bold">{h.team}</span>
-                        <span className="opacity-50">raised to</span>
-                        <span className="font-bold theme-accent-text">₹{h.amount.toFixed(2)} Cr</span>
+              {/* Deck Tabs */}
+              <div className="flex rounded-xl theme-subtle-box p-1 my-3.5 border theme-border text-xs font-bold">
+                <button
+                  type="button"
+                  onClick={() => setScoutTab('players')}
+                  className={`flex-1 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                    scoutTab === 'players' ? 'theme-card font-black shadow-sm' : 'opacity-65 hover:opacity-100'
+                  }`}
+                >
+                  <Search className="w-3.5 h-3.5" />
+                  <span>Scout Players</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScoutTab('sets')}
+                  className={`flex-1 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                    scoutTab === 'sets' ? 'theme-card font-black shadow-sm' : 'opacity-65 hover:opacity-100'
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>29 Sets</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScoutTab('franchises')}
+                  className={`flex-1 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                    scoutTab === 'franchises' ? 'theme-card font-black shadow-sm' : 'opacity-65 hover:opacity-100'
+                  }`}
+                >
+                  <Building2 className="w-3.5 h-3.5" />
+                  <span>10 Teams</span>
+                </button>
+              </div>
+
+              {/* TAB CONTENT 1: SCOUT PLAYERS (LIVE SEARCH) */}
+              {scoutTab === 'players' && (
+                <div className="space-y-3">
+                  {/* Search Input */}
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search player, country, or role..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-9 pr-4 py-2 rounded-xl theme-subtle-box text-xs font-medium border theme-border focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)]"
+                    />
+                    <Search className="w-4 h-4 opacity-40 absolute left-3 top-2.5 pointer-events-none" />
+                  </div>
+
+                  {/* Role Filter Chips */}
+                  <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-bold">
+                    {(['ALL', 'BATTER', 'ALL_ROUNDER', 'BOWLER', 'WICKETKEEPER'] as const).map((r) => (
+                      <button
+                        key={r}
+                        type="button"
+                        onClick={() => setRoleFilter(r)}
+                        className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
+                          roleFilter === r
+                            ? 'theme-accent-badge font-black border-transparent'
+                            : 'theme-subtle-box opacity-65 hover:opacity-100 border-transparent'
+                        }`}
+                      >
+                        {r === 'ALL'
+                          ? 'All'
+                          : r === 'ALL_ROUNDER'
+                          ? 'All-Rounder'
+                          : r.charAt(0) + r.slice(1).toLowerCase()}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Scrollable Player List */}
+                  <div className="max-h-[300px] overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                    {filteredPlayers.length === 0 ? (
+                      <div className="text-center py-8 text-xs opacity-50">
+                        No players found matching "{searchQuery}"
                       </div>
-                      <span className="text-[10px] opacity-50">{h.time}</span>
+                    ) : (
+                      filteredPlayers.map((p) => (
+                        <div
+                          key={p.id}
+                          className="p-2.5 rounded-xl theme-subtle-box border theme-border flex items-center justify-between hover:scale-[1.01] transition-transform"
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="text-base shrink-0">
+                              {p.nationality === 'India' ? '🇮🇳' : p.nationality === 'Australia' ? '🇦🇺' : p.nationality === 'England' ? '🏴󠁧󠁢󠁥󠁮󠁧󠁿' : p.nationality === 'South Africa' ? '🇿🇦' : p.nationality === 'West Indies' ? '🌴' : p.nationality === 'New Zealand' ? '🇳🇿' : p.nationality === 'Afghanistan' ? '🇦🇫' : '🏏'}
+                            </span>
+                            <div className="min-w-0">
+                              <div className="font-extrabold text-xs truncate">
+                                {p.canonicalName}
+                              </div>
+                              <div className="text-[10px] opacity-60 flex items-center gap-1.5 font-medium">
+                                <span>{p.primaryRole.replace('_', ' ')}</span>
+                                <span>•</span>
+                                <span>{p.nationality}</span>
+                                {p.stats?.strikeRate ? (
+                                  <>
+                                    <span>•</span>
+                                    <span className="theme-accent-text font-bold">SR {p.stats.strikeRate}</span>
+                                  </>
+                                ) : null}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="text-right shrink-0">
+                            <div className="text-xs font-mono font-black theme-accent-text">
+                              {formatRupees(p.defaultBasePrice)}
+                            </div>
+                            <span className="text-[9px] font-mono opacity-50 block uppercase">
+                              Base Price
+                            </span>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* TAB CONTENT 2: 29 BROADCAST SETS */}
+              {scoutTab === 'sets' && (
+                <div className="max-h-[360px] overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                  {CURATED_SETS.slice(0, 10).map((s, idx) => (
+                    <div
+                      key={s.setId}
+                      className="p-3 rounded-xl theme-subtle-box border theme-border space-y-1.5"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-black theme-accent-text">
+                          {s.setName}
+                        </span>
+                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full theme-accent-badge">
+                          {s.players.length} Players
+                        </span>
+                      </div>
+                      <div className="text-[11px] opacity-75 font-medium truncate">
+                        {s.players.slice(0, 4).map((pl) => pl.canonicalName).join(' • ')}...
+                      </div>
+                    </div>
+                  ))}
+                  <div className="text-center pt-2 text-xs opacity-60 font-medium">
+                    Showing top 10 of 29 sets • 300 total curated players
+                  </div>
+                </div>
+              )}
+
+              {/* TAB CONTENT 3: 10 FRANCHISE TABLES */}
+              {scoutTab === 'franchises' && (
+                <div className="max-h-[360px] overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                  {IPL_FRANCHISES.map((team) => (
+                    <div
+                      key={team.id}
+                      className="p-2.5 rounded-xl theme-subtle-box border theme-border flex items-center justify-between"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <FranchiseLogo franchiseId={team.id} size="sm" />
+                        <div>
+                          <div className="font-extrabold text-xs">{team.name}</div>
+                          <div className="text-[10px] opacity-60 font-medium">
+                            {team.city} • {team.titles > 0 ? `${team.titles}x Champion` : 'Contender'}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-xs font-mono font-black">₹120 Cr</span>
+                        <span className="text-[9px] opacity-50 block">Purse</span>
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
+              )}
 
-              {/* Interactive Demo Test Buttons (Tactile Feedback) */}
-              <div className="mt-4 pt-3 border-t theme-border flex items-center justify-between gap-2">
-                <div className="text-[11px] opacity-75 font-medium truncate">
-                  Try Official Bidding:
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => handleDemoBid('RCB', 0.25)}
-                    className="px-3 py-1.5 text-xs font-bold rounded-lg theme-btn-primary shadow hover:opacity-90 active:scale-95 transition-all cursor-pointer flex items-center gap-1"
-                  >
-                    <span>🔨</span>
-                    <span>Paddle (+25L)</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleDemoBid('CSK', 2.0)}
-                    className="px-3 py-1.5 text-xs font-bold rounded-lg theme-card border theme-border hover:opacity-100 active:scale-95 transition-all cursor-pointer flex items-center gap-1"
-                  >
-                    <span>⚡</span>
-                    <span>Jump (+₹2 Cr)</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             {/* Quick Metrics Bar (Pill Capsules) */}
             <div className="grid grid-cols-3 gap-2.5">
-              <div className="theme-card p-2.5 rounded-2xl border theme-border text-center">
-                <div className="text-lg font-black font-mono theme-accent-text">622</div>
-                <div className="text-[9px] font-bold opacity-60 uppercase tracking-wider">
+              <div className="theme-card p-3 rounded-2xl border theme-border text-center">
+                <div className="text-xl font-black font-mono theme-accent-text">622</div>
+                <div className="text-[10px] font-bold opacity-60 uppercase tracking-wider">
                   BCCI Roster
                 </div>
               </div>
-              <div className="theme-card p-2.5 rounded-2xl border theme-border text-center">
-                <div className="text-lg font-black font-mono text-emerald-500">&lt; 1s</div>
-                <div className="text-[9px] font-bold opacity-60 uppercase tracking-wider">
-                  Real-Time Sync
+              <div className="theme-card p-3 rounded-2xl border theme-border text-center">
+                <div className="text-xl font-black font-mono text-emerald-500">29</div>
+                <div className="text-[10px] font-bold opacity-60 uppercase tracking-wider">
+                  Official Sets
                 </div>
               </div>
-              <div className="theme-card p-2.5 rounded-2xl border theme-border text-center">
-                <div className="text-lg font-black font-mono">₹120-250 Cr</div>
-                <div className="text-[9px] font-bold opacity-60 uppercase tracking-wider">
+              <div className="theme-card p-3 rounded-2xl border theme-border text-center">
+                <div className="text-xl font-black font-mono">₹120–250 Cr</div>
+                <div className="text-[10px] font-bold opacity-60 uppercase tracking-wider">
                   Custom Purses
                 </div>
               </div>
@@ -679,7 +739,7 @@ export default function LandingPage() {
               Claim Your Franchise War Room Table
             </h2>
           </div>
-          <p className="text-xs opacity-70 max-w-sm">
+          <p className="text-xs opacity-70 max-w-sm font-medium">
             Authentic franchise emblems, starting purse tables, and championship pedigree.
           </p>
         </div>
