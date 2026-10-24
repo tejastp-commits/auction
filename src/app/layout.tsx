@@ -3,6 +3,7 @@ import './globals.css';
 import Link from 'next/link';
 import { Gavel, Users, FileText, BarChart3 } from 'lucide-react';
 import ThemeCustomizer from '@/components/ThemeCustomizer';
+import AuctionArenaLogo from '@/components/AuctionArenaLogo';
 
 export const metadata: Metadata = {
   title: 'IPL Auction Arena — Live Multiplayer IPL Auction Simulator',
@@ -66,13 +67,16 @@ export default function RootLayout({
         {/* DYNAMIC THEMED HEADER */}
         <header className="sticky top-0 z-40 border-b theme-border theme-card/90 backdrop-blur-md transition-all">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl theme-accent-badge flex items-center justify-center font-bold theme-accent-text shadow-sm group-hover:scale-105 transition-all">
-                <Gavel className="w-4 h-4 stroke-[2.2]" />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="group-hover:scale-105 transition-transform duration-300 drop-shadow-md">
+                <AuctionArenaLogo size="md" />
               </div>
               <div>
                 <span className="font-extrabold text-base sm:text-lg tracking-tight flex items-center gap-1">
                   IPL <span className="theme-accent-text">Auction</span> Arena
+                </span>
+                <span className="hidden sm:block text-[9px] font-mono tracking-widest uppercase opacity-60">
+                  Official War Room Simulator
                 </span>
               </div>
             </Link>
@@ -114,13 +118,16 @@ export default function RootLayout({
         {/* MINIMAL THEMED FOOTER */}
         <footer className="border-t theme-border theme-card py-8 text-xs opacity-75">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <div>
-              <p className="font-semibold">
-                IPL Auction Arena
-              </p>
-              <p className="text-[11px] opacity-70 mt-0.5">
-                Multiplayer cricket auction simulator. 622 official BCCI players with server-authoritative bidding.
-              </p>
+            <div className="flex items-center gap-3">
+              <AuctionArenaLogo size="sm" />
+              <div>
+                <p className="font-bold text-sm tracking-tight">
+                  IPL <span className="theme-accent-text">Auction</span> Arena
+                </p>
+                <p className="text-[11px] opacity-70 mt-0.5">
+                  Multiplayer cricket auction simulator. 622 official BCCI players with server-authoritative bidding.
+                </p>
+              </div>
             </div>
             <div className="text-[11px] opacity-60">
               © {new Date().getFullYear()} IPL Auction Arena. Built for competitive cricket fans.
