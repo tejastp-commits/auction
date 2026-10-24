@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
 import { Gavel, Users, FileText, BarChart3 } from 'lucide-react';
+import ThemeCustomizer from '@/components/ThemeCustomizer';
 
 export const metadata: Metadata = {
   title: 'IPL Auction Arena — Live Multiplayer IPL Auction Simulator',
@@ -23,84 +24,98 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[#FAF9F6] text-slate-900 flex flex-col selection:bg-indigo-100 selection:text-indigo-900 antialiased pastel-mesh-bg">
-        {/* SUBTLE PASTEL NOTIFICATION RIBBON */}
-        <div className="w-full bg-indigo-50/70 border-b border-indigo-100/70 text-[11px] py-1.5 px-4 text-center text-indigo-900 flex items-center justify-center gap-3">
+      <head>
+        {/* Anti-FOUC script for instant theme hydration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var theme = localStorage.getItem('auction_theme_preference') || 'pastel';
+                var accent = localStorage.getItem('auction_theme_accent');
+                document.documentElement.setAttribute('data-theme', theme);
+                if (accent) {
+                  document.documentElement.style.setProperty('--theme-accent', accent);
+                  document.documentElement.style.setProperty('--theme-accent-light', accent + '25');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col antialiased selection:bg-indigo-500/20 selection:text-indigo-400">
+        {/* SUBTLE THEMED TOP NOTIFICATION RIBBON */}
+        <div className="w-full theme-subtle-box border-b text-[11px] py-1.5 px-4 text-center flex items-center justify-center gap-3">
           <span className="flex items-center gap-1.5 font-medium tracking-wide">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="inline-block w-2 h-2 rounded-full theme-btn-primary animate-pulse" />
             2025 BCCI Auction Pool Ready • 622 Official Players Loaded
           </span>
-          <span className="hidden sm:inline text-indigo-300">•</span>
-          <span className="hidden sm:inline text-indigo-700/80 font-normal">
+          <span className="hidden sm:inline opacity-40">•</span>
+          <span className="hidden sm:inline opacity-70 font-normal">
             Server-synchronized live multiplayer bidding
           </span>
         </div>
 
-        {/* CLEAN PASTEL HEADER */}
-        <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-md transition-all">
+        {/* DYNAMIC THEMED HEADER */}
+        <header className="sticky top-0 z-40 border-b theme-border theme-card/90 backdrop-blur-md transition-all">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center font-bold text-indigo-600 shadow-sm group-hover:bg-indigo-100 group-hover:scale-105 transition-all">
+              <div className="w-9 h-9 rounded-xl theme-accent-badge flex items-center justify-center font-bold theme-accent-text shadow-sm group-hover:scale-105 transition-all">
                 <Gavel className="w-4 h-4 stroke-[2.2]" />
               </div>
               <div>
-                <span className="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 flex items-center gap-1">
-                  IPL <span className="text-indigo-600">Auction</span> Arena
+                <span className="font-extrabold text-base sm:text-lg tracking-tight flex items-center gap-1">
+                  IPL <span className="theme-accent-text">Auction</span> Arena
                 </span>
               </div>
             </Link>
 
-            <nav className="flex items-center gap-2 sm:gap-4">
+            <nav className="flex items-center gap-2 sm:gap-3">
               <Link
                 href="/players"
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-indigo-600 px-3 py-1.5 rounded-lg hover:bg-slate-100/70 transition-all"
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
               >
-                <Users className="w-3.5 h-3.5 text-slate-400" />
+                <Users className="w-3.5 h-3.5 opacity-60" />
                 <span>Player Catalog</span>
-                <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono font-medium">622</span>
+                <span className="text-[10px] theme-subtle-box px-1.5 py-0.5 rounded font-mono font-medium">622</span>
               </Link>
 
               <Link
                 href="/rules"
-                className="hidden md:inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-indigo-600 px-3 py-1.5 rounded-lg hover:bg-slate-100/70 transition-all"
+                className="hidden md:inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
               >
-                <FileText className="w-3.5 h-3.5 text-slate-400" />
+                <FileText className="w-3.5 h-3.5 opacity-60" />
                 <span>Rules</span>
               </Link>
 
               <Link
                 href="/reports/sample-mega-auction-2024"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-indigo-600 px-3 py-1.5 rounded-lg hover:bg-slate-100/70 transition-all"
+                className="inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
               >
                 <BarChart3 className="w-3.5 h-3.5 text-emerald-500" />
                 <span className="hidden xs:inline">Sample</span> Report
               </Link>
 
-              <Link
-                href="/"
-                className="inline-flex items-center gap-1 text-xs font-bold px-3.5 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-sm active:scale-95"
-              >
-                <span>+ New Room</span>
-              </Link>
+              {/* COLOR THEME SWITCHER */}
+              <ThemeCustomizer />
             </nav>
           </div>
         </header>
 
         <main className="flex-1 flex flex-col">{children}</main>
 
-        {/* MINIMAL CLEAN FOOTER */}
-        <footer className="border-t border-slate-200/70 bg-white py-8 text-xs text-slate-500">
+        {/* MINIMAL THEMED FOOTER */}
+        <footer className="border-t theme-border theme-card py-8 text-xs opacity-75">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
-              <p className="font-semibold text-slate-800">
+              <p className="font-semibold">
                 IPL Auction Arena
               </p>
-              <p className="text-[11px] text-slate-400 mt-0.5">
-                Simulated cricket war room for friends & fantasy leagues. 622 official players with server-authoritative bidding.
+              <p className="text-[11px] opacity-70 mt-0.5">
+                Multiplayer cricket auction simulator. 622 official BCCI players with server-authoritative bidding.
               </p>
             </div>
-            <div className="text-[11px] text-slate-400">
-              © {new Date().getFullYear()} IPL Auction Arena. Fan simulation project.
+            <div className="text-[11px] opacity-60">
+              © {new Date().getFullYear()} IPL Auction Arena. Fully customizable color themes.
             </div>
           </div>
         </footer>

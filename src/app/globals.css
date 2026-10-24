@@ -2,44 +2,170 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #FAF9F6;
-  --foreground: #0F172A;
+:root,
+[data-theme="pastel"] {
+  --theme-bg: #FAF9F6;
+  --theme-surface: #FFFFFF;
+  --theme-subtle: #F1F5F9;
+  --theme-subtle-border: rgba(226, 232, 240, 0.9);
+  --theme-text: #0F172A;
+  --theme-muted: #64748B;
+  --theme-border: rgba(226, 232, 240, 0.9);
+  --theme-accent: #4F46E5;
+  --theme-accent-hover: #4338CA;
+  --theme-accent-light: #EEF2FF;
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="midnight"] {
+  --theme-bg: #070B14;
+  --theme-surface: #0E1626;
+  --theme-subtle: #16233B;
+  --theme-subtle-border: rgba(255, 255, 255, 0.1);
+  --theme-text: #F8FAFC;
+  --theme-muted: #94A3B8;
+  --theme-border: rgba(255, 255, 255, 0.12);
+  --theme-accent: #F59E0B;
+  --theme-accent-hover: #D97706;
+  --theme-accent-light: rgba(245, 158, 11, 0.15);
+  --theme-accent-text: #070B14;
+  --theme-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="purple"] {
+  --theme-bg: #0C0617;
+  --theme-surface: #180C2E;
+  --theme-subtle: #251347;
+  --theme-subtle-border: rgba(192, 132, 252, 0.16);
+  --theme-text: #FAF5FF;
+  --theme-muted: #D8B4FE;
+  --theme-border: rgba(192, 132, 252, 0.2);
+  --theme-accent: #A855F7;
+  --theme-accent-hover: #9333EA;
+  --theme-accent-light: rgba(168, 85, 247, 0.2);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 16px 40px rgba(12, 6, 23, 0.7);
+}
+
+[data-theme="noir"] {
+  --theme-bg: #000000;
+  --theme-surface: #121212;
+  --theme-subtle: #1C1C1C;
+  --theme-subtle-border: rgba(255, 255, 255, 0.14);
+  --theme-text: #FFFFFF;
+  --theme-muted: #A1A1AA;
+  --theme-border: rgba(255, 255, 255, 0.18);
+  --theme-accent: #FFFFFF;
+  --theme-accent-hover: #E4E4E7;
+  --theme-accent-light: rgba(255, 255, 255, 0.15);
+  --theme-accent-text: #000000;
+  --theme-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="emerald"] {
+  --theme-bg: #04140D;
+  --theme-surface: #0A261A;
+  --theme-subtle: #103B29;
+  --theme-subtle-border: rgba(110, 231, 183, 0.16);
+  --theme-text: #ECFDF5;
+  --theme-muted: #6EE7B7;
+  --theme-border: rgba(110, 231, 183, 0.2);
+  --theme-accent: #10B981;
+  --theme-accent-hover: #059669;
+  --theme-accent-light: rgba(16, 185, 129, 0.2);
+  --theme-accent-text: #04140D;
+  --theme-shadow: 0 16px 40px rgba(4, 20, 13, 0.7);
+}
+
+[data-theme="ocean"] {
+  --theme-bg: #05101E;
+  --theme-surface: #0B1F3B;
+  --theme-subtle: #12305C;
+  --theme-subtle-border: rgba(125, 211, 252, 0.16);
+  --theme-text: #F0F9FF;
+  --theme-muted: #7DD3FC;
+  --theme-border: rgba(125, 211, 252, 0.2);
+  --theme-accent: #0EA5E9;
+  --theme-accent-hover: #0284C7;
+  --theme-accent-light: rgba(14, 165, 233, 0.2);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 16px 40px rgba(5, 16, 30, 0.7);
+}
+
+[data-theme="crimson"] {
+  --theme-bg: #140508;
+  --theme-surface: #260B10;
+  --theme-subtle: #3D121A;
+  --theme-subtle-border: rgba(253, 164, 175, 0.16);
+  --theme-text: #FFF1F2;
+  --theme-muted: #FDA4AF;
+  --theme-border: rgba(253, 164, 175, 0.2);
+  --theme-accent: #F43F5E;
+  --theme-accent-hover: #E11D48;
+  --theme-accent-light: rgba(244, 63, 94, 0.2);
+  --theme-accent-text: #FFFFFF;
+  --theme-shadow: 0 16px 40px rgba(20, 5, 8, 0.7);
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Subtle Pastel Ambient Mesh (lightweight, zero scroll-lag) */
-.pastel-mesh-bg {
-  background-color: #FAF9F6;
-  background-image: 
-    radial-gradient(at 15% 15%, rgba(224, 231, 255, 0.55) 0px, transparent 45%),
-    radial-gradient(at 85% 20%, rgba(254, 243, 199, 0.5) 0px, transparent 40%),
-    radial-gradient(at 50% 85%, rgba(209, 250, 229, 0.45) 0px, transparent 50%),
-    radial-gradient(at 90% 85%, rgba(254, 226, 226, 0.4) 0px, transparent 45%);
+/* Dynamic Theme Card */
+.theme-card {
+  background-color: var(--theme-surface);
+  color: var(--theme-text);
+  border: 1px solid var(--theme-border);
+  box-shadow: var(--theme-shadow);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Clean Pastel Card */
-.pastel-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04), 0 20px 40px -15px rgba(15, 23, 42, 0.03);
+.theme-card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-
-.pastel-card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.pastel-card-hover:hover {
+.theme-card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 35px -5px rgba(15, 23, 42, 0.07);
+  border-color: var(--theme-accent);
 }
 
-/* Luxury Pastel Range Slider */
+/* Subtle inner box */
+.theme-subtle-box {
+  background-color: var(--theme-subtle);
+  border: 1px solid var(--theme-subtle-border);
+  color: var(--theme-text);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Accent elements */
+.theme-btn-primary {
+  background-color: var(--theme-accent);
+  color: var(--theme-accent-text);
+  transition: all 0.2s ease;
+}
+.theme-btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.theme-accent-text {
+  color: var(--theme-accent);
+}
+
+.theme-accent-badge {
+  background-color: var(--theme-accent-light);
+  color: var(--theme-accent);
+  border: 1px solid var(--theme-border);
+}
+
+.theme-border {
+  border-color: var(--theme-border);
+}
+
+/* Luxury Range Slider themed to active accent */
 input[type='range'] {
   -webkit-appearance: none;
   appearance: none;
@@ -53,7 +179,8 @@ input[type='range']:focus {
 }
 
 input[type='range']::-webkit-slider-runnable-track {
-  background: #E2E8F0;
+  background: var(--theme-subtle);
+  border: 1px solid var(--theme-border);
   height: 8px;
   border-radius: 9999px;
   transition: background 0.15s ease;
@@ -63,55 +190,54 @@ input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   margin-top: -6px;
-  background-color: #4F46E5;
+  background-color: var(--theme-accent);
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+  border: 2px solid var(--theme-surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 input[type='range']::-webkit-slider-thumb:hover {
   transform: scale(1.15);
-  box-shadow: 0 2px 12px rgba(79, 70, 229, 0.45);
 }
 
 input[type='range']:active::-webkit-slider-thumb {
   transform: scale(1.2);
-  box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.18);
+  box-shadow: 0 0 0 6px var(--theme-accent-light);
 }
 
-/* Firefox Slider Support */
 input[type='range']::-moz-range-track {
-  background: #E2E8F0;
+  background: var(--theme-subtle);
+  border: 1px solid var(--theme-border);
   height: 8px;
   border-radius: 9999px;
 }
 
 input[type='range']::-moz-range-thumb {
-  background-color: #4F46E5;
+  background-color: var(--theme-accent);
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+  border: 2px solid var(--theme-surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Custom Scrollbar for Pastel Theme */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: var(--theme-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: var(--theme-subtle);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: var(--theme-muted);
 }
 
 /* Preserve Room & Report Card Utilities */
