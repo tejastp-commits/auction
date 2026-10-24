@@ -770,7 +770,7 @@ export default function LandingPage() {
               >
                 {/* Top: Emblem & Code */}
                 <div className="flex items-center justify-between mb-2.5">
-                  <div className="w-12 h-12 rounded-xl p-1 flex items-center justify-center shadow-xs bg-orange-50/50 border border-[#FED7AA] transition-transform group-hover:scale-110">
+                  <div className="w-14 h-12 rounded-xl p-1 flex items-center justify-center shadow-xs bg-orange-50/50 border border-[#FED7AA] transition-transform group-hover:scale-110">
                     <FranchiseLogo franchiseId={team.id} size="lg" />
                   </div>
                   <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-orange-100 text-orange-950 border border-orange-200">

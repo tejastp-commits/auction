@@ -9,18 +9,25 @@ interface FranchiseLogoProps {
 }
 
 const SIZE_MAP = {
-  xs: 'w-6 h-6',
-  sm: 'w-8 h-8',
-  md: 'w-10 h-10',
-  lg: 'w-14 h-14',
-  xl: 'w-20 h-20',
+  xs: 'w-6 h-5',
+  sm: 'w-8 h-6.5',
+  md: 'w-10 h-8',
+  lg: 'w-14 h-11',
+  xl: 'w-20 h-16',
 };
 
 /**
- * MODERN, ATHLETIC, EYE-CATCHING CRESTS FOR ALL 10 IPL FRANCHISES
+ * DOODLED BOLD FRANCHISE MONOGRAM LOGOS
  * 
- * Clean architectural geometry, bold sports typography, and authentic team palettes.
- * Designed for big-stage broadcast presentation (no childish scribbles or vague shapes).
+ * User requirement: "change the logos into doodled ones just the name like csk in bold
+ * letters no fluff and in doodles design like bold and designed like lines in between the logo
+ * like its drawn by hand"
+ * 
+ * - Bold typographic acronyms (CSK, MI, RCB, KKR, RR, SRH, GT, LSG, DC, PBKS)
+ * - NO fluff (no animals, no extraneous crests)
+ * - Hand-drawn etched sketch lines inside and across the letters (hatching, dashes, offset strokes)
+ * - Hand-drawn organic sketch underline
+ * - Vibrant authentic team palettes
  */
 export default function FranchiseLogo({
   franchiseId,
@@ -30,624 +37,180 @@ export default function FranchiseLogo({
   const fid = (franchiseId || '').toLowerCase().trim();
   const dimensionClass = SIZE_MAP[size] || SIZE_MAP.md;
 
+  // Render helper for bold doodled letters with interior hand-drawn sketch lines
+  const renderDoodleLogo = (
+    text: string,
+    primaryColor: string,
+    secondaryColor: string,
+    accentLineColor: string,
+    fontSize: number = 36,
+    letterSpacing: number = 2
+  ) => {
+    const clipId = `doodle-clip-${fid}`;
+
+    return (
+      <svg
+        viewBox="0 0 100 80"
+        className={`${dimensionClass} shrink-0 inline-block drop-shadow-xs transition-transform duration-200 hover:scale-105 ${className}`}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label={`${text} Hand-Drawn Doodle Monogram`}
+      >
+        <defs>
+          {/* Clip path defining the bold letter shapes */}
+          <clipPath id={clipId}>
+            <text
+              x="50"
+              y="48"
+              textAnchor="middle"
+              fontFamily="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+              fontWeight="900"
+              fontSize={fontSize}
+              letterSpacing={letterSpacing}
+            >
+              {text}
+            </text>
+          </clipPath>
+        </defs>
+
+        {/* Hand-drawn letter shadow for depth */}
+        <text
+          x="52"
+          y="50"
+          textAnchor="middle"
+          fontFamily="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+          fontWeight="900"
+          fontSize={fontSize}
+          letterSpacing={letterSpacing}
+          fill={secondaryColor}
+          opacity="0.35"
+        >
+          {text}
+        </text>
+
+        {/* CLIPPED INTERIOR: Solid fill + hand-drawn etched lines across letters */}
+        <g clipPath={`url(#${clipId})`}>
+          {/* Primary background fill */}
+          <rect width="100" height="80" fill={primaryColor} />
+
+          {/* Hand-drawn etched horizontal sketch lines inside letters */}
+          <line x1="5" y1="18" x2="95" y2="18" stroke={secondaryColor} strokeWidth="2" strokeDasharray="4 2" strokeLinecap="round" />
+          <line x1="5" y1="26" x2="95" y2="26" stroke={secondaryColor} strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="5" y1="34" x2="95" y2="34" stroke={secondaryColor} strokeWidth="2" strokeDasharray="5 3" strokeLinecap="round" />
+          <line x1="5" y1="42" x2="95" y2="42" stroke={secondaryColor} strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="5" y1="50" x2="95" y2="50" stroke={secondaryColor} strokeWidth="2" strokeDasharray="3 2" strokeLinecap="round" />
+
+          {/* Diagonal hand-drawn pencil hatch highlights */}
+          <path
+            d="M10 10 L25 55 M24 10 L39 55 M38 10 L53 55 M52 10 L67 55 M66 10 L81 55 M80 10 L95 55"
+            stroke={accentLineColor}
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeDasharray="4 3"
+            opacity="0.75"
+          />
+        </g>
+
+        {/* Outer hand-drawn contour outline */}
+        <text
+          x="50"
+          y="48"
+          textAnchor="middle"
+          fontFamily="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+          fontWeight="900"
+          fontSize={fontSize}
+          letterSpacing={letterSpacing}
+          fill="none"
+          stroke={secondaryColor}
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {text}
+        </text>
+
+        {/* Secondary inner hand-drawn fine line for sketchy organic feel */}
+        <text
+          x="49.5"
+          y="47.5"
+          textAnchor="middle"
+          fontFamily="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+          fontWeight="900"
+          fontSize={fontSize}
+          letterSpacing={letterSpacing}
+          fill="none"
+          stroke="#FFFFFF"
+          strokeWidth="0.8"
+          strokeDasharray="4 4"
+          opacity="0.7"
+        >
+          {text}
+        </text>
+
+        {/* Hand-Drawn Wavy Sketch Underlines */}
+        <path
+          d="M14 62 C 32 66, 68 59, 86 63"
+          stroke={primaryColor}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        <path
+          d="M18 66 C 36 70, 64 64, 82 68"
+          stroke={secondaryColor}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="5 3"
+        />
+        <circle cx="89" cy="64" r="2" fill={secondaryColor} />
+      </svg>
+    );
+  };
+
   switch (fid) {
-    // 1. CHENNAI SUPER KINGS (CSK) - Sovereign Gold & Midnight Navy
+    // 1. CHENNAI SUPER KINGS (CSK) - Canary Gold with Deep Navy etched lines
     case 'csk':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="CSK Official Crest"
-        >
-          <defs>
-            <linearGradient id="csk-shield-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0B1A30" />
-              <stop offset="100%" stopColor="#040A14" />
-            </linearGradient>
-            <linearGradient id="csk-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF275" />
-              <stop offset="50%" stopColor="#F59E0B" />
-              <stop offset="100%" stopColor="#D97706" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#csk-shield-bg)"
-            stroke="url(#csk-gold-grad)"
-            strokeWidth="3"
-          />
-          {/* Inner hairline */}
-          <path
-            d="M50 10 L82 21 C82 56 68 76 50 88 C32 76 18 56 18 21 Z"
-            stroke="url(#csk-gold-grad)"
-            strokeWidth="1"
-            strokeOpacity="0.4"
-          />
-          {/* Crown */}
-          <path d="M38 20 L50 12 L62 20 L58 26 L42 26 Z" fill="url(#csk-gold-grad)" />
-          <circle cx="50" cy="10" r="2" fill="#FFFFFF" />
-          {/* Fierce Lion Mane Arcs */}
-          <path d="M26 36 Q 38 28, 50 34 Q 36 40, 26 36 Z" fill="url(#csk-gold-grad)" />
-          <path d="M74 36 Q 62 28, 50 34 Q 64 40, 74 36 Z" fill="url(#csk-gold-grad)" />
-          {/* Bold Athletic Monogram */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="26"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#csk-gold-grad)"
-          >
-            CSK
-          </text>
-          {/* Ribbon */}
-          <rect x="25" y="74" width="50" height="9" rx="2.5" fill="url(#csk-gold-grad)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#0B1A30"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            SUPER KINGS
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('CSK', '#FACC15', '#1E3A8A', '#FEF08A', 36, 2);
 
-    // 2. MUMBAI INDIANS (MI) - Deep Sapphire & Razor Titanium Vortex
+    // 2. MUMBAI INDIANS (MI) - Cobalt Blue with Vibrant Gold etched lines
     case 'mi':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="MI Official Crest"
-        >
-          <defs>
-            <linearGradient id="mi-blue-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0B2545" />
-              <stop offset="100%" stopColor="#001428" />
-            </linearGradient>
-            <linearGradient id="mi-gold-acc" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFE066" />
-              <stop offset="50%" stopColor="#D4AF37" />
-              <stop offset="100%" stopColor="#997A15" />
-            </linearGradient>
-          </defs>
-          <circle cx="50" cy="50" r="46" fill="url(#mi-blue-bg)" stroke="url(#mi-gold-acc)" strokeWidth="3" />
-          <circle cx="50" cy="50" r="40" stroke="url(#mi-gold-acc)" strokeWidth="1" strokeOpacity="0.4" />
-          {/* Razor Vortex Fins */}
-          <path d="M50 14 L55 30 L45 30 Z" fill="url(#mi-gold-acc)" />
-          <path d="M86 50 L70 55 L70 45 Z" fill="url(#mi-gold-acc)" />
-          <path d="M50 86 L45 70 L55 70 Z" fill="url(#mi-gold-acc)" />
-          <path d="M14 50 L30 45 L30 55 Z" fill="url(#mi-gold-acc)" />
-          {/* Bold Athletic MI */}
-          <text
-            x="50"
-            y="61"
-            textAnchor="middle"
-            fontSize="34"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="#FFFFFF"
-          >
-            MI
-          </text>
-          <rect x="26" y="71" width="48" height="8" rx="2" fill="url(#mi-gold-acc)" />
-          <text
-            x="50"
-            y="77.5"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#001428"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            MUMBAI
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('MI', '#0284C7', '#F59E0B', '#38BDF8', 42, 3);
 
-    // 3. ROYAL CHALLENGERS BENGALURU (RCB) - Carmine Ruby & Champagne Gold
+    // 3. ROYAL CHALLENGERS BENGALURU (RCB) - Crimson Red with Gold & Charcoal etched lines
     case 'rcb':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="RCB Official Crest"
-        >
-          <defs>
-            <linearGradient id="rcb-ruby-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#5E000B" />
-              <stop offset="50%" stopColor="#300005" />
-              <stop offset="100%" stopColor="#100002" />
-            </linearGradient>
-            <linearGradient id="rcb-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF2A3" />
-              <stop offset="50%" stopColor="#E5A823" />
-              <stop offset="100%" stopColor="#9C6B00" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#rcb-ruby-bg)"
-            stroke="url(#rcb-gold)"
-            strokeWidth="3"
-          />
-          {/* Crown */}
-          <path d="M38 18 L50 11 L62 18 L58 24 L42 24 Z" fill="url(#rcb-gold)" />
-          <circle cx="50" cy="9.5" r="1.8" fill="#FFFFFF" />
-          {/* Rampant Lion Emblem */}
-          <path
-            d="M44 28 C 41 30, 42 36, 46 38 L 44 45 L 48 46 L 49 40 C 53 40, 55 36, 53 30 Z"
-            fill="url(#rcb-gold)"
-          />
-          {/* Bold Athletic Monogram */}
-          <text
-            x="50"
-            y="66"
-            textAnchor="middle"
-            fontSize="26"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#rcb-gold)"
-          >
-            RCB
-          </text>
-          <rect x="24" y="74" width="52" height="9" rx="2.5" fill="url(#rcb-gold)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#300005"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            BENGALURU
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('RCB', '#DC2626', '#1E1B18', '#FACC15', 35, 1.5);
 
-    // 4. KOLKATA KNIGHT RIDERS (KKR) - Imperial Royal Purple & Gold
+    // 4. KOLKATA KNIGHT RIDERS (KKR) - Regal Purple with Sovereign Gold etched lines
     case 'kkr':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="KKR Official Crest"
-        >
-          <defs>
-            <linearGradient id="kkr-purple-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#2E1065" />
-              <stop offset="60%" stopColor="#1B063D" />
-              <stop offset="100%" stopColor="#0B011A" />
-            </linearGradient>
-            <linearGradient id="kkr-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF2A3" />
-              <stop offset="50%" stopColor="#E5A823" />
-              <stop offset="100%" stopColor="#9C6B00" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#kkr-purple-bg)"
-            stroke="url(#kkr-gold)"
-            strokeWidth="3"
-          />
-          {/* Knight Plume */}
-          <path d="M50 11 C 46 6, 38 8, 43 18 C 36 14, 32 20, 44 24 C 54 24, 62 18, 50 11 Z" fill="url(#kkr-gold)" />
-          {/* Visor */}
-          <path d="M38 28 L62 28 L60 42 L40 42 Z" fill="#FFFFFF" fillOpacity="0.15" stroke="url(#kkr-gold)" strokeWidth="1.5" />
-          <line x1="42" y1="35" x2="58" y2="35" stroke="url(#kkr-gold)" strokeWidth="2" />
-          {/* Bold Athletic Monogram */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="26"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#kkr-gold)"
-          >
-            KKR
-          </text>
-          <rect x="24" y="74" width="52" height="9" rx="2.5" fill="url(#kkr-gold)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#1B063D"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            KNIGHT RIDERS
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('KKR', '#9333EA', '#FACC15', '#C084FC', 35, 2);
 
-    // 5. RAJASTHAN ROYALS (RR) - Velvet Rose & Aristocratic Royal Navy
+    // 5. RAJASTHAN ROYALS (RR) - Royal Pink with Midnight Navy etched lines
     case 'rr':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="RR Official Crest"
-        >
-          <defs>
-            <linearGradient id="rr-pink-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#BE185D" />
-              <stop offset="50%" stopColor="#831843" />
-              <stop offset="100%" stopColor="#3B071E" />
-            </linearGradient>
-            <linearGradient id="rr-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FFF2A3" />
-              <stop offset="50%" stopColor="#F5C042" />
-              <stop offset="100%" stopColor="#C98B14" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#rr-pink-bg)"
-            stroke="url(#rr-gold)"
-            strokeWidth="3"
-          />
-          {/* Royal Crown */}
-          <path d="M34 22 L42 29 L50 17 L58 29 L66 22 L63 35 L37 35 Z" fill="url(#rr-gold)" />
-          <circle cx="50" cy="15" r="2" fill="#FFFFFF" />
-          {/* Bold Athletic RR */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="30"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="3"
-            fill="#FFFFFF"
-          >
-            RR
-          </text>
-          <rect x="25" y="74" width="50" height="9" rx="2.5" fill="url(#rr-gold)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#3B071E"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            ROYALS
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('RR', '#EC4899', '#1E3A8A', '#FBCFE8', 42, 3);
 
-    // 6. SUNRISERS HYDERABAD (SRH) - Terracotta Flame & Obsidian
+    // 6. SUNRISERS HYDERABAD (SRH) - Fiery Orange with Obsidian Black etched lines
     case 'srh':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="SRH Official Crest"
-        >
-          <defs>
-            <linearGradient id="srh-fire-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#C2410C" />
-              <stop offset="50%" stopColor="#7C2D12" />
-              <stop offset="100%" stopColor="#2A0B02" />
-            </linearGradient>
-            <linearGradient id="srh-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FEF08A" />
-              <stop offset="50%" stopColor="#F59E0B" />
-              <stop offset="100%" stopColor="#B45309" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#srh-fire-bg)"
-            stroke="url(#srh-gold)"
-            strokeWidth="3"
-          />
-          {/* Raptor Wing Silhouettes */}
-          <path d="M26 30 Q 42 38, 50 32 Q 58 38, 74 30 Q 62 44, 50 40 Q 38 44, 26 30 Z" fill="url(#srh-gold)" />
-          {/* Bold Athletic SRH */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="26"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="#FFFFFF"
-          >
-            SRH
-          </text>
-          <rect x="24" y="74" width="52" height="9" rx="2.5" fill="url(#srh-gold)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#2A0B02"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            SUNRISERS
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('SRH', '#EA580C', '#18181B', '#FDBA74', 35, 2);
 
-    // 7. GUJARAT TITANS (GT) - Titanium Navy & Razor Chevron
+    // 7. GUJARAT TITANS (GT) - Deep Navy with Bright Teal etched lines
     case 'gt':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="GT Official Crest"
-        >
-          <defs>
-            <linearGradient id="gt-navy-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#111827" />
-              <stop offset="60%" stopColor="#0B1320" />
-              <stop offset="100%" stopColor="#030712" />
-            </linearGradient>
-            <linearGradient id="gt-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#E2E8F0" />
-              <stop offset="50%" stopColor="#CBD5E1" />
-              <stop offset="100%" stopColor="#64748B" />
-            </linearGradient>
-            <linearGradient id="gt-teal" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#2DD4BF" />
-              <stop offset="100%" stopColor="#0F766E" />
-            </linearGradient>
-          </defs>
-          <path d="M50 5 L88 36 L50 95 L12 36 Z" fill="url(#gt-navy-bg)" stroke="url(#gt-teal)" strokeWidth="3" />
-          {/* Chevron Apex */}
-          <path d="M50 16 L68 36 L50 32 L32 36 Z" fill="url(#gt-teal)" />
-          {/* Bold Athletic GT */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="30"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="#FFFFFF"
-          >
-            GT
-          </text>
-          <rect x="26" y="74" width="48" height="8" rx="2" fill="url(#gt-teal)" />
-          <text
-            x="50"
-            y="80"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#030712"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            TITANS
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('GT', '#0F172A', '#0D9488', '#FACC15', 42, 3);
 
-    // 8. LUCKNOW SUPER GIANTS (LSG) - Celestial Cyan & Midnight Navy
+    // 8. LUCKNOW SUPER GIANTS (LSG) - Sky Blue with Saffron Orange etched lines
     case 'lsg':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="LSG Official Crest"
-        >
-          <defs>
-            <linearGradient id="lsg-navy-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0369A1" />
-              <stop offset="60%" stopColor="#075985" />
-              <stop offset="100%" stopColor="#082F49" />
-            </linearGradient>
-            <linearGradient id="lsg-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#38BDF8" />
-              <stop offset="100%" stopColor="#0284C7" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#lsg-navy-bg)"
-            stroke="url(#lsg-cyan)"
-            strokeWidth="3"
-          />
-          {/* Wings */}
-          <path d="M26 28 C 36 28, 44 36, 50 40 C 56 36, 64 28, 74 28 C 66 40, 56 44, 50 42 C 44 44, 34 40, 26 28 Z" fill="url(#lsg-cyan)" />
-          {/* Bold Athletic LSG */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="26"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="#FFFFFF"
-          >
-            LSG
-          </text>
-          <rect x="24" y="74" width="52" height="9" rx="2.5" fill="url(#lsg-cyan)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#082F49"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            SUPER GIANTS
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('LSG', '#0284C7', '#EA580C', '#BAE6FD', 35, 2);
 
-    // 9. DELHI CAPITALS (DC) - Imperial Blue & Venetian Red
+    // 9. DELHI CAPITALS (DC) - Capitals Royal Blue with Crimson Red etched lines
     case 'dc':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="DC Official Crest"
-        >
-          <defs>
-            <linearGradient id="dc-blue-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1E3A8A" />
-              <stop offset="60%" stopColor="#172554" />
-              <stop offset="100%" stopColor="#0B132B" />
-            </linearGradient>
-            <linearGradient id="dc-red" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#EF4444" />
-              <stop offset="100%" stopColor="#B91C1C" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#dc-blue-bg)"
-            stroke="url(#dc-red)"
-            strokeWidth="3"
-          />
-          {/* Triple Tiger Apex */}
-          <polygon points="50,15 44,24 56,24" fill="url(#dc-red)" />
-          <polygon points="36,20 32,27 42,27" fill="url(#dc-red)" />
-          <polygon points="64,20 58,27 68,27" fill="url(#dc-red)" />
-          {/* Bold Athletic DC */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="30"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="#FFFFFF"
-          >
-            DC
-          </text>
-          <rect x="25" y="74" width="50" height="9" rx="2.5" fill="url(#dc-red)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#FFFFFF"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            CAPITALS
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('DC', '#2563EB', '#DC2626', '#93C5FD', 42, 3);
 
-    // 10. PUNJAB KINGS (PBKS) - Bordeaux Scarlet & Warm Brushed Gold
+    // 10. PUNJAB KINGS (PBKS) - Bright Crimson with Golden Yellow etched lines
     case 'pbks':
-    case 'pk':
-      return (
-        <svg
-          viewBox="0 0 100 100"
-          className={`${dimensionClass} shrink-0 inline-block drop-shadow-sm transition-transform duration-200 hover:scale-105 ${className}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="PBKS Official Crest"
-        >
-          <defs>
-            <linearGradient id="pbks-red-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#991B1B" />
-              <stop offset="50%" stopColor="#7F1D1D" />
-              <stop offset="100%" stopColor="#450A0A" />
-            </linearGradient>
-            <linearGradient id="pbks-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FEF08A" />
-              <stop offset="50%" stopColor="#EAB308" />
-              <stop offset="100%" stopColor="#A16207" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 4 L88 17 C88 60 72 84 50 97 C28 84 12 60 12 17 Z"
-            fill="url(#pbks-red-bg)"
-            stroke="url(#pbks-gold)"
-            strokeWidth="3"
-          />
-          {/* Crown Pennants */}
-          <path d="M38 18 L50 11 L62 18 L58 24 L42 24 Z" fill="url(#pbks-gold)" />
-          <circle cx="50" cy="9.5" r="1.8" fill="#FFFFFF" />
-          {/* Bold Athletic PBKS */}
-          <text
-            x="50"
-            y="65"
-            textAnchor="middle"
-            fontSize="24"
-            fontWeight="900"
-            fontFamily="system-ui, -apple-system, sans-serif"
-            letterSpacing="2"
-            fill="url(#pbks-gold)"
-          >
-            PBKS
-          </text>
-          <rect x="25" y="74" width="50" height="9" rx="2.5" fill="url(#pbks-gold)" />
-          <text
-            x="50"
-            y="81"
-            textAnchor="middle"
-            fontSize="5.5"
-            fontWeight="900"
-            letterSpacing="1.2"
-            fill="#450A0A"
-            fontFamily="system-ui, -apple-system, sans-serif"
-          >
-            PUNJAB
-          </text>
-        </svg>
-      );
+      return renderDoodleLogo('PBKS', '#E11D48', '#F59E0B', '#FDA4AF', 30, 1.5);
 
-    default:
-      return (
-        <div
-          className={`${dimensionClass} shrink-0 inline-flex items-center justify-center rounded-xl bg-orange-100 border border-orange-300 font-black text-xs uppercase text-orange-900 ${className}`}
-        >
-          {fid.slice(0, 3)}
-        </div>
-      );
+    // Generic / Fallback
+    default: {
+      const initials = fid.substring(0, 3).toUpperCase() || 'IPL';
+      return renderDoodleLogo(initials, '#EA580C', '#1E1B18', '#FED7AA', 36, 2);
+    }
   }
 }

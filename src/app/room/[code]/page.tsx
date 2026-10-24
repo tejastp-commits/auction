@@ -618,7 +618,7 @@ export default function RoomPage({ params }: { params: { code: string } }) {
         {userFranchise && (
           <div className="mb-6 p-4 sm:p-5 rounded-2xl theme-subtle-box border border-[var(--theme-accent)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg animate-fade-in">
             <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-xl p-1 flex items-center justify-center shadow-md bg-slate-950/70 border theme-border shrink-0">
+              <div className="w-12 h-12 rounded-xl p-1 flex items-center justify-center shadow-xs bg-white border theme-border shrink-0">
                 <FranchiseLogo franchiseId={userFranchise.id} size="lg" />
               </div>
               <div>
@@ -676,7 +676,7 @@ export default function RoomPage({ params }: { params: { code: string } }) {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-11 h-11 rounded-xl p-1 flex items-center justify-center shadow-md bg-slate-950/70 border theme-border">
+                      <div className="w-12 h-11 rounded-xl p-0.5 flex items-center justify-center shadow-xs bg-white border theme-border">
                         <FranchiseLogo franchiseId={franchise.id} size="lg" />
                       </div>
                       <span className="text-xs font-black font-mono tracking-wider px-2 py-0.5 rounded-md theme-subtle-box border theme-border">

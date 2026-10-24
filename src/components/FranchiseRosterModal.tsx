@@ -22,6 +22,8 @@ export default function FranchiseRosterModal({
   const teamData: Franchise2026Data | undefined = FRANCHISE_2026_ROSTERS[franchiseId.toLowerCase()];
   if (!teamData) return null;
 
+  const overseasCount = teamData.players.filter((p) => p.isOverseas).length;
+
   const filteredPlayers = teamData.players.filter((p) => {
     if (roleFilter === 'ALL') return true;
     return p.role === roleFilter;
@@ -83,12 +85,15 @@ export default function FranchiseRosterModal({
 
         {/* SUBHEADER: PURSE & ROSTER FILTERS */}
         <div className="px-5 sm:px-6 py-3 bg-[#FFF7ED] border-b border-[#FED7AA] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#1E1B18]">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-[#1E1B18]">
             <span className="px-2.5 py-1 rounded-lg bg-white border border-[#FED7AA] shadow-xs">
               💰 Purse: <strong>₹{teamData.purseCr} Cr</strong>
             </span>
-            <span className="px-2.5 py-1 rounded-lg bg-white border border-[#FED7AA] shadow-xs text-orange-900">
-              🏏 2026 Core Roster ({teamData.players.length} Key Stars)
+            <span className="px-2.5 py-1 rounded-lg bg-white border border-[#FED7AA] shadow-xs text-orange-950">
+              🏏 2026 Squad: <strong>{teamData.players.length} Players</strong>
+            </span>
+            <span className="px-2.5 py-1 rounded-lg bg-white border border-[#FED7AA] shadow-xs text-indigo-900">
+              ✈️ Overseas: <strong>{overseasCount} / 8</strong>
             </span>
           </div>
 
@@ -143,6 +148,11 @@ export default function FranchiseRosterModal({
                       {player.isRetained && (
                         <span className="text-[10px] font-black px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-900 border border-emerald-300">
                           RETAINED
+                        </span>
+                      )}
+                      {player.isOverseas && (
+                        <span className="text-[10px] font-black px-1.5 py-0.2 rounded bg-sky-100 text-sky-900 border border-sky-300">
+                          ✈️ OVERSEAS
                         </span>
                       )}
                     </div>
