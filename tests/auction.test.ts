@@ -36,20 +36,16 @@ describe('IPL Auction Arena — Engine & Rules Test Suite', () => {
       // Opening bid
       expect(getNextMinimumBid(0, basePrice)).toBe(2 * CRORE);
 
-      // Below 1 Cr: +20 Lakhs
-      expect(getNextMinimumBid(80 * LAKH, basePrice)).toBe(1 * CRORE);
+      // Below 2 Cr: +10 Lakhs
+      expect(getNextMinimumBid(80 * LAKH, basePrice)).toBe(90 * LAKH);
+      expect(getNextMinimumBid(1.5 * CRORE, basePrice)).toBe(1.6 * CRORE);
+      expect(getNextMinimumBid(1.9 * CRORE, basePrice)).toBe(2.0 * CRORE);
 
-      // 1 Cr to 5 Cr: +25 Lakhs
+      // Over 2 Cr: +25 Lakhs
       expect(getNextMinimumBid(2 * CRORE, basePrice)).toBe(2.25 * CRORE);
       expect(getNextMinimumBid(4.75 * CRORE, basePrice)).toBe(5 * CRORE);
-
-      // 5 Cr to 10 Cr: +50 Lakhs
-      expect(getNextMinimumBid(5 * CRORE, basePrice)).toBe(5.5 * CRORE);
-      expect(getNextMinimumBid(9.5 * CRORE, basePrice)).toBe(10 * CRORE);
-
-      // Above 10 Cr: +1 Crore
-      expect(getNextMinimumBid(10 * CRORE, basePrice)).toBe(11 * CRORE);
-      expect(getNextMinimumBid(24 * CRORE, basePrice)).toBe(25 * CRORE);
+      expect(getNextMinimumBid(9.75 * CRORE, basePrice)).toBe(10 * CRORE);
+      expect(getNextMinimumBid(24.75 * CRORE, basePrice)).toBe(25 * CRORE);
     });
   });
 

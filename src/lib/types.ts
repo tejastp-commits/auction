@@ -44,6 +44,8 @@ export interface AuctionPlayerItem {
   finalPrice: number | null;
   winningFranchiseId: string | null;
   soldAt: string | null;
+  setGroup?: string;
+  setName?: string;
   nominationRound?: number;
   exclusionReason?: string | null;
   skippedAt?: string | null;

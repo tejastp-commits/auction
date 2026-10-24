@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { AuctionRoomState, AuctionPlayerItem } from '@/lib/types';
 import { VERIFIED_PLAYERS, Player, PlayerRole } from '@/data/players';
+import { getCuratedAuctionPool, POOL_PRESETS } from '@/data/curated-pools';
 import { FRANCHISE_MAP } from '@/data/franchises';
 import { formatRupees, CRORE } from '@/lib/currency';
 
@@ -152,9 +153,15 @@ export default function OrganizerPoolModal({
   };
 
   // Curated Preset Packs
-  const handleAddCuratedPack = (packType: string) => {
+  const handleAddCuratedPack = (packType: string, replacePending: boolean = false) => {
     let ids: string[] = [];
-    if (packType === 'MARQUEE') {
+    if (packType === 'MEGA_300') {
+      ids = getCuratedAuctionPool(300).map((e) => e.player.id);
+    } else if (packType === 'CHAMPIONSHIP_200') {
+      ids = getCuratedAuctionPool(200).map((e) => e.player.id);
+    } else if (packType === 'BLITZ_150') {
+      ids = getCuratedAuctionPool(150).map((e) => e.player.id);
+    } else if (packType === 'MARQUEE') {
       // Pant, Iyer, Starc, Cummins, Curran, Green, Morris, etc.
       ids = VERIFIED_PLAYERS.filter((p) =>
         ['rpant-17', 'shreyas-iyer-02', 'mstarc-56', 'pcummins-30', 'scurran-58', 'cgreen-42', 'klrahul-01', 'yvchahal-03', 'arshdeep-singh-04', 'jbuttler-05'].includes(p.id)
@@ -182,7 +189,11 @@ export default function OrganizerPoolModal({
     }
 
     if (ids.length > 0) {
-      callPoolApi('ADD', { playerIds: ids });
+      if (replacePending) {
+        callPoolApi('IMPORT', { playerIds: ids, replacePending: true });
+      } else {
+        callPoolApi('ADD', { playerIds: ids });
+      }
     }
   };
 
@@ -852,9 +863,71 @@ export default function OrganizerPoolModal({
         {/* TAB 3: IMPORT / EXPORT & PRESETS */}
         {activeTab === 'presets' && (
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+            {/* Team Aligned Full Pool Presets */}
+            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-black text-amber-400">Official Team-Aligned Player Pools</h3>
+                  <p className="text-xs text-slate-300">
+                    Curated across past 5 seasons of IPL performance and organized into official broadcast sets.
+                  </p>
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-400/20 text-amber-300">
+                  Recommended
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-700 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-amber-400 tracking-wider">10 Teams</span>
+                    <h4 className="text-xs font-black text-white mt-0.5">Mega Auction (300)</h4>
+                    <p className="text-[11px] text-slate-400 mt-1">250 squad slots + 50 buffer. Full role depth across all 10 franchises.</p>
+                  </div>
+                  <button
+                    disabled={isLoading}
+                    onClick={() => handleAddCuratedPack('MEGA_300', true)}
+                    className="mt-3 w-full py-1.5 px-3 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 hover:bg-amber-400 cursor-pointer transition-all"
+                  >
+                    Load 300 Players
+                  </button>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-700 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-blue-400 tracking-wider">6–8 Teams</span>
+                    <h4 className="text-xs font-black text-white mt-0.5">Championship (200)</h4>
+                    <p className="text-[11px] text-slate-400 mt-1">High-density capped stars and top international match-winners.</p>
+                  </div>
+                  <button
+                    disabled={isLoading}
+                    onClick={() => handleAddCuratedPack('CHAMPIONSHIP_200', true)}
+                    className="mt-3 w-full py-1.5 px-3 rounded-lg text-xs font-bold bg-blue-500 text-slate-950 hover:bg-blue-400 cursor-pointer transition-all"
+                  >
+                    Load 200 Players
+                  </button>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-700 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-emerald-400 tracking-wider">4–5 Teams</span>
+                    <h4 className="text-xs font-black text-white mt-0.5">Blitz Pool (150)</h4>
+                    <p className="text-[11px] text-slate-400 mt-1">Superstar concentration for 4–5 teams (100–125 squad slots + buffer).</p>
+                  </div>
+                  <button
+                    disabled={isLoading}
+                    onClick={() => handleAddCuratedPack('BLITZ_150', true)}
+                    className="mt-3 w-full py-1.5 px-3 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 hover:bg-emerald-400 cursor-pointer transition-all"
+                  >
+                    Load 150 Players
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/* Curated Preset Packs */}
             <div>
-              <h3 className="text-sm font-bold text-white mb-2">1-Click Curated Player Packs</h3>
+              <h3 className="text-sm font-bold text-white mb-2">1-Click Curated Category Packs</h3>
               <p className="text-xs text-slate-400 mb-4">
                 Instantly populate your auction pool with verified official candidate sets.
               </p>

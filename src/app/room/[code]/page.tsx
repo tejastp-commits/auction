@@ -241,6 +241,9 @@ export default function AuctionRoomPage() {
   const basePrice = currentPlayerItem?.basePrice || 20000000;
   const minNextBid = getNextMinimumBid(currentBid, basePrice);
   const remainingPurse = userSquad?.remainingPurse || 0;
+  const isHoldingHighBid = Boolean(
+    userFranchiseId && room?.currentBidFranchiseId === userFranchiseId
+  );
 
   const quickBidOptions = userFranchiseId
     ? getQuickBidOptions(currentBid, basePrice, remainingPurse)
@@ -314,10 +317,23 @@ export default function AuctionRoomPage() {
     e.preventDefault();
     const cr = parseFloat(customBidAmountCr);
     if (isNaN(cr) || cr <= 0) {
-      setBidError('Please enter a valid bid amount in Crores.');
+      setBidError('Please enter a valid bid amount in Crores (e.g. 10 or 10.5).');
       return;
     }
-    handlePlaceBid(Math.round(cr * CRORE));
+    const targetAmount = Math.round(cr * CRORE);
+    if (targetAmount < minNextBid) {
+      setBidError(
+        `Jump bid must be at least ${formatRupees(minNextBid)} (the required minimum next bid).`
+      );
+      return;
+    }
+    if (targetAmount > remainingPurse) {
+      setBidError(
+        `Jump bid of ${formatRupees(targetAmount)} exceeds your remaining purse of ${formatRupees(remainingPurse)}.`
+      );
+      return;
+    }
+    handlePlaceBid(targetAmount);
   };
 
   const handleFinalize = async () => {
@@ -886,10 +902,15 @@ export default function AuctionRoomPage() {
             <div className="ipl-card p-6 sm:p-8 rounded-2xl border border-slate-800 relative overflow-hidden">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/30">
                       {currentPlayerItem.player.primaryRole}
                     </span>
+                    {currentPlayerItem.setName && (
+                      <span className="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                        🏏 {currentPlayerItem.setName}
+                      </span>
+                    )}
                     {currentPlayerItem.player.isOverseas && (
                       <span className="px-2.5 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30">
                         ✈️ Overseas ({currentPlayerItem.player.nationality})
@@ -1012,41 +1033,96 @@ export default function AuctionRoomPage() {
                       </span>
                       <span>
                         Purse Remaining:{' '}
-                        <strong className="text-emerald-400">{formatRupees(remainingPurse)}</strong>
+                        <strong className="text-emerald-400 font-mono">
+                          {formatRupees(remainingPurse)}
+                        </strong>
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      {quickBidOptions.map((amount) => (
+                    {/* OFFICIAL IPL PADDLE (SINGLE PRIMARY BID BUTTON) */}
+                    <div>
+                      {isHoldingHighBid ? (
+                        <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center animate-fade-in">
+                          <div className="text-emerald-400 font-black text-sm sm:text-base flex items-center justify-center gap-2">
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                            <span>
+                              {userFranchise.shortName} Holds Current Highest Bid ({formatRupees(currentBid)})
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-400 mt-1">
+                            Awaiting rival paddles or auctioneer countdown gavel.
+                          </p>
+                        </div>
+                      ) : (
                         <button
-                          key={amount}
-                          onClick={() => handlePlaceBid(amount)}
-                          disabled={amount > remainingPurse || room.status !== 'ACTIVE'}
-                          className="py-3 px-3 rounded-xl font-black text-xs text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 disabled:opacity-30 disabled:cursor-not-allowed shadow-md transition-all"
+                          type="button"
+                          onClick={() => handlePlaceBid(minNextBid)}
+                          disabled={minNextBid > remainingPurse || room.status !== 'ACTIVE'}
+                          className="w-full py-4 px-6 rounded-2xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 hover:from-amber-300 hover:to-yellow-200 disabled:opacity-30 disabled:cursor-not-allowed shadow-xl shadow-amber-500/20 active:scale-[0.99] transition-all flex flex-col items-center justify-center gap-0.5 cursor-pointer"
                         >
-                          BID {formatRupees(amount)}
+                          <div className="flex items-center gap-2 text-base sm:text-lg">
+                            <span>🔨</span>
+                            <span>
+                              {currentBid <= 0 ? 'OPEN BID' : 'RAISE PADDLE'} • {formatRupees(minNextBid)}
+                            </span>
+                          </div>
+                          <span className="text-[11px] font-bold text-slate-900/80">
+                            {currentBid <= 0
+                              ? 'Opening Base Price'
+                              : currentBid < 2 * CRORE
+                              ? '+₹10 Lakhs • Official IPL Increment'
+                              : '+₹25 Lakhs • Official IPL Increment'}
+                          </span>
                         </button>
-                      ))}
+                      )}
                     </div>
 
-                    {/* CUSTOM BID INPUT */}
-                    <form onSubmit={handleCustomBid} className="flex gap-2 pt-2">
-                      <input
-                        type="number"
-                        step="0.05"
-                        placeholder={`Custom Raise in Cr (Min ${minNextBid / CRORE} Cr)`}
-                        value={customBidAmountCr}
-                        onChange={(e) => setCustomBidAmountCr(e.target.value)}
-                        className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-amber-400"
-                      />
-                      <button
-                        type="submit"
-                        disabled={room.status !== 'ACTIVE'}
-                        className="py-2.5 px-5 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 text-xs transition-all disabled:opacity-40"
-                      >
-                        Place Bid
-                      </button>
-                    </form>
+                    {/* CUSTOM JUMP BID / HIGHER AMOUNT BLANK (FEATURE REQUEST) */}
+                    <div className="pt-3 border-t border-slate-800/80 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <label className="text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
+                          <span className="text-amber-400">⚡</span>
+                          <span>Jump Bid to Higher Number</span>
+                        </label>
+                        <span className="text-[10px] text-slate-400 font-mono">
+                          Min: {(minNextBid / CRORE).toFixed(2)} Cr
+                        </span>
+                      </div>
+
+                      <form onSubmit={handleCustomBid} className="flex gap-2">
+                        <div className="relative flex-1">
+                          <span className="absolute left-3.5 top-2.5 text-xs font-bold text-amber-400">
+                            ₹
+                          </span>
+                          <input
+                            type="number"
+                            step="0.05"
+                            placeholder="e.g. 10.00"
+                            value={customBidAmountCr}
+                            onChange={(e) => setCustomBidAmountCr(e.target.value)}
+                            className="w-full pl-8 pr-12 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs font-bold font-mono focus:outline-none focus:border-amber-400 transition-colors"
+                          />
+                          <span className="absolute right-3.5 top-2.5 text-xs font-bold text-slate-400">
+                            Cr
+                          </span>
+                        </div>
+                        <button
+                          type="submit"
+                          disabled={room.status !== 'ACTIVE' || !customBidAmountCr}
+                          className="py-2.5 px-5 rounded-xl font-black bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-400/30 text-xs transition-all disabled:opacity-40 flex items-center gap-1.5 cursor-pointer shrink-0"
+                        >
+                          <span>Jump Bid</span>
+                          {customBidAmountCr && !isNaN(parseFloat(customBidAmountCr)) && (
+                            <span className="text-white font-mono">
+                              ₹{parseFloat(customBidAmountCr).toFixed(2)} Cr
+                            </span>
+                          )}
+                        </button>
+                      </form>
+                      <p className="text-[10px] text-slate-500">
+                        Want to bid ₹10 Cr or jump directly for your marquee target? Enter any higher Crores amount above.
+                      </p>
+                    </div>
                   </div>
                 ) : (
                   <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-center">

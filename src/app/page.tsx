@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { IPL_FRANCHISES } from '@/data/franchises';
+import { POOL_PRESETS } from '@/data/curated-pools';
 import { CRORE } from '@/lib/currency';
 import Link from 'next/link';
 import {
@@ -32,7 +33,8 @@ export default function LandingPage() {
   const [hostName, setHostName] = useState('');
   const [startingPurseCr, setStartingPurseCr] = useState<number>(120);
   const [timerSeconds, setTimerSeconds] = useState<number>(15);
-  const [poolSize, setPoolSize] = useState<number>(200);
+  const [poolSize, setPoolSize] = useState<number>(300);
+  const [showCustomPool, setShowCustomPool] = useState<boolean>(false);
 
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState('');
@@ -159,24 +161,24 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center gap-2.5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full theme-accent-badge text-xs font-bold tracking-wide shadow-sm">
                 <span className="w-2 h-2 rounded-full theme-btn-primary animate-pulse" />
-                <span>OFFICIAL 2025 BCCI AUCTION ENGINE</span>
+                <span>IPL 2026 OFFICIAL WAR ROOM SIMULATOR</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full theme-subtle-box text-xs font-medium border theme-border">
                 <Flame className="w-3.5 h-3.5 theme-accent-text" />
-                <span>Multiplayer Live Rooms</span>
+                <span>Live Multiplayer War Rooms</span>
               </div>
             </div>
 
             {/* Headline */}
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08]">
-                Experience High-Stakes{' '}
+                Build Your Championship XI.{' '}
                 <span className="block theme-accent-text">
-                  IPL Bidding Wars.
+                  Real-Time IPL Auction Arena.
                 </span>
               </h1>
               <p className="mt-4 text-base sm:text-lg opacity-75 leading-relaxed max-w-2xl font-normal">
-                Assemble your war room. Outbid rivals with authoritative synchronized timers, real franchise purse allocations, and the complete 622-player BCCI 2025 catalog.
+                Step up to the bidding table. Manage authentic ₹120 Cr franchise purses, hold up the paddle with official BCCI bid increments (+₹10L under ₹2 Cr, +₹25L over ₹2 Cr), and draft from 5-year performance-analyzed player sets tailored for 4 to 10 teams.
               </p>
             </div>
 
@@ -361,63 +363,83 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  {/* SETTING 3: AUCTION POOL SIZE (SLIDER + STEPPER) */}
+                  {/* SETTING 3: CURATED PLAYER POOL PRESET (ALIGNED WITH TEAMS) */}
                   <div className="theme-subtle-box p-4 rounded-2xl border theme-border space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5 text-xs font-bold opacity-90">
                         <Users className="w-4 h-4 theme-accent-text" />
-                        <span>Auction Pool Size (Players)</span>
+                        <span>Curated Player Pool (Aligned with Teams)</span>
                       </div>
                       <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-lg theme-accent-badge">
                         {poolSize} Players
                       </span>
                     </div>
 
-                    <div className="pt-1">
-                      <input
-                        type="range"
-                        min={20}
-                        max={622}
-                        step={10}
-                        value={poolSize}
-                        onChange={(e) => setPoolSize(parseInt(e.target.value, 10))}
-                        aria-label="Auction pool size"
-                      />
+                    {/* 3 PRESET SELECTION CARDS */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                      {POOL_PRESETS.map((preset) => {
+                        const isSelected = poolSize === preset.playerCount;
+                        return (
+                          <button
+                            key={preset.id}
+                            type="button"
+                            onClick={() => setPoolSize(preset.playerCount)}
+                            className={`p-3 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                              isSelected
+                                ? 'theme-card ring-2 ring-[var(--theme-accent)] shadow-md'
+                                : 'theme-card border-transparent opacity-75 hover:opacity-100 hover:scale-[1.01]'
+                            }`}
+                          >
+                            <div>
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-[11px] font-black uppercase tracking-wider theme-accent-text">
+                                  {preset.targetTeams}
+                                </span>
+                                {isSelected && (
+                                  <span className="w-2 h-2 rounded-full theme-btn-primary" />
+                                )}
+                              </div>
+                              <div className="text-xs font-bold leading-snug">
+                                {preset.playerCount} Players
+                              </div>
+                              <div className="text-[10px] opacity-65 mt-1 leading-tight line-clamp-2 font-medium">
+                                {preset.tagline}
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
 
-                    <div className="flex items-center justify-between pt-1">
-                      <span className="text-[11px] opacity-50">20</span>
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setPoolSize((prev) => Math.max(10, prev - 25))}
-                          className="p-1 rounded-lg theme-card border theme-border opacity-80 hover:opacity-100 transition-all cursor-pointer"
-                          title="Decrease by 25 players"
-                        >
-                          <Minus className="w-3.5 h-3.5" />
-                        </button>
-                        <input
-                          type="number"
-                          min={10}
-                          max={622}
-                          value={poolSize}
-                          onChange={(e) => {
-                            const val = parseInt(e.target.value, 10);
-                            if (!isNaN(val)) setPoolSize(val);
-                          }}
-                          className="w-16 text-center py-1 text-xs font-mono font-bold theme-card border theme-border rounded-lg focus:outline-none"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setPoolSize((prev) => Math.min(622, prev + 25))}
-                          className="p-1 rounded-lg theme-card border theme-border opacity-80 hover:opacity-100 transition-all cursor-pointer"
-                          title="Increase by 25 players"
-                        >
-                          <Plus className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                      <span className="text-[11px] opacity-50">622 (Full BCCI)</span>
+                    <div className="flex items-center justify-between pt-1 text-[11px] opacity-65">
+                      <span>Curated by 5-year IPL & T20 performance</span>
+                      <button
+                        type="button"
+                        onClick={() => setShowCustomPool(!showCustomPool)}
+                        className="text-[11px] underline opacity-80 hover:opacity-100 cursor-pointer font-medium"
+                      >
+                        {showCustomPool ? 'Hide Custom Pool Slider' : 'Custom Pool Size?'}
+                      </button>
                     </div>
+
+                    {showCustomPool && (
+                      <div className="pt-2 border-t theme-border space-y-2 animate-fade-in">
+                        <input
+                          type="range"
+                          min={20}
+                          max={622}
+                          step={10}
+                          value={poolSize}
+                          onChange={(e) => setPoolSize(parseInt(e.target.value, 10))}
+                          aria-label="Auction pool size"
+                        />
+                        <div className="flex items-center justify-between text-[11px]">
+                          <span className="opacity-50">Min 20</span>
+                          <span className="font-mono font-bold">{poolSize} Players Selected</span>
+                          <span className="opacity-50">Max 622</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* LAUNCH BUTTON */}
@@ -609,24 +631,26 @@ export default function LandingPage() {
               </div>
 
               {/* Interactive Demo Test Buttons */}
-              <div className="mt-4 pt-3.5 border-t theme-border flex items-center justify-between gap-2">
-                <div className="text-[11px] opacity-70">
-                  Simulate live bidding:
+              <div className="mt-4 pt-3.5 border-t theme-border flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                <div className="text-[11px] opacity-75 font-medium">
+                  Official Paddle (+₹0.25 Cr) & Jump Bid:
                 </div>
-                <div className="flex gap-1.5">
+                <div className="flex items-center gap-1.5 w-full sm:w-auto">
                   <button
                     type="button"
-                    onClick={() => handleDemoBid('RCB', 0.5)}
-                    className="px-2.5 py-1 text-xs font-bold rounded-lg theme-card border theme-border hover:opacity-100 transition-all cursor-pointer"
+                    onClick={() => handleDemoBid('RCB', 0.25)}
+                    className="flex-1 sm:flex-initial px-3 py-1.5 text-xs font-bold rounded-lg theme-btn-primary shadow-sm hover:opacity-90 transition-all cursor-pointer flex items-center justify-center gap-1"
                   >
-                    +₹0.5 Cr (RCB)
+                    <span>🔨</span>
+                    <span>Paddle (+₹25L)</span>
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleDemoBid('CSK', 0.5)}
-                    className="px-2.5 py-1 text-xs font-bold rounded-lg theme-card border theme-border hover:opacity-100 transition-all cursor-pointer"
+                    onClick={() => handleDemoBid('CSK', 2.0)}
+                    className="flex-1 sm:flex-initial px-3 py-1.5 text-xs font-bold rounded-lg theme-card border theme-border hover:opacity-100 transition-all cursor-pointer flex items-center justify-center gap-1"
                   >
-                    +₹0.5 Cr (CSK)
+                    <span>⚡</span>
+                    <span>Jump (+₹2 Cr)</span>
                   </button>
                 </div>
               </div>
@@ -745,9 +769,9 @@ export default function LandingPage() {
             <div className="text-[11px] font-mono font-bold tracking-widest uppercase opacity-50">
               Step 01
             </div>
-            <h3 className="text-base font-black">Configure & Host</h3>
+            <h3 className="text-base font-black">Curated Sets & Team Pools</h3>
             <p className="text-xs opacity-70 leading-relaxed">
-              Define starting purse amounts (₹50Cr–₹250Cr), countdown clocks (5s–60s), and custom pool size. Share your 6-digit room code with friends.
+              Choose 150, 200, or 300 cricketers curated across 5-year IPL performance. Structured into official broadcast sets (Marquee M1/M2, Capped Batters, All-Rounders, Keepers, Pacers, Spinners).
             </p>
           </div>
 
@@ -758,9 +782,9 @@ export default function LandingPage() {
             <div className="text-[11px] font-mono font-bold tracking-widest uppercase opacity-50">
               Step 02
             </div>
-            <h3 className="text-base font-black">Live Bidding Wars</h3>
+            <h3 className="text-base font-black">Official Incremental Bidding</h3>
             <p className="text-xs opacity-70 leading-relaxed">
-              Real-time server synchronization prevents race conditions. Late bids dynamically reset the clock, enforcing overseas caps and purse thresholds.
+              Hold up the paddle with authentic rules: +₹10L under ₹2 Cr, +₹25L over ₹2 Cr, plus instant direct Jump Bids when you want to secure your target marquee player.
             </p>
           </div>
 
@@ -771,9 +795,9 @@ export default function LandingPage() {
             <div className="text-[11px] font-mono font-bold tracking-widest uppercase opacity-50">
               Step 03
             </div>
-            <h3 className="text-base font-black">AI Squad Intelligence</h3>
+            <h3 className="text-base font-black">Live Gavel & Squad Analytics</h3>
             <p className="text-xs opacity-70 leading-relaxed">
-              When the final gavel falls, immediately generate a permanent 100-point tactical intelligence dossier rating team balance, depth, and starting XI.
+              Synchronized auctioneer countdown clocks, anti-snipe timer extensions, and instant squad math keeping track of your 8-overseas limits, purse balances, and starting XI dossiers.
             </p>
           </div>
         </div>

@@ -32,29 +32,47 @@ export function formatRupees(amountInRupees: number | bigint): string {
 }
 
 /**
- * Calculates the next minimum bid amount based on the current bid and standard IPL price bands.
- * Standard Bands:
+ * Calculates the next minimum bid amount based on the current bid and official IPL price bands.
+ * Official Bands:
  * - Current Bid = 0 (Opening): Base Price
- * - Current Bid < 1 Cr: +20 Lakhs
- * - Current Bid >= 1 Cr and < 5 Cr: +25 Lakhs
- * - Current Bid >= 5 Cr and < 10 Cr: +50 Lakhs
- * - Current Bid >= 10 Cr: +1 Crore
+ * - Current Bid < 2 Cr: +10 Lakhs (+₹0.10 Cr)
+ * - Current Bid >= 2 Cr: +25 Lakhs (+₹0.25 Cr)
  */
 export function getNextMinimumBid(currentBid: number, basePrice: number): number {
   if (currentBid <= 0) {
     return basePrice;
   }
 
-  if (currentBid < 1 * CRORE) {
-    return currentBid + 20 * LAKH;
+  if (currentBid < 2 * CRORE) {
+    return currentBid + 10 * LAKH;
   }
-  if (currentBid < 5 * CRORE) {
-    return currentBid + 25 * LAKH;
+  return currentBid + 25 * LAKH;
+}
+
+/**
+ * Returns the official incremental amount in rupees for the current bid level.
+ */
+export function getBidIncrement(currentBid: number, basePrice: number = 0): number {
+  if (currentBid <= 0) {
+    return basePrice;
   }
-  if (currentBid < 10 * CRORE) {
-    return currentBid + 50 * LAKH;
+  if (currentBid < 2 * CRORE) {
+    return 10 * LAKH;
   }
-  return currentBid + 1 * CRORE;
+  return 25 * LAKH;
+}
+
+/**
+ * Returns a human-readable badge label for the active increment (e.g. "+₹10L" or "+₹25L")
+ */
+export function getBidIncrementLabel(currentBid: number): string {
+  if (currentBid <= 0) {
+    return 'Opening Base Price';
+  }
+  if (currentBid < 2 * CRORE) {
+    return '+₹10 Lakhs (Official Increment)';
+  }
+  return '+₹25 Lakhs (Official Increment)';
 }
 
 /**
@@ -63,25 +81,5 @@ export function getNextMinimumBid(currentBid: number, basePrice: number): number
 export function getQuickBidOptions(currentBid: number, basePrice: number, remainingPurse: number): number[] {
   const minBid = getNextMinimumBid(currentBid, basePrice);
   if (minBid > remainingPurse) return [];
-
-  const options = [minBid];
-
-  // Additional strategic raise buttons
-  const standardInc = minBid - (currentBid || basePrice);
-  const bump1 = minBid + Math.max(standardInc, 25 * LAKH);
-  if (bump1 <= remainingPurse && !options.includes(bump1)) {
-    options.push(bump1);
-  }
-
-  const bump2 = minBid + Math.max(standardInc * 2, 50 * LAKH);
-  if (bump2 <= remainingPurse && !options.includes(bump2)) {
-    options.push(bump2);
-  }
-
-  const bump3 = minBid + 1 * CRORE;
-  if (bump3 <= remainingPurse && !options.includes(bump3)) {
-    options.push(bump3);
-  }
-
-  return options.slice(0, 4);
+  return [minBid];
 }

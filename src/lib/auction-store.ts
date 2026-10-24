@@ -2,7 +2,19 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { VERIFIED_PLAYERS, Player } from '@/data/players';
+import { getCuratedAuctionPool } from '@/data/curated-pools';
 import { IPL_FRANCHISES, Franchise, FRANCHISE_MAP } from '@/data/franchises';
+
+// Pre-index curated sets for queue item metadata
+const curatedSetLookup = new Map<string, { setGroup: string; setName: string }>();
+try {
+  getCuratedAuctionPool(300).forEach((item) => {
+    curatedSetLookup.set(item.player.id, {
+      setGroup: item.setGroup,
+      setName: item.setName,
+    });
+  });
+} catch {}
 import { getNextMinimumBid, CRORE } from './currency';
 import { evaluateSquad, rankAllSquads, TeamEvaluation } from './analytics';
 import {
@@ -242,6 +254,7 @@ const DEFAULT_CONFIG: RoomConfiguration = {
   maxSquadSize: 25,
   maxOverseas: 8,
   bidTimerSeconds: 20,
+  auctionPoolSize: 300,
 };
 
 function generateRoomCode(): string {
@@ -315,25 +328,26 @@ export class AuctionStore {
       };
     }
 
-    // Initial player queue from verified players (respects custom auction pool size)
+    // Initial player queue from curated 5-year analyzed sets (respects pool size: 150, 200, 300)
     const requestedPool =
       config.auctionPoolSize && config.auctionPoolSize > 0
         ? config.auctionPoolSize
-        : 200;
-    const poolLimit = Math.min(requestedPool, VERIFIED_PLAYERS.length);
-    const selectedPlayers = VERIFIED_PLAYERS.slice(0, poolLimit);
+        : 300;
+    const curatedEntries = getCuratedAuctionPool(requestedPool);
 
-    const queue: AuctionPlayerItem[] = selectedPlayers.map((player, idx) => ({
+    const queue: AuctionPlayerItem[] = curatedEntries.map((entry, idx) => ({
       id: generateUUID(),
       roomId,
-      playerId: player.id,
-      player,
+      playerId: entry.player.id,
+      player: entry.player,
       queuePosition: idx,
       status: 'PENDING',
-      basePrice: player.defaultBasePrice,
+      basePrice: entry.player.defaultBasePrice,
       finalPrice: null,
       winningFranchiseId: null,
       soldAt: null,
+      setGroup: entry.setGroup,
+      setName: entry.setName,
     }));
 
     const hostParticipant: RoomParticipant = {
@@ -859,6 +873,7 @@ export class AuctionStore {
       const player = VERIFIED_PLAYERS.find((p) => p.id === pid);
       if (!player) continue;
 
+      const setInfo = curatedSetLookup.get(player.id);
       const item: AuctionPlayerItem = {
         id: generateUUID(),
         roomId: room.id,
@@ -870,6 +885,8 @@ export class AuctionStore {
         finalPrice: null,
         winningFranchiseId: null,
         soldAt: null,
+        setGroup: setInfo?.setGroup,
+        setName: setInfo?.setName,
         nominationRound: 1,
         lastUpdatedAt: new Date().toISOString(),
       };
@@ -1195,6 +1212,7 @@ export class AuctionStore {
         const player = VERIFIED_PLAYERS.find((p) => p.id === pid);
         if (!player) continue;
 
+        const setInfo = curatedSetLookup.get(player.id);
         newItems.push({
           id: generateUUID(),
           roomId: room.id,
@@ -1206,6 +1224,8 @@ export class AuctionStore {
           finalPrice: null,
           winningFranchiseId: null,
           soldAt: null,
+          setGroup: setInfo?.setGroup,
+          setName: setInfo?.setName,
           nominationRound: 1,
           lastUpdatedAt: new Date().toISOString(),
         });
