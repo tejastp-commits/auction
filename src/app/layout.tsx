@@ -72,10 +72,31 @@ export default function RootLayout({
                 <AuctionArenaLogo size="md" />
               </div>
               <div>
-                <span className="font-black text-lg sm:text-xl tracking-tight flex items-center gap-1.5 text-[#1E1B18]">
-                  IPL <span className="text-orange-600">Auction</span> Arena 🏏
+                <span className="font-black text-lg sm:text-xl tracking-tight flex items-center gap-1.5 text-[#1E1B18] relative inline-block">
+                  <span>IPL <span className="text-orange-600">Auction</span> Arena 🏏</span>
+                  {/* Modern Hand-Drawn Doodle Underline */}
+                  <svg
+                    className="w-full h-2.5 absolute -bottom-1 left-0 pointer-events-none"
+                    viewBox="0 0 120 10"
+                    preserveAspectRatio="none"
+                    fill="none"
+                  >
+                    <path
+                      d="M2 5 Q 30 9, 60 4 T 118 5"
+                      stroke="#EA580C"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M6 7 Q 34 10, 64 6 T 112 7"
+                      stroke="#FDBA74"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeDasharray="3 2"
+                    />
+                  </svg>
                 </span>
-                <span className="hidden sm:block text-[10px] font-mono tracking-widest uppercase opacity-70">
+                <span className="hidden sm:block text-[10px] font-mono tracking-widest uppercase opacity-70 mt-0.5">
                   Official War Room Simulator
                 </span>
               </div>

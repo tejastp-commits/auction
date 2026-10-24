@@ -7,7 +7,7 @@ import FranchiseLogo from '@/components/FranchiseLogo';
 import AuctionArenaLogo from '@/components/AuctionArenaLogo';
 import DoodleSection from '@/components/DoodleSection';
 import DoodleFlag from '@/components/DoodleFlag';
-import FranchiseRosterModal from '@/components/FranchiseRosterModal';
+import GrandOpeningIntro from '@/components/GrandOpeningIntro';
 import { THEMES } from '@/components/ThemeCustomizer';
 import { POOL_PRESETS, CURATED_SETS } from '@/data/curated-pools';
 import { VERIFIED_PLAYERS, PlayerRole } from '@/data/players';
@@ -38,6 +38,85 @@ import {
   Building2,
   TrendingUp,
 } from 'lucide-react';
+
+const FRANCHISE_HONORS: Record<string, {
+  titles: number;
+  yearsWon: number[];
+  runnersUp: number[];
+  finals: number;
+  highlight: string;
+}> = {
+  csk: {
+    titles: 5,
+    yearsWon: [2010, 2011, 2018, 2021, 2023],
+    runnersUp: [2008, 2012, 2013, 2015, 2019],
+    finals: 10,
+    highlight: '5x Champions • 10 Finals',
+  },
+  mi: {
+    titles: 5,
+    yearsWon: [2013, 2015, 2017, 2019, 2020],
+    runnersUp: [2010],
+    finals: 6,
+    highlight: '5x Champions • 6 Finals',
+  },
+  kkr: {
+    titles: 3,
+    yearsWon: [2012, 2014, 2024],
+    runnersUp: [2021],
+    finals: 4,
+    highlight: '3x Champions (Defending 2024)',
+  },
+  srh: {
+    titles: 1,
+    yearsWon: [2016],
+    runnersUp: [2018, 2024],
+    finals: 3,
+    highlight: '2016 Champions • 2024 Finalists',
+  },
+  rr: {
+    titles: 1,
+    yearsWon: [2008],
+    runnersUp: [2022],
+    finals: 2,
+    highlight: 'Inaugural 2008 Champions',
+  },
+  gt: {
+    titles: 1,
+    yearsWon: [2022],
+    runnersUp: [2023],
+    finals: 2,
+    highlight: '2022 Champions • 2 Finals in 3 Yrs',
+  },
+  rcb: {
+    titles: 0,
+    yearsWon: [],
+    runnersUp: [2009, 2011, 2016],
+    finals: 3,
+    highlight: '3x Finalists • 8 Playoffs • Chasing #1',
+  },
+  dc: {
+    titles: 0,
+    yearsWon: [],
+    runnersUp: [2020],
+    finals: 1,
+    highlight: '2020 Finalists • 6 Playoffs',
+  },
+  pbks: {
+    titles: 0,
+    yearsWon: [],
+    runnersUp: [2014],
+    finals: 1,
+    highlight: '2014 Finalists • Contenders',
+  },
+  lsg: {
+    titles: 0,
+    yearsWon: [],
+    runnersUp: [],
+    finals: 0,
+    highlight: 'Back-to-Back Playoffs (2022, 2023)',
+  },
+};
 
 export default function LandingPage() {
   const router = useRouter();
@@ -71,8 +150,8 @@ export default function LandingPage() {
 
   // Hovered Franchise Table State
   const [hoveredTeam, setHoveredTeam] = useState<string | null>(null);
-  // Selected Franchise for 2026 Roster Modal
-  const [selectedFranchiseForRoster, setSelectedFranchiseForRoster] = useState<string | null>(null);
+  // Grand Opening Cinematic Intro State
+  const [showOpeningIntro, setShowOpeningIntro] = useState(false);
 
   // Memoized Search Filter for 622 BCCI Players
   const filteredPlayers = useMemo(() => {
@@ -191,17 +270,48 @@ export default function LandingPage() {
                 <Radio className="w-4 h-4 text-orange-600 animate-pulse" />
                 <span>Live Multiplayer War Rooms</span>
               </div>
+              <button
+                type="button"
+                onClick={() => setShowOpeningIntro(true)}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-300 text-xs sm:text-sm font-black shadow-xs transition-all cursor-pointer hover:scale-105"
+                title="Watch Sandstorm & Trophy Opening with Fireworks"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                <span>✨ Grand Opening Show</span>
+              </button>
             </div>
 
-            {/* Headline */}
+            {/* Headline with Modern Doodle Underline */}
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05] text-[#1E1B18]">
                 Command the Table.{' '}
-                <span className="block text-orange-600">
-                  IPL Auction Arena.
+                <span className="block text-orange-600 relative inline-block mt-1">
+                  <span>IPL Auction Arena.</span>
+                  {/* Modern Doodle Underline */}
+                  <svg
+                    className="w-full h-3.5 absolute -bottom-2 left-0 pointer-events-none"
+                    viewBox="0 0 160 16"
+                    preserveAspectRatio="none"
+                    fill="none"
+                  >
+                    <path
+                      d="M2 9 Q 40 16, 80 8 T 158 9"
+                      stroke="#EA580C"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M8 12 Q 48 18, 88 11 T 152 12"
+                      stroke="#FDBA74"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeDasharray="4 3"
+                    />
+                    <circle cx="158" cy="9" r="2.5" fill="#EA580C" />
+                  </svg>
                 </span>
               </h1>
-              <p className="mt-3.5 text-base sm:text-lg text-[#786C64] leading-relaxed max-w-2xl font-medium">
+              <p className="mt-4 text-base sm:text-lg text-[#786C64] leading-relaxed max-w-2xl font-medium">
                 Live multiplayer franchise bidding war. ₹120 Cr purses, official BCCI increment paddles, and 5-year curated player pools.
               </p>
             </div>
@@ -753,20 +863,26 @@ export default function LandingPage() {
           </p>
         </div>
 
-        {/* 10 FRANCHISE PODIUM CARDS */}
+        {/* 10 FRANCHISE PODIUM CARDS WITH INTERACTIVE HOVER SLIDE */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           {IPL_FRANCHISES.map((team) => {
             const isHovered = hoveredTeam === team.id;
+            const honors = FRANCHISE_HONORS[team.id] || {
+              titles: team.titles,
+              yearsWon: [],
+              runnersUp: [],
+              finals: 0,
+              highlight: `${team.titles}x Champion`,
+            };
+
             return (
               <div
                 key={team.id}
-                onClick={() => setSelectedFranchiseForRoster(team.id)}
                 onMouseEnter={() => setHoveredTeam(team.id)}
                 onMouseLeave={() => setHoveredTeam(null)}
-                className={`p-3.5 rounded-2xl border border-[#FED7AA] bg-white transition-all duration-200 cursor-pointer relative overflow-hidden group shadow-xs ${
+                className={`p-3.5 rounded-2xl border border-[#FED7AA] bg-white transition-all duration-300 relative overflow-hidden group shadow-xs ${
                   isHovered ? 'scale-105 shadow-xl border-orange-500 ring-2 ring-orange-400/40 z-10' : 'hover:scale-[1.02]'
                 }`}
-                title={`Click to view ${team.name} 2026 Squad Roster`}
               >
                 {/* Top: Emblem & Code */}
                 <div className="flex items-center justify-between mb-2.5">
@@ -791,26 +907,92 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                {/* 2026 Roster Trigger & Purse */}
+                {/* Hover Trigger Cue & Purse */}
                 <div className="mt-2.5 pt-2 border-t border-[#FED7AA] flex items-center justify-between text-xs">
-                  <span className="text-orange-700 font-bold group-hover:underline text-[11px] flex items-center gap-0.5">
-                    2026 Squad →
+                  <span className="text-orange-700 font-bold text-[11px] flex items-center gap-1 group-hover:text-amber-800">
+                    <Trophy className="w-3 h-3 text-amber-500" />
+                    <span>Honors</span>
                   </span>
                   <span className="text-[10px] font-mono font-bold text-[#786C64]">
                     ₹120 Cr
                   </span>
                 </div>
+
+                {/* HOVER SLIDE: CHAMPIONSHIP YEARS & PEDIGREE DRAWER */}
+                <div
+                  className={`absolute inset-0 z-20 p-3 bg-gradient-to-b from-[#1C1917] via-[#292524] to-[#0C0A09] text-white flex flex-col justify-between transition-transform duration-300 ease-out ${
+                    isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
+                  }`}
+                >
+                  {/* Top: Team Acronym & Titles Badge */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-black text-amber-400">
+                      {team.shortName}
+                    </span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center gap-1">
+                      <Trophy className="w-2.5 h-2.5 text-amber-400" />
+                      <span>{honors.titles > 0 ? `${honors.titles} Titles` : '0 Titles'}</span>
+                    </span>
+                  </div>
+
+                  {/* Middle: Trophy Years Pills */}
+                  <div className="my-auto space-y-1.5">
+                    {honors.yearsWon.length > 0 ? (
+                      <div>
+                        <span className="text-[9px] uppercase font-mono tracking-wider text-amber-300/80 block mb-0.5">
+                          Champions
+                        </span>
+                        <div className="flex flex-wrap gap-1">
+                          {honors.yearsWon.map((year) => (
+                            <span
+                              key={year}
+                              className="px-1.5 py-0.2 rounded bg-amber-400 text-neutral-950 font-black text-[10px] shadow-xs"
+                            >
+                              {year}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <span className="text-[9px] uppercase font-mono tracking-wider text-neutral-400 block mb-0.5">
+                          Status
+                        </span>
+                        <span className="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-400/40 font-bold text-[10px] block">
+                          Chasing Maiden Trophy
+                        </span>
+                      </div>
+                    )}
+
+                    {honors.runnersUp.length > 0 && (
+                      <div className="text-[10px] text-neutral-300 leading-tight">
+                        <span className="opacity-70 font-mono">Finals: </span>
+                        <span className="font-semibold text-neutral-200">
+                          {honors.runnersUp.join(', ')}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bottom: Pedigree & Purse */}
+                  <div className="pt-1.5 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
+                    <span className="text-amber-400/90 font-bold truncate max-w-[100px]" title={honors.highlight}>
+                      {honors.highlight}
+                    </span>
+                    <span className="text-neutral-400">₹120 Cr</span>
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
-
-        {/* 2026 FRANCHISE ROSTER MODAL */}
-        <FranchiseRosterModal
-          franchiseId={selectedFranchiseForRoster}
-          onClose={() => setSelectedFranchiseForRoster(null)}
-        />
       </section>
+
+      {/* GRAND OPENING CINEMATIC INTRO (SANDSTORM, CUP & FIREWORKS) */}
+      <GrandOpeningIntro
+        forceShow={showOpeningIntro}
+        onComplete={() => setShowOpeningIntro(false)}
+      />
 
       {/* ========================================================
           BUILT FOR SERIOUS CRICKET COMPETITION (DYNAMIC BUBBLE ZOOM)
