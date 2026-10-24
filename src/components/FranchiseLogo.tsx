@@ -25,7 +25,7 @@ export default function FranchiseLogo({
   const dimensionClass = SIZE_MAP[size] || SIZE_MAP.md;
 
   switch (fid) {
-    // 1. CHENNAI SUPER KINGS (CSK) - Authentic Roaring Lion Profile & Crown
+    // 1. CHENNAI SUPER KINGS (CSK) - Bold CSK with Royal Lion & Crown
     case 'csk':
       return (
         <svg
@@ -36,69 +36,62 @@ export default function FranchiseLogo({
           aria-label="Chennai Super Kings"
         >
           <defs>
-            <linearGradient id="csk-shield-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="csk-shield" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#005B9E" />
-              <stop offset="50%" stopColor="#003D73" />
+              <stop offset="60%" stopColor="#003D73" />
               <stop offset="100%" stopColor="#001B3A" />
             </linearGradient>
-            <linearGradient id="csk-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="csk-gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFF780" />
               <stop offset="40%" stopColor="#FDB913" />
               <stop offset="100%" stopColor="#F28C00" />
             </linearGradient>
-            <linearGradient id="csk-mane-orange" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#FF8C00" />
-              <stop offset="100%" stopColor="#E55100" />
+            <linearGradient id="csk-mane" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FF9E00" />
+              <stop offset="100%" stopColor="#DD2C00" />
             </linearGradient>
           </defs>
-          {/* Outer Shield with Gold Edge */}
+          {/* Shield Outline */}
           <path
             d="M50 4 L88 18 C88 58 72 82 50 96 C28 82 12 58 12 18 Z"
-            fill="url(#csk-shield-bg)"
-            stroke="url(#csk-gold-grad)"
+            fill="url(#csk-shield)"
+            stroke="url(#csk-gold)"
             strokeWidth="3.5"
           />
-          {/* Inner Heraldic Gold Rim */}
-          <path
-            d="M50 8 L84 20 C84 54 70 76 50 89 C30 76 16 54 16 20 Z"
-            stroke="url(#csk-gold-grad)"
-            strokeWidth="1"
-            opacity="0.45"
-            fill="none"
-          />
-          {/* Royal King Crown */}
-          <g fill="url(#csk-gold-grad)">
-            <path d="M36 21 L50 13 L64 21 L59 27 L41 27 Z" />
-            <circle cx="50" cy="11.5" r="2.2" fill="#FFFFFF" />
-            <circle cx="36" cy="19.5" r="1.8" fill="#FFFFFF" />
-            <circle cx="64" cy="19.5" r="1.8" fill="#FFFFFF" />
+          {/* Top Royal Crown */}
+          <g fill="url(#csk-gold)">
+            <path d="M38 18 L50 10 L62 18 L58 24 L42 24 Z" />
+            <circle cx="50" cy="8.5" r="2" fill="#FFFFFF" />
+            <circle cx="38" cy="16.5" r="1.5" fill="#FFFFFF" />
+            <circle cx="62" cy="16.5" r="1.5" fill="#FFFFFF" />
           </g>
-          {/* CSK Roaring Lion Mane Flames (Spiking backward) */}
-          <path
-            d="M60 28 C68 30 74 38 72 48 C76 44 78 40 76 34 C82 42 80 52 74 58 C78 54 80 50 80 44 C84 54 80 64 70 70 C74 66 76 60 74 54 C70 66 62 70 52 72 Z"
-            fill="url(#csk-mane-orange)"
-            opacity="0.9"
-          />
-          {/* Roaring Lion Head & Snout Profile (Facing left) */}
-          <path
-            d="M52 28 C42 28 32 34 28 42 C24 48 24 55 28 60 C30 63 36 63 38 60 C38 63 34 66 31 67 C36 70 44 69 49 65 C45 66 39 67 36 64 C42 62 46 58 48 54 C46 54 44 55 42 55 C46 50 49 46 52 46 C56 46 58 50 60 55 C64 48 64 36 52 28 Z"
-            fill="url(#csk-gold-grad)"
-          />
-          {/* Fierce Eye & Fangs */}
-          <circle cx="37" cy="42" r="2.2" fill="#001B3A" />
-          <circle cx="36.5" cy="41.5" r="0.8" fill="#FFFFFF" />
-          {/* Open Roar Jaw & Fangs */}
-          <polygon points="32,54 35,50 36,54" fill="#FFFFFF" />
-          <polygon points="31,58 34,60 36,58" fill="#FFFFFF" />
-          {/* CSK Wordmark Banner */}
-          <rect x="22" y="74" width="56" height="13" rx="3.5" fill="url(#csk-gold-grad)" stroke="#FFFFFF" strokeWidth="0.8" />
-          <text x="50" y="84" textAnchor="middle" fontSize="9.5" fontWeight="900" letterSpacing="0.8" fill="#001B3A" fontFamily="sans-serif">
+          {/* Lion Roar Flame Accents */}
+          <path d="M26 30 Q36 24 48 30 Q34 36 26 30 Z" fill="url(#csk-mane)" opacity="0.9" />
+          <path d="M74 30 Q64 24 52 30 Q66 36 74 30 Z" fill="url(#csk-mane)" opacity="0.9" />
+          {/* Center Bold CSK Text */}
+          <text
+            x="50"
+            y="62"
+            textAnchor="middle"
+            fontSize="30"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="1.5"
+            fill="url(#csk-gold)"
+            stroke="#001B3A"
+            strokeWidth="1.2"
+          >
             CSK
+          </text>
+          {/* Yellow Banner Strip at Bottom */}
+          <rect x="24" y="74" width="52" height="10" rx="3" fill="url(#csk-gold)" />
+          <text x="50" y="82" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#001B3A" letterSpacing="1">
+            SUPER KINGS
           </text>
         </svg>
       );
 
-    // 2. MUMBAI INDIANS (MI) - Sudarshan Razor Chakra & Tricolor Ribbon
+    // 2. MUMBAI INDIANS (MI) - Bold MI with Sudarshan Razor Chakra
     case 'mi':
       return (
         <svg
@@ -109,54 +102,56 @@ export default function FranchiseLogo({
           aria-label="Mumbai Indians"
         >
           <defs>
-            <linearGradient id="mi-blue-core" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="mi-blue" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#0077B6" />
               <stop offset="50%" stopColor="#004BA0" />
               <stop offset="100%" stopColor="#001F54" />
             </linearGradient>
-            <linearGradient id="mi-gold-blade" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="mi-gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFF3B0" />
-              <stop offset="50%" stopColor="#E0B130" />
+              <stop offset="50%" stopColor="#FFD700" />
               <stop offset="100%" stopColor="#B38600" />
             </linearGradient>
           </defs>
-          {/* Outer Ring */}
-          <circle cx="50" cy="50" r="46" fill="url(#mi-blue-core)" stroke="url(#mi-gold-blade)" strokeWidth="3" />
-          {/* Outer Razor Chakra Blades (8 Aerodynamic Curved Swirl Blades) */}
+          {/* Blue Shield / Disc */}
+          <circle cx="50" cy="50" r="46" fill="url(#mi-blue)" stroke="url(#mi-gold)" strokeWidth="3.5" />
+          {/* Swirling Chakra Razor Blades */}
           <g transform="translate(50,50)">
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+            {[0, 60, 120, 180, 240, 300].map((angle, i) => (
               <path
                 key={angle}
-                d="M0 -42 C8 -32 14 -18 6 -6 C-2 -16 -4 -30 0 -42 Z"
-                fill={i % 2 === 0 ? 'url(#mi-gold-blade)' : '#FFFFFF'}
+                d="M0 -44 C6 -34 12 -22 4 -10 C0 -20 -2 -34 0 -44 Z"
+                fill={i % 2 === 0 ? 'url(#mi-gold)' : '#FFFFFF'}
                 transform={`rotate(${angle})`}
-                opacity={i % 2 === 0 ? '1' : '0.85'}
+                opacity="0.85"
               />
             ))}
-            {/* Center Disk */}
-            <circle cx="0" cy="0" r="22" fill="#001F54" stroke="url(#mi-gold-blade)" strokeWidth="2.5" />
-            {/* MI Monogram */}
-            <text
-              x="0"
-              y="6"
-              textAnchor="middle"
-              fontSize="16"
-              fontWeight="900"
-              letterSpacing="1"
-              fill="url(#mi-gold-blade)"
-              fontFamily="sans-serif"
-            >
-              MI
-            </text>
           </g>
-          {/* Indian Tricolor Wave Accent at Bottom */}
-          <path d="M26 84 Q50 78 74 84" stroke="#FF9933" strokeWidth="2" strokeLinecap="round" />
-          <path d="M28 87 Q50 81 72 87" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
-          <path d="M30 90 Q50 84 70 90" stroke="#138808" strokeWidth="2" strokeLinecap="round" />
+          {/* Center Dark Disc */}
+          <circle cx="50" cy="50" r="28" fill="#001F54" stroke="url(#mi-gold)" strokeWidth="2" />
+          {/* Center Bold MI */}
+          <text
+            x="50"
+            y="61"
+            textAnchor="middle"
+            fontSize="34"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="2"
+            fill="url(#mi-gold)"
+            stroke="#001F54"
+            strokeWidth="0.8"
+          >
+            MI
+          </text>
+          {/* Tricolor Ribbon at Bottom */}
+          <path d="M30 84 Q50 79 70 84" stroke="#FF9933" strokeWidth="2.2" strokeLinecap="round" />
+          <path d="M32 87 Q50 82 68 87" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
+          <path d="M34 90 Q50 85 66 90" stroke="#138808" strokeWidth="2.2" strokeLinecap="round" />
         </svg>
       );
 
-    // 3. ROYAL CHALLENGERS BENGALURU (RCB) - Rampant Lion Standing & Royal Crown
+    // 3. ROYAL CHALLENGERS BENGALURU (RCB) - Bold RCB with Crown & Crest
     case 'rcb':
       return (
         <svg
@@ -167,12 +162,12 @@ export default function FranchiseLogo({
           aria-label="Royal Challengers Bengaluru"
         >
           <defs>
-            <linearGradient id="rcb-shield-red" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="rcb-red" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#D90429" />
               <stop offset="60%" stopColor="#A0001E" />
               <stop offset="100%" stopColor="#4A000C" />
             </linearGradient>
-            <linearGradient id="rcb-gold-lion" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="rcb-gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFF176" />
               <stop offset="50%" stopColor="#E5A823" />
               <stop offset="100%" stopColor="#B37D00" />
@@ -181,48 +176,43 @@ export default function FranchiseLogo({
           {/* Shield Outline */}
           <path
             d="M50 4 L88 18 C88 56 74 80 50 96 C26 80 12 56 12 18 Z"
-            fill="url(#rcb-shield-red)"
-            stroke="url(#rcb-gold-lion)"
+            fill="url(#rcb-red)"
+            stroke="url(#rcb-gold)"
             strokeWidth="3.5"
           />
-          {/* Inner Black Field (RCB Iconic split) */}
-          <path
-            d="M50 10 L82 22 C82 52 70 72 50 86 C30 72 18 52 18 22 Z"
-            fill="#0A0A0A"
-          />
-          {/* Royal Crown atop lion */}
-          <g fill="url(#rcb-gold-lion)">
-            <path d="M36 21 L50 14 L64 21 L59 26 L41 26 Z" />
-            <circle cx="50" cy="12.5" r="2" fill="#FFFFFF" />
-            <circle cx="36" cy="19.5" r="1.5" fill="#FFFFFF" />
-            <circle cx="64" cy="19.5" r="1.5" fill="#FFFFFF" />
+          {/* Inner Black Field */}
+          <path d="M50 10 L82 22 C82 52 70 72 50 86 C30 72 18 52 18 22 Z" fill="#0A0A0A" />
+          {/* Top Royal Crown */}
+          <g fill="url(#rcb-gold)">
+            <path d="M38 18 L50 11 L62 18 L58 23 L42 23 Z" />
+            <circle cx="50" cy="9.5" r="2" fill="#FFFFFF" />
+            <circle cx="38" cy="16.5" r="1.5" fill="#FFFFFF" />
+            <circle cx="62" cy="16.5" r="1.5" fill="#FFFFFF" />
           </g>
-          {/* Authentic Heraldic Rampant Lion (Standing upright, paws raised in strike) */}
-          <g fill="url(#rcb-gold-lion)">
-            {/* Lion Head & Roar */}
-            <path d="M48 27 C54 27 58 31 56 36 C54 39 49 40 46 38 C44 36 44 31 48 27 Z" />
-            {/* Upper Raised Paws (Claws striking left & up) */}
-            <path d="M46 34 L36 30 L38 34 L43 37 Z" />
-            <path d="M47 38 L34 40 L36 43 L44 42 Z" />
-            {/* Muscular Lion Torso */}
-            <path d="M48 37 C54 39 55 48 51 54 C48 58 45 61 46 66 L52 66 C50 71 44 71 42 66 C40 60 44 52 45 44 Z" />
-            {/* Hind Legs & Paws */}
-            <path d="M46 58 L58 64 L54 67 L44 63 Z" />
-            <path d="M43 64 L36 71 L40 73 L45 68 Z" />
-            {/* Heraldic S-Curve Tail */}
-            <path
-              d="M52 56 C62 52 66 44 63 36 C61 36 60 38 61 41 C62 46 58 50 50 53 Z"
-            />
-          </g>
-          {/* Wordmark Banner */}
-          <rect x="22" y="73" width="56" height="13" rx="3.5" fill="url(#rcb-gold-lion)" />
-          <text x="50" y="83" textAnchor="middle" fontSize="10" fontWeight="900" letterSpacing="1" fill="#0A0A0A" fontFamily="sans-serif">
+          {/* Center Bold RCB */}
+          <text
+            x="50"
+            y="58"
+            textAnchor="middle"
+            fontSize="28"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="1.5"
+            fill="url(#rcb-gold)"
+            stroke="#0A0A0A"
+            strokeWidth="1"
+          >
             RCB
+          </text>
+          {/* Lower Gold Ribbon */}
+          <rect x="22" y="70" width="56" height="12" rx="3" fill="url(#rcb-gold)" />
+          <text x="50" y="79" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#0A0A0A" letterSpacing="1">
+            BENGALURU
           </text>
         </svg>
       );
 
-    // 4. KOLKATA KNIGHT RIDERS (KKR) - Corinthian Knight Helmet & Flaming Plume
+    // 4. KOLKATA KNIGHT RIDERS (KKR) - Bold KKR with Golden Knight Helmet
     case 'kkr':
       return (
         <svg
@@ -233,63 +223,52 @@ export default function FranchiseLogo({
           aria-label="Kolkata Knight Riders"
         >
           <defs>
-            <linearGradient id="kkr-purple-shield" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="kkr-purple" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#582C83" />
               <stop offset="60%" stopColor="#37185B" />
               <stop offset="100%" stopColor="#1C0A33" />
             </linearGradient>
-            <linearGradient id="kkr-gold-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="kkr-gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFF2A3" />
               <stop offset="45%" stopColor="#D4AF37" />
               <stop offset="100%" stopColor="#997A15" />
             </linearGradient>
-            <linearGradient id="kkr-flame" x1="0%" y1="100%" x2="0%" y2="0%">
-              <stop offset="0%" stopColor="#E5A823" />
-              <stop offset="50%" stopColor="#FFD54F" />
-              <stop offset="100%" stopColor="#FFFFFF" />
-            </linearGradient>
           </defs>
           <path
             d="M50 4 L88 18 C88 58 72 82 50 96 C28 82 12 58 12 18 Z"
-            fill="url(#kkr-purple-shield)"
-            stroke="url(#kkr-gold-metal)"
+            fill="url(#kkr-purple)"
+            stroke="url(#kkr-gold)"
             strokeWidth="3.5"
           />
-          {/* Knight Helmet Crest Flame (Comet fire blazing upward) */}
-          <path
-            d="M50 11 C44 20 48 28 50 34 C52 28 56 20 50 11 Z"
-            fill="url(#kkr-flame)"
-          />
-          <path
-            d="M44 18 C38 24 42 30 46 34 C43 28 41 24 44 18 Z"
-            fill="url(#kkr-gold-metal)"
-            opacity="0.8"
-          />
-          <path
-            d="M56 18 C62 24 58 30 54 34 C57 28 59 24 56 18 Z"
-            fill="url(#kkr-gold-metal)"
-            opacity="0.8"
-          />
-          {/* Corinthian Knight Helmet Visor & Cheeks */}
-          <path
-            d="M32 38 C32 28 68 28 68 38 C68 48 65 58 58 66 C54 70 46 70 42 66 C35 58 32 48 32 38 Z"
-            fill="url(#kkr-gold-metal)"
-          />
-          {/* Helmet Eye Visor Cutout */}
-          <path d="M38 43 L62 43 L58 49 L42 49 Z" fill="#1C0A33" />
-          {/* T-bar Nose & Mouth Guard */}
-          <path d="M47 49 L53 49 L51 63 L49 63 Z" fill="#1C0A33" />
-          <line x1="42" y1="56" x2="47" y2="56" stroke="#1C0A33" strokeWidth="1.5" />
-          <line x1="53" y1="56" x2="58" y2="56" stroke="#1C0A33" strokeWidth="1.5" />
-          {/* Wordmark Banner */}
-          <rect x="22" y="73" width="56" height="13" rx="3.5" fill="url(#kkr-gold-metal)" stroke="#FFFFFF" strokeWidth="0.8" />
-          <text x="50" y="83" textAnchor="middle" fontSize="9.5" fontWeight="900" letterSpacing="0.8" fill="#1C0A33" fontFamily="sans-serif">
+          {/* Knight Helmet Silhouette on Top */}
+          <g fill="url(#kkr-gold)">
+            <path d="M46 10 C46 18 54 18 54 10 C50 14 50 14 46 10 Z" />
+            <circle cx="50" cy="18" r="5" />
+          </g>
+          {/* Center Bold KKR */}
+          <text
+            x="50"
+            y="58"
+            textAnchor="middle"
+            fontSize="28"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="1.5"
+            fill="url(#kkr-gold)"
+            stroke="#1C0A33"
+            strokeWidth="1"
+          >
             KKR
+          </text>
+          {/* Gold Banner */}
+          <rect x="22" y="70" width="56" height="12" rx="3" fill="url(#kkr-gold)" />
+          <text x="50" y="79" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#1C0A33" letterSpacing="1">
+            KNIGHT RIDERS
           </text>
         </svg>
       );
 
-    // 5. RAJASTHAN ROYALS (RR) - Twin Heraldic Lions & Maharajah Crown
+    // 5. RAJASTHAN ROYALS (RR) - Bold RR with Pink & Royal Navy Crest
     case 'rr':
       return (
         <svg
@@ -300,14 +279,10 @@ export default function FranchiseLogo({
           aria-label="Rajasthan Royals"
         >
           <defs>
-            <linearGradient id="rr-jaipur-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="rr-pink" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FF409F" />
               <stop offset="50%" stopColor="#EA1A85" />
               <stop offset="100%" stopColor="#A60055" />
-            </linearGradient>
-            <linearGradient id="rr-royal-navy" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#003566" />
-              <stop offset="100%" stopColor="#001429" />
             </linearGradient>
             <linearGradient id="rr-gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFF2A3" />
@@ -317,51 +292,39 @@ export default function FranchiseLogo({
           </defs>
           <path
             d="M50 4 L88 18 C88 58 72 82 50 96 C28 82 12 58 12 18 Z"
-            fill="url(#rr-jaipur-pink)"
+            fill="url(#rr-pink)"
             stroke="#FFFFFF"
             strokeWidth="3.5"
           />
           {/* Maharajah Crown on Top */}
           <g fill="url(#rr-gold)">
-            <path d="M35 22 L50 14 L65 22 L60 28 L40 28 Z" stroke="#FFFFFF" strokeWidth="0.8" />
-            <circle cx="50" cy="12.5" r="2.2" fill="#FFFFFF" />
-            <circle cx="35" cy="20.5" r="1.8" fill="#FFFFFF" />
-            <circle cx="65" cy="20.5" r="1.8" fill="#FFFFFF" />
+            <path d="M37 18 L50 11 L63 18 L59 23 L41 23 Z" />
+            <circle cx="50" cy="9.5" r="2" fill="#FFFFFF" />
           </g>
-          {/* Twin Heraldic Lions flanking the central badge */}
-          {/* Left Lion */}
-          <path
-            d="M26 36 C29 36 32 40 31 44 C27 45 23 50 25 56 C27 62 33 62 36 60 C32 64 26 64 22 58 C19 50 20 42 26 36 Z"
-            fill="url(#rr-gold)"
-          />
-          {/* Right Lion */}
-          <path
-            d="M74 36 C71 36 68 40 69 44 C73 45 77 50 75 56 C73 62 67 62 64 60 C68 64 74 64 78 58 C81 50 80 42 74 36 Z"
-            fill="url(#rr-gold)"
-          />
-          {/* Center Royal Navy Emblem with Interlocking RR */}
-          <circle cx="50" cy="49" r="18" fill="url(#rr-royal-navy)" stroke="url(#rr-gold)" strokeWidth="2.5" />
+          {/* Center Navy Disc */}
+          <circle cx="50" cy="50" r="28" fill="#001D48" stroke="url(#rr-gold)" strokeWidth="2.5" />
+          {/* Center Bold RR */}
           <text
             x="50"
-            y="55"
+            y="61"
             textAnchor="middle"
-            fontSize="14"
+            fontSize="34"
             fontWeight="900"
-            letterSpacing="1"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="2"
             fill="url(#rr-gold)"
-            fontFamily="serif"
           >
             RR
           </text>
-          {/* ROYALS Banner */}
-          <rect x="20" y="74" width="60" height="13" rx="3.5" fill="url(#rr-royal-navy)" stroke="url(#rr-gold)" strokeWidth="1" />
-          <text x="50" y="84" textAnchor="middle" fontSize="9" fontWeight="900" letterSpacing="1.2" fill="#FFFFFF" fontFamily="sans-serif">
+          {/* Royals Banner */}
+          <rect x="22" y="74" width="56" height="11" rx="3" fill="#001D48" stroke="url(#rr-gold)" strokeWidth="1" />
+          <text x="50" y="82.5" textAnchor="middle" fontSize="7" fontWeight="900" fill="#FFFFFF" letterSpacing="1.2">
             ROYALS
           </text>
         </svg>
       );
 
-    // 6. SUNRISERS HYDERABAD (SRH) - Outstretched Rising Eagle & Sunburst
+    // 6. SUNRISERS HYDERABAD (SRH) - Bold SRH with Fiery Sunburst
     case 'srh':
       return (
         <svg
@@ -372,63 +335,57 @@ export default function FranchiseLogo({
           aria-label="Sunrisers Hyderabad"
         >
           <defs>
-            <linearGradient id="srh-fire-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1E1E1E" />
-              <stop offset="100%" stopColor="#0A0A0A" />
-            </linearGradient>
-            <linearGradient id="srh-orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="srh-fire" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFB300" />
               <stop offset="50%" stopColor="#FF6D00" />
               <stop offset="100%" stopColor="#DD2C00" />
             </linearGradient>
-            <radialGradient id="srh-sun-core" cx="50%" cy="45%" r="40%">
-              <stop offset="0%" stopColor="#FFFF8D" />
-              <stop offset="60%" stopColor="#FF9100" />
-              <stop offset="100%" stopColor="#DD2C00" />
-            </radialGradient>
           </defs>
           <path
             d="M50 4 L88 18 C88 58 72 82 50 96 C28 82 12 58 12 18 Z"
-            fill="url(#srh-fire-bg)"
-            stroke="url(#srh-orange-grad)"
+            fill="#141414"
+            stroke="url(#srh-fire)"
             strokeWidth="3.5"
           />
-          {/* Sunburst Core Arc */}
-          <circle cx="50" cy="46" r="23" fill="url(#srh-sun-core)" />
-          {/* Sunburst Radiant Rays */}
-          {[0, 25, 50, 75, 105, 130, 155, 180].map((deg) => (
+          {/* Sunburst Rays at top */}
+          {[30, 60, 90, 120, 150].map((deg) => (
             <line
               key={deg}
               x1="50"
-              y1="46"
-              x2={50 + 26 * Math.cos((deg * Math.PI) / 180 - Math.PI)}
-              y2={46 + 26 * Math.sin((deg * Math.PI) / 180 - Math.PI)}
+              y1="36"
+              x2={50 + 22 * Math.cos((deg * Math.PI) / 180 - Math.PI)}
+              y2={36 + 22 * Math.sin((deg * Math.PI) / 180 - Math.PI)}
               stroke="#FFF"
-              strokeWidth="1.8"
-              opacity="0.85"
+              strokeWidth="2"
+              opacity="0.8"
             />
           ))}
-          {/* Soaring Eagle / Falcon Outstretched Wings & Head */}
-          <path
-            d="M50 32 C46 36 34 38 18 36 C25 43 36 47 46 47 L50 63 L54 47 C64 47 75 43 82 36 C66 38 54 36 50 32 Z"
-            fill="#FFFFFF"
-          />
-          {/* Eagle Chest Layer in Gold/Orange */}
-          <path
-            d="M50 42 C45 42 36 44 26 42 C33 46 42 49 48 49 L50 58 L52 49 C58 49 67 46 74 42 C64 44 55 42 50 42 Z"
-            fill="url(#srh-orange-grad)"
-          />
-          {/* Eagle Beak & Eye */}
-          <polygon points="50,34 48,39 52,39" fill="#0A0A0A" />
-          {/* Wordmark Banner */}
-          <rect x="22" y="73" width="56" height="13" rx="3.5" fill="url(#srh-orange-grad)" stroke="#FFFFFF" strokeWidth="0.8" />
-          <text x="50" y="83" textAnchor="middle" fontSize="9.5" fontWeight="900" letterSpacing="0.8" fill="#000000" fontFamily="sans-serif">
+          {/* Soaring Eagle Arc */}
+          <path d="M26 28 Q50 38 74 28 Q50 32 26 28 Z" fill="#FFFFFF" />
+          {/* Center Bold SRH */}
+          <text
+            x="50"
+            y="60"
+            textAnchor="middle"
+            fontSize="28"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="1.5"
+            fill="url(#srh-fire)"
+            stroke="#141414"
+            strokeWidth="1"
+          >
             SRH
+          </text>
+          {/* Orange Banner */}
+          <rect x="22" y="72" width="56" height="12" rx="3" fill="url(#srh-fire)" />
+          <text x="50" y="81" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#000000" letterSpacing="1">
+            SUNRISERS
           </text>
         </svg>
       );
 
-    // 7. GUJARAT TITANS (GT) - Aerodynamic Titanium Prism & Gold Lightning Bolt
+    // 7. GUJARAT TITANS (GT) - Bold GT with Titanium Lightning Prism
     case 'gt':
       return (
         <svg
@@ -439,43 +396,49 @@ export default function FranchiseLogo({
           aria-label="Gujarat Titans"
         >
           <defs>
-            <linearGradient id="gt-titan-navy" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="gt-navy" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#253248" />
               <stop offset="50%" stopColor="#172033" />
               <stop offset="100%" stopColor="#0B0F19" />
             </linearGradient>
-            <linearGradient id="gt-gold-armor" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="gt-gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#F5DFB3" />
               <stop offset="50%" stopColor="#C8A668" />
               <stop offset="100%" stopColor="#8C682A" />
             </linearGradient>
           </defs>
-          {/* Kite/Prism Shield Shape */}
           <polygon
             points="50,4 92,26 78,88 50,97 22,88 8,26"
-            fill="url(#gt-titan-navy)"
-            stroke="url(#gt-gold-armor)"
+            fill="url(#gt-navy)"
+            stroke="url(#gt-gold)"
             strokeWidth="3.5"
           />
-          {/* Faceted Prism 3D Geometry */}
-          <polygon points="50,4 50,97 8,26" fill="#FFFFFF" opacity="0.04" />
-          <polygon points="50,4 92,26 50,97" fill="#000000" opacity="0.25" />
-          {/* Electric Gold Lightning Bolt */}
-          <polygon
-            points="56,16 34,48 49,48 44,76 68,40 52,40"
-            fill="url(#gt-gold-armor)"
-            stroke="#FFFFFF"
-            strokeWidth="1.2"
-          />
-          {/* Wordmark Banner */}
-          <rect x="22" y="75" width="56" height="13" rx="3.5" fill="url(#gt-gold-armor)" />
-          <text x="50" y="85" textAnchor="middle" fontSize="9.5" fontWeight="900" letterSpacing="0.8" fill="#0B0F19" fontFamily="sans-serif">
+          {/* Electric Lightning Bolt Accent */}
+          <polygon points="52,14 38,36 48,36 44,56 62,32 50,32" fill="url(#gt-gold)" opacity="0.8" />
+          {/* Center Bold GT */}
+          <text
+            x="50"
+            y="64"
+            textAnchor="middle"
+            fontSize="34"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="2"
+            fill="url(#gt-gold)"
+            stroke="#0B0F19"
+            strokeWidth="1"
+          >
+            GT
+          </text>
+          {/* Gold Banner */}
+          <rect x="22" y="74" width="56" height="12" rx="3" fill="url(#gt-gold)" />
+          <text x="50" y="83" textAnchor="middle" fontSize="7" fontWeight="900" fill="#0B0F19" letterSpacing="1">
             TITANS
           </text>
         </svg>
       );
 
-    // 8. LUCKNOW SUPER GIANTS (LSG) - Tricolor Garuda Wings & Cricket Ball
+    // 8. LUCKNOW SUPER GIANTS (LSG) - Bold LSG with Tricolor Wings
     case 'lsg':
       return (
         <svg
@@ -486,7 +449,7 @@ export default function FranchiseLogo({
           aria-label="Lucknow Super Giants"
         >
           <defs>
-            <linearGradient id="lsg-sky-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="lsg-sky" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#00A8E8" />
               <stop offset="50%" stopColor="#007EA7" />
               <stop offset="100%" stopColor="#003459" />
@@ -494,32 +457,39 @@ export default function FranchiseLogo({
           </defs>
           <path
             d="M50 4 L88 18 C88 58 72 82 50 96 C28 82 12 58 12 18 Z"
-            fill="url(#lsg-sky-bg)"
+            fill="url(#lsg-sky)"
             stroke="#FFFFFF"
             strokeWidth="3.5"
           />
-          {/* Garuda Feather Wings in Indian Tricolor */}
-          {/* Top Saffron / Orange Feathers */}
-          <path d="M20 34 Q36 28 48 40 Q34 44 20 40 Z" fill="#FF9933" />
-          <path d="M80 34 Q64 28 52 40 Q66 44 80 40 Z" fill="#FF9933" />
-          {/* Middle White Feathers */}
-          <path d="M22 43 Q38 38 48 48 Q36 52 24 49 Z" fill="#FFFFFF" />
-          <path d="M78 43 Q62 38 52 48 Q64 52 76 49 Z" fill="#FFFFFF" />
-          {/* Bottom Green Feathers */}
-          <path d="M26 51 Q40 48 48 56 Q38 60 28 57 Z" fill="#138808" />
-          <path d="M74 51 Q60 48 52 56 Q62 60 72 57 Z" fill="#138808" />
-          {/* Center Cricket Ball with White Seam */}
-          <circle cx="50" cy="49" r="8.5" fill="#E63946" stroke="#FFFFFF" strokeWidth="1.5" />
-          <path d="M45 46 Q50 49 55 46" stroke="#FFFFFF" strokeWidth="1" strokeDasharray="1.2 1" fill="none" />
-          {/* Wordmark Banner */}
-          <rect x="22" y="73" width="56" height="13" rx="3.5" fill="#FFFFFF" stroke="#003459" strokeWidth="1" />
-          <text x="50" y="83" textAnchor="middle" fontSize="9.5" fontWeight="900" letterSpacing="0.8" fill="#003459" fontFamily="sans-serif">
+          {/* Tricolor Garuda Wing Accents */}
+          <path d="M22 28 Q36 22 48 32 Q34 36 22 28 Z" fill="#FF9933" />
+          <path d="M78 28 Q64 22 52 32 Q66 36 78 28 Z" fill="#FF9933" />
+          <path d="M24 36 Q38 30 48 40 Q36 44 24 36 Z" fill="#FFFFFF" />
+          <path d="M76 36 Q62 30 52 40 Q64 44 76 36 Z" fill="#138808" />
+          {/* Center Bold LSG */}
+          <text
+            x="50"
+            y="62"
+            textAnchor="middle"
+            fontSize="28"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="1.5"
+            fill="#FFFFFF"
+            stroke="#003459"
+            strokeWidth="1.2"
+          >
             LSG
+          </text>
+          {/* White Banner */}
+          <rect x="22" y="73" width="56" height="12" rx="3" fill="#FFFFFF" stroke="#003459" strokeWidth="1" />
+          <text x="50" y="82" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#003459" letterSpacing="1">
+            SUPER GIANTS
           </text>
         </svg>
       );
 
-    // 9. DELHI CAPITALS (DC) - Three Roaring Tigers & Parliament Dome
+    // 9. DELHI CAPITALS (DC) - Bold DC with Tigers & Parliament Dome
     case 'dc':
       return (
         <svg
@@ -530,47 +500,49 @@ export default function FranchiseLogo({
           aria-label="Delhi Capitals"
         >
           <defs>
-            <linearGradient id="dc-shield-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="dc-blue" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#0078BC" />
               <stop offset="50%" stopColor="#004D80" />
               <stop offset="100%" stopColor="#002244" />
             </linearGradient>
-            <linearGradient id="dc-tiger-red" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="dc-red" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FF3344" />
               <stop offset="100%" stopColor="#CC0011" />
             </linearGradient>
           </defs>
           <path
             d="M50 4 L88 18 C88 58 72 82 50 96 C28 82 12 58 12 18 Z"
-            fill="url(#dc-shield-blue)"
-            stroke="url(#dc-tiger-red)"
+            fill="url(#dc-blue)"
+            stroke="url(#dc-red)"
             strokeWidth="3.5"
           />
           {/* Parliament Dome Silhouette */}
-          <path d="M40 28 C40 18 60 18 60 28 Z" fill="#FFFFFF" opacity="0.9" />
-          <rect x="38" y="28" width="24" height="3" fill="#FFFFFF" opacity="0.9" />
-          {/* Three Roaring Tiger Emblems */}
-          {/* Center Main Tiger */}
-          <circle cx="50" cy="42" r="10" fill="url(#dc-tiger-red)" stroke="#FFFFFF" strokeWidth="1.2" />
-          {/* Tiger Ears & Snout */}
-          <polygon points="43,34 46,30 48,34" fill="#FFFFFF" />
-          <polygon points="57,34 54,30 52,34" fill="#FFFFFF" />
-          <polygon points="50,44 47,41 53,41" fill="#FFFFFF" />
-          {/* Left Flanking Tiger */}
-          <circle cx="34" cy="48" r="8" fill="url(#dc-tiger-red)" stroke="#FFFFFF" strokeWidth="1" />
-          <polygon points="28,42 30,38 33,42" fill="#FFFFFF" />
-          {/* Right Flanking Tiger */}
-          <circle cx="66" cy="48" r="8" fill="url(#dc-tiger-red)" stroke="#FFFFFF" strokeWidth="1" />
-          <polygon points="72,42 70,38 67,42" fill="#FFFFFF" />
-          {/* Wordmark Banner */}
-          <rect x="22" y="73" width="56" height="13" rx="3.5" fill="url(#dc-tiger-red)" stroke="#FFFFFF" strokeWidth="0.8" />
-          <text x="50" y="83" textAnchor="middle" fontSize="10" fontWeight="900" letterSpacing="1" fill="#FFFFFF" fontFamily="sans-serif">
+          <path d="M42 22 C42 14 58 14 58 22 Z" fill="#FFFFFF" opacity="0.8" />
+          <rect x="40" y="22" width="20" height="2.5" fill="#FFFFFF" opacity="0.8" />
+          {/* Center Bold DC */}
+          <text
+            x="50"
+            y="58"
+            textAnchor="middle"
+            fontSize="34"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="2"
+            fill="#FFFFFF"
+            stroke="url(#dc-red)"
+            strokeWidth="1.2"
+          >
             DC
+          </text>
+          {/* Red Banner */}
+          <rect x="22" y="71" width="56" height="12" rx="3" fill="url(#dc-red)" stroke="#FFFFFF" strokeWidth="0.8" />
+          <text x="50" y="80" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#FFFFFF" letterSpacing="1">
+            CAPITALS
           </text>
         </svg>
       );
 
-    // 10. PUNJAB KINGS (PBKS) - Red Shield & Roaring Golden Lion
+    // 10. PUNJAB KINGS (PBKS) - Bold PBKS with Red Shield & Crown
     case 'pbks':
     case 'pk':
       return (
@@ -582,12 +554,12 @@ export default function FranchiseLogo({
           aria-label="Punjab Kings"
         >
           <defs>
-            <linearGradient id="pbks-red-shield" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="pbks-red" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#E61C24" />
               <stop offset="50%" stopColor="#B30006" />
               <stop offset="100%" stopColor="#5E0003" />
             </linearGradient>
-            <linearGradient id="pbks-gold-lion" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="pbks-gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FFF2A3" />
               <stop offset="50%" stopColor="#D4AF37" />
               <stop offset="100%" stopColor="#997A15" />
@@ -595,37 +567,33 @@ export default function FranchiseLogo({
           </defs>
           <path
             d="M50 4 L88 18 C88 58 72 82 50 96 C28 82 12 58 12 18 Z"
-            fill="url(#pbks-red-shield)"
-            stroke="url(#pbks-gold-lion)"
+            fill="url(#pbks-red)"
+            stroke="url(#pbks-gold)"
             strokeWidth="3.5"
           />
           {/* Crown Pennants atop shield */}
-          <g fill="url(#pbks-gold-lion)">
-            <path d="M37 21 L50 14 L63 21 L59 26 L41 26 Z" />
-            <circle cx="50" cy="12.5" r="2" fill="#FFFFFF" />
+          <g fill="url(#pbks-gold)">
+            <path d="M38 18 L50 11 L62 18 L58 23 L42 23 Z" />
+            <circle cx="50" cy="9.5" r="2" fill="#FFFFFF" />
           </g>
-          {/* Fierce Front-Facing Roaring Lion Head */}
-          <g fill="url(#pbks-gold-lion)">
-            {/* Mane */}
-            <path
-              d="M32 38 C32 30 68 30 68 38 C74 46 72 58 64 66 C56 72 44 72 36 66 C28 58 26 46 32 38 Z"
-            />
-            {/* Inner Face Mask */}
-            <path
-              d="M38 42 C42 38 58 38 62 42 C65 48 64 56 58 62 C54 66 46 66 42 62 C36 56 35 48 38 42 Z"
-              fill="#5E0003"
-            />
-            {/* Lion Eyes */}
-            <circle cx="44" cy="46" r="2" fill="#FFFFFF" />
-            <circle cx="56" cy="46" r="2" fill="#FFFFFF" />
-            {/* Lion Nose & Fangs */}
-            <polygon points="50,52 46,49 54,49" fill="url(#pbks-gold-lion)" />
-            <polygon points="46,56 48,53 50,56" fill="#FFFFFF" />
-            <polygon points="54,56 52,53 50,56" fill="#FFFFFF" />
-          </g>
-          {/* Wordmark Banner */}
-          <rect x="20" y="73" width="60" height="13" rx="3.5" fill="url(#pbks-gold-lion)" stroke="#FFFFFF" strokeWidth="0.8" />
-          <text x="50" y="83" textAnchor="middle" fontSize="9" fontWeight="900" letterSpacing="1" fill="#5E0003" fontFamily="sans-serif">
+          {/* Center Bold PBKS */}
+          <text
+            x="50"
+            y="57"
+            textAnchor="middle"
+            fontSize="24"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="1.2"
+            fill="url(#pbks-gold)"
+            stroke="#5E0003"
+            strokeWidth="1"
+          >
+            PBKS
+          </text>
+          {/* Gold Banner */}
+          <rect x="22" y="70" width="56" height="12" rx="3" fill="url(#pbks-gold)" stroke="#FFFFFF" strokeWidth="0.8" />
+          <text x="50" y="79" textAnchor="middle" fontSize="7" fontWeight="900" fill="#5E0003" letterSpacing="1">
             PUNJAB
           </text>
         </svg>

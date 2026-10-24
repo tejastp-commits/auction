@@ -319,10 +319,10 @@ export default function OrganizerPoolModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 animate-fade-in">
-      <div className="ipl-card w-full max-w-6xl h-[92vh] flex flex-col rounded-2xl border border-amber-500/30 shadow-2xl overflow-hidden bg-slate-950">
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 animate-fade-in">
+      <div className="w-full max-w-6xl h-[92vh] flex flex-col rounded-3xl border theme-border shadow-2xl overflow-hidden theme-card text-[var(--theme-text)]">
         {/* MODAL HEADER */}
-        <div className="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/80">
+        <div className="p-4 sm:p-5 border-b theme-border flex items-center justify-between theme-subtle-box">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl text-amber-400">
               🏏

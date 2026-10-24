@@ -306,10 +306,12 @@ input[type='range']::-moz-range-thumb {
   background: var(--theme-muted);
 }
 
-/* Preserve Room & Report Card Utilities */
+/* Dynamic Themed Room & Report Card Utilities */
 .ipl-card {
-  background: linear-gradient(180deg, rgba(19, 27, 46, 0.98) 0%, rgba(13, 19, 33, 0.99) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  backdrop-filter: blur(8px);
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  box-shadow: var(--theme-shadow);
+  color: var(--theme-text);
+  backdrop-filter: blur(12px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
