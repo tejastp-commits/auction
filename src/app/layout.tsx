@@ -30,12 +30,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                var theme = localStorage.getItem('auction_theme_preference') || 'pastel';
-                var accent = localStorage.getItem('auction_theme_accent');
-                document.documentElement.setAttribute('data-theme', theme);
+                var themeId = localStorage.getItem('auction_theme_id') || localStorage.getItem('auction_theme_preference') || 'pastel';
+                var accent = localStorage.getItem('auction_custom_accent') || localStorage.getItem('auction_theme_accent');
+                document.documentElement.setAttribute('data-theme', themeId);
                 if (accent) {
                   document.documentElement.style.setProperty('--theme-accent', accent);
-                  document.documentElement.style.setProperty('--theme-accent-light', accent + '25');
+                  document.documentElement.style.setProperty('--theme-accent-light', accent + '28');
                 }
               } catch (e) {}
             `,
@@ -57,7 +57,7 @@ export default function RootLayout({
 
         {/* DYNAMIC THEMED HEADER */}
         <header className="sticky top-0 z-40 border-b theme-border theme-card/90 backdrop-blur-md transition-all">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2.5 group">
               <div className="w-9 h-9 rounded-xl theme-accent-badge flex items-center justify-center font-bold theme-accent-text shadow-sm group-hover:scale-105 transition-all">
                 <Gavel className="w-4 h-4 stroke-[2.2]" />
@@ -89,13 +89,13 @@ export default function RootLayout({
 
               <Link
                 href="/reports/sample-mega-auction-2024"
-                className="inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
+                className="hidden xs:inline-flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 px-3 py-1.5 rounded-lg hover:bg-slate-500/10 transition-all"
               >
                 <BarChart3 className="w-3.5 h-3.5 text-emerald-500" />
-                <span className="hidden xs:inline">Sample</span> Report
+                <span>Sample Report</span>
               </Link>
 
-              {/* COLOR THEME SWITCHER */}
+              {/* INTEGRATED LUXURY THEME PILL */}
               <ThemeCustomizer />
             </nav>
           </div>
@@ -105,7 +105,7 @@ export default function RootLayout({
 
         {/* MINIMAL THEMED FOOTER */}
         <footer className="border-t theme-border theme-card py-8 text-xs opacity-75">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
               <p className="font-semibold">
                 IPL Auction Arena
@@ -115,7 +115,7 @@ export default function RootLayout({
               </p>
             </div>
             <div className="text-[11px] opacity-60">
-              © {new Date().getFullYear()} IPL Auction Arena. Fully customizable color themes.
+              © {new Date().getFullYear()} IPL Auction Arena. Built for competitive cricket fans.
             </div>
           </div>
         </footer>
